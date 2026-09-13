@@ -1,17 +1,43 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Voyages & raids à ski de randonnée | Yann Borgnet"
+  description="Voyages et raids à ski de randonnée en itinérance, dans les Alpes et les montagnes du monde, avec Yann Borgnet, guide de haute montagne UIAGM."
+>
+  <Header />
+
+  <main>
+    <section class="hero">
+      <img
+        class="hero__image"
+        src="https://lesgrandsraidsaski.com/wp-content/uploads/2025/12/DSC07143_DxO-3-scaled.jpg"
+        alt="Grand raid à ski dans les montagnes"
+      />
+
+      <div class="hero__veil"></div>
+
+      <div class="site-shell hero__content">
+        <div class="hero__kicker">ALPES · MONTAGNES DU MONDE</div>
+
+        <h1>
+          LES GRANDS<br />
+          RAIDS <em>À SKI</em>
+        </h1>
+
+        <p class="hero__tagline">
+          Explorer · improviser · rencontrer · skier
+        </p>
+      </div>
+    </section>
+
+    <section class="intro">
+      <div class="site-shell">
+        <div class="intro__eyebrow">L'esprit</div>
+        <h2>Explorer. Partager l’aventure.</h2>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
