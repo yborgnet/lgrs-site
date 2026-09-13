@@ -202,3 +202,24 @@ a {
     padding: 72px 0;
   }
 }
+
+/* Ajustements desktop */
+@media (min-width: 701px) {
+  .site-brand {
+    font-size: 17px;
+  }
+
+  .site-brand small {
+    font-size: 17px;
+  }
+
+  .site-nav {
+    font-size: 16px;
+    gap: 38px;
+  }
+
+  .hero__kicker {
+    font-size: 14px;
+    letter-spacing: .16em;
+  }
+}
