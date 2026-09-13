@@ -1,0 +1,1427 @@
+:root {
+  --ink: #0b0b0a;
+  --paper: #f3f1ec;
+  --warm: #d6a17a;
+  --line: rgba(11, 11, 10, 0.16);
+  --white: #ffffff;
+
+  --font-sans: "Manrope", sans-serif;
+  --font-serif: "Newsreader", serif;
+
+  --shell: min(1360px, calc(100vw - 48px));
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.site-shell {
+  width: var(--shell);
+  margin-inline: auto;
+}
+
+/* HEADER */
+
+.site-header {
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 20;
+  color: white;
+}
+
+.site-header__inner {
+  min-height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.site-brand {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: 0.08em;
+}
+
+.site-brand small {
+  font-family: var(--font-serif);
+  font-size: 14px;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.site-nav {
+  display: flex;
+  gap: 32px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* HERO */
+
+.hero {
+  position: relative;
+  min-height: 100svh;
+  color: white;
+  overflow: hidden;
+}
+
+.hero__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero__veil {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,.30), rgba(0,0,0,.08) 40%, rgba(0,0,0,.34)),
+    linear-gradient(to right, rgba(0,0,0,.18), transparent 55%);
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: 9vh;
+}
+
+.hero__kicker {
+  margin-bottom: 18px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .18em;
+}
+
+.hero h1 {
+  margin: 0;
+  max-width: 950px;
+  font-family: var(--font-sans);
+  font-size: clamp(58px, 8.6vw, 138px);
+  line-height: .82;
+  letter-spacing: -.055em;
+  font-weight: 500;
+}
+
+.hero h1 em {
+  font-family: var(--font-serif);
+  font-size: 0.9em;
+  font-weight: 300;
+}
+
+.hero__tagline {
+  margin: 26px 0 0;
+  font-family: var(--font-serif);
+  font-size: clamp(19px, 2vw, 30px);
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* TEST SECTION */
+
+.intro {
+  padding: 110px 0;
+}
+
+.intro__eyebrow {
+  margin-bottom: 24px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.intro h2 {
+  margin: 0;
+  max-width: 900px;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(48px, 7vw, 100px);
+  line-height: .95;
+  letter-spacing: -.04em;
+}
+
+@media (max-width: 700px) {
+  :root {
+    --shell: calc(100vw - 40px);
+  }
+
+  .site-header__inner {
+    min-height: 72px;
+  }
+
+  .site-nav {
+    display: none;
+  }
+
+  .hero__content {
+    padding-bottom: 11vh;
+  }
+
+  .hero h1 {
+    font-size: clamp(55px, 17vw, 82px);
+  }
+
+  .hero__tagline {
+    max-width: 280px;
+  }
+
+  .intro {
+    padding: 72px 0;
+  }
+}
+
+/* Ajustements desktop */
+@media (min-width: 701px) {
+  .site-brand {
+    font-size: 22px;
+  }
+
+  .site-brand small {
+    font-size: 19px;
+  }
+
+  .site-nav {
+    font-size: 19px;
+    gap: 38px;
+  }
+
+  .hero__kicker {
+    font-size: 19px;
+    letter-spacing: .15em;
+  }
+}
+python3 - <<'PY'
+from pathlib import Path
+
+# ============================================================
+# 1. REMPLACER L'ACCUEIL À PARTIR DE "UNE CERTAINE IDÉE..."
+#    SANS TOUCHER AU HERO AU-DESSUS
+# ============================================================
+
+page = Path("src/pages/index.astro")
+s = page.read_text(encoding="utf-8")
+
+marker = '<section class="intro-section"'
+if marker not in s:
+    raise SystemExit("Je ne trouve pas la section intro-section dans index.astro")
+
+start = s.index(marker)
+end_main = s.index("</main>", start) + len("</main>")
+
+prefix = s[:start]
+tail = s[end_main:]
+
+# Si un footer a déjà été ajouté précédemment, on le retire
+# pour éviter un doublon.
+footer_start = tail.find('<footer class="site-footer"')
+if footer_start != -1:
+    footer_end = tail.find("</footer>", footer_start)
+    if footer_end != -1:
+        footer_end += len("</footer>")
+        tail = tail[:footer_start] + tail[footer_end:]
+
+new_content = r'''
+<section class="intro-section home-screen" id="philosophie">
+  <div class="site-shell intro-grid">
+
+    <div class="intro-title">
+      <p class="eyebrow eyebrow--warm">
+        UNE CERTAINE IDÉE DU VOYAGE
+      </p>
+
+      <h2>
+        Tracer des lignes<br />
+        <em>horizontales.</em>
+      </h2>
+    </div>
+
+    <div class="intro-copy">
+
+      <p class="intro-copy__lead">
+        L’itinérance structure ma manière de voyager à ski de randonnée
+        et mon rapport à la montagne.
+      </p>
+
+      <p>
+        De vallée en vallée, de village en village, de bivouac en bivouac :
+        chaque itinéraire est préparé avec précision, puis laisse une place
+        réelle au terrain, à la neige et aux rencontres.
+      </p>
+
+      <a class="home-text-link home-text-link--light" href="/philosophie/">
+        Lire la philosophie <span>↗</span>
+      </a>
+
+    </div>
+
+  </div>
+</section>
+
+
+<section class="voyages-section home-screen" id="voyages">
+
+  <div class="site-shell voyages-heading">
+
+    <div>
+      <p class="eyebrow">HIVER 2027</p>
+
+      <h2>
+        Une saison<br />
+        <em>à écrire.</em>
+      </h2>
+    </div>
+
+    <p class="voyages-heading__intro">
+      Cinq voyages construits autour de l’itinérance, de l’exploration
+      et de ce que le terrain voudra bien nous laisser écrire.
+    </p>
+
+  </div>
+
+
+  <div class="site-shell voyages-grid">
+
+    <div class="voyages-visual">
+
+      <img
+        src="https://lesgrandsraidsaski.com/wp-content/uploads/2025/12/DSC02181-1024x684.jpg"
+        alt="Terrain de grand raid à ski"
+        loading="lazy"
+      />
+
+      <div class="voyages-visual__caption">
+        <span>2027</span>
+
+        <p>
+          Cinq itinérances.<br />
+          Une saison à écrire.
+        </p>
+      </div>
+
+    </div>
+
+
+    <div class="voyages-list">
+
+      <a
+        class="voyage-row"
+        href="/ski-randonnee-georgie-petit-caucase-2027/"
+      >
+        <span class="voyage-row__date">17 — 26 JAN</span>
+
+        <span class="voyage-row__body">
+          <strong>GÉORGIE › PETIT CAUCASE</strong>
+          <small>
+            Des volcans du Javakheti aux neiges profondes
+            d’Adjarie et de Gourie.
+          </small>
+        </span>
+
+        <span class="voyage-row__arrow">↗</span>
+      </a>
+
+
+      <a
+        class="voyage-row"
+        href="/ski-randonnee-ouzbekistan-traversee-baysun/"
+      >
+        <span class="voyage-row__date">04 — 13 FÉV</span>
+
+        <span class="voyage-row__body">
+          <strong>OUZBÉKISTAN › HISSAR</strong>
+          <small>
+            Exploration puis itinérance de village en village.
+          </small>
+        </span>
+
+        <span class="voyage-row__arrow">↗</span>
+      </a>
+
+
+      <a
+        class="voyage-row"
+        href="/ski-randonnee-armenie-sevan-aragats-2027/"
+      >
+        <span class="voyage-row__date">20 FÉV — 01 MAR</span>
+
+        <span class="voyage-row__body">
+          <strong>ARMÉNIE › SEVAN → ARAGATS</strong>
+          <small>
+            Forêts, hauts plateaux et sommets volcaniques.
+          </small>
+        </span>
+
+        <span class="voyage-row__arrow">↗</span>
+      </a>
+
+
+      <a
+        class="voyage-row"
+        href="/raid-ski-mediterraneen-2027/"
+      >
+        <span class="voyage-row__date">06 — 14 MAR</span>
+
+        <span class="voyage-row__body">
+          <strong>RAID MÉDITERRANÉEN</strong>
+          <small>
+            La destination se décidera avec l’hiver.
+          </small>
+        </span>
+
+        <span class="voyage-row__arrow">↗</span>
+      </a>
+
+
+      <a
+        class="voyage-row"
+        href="/ski-randonnee-tadjikistan-zeravshan-2027/"
+      >
+        <span class="voyage-row__date">21 — 29 MAR</span>
+
+        <span class="voyage-row__body">
+          <strong>TADJIKISTAN › ZERAVSHAN</strong>
+          <small>
+            La traversée la plus engagée de la saison.
+          </small>
+        </span>
+
+        <span class="voyage-row__arrow">↗</span>
+      </a>
+
+
+      <div class="voyages-actions">
+
+        <a class="home-button" href="/prochains-voyages/">
+          Voir les voyages 2027
+        </a>
+
+        <a
+          class="home-text-link"
+          href="https://wa.me/33689295826"
+          target="_blank"
+          rel="noopener"
+        >
+          Recevoir une fiche technique <span>→</span>
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<section class="photo-break home-screen">
+
+  <img
+    src="https://lesgrandsraidsaski.com/wp-content/uploads/2025/12/Traversées-kosovardes.png"
+    alt="Traversée à ski dans les Balkans"
+    loading="lazy"
+  />
+
+  <div class="photo-break__overlay"></div>
+
+  <div class="site-shell photo-break__content">
+
+    <p class="eyebrow">
+      PRÉPARER · IMPROVISER · RELIER
+    </p>
+
+    <blockquote>
+      « Préparer minutieusement pour pouvoir ensuite improviser. »
+    </blockquote>
+
+  </div>
+
+</section>
+
+
+<section class="method-section home-screen">
+
+  <div class="site-shell method-grid">
+
+    <article class="method-card">
+
+      <span>01</span>
+
+      <h3>Préparer</h3>
+
+      <p>
+        Cartes, images aériennes, échanges locaux, logistique :
+        poser un cadre solide avant le départ.
+      </p>
+
+    </article>
+
+
+    <article class="method-card">
+
+      <span>02</span>
+
+      <h3>Improviser</h3>
+
+      <p>
+        Accepter que le groupe, la neige, la météo et le terrain
+        composent l’autre moitié de l’histoire.
+      </p>
+
+    </article>
+
+
+    <article class="method-card">
+
+      <span>03</span>
+
+      <h3>Relier</h3>
+
+      <p>
+        Vallées, villages, bivouacs et habitants.
+        Traverser plutôt que collectionner des sommets.
+      </p>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<section class="carnets-section home-screen" id="carnets">
+
+  <div class="site-shell section-heading-row">
+
+    <div>
+
+      <p class="eyebrow">
+        CARNETS DE TERRAIN
+      </p>
+
+      <h2>
+        Les voyages passés<br />
+        <em>laissent des traces.</em>
+      </h2>
+
+    </div>
+
+    <a
+      class="home-text-link"
+      href="/carnets-de-voyage-ski/"
+    >
+      Tous les récits <span>→</span>
+    </a>
+
+  </div>
+
+
+  <div class="site-shell story-grid">
+
+    <article class="story-card">
+
+      <a
+        class="story-card__image"
+        href="/bernina-tour-massif-ski-randonnee/"
+      >
+        <img
+          src="https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/bernina-ski-randonnee-01-panorama-piz-palu-glaciers-1024x684.jpg"
+          alt="Bernina — Tour du massif"
+          loading="lazy"
+        />
+      </a>
+
+      <p class="eyebrow">
+        SEP 2026
+      </p>
+
+      <h3>
+        <a href="/bernina-tour-massif-ski-randonnee/">
+          BERNINA — TOUR DU MASSIF
+        </a>
+      </h3>
+
+      <p>
+        Tour du massif de la Bernina à ski de randonnée,
+        entre Diavolezza, glaciers, moraines, refuge Boval
+        et bivouacs d’altitude.
+      </p>
+
+    </article>
+
+
+    <article class="story-card">
+
+      <a
+        class="story-card__image"
+        href="/traversee-ski-argentera-mercantour/"
+      >
+        <img
+          src="https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/traversee-ski-mercantour-argentera-panorama-1024x685.jpg"
+          alt="Argentera — Mercantour"
+          loading="lazy"
+        />
+      </a>
+
+      <p class="eyebrow">
+        SEP 2026
+      </p>
+
+      <h3>
+        <a href="/traversee-ski-argentera-mercantour/">
+          ARGENTERA — MERCANTOUR
+        </a>
+      </h3>
+
+      <p>
+        Une traversée transalpine sous le signe du vent,
+        des loups et de l’itinérance.
+      </p>
+
+    </article>
+
+
+    <article class="story-card">
+
+      <a
+        class="story-card__image"
+        href="/alpes-ligures-traversee-ski-randonnee/"
+      >
+        <img
+          src="https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/alpes-ligures-j3-cima-degli-arpetti-01-1024x684.jpg"
+          alt="Alpes Ligures"
+          loading="lazy"
+        />
+      </a>
+
+      <p class="eyebrow">
+        SEP 2026
+      </p>
+
+      <h3>
+        <a href="/alpes-ligures-traversee-ski-randonnee/">
+          ALPES LIGURES
+        </a>
+      </h3>
+
+      <p>
+        Une traversée à ski au fil des vallées et des villages
+        des Alpes ligures.
+      </p>
+
+    </article>
+
+  </div>
+
+</section>
+
+
+<section class="about-section home-screen">
+
+  <div class="site-shell about-grid">
+
+    <div class="about-photo">
+
+      <img
+        src="https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/fba56613-bfe2-4d63-ab54-90bd71f10e09-1-819x1024.png"
+        alt="Yann Borgnet, guide de haute montagne UIAGM"
+        loading="lazy"
+      />
+
+    </div>
+
+
+    <div class="about-copy">
+
+      <p class="eyebrow">
+        GUIDE DE HAUTE MONTAGNE · GÉOGRAPHE
+      </p>
+
+      <h2>
+        Yann<br />
+        <em>Borgnet.</em>
+      </h2>
+
+      <p class="about-copy__lead">
+        Originaire d’Annecy, guide UIAGM,
+        professeur à l’ENSA et docteur en géographie.
+      </p>
+
+      <p>
+        Mes recherches sur l’avenir du tourisme alpin ont nourri
+        un intérêt pour la montagne habitée :
+        celle que l’on traverse autant qu’on la rencontre.
+      </p>
+
+      <a
+        class="home-text-link"
+        href="/yann-borgnet-guide-haute-montagne/"
+      >
+        Découvrir mon parcours <span>→</span>
+      </a>
+
+    </div>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<footer class="site-footer">
+
+  <div class="site-shell site-footer__grid">
+
+    <div>
+
+      <p class="eyebrow">
+        LES GRANDS RAIDS À SKI
+      </p>
+
+      <p class="site-footer__statement">
+        Explorer · improviser · rencontrer · skier.
+      </p>
+
+    </div>
+
+
+    <div class="site-footer__links">
+
+      <a
+        href="https://wa.me/33689295826"
+        target="_blank"
+        rel="noopener"
+      >
+        WhatsApp · +33 6 89 29 58 26
+      </a>
+
+      <a
+        href="https://www.instagram.com/yannborgnet/"
+        target="_blank"
+        rel="noopener"
+      >
+        Instagram
+      </a>
+
+      <a
+        href="https://www.facebook.com/yannborgnet/"
+        target="_blank"
+        rel="noopener"
+      >
+        Facebook
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <div class="site-shell site-footer__bottom">
+
+    <span>
+      <a href="/yann-borgnet-guide-haute-montagne/">
+        Yann Borgnet · Guide de haute montagne UIAGM
+      </a>
+    </span>
+
+    <span>© 2026</span>
+
+  </div>
+
+</footer>
+'''
+
+page.write_text(prefix + new_content + tail, encoding="utf-8")
+
+
+# ============================================================
+# 2. CSS UNIQUEMENT POUR CE QUI EST APRÈS LE HERO
+#    ON CONSERVE TOUT TON CSS MANUEL AU-DESSUS
+# ============================================================
+
+css_file = Path("src/styles/global.css")
+css = css_file.read_text(encoding="utf-8")
+
+css_marker = "/* === ACCUEIL DEPUIS PHILOSOPHIE === */"
+
+if css_marker in css:
+    css = css.split(css_marker)[0].rstrip() + "\n\n"
+
+css += r'''
+/* === ACCUEIL DEPUIS PHILOSOPHIE === */
+
+.home-screen {
+  min-height: 100svh;
+}
+
+.eyebrow {
+  margin: 0 0 26px;
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.eyebrow--warm {
+  color: var(--warm);
+}
+
+.home-text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid currentColor;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.home-button {
+  display: inline-flex;
+  padding: 15px 20px;
+  background: var(--ink);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* --------------------------------
+   PHILOSOPHIE
+   -------------------------------- */
+
+.intro-section {
+  display: flex;
+  align-items: center;
+  background: var(--ink);
+  color: var(--paper);
+  padding: 80px 0;
+}
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1.15fr .75fr;
+  gap: 100px;
+  align-items: center;
+}
+
+.intro-section h2 {
+  margin: 0;
+  font-size: clamp(68px, 7.4vw, 118px);
+  line-height: .88;
+  letter-spacing: -.055em;
+  font-weight: 500;
+}
+
+.intro-section h2 em {
+  font-family: var(--font-serif);
+  font-weight: 300;
+}
+
+.intro-copy {
+  max-width: 520px;
+}
+
+.intro-copy p {
+  margin: 0 0 28px;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.intro-copy__lead {
+  font-family: var(--font-serif);
+  font-size: 30px !important;
+  font-weight: 300;
+  line-height: 1.28 !important;
+}
+
+
+/* --------------------------------
+   VOYAGES 2027
+   -------------------------------- */
+
+.voyages-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 0;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.voyages-heading {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 80px;
+  align-items: end;
+  margin-bottom: 52px;
+}
+
+.voyages-heading h2 {
+  margin: 0;
+  font-size: clamp(58px, 6vw, 96px);
+  line-height: .90;
+  letter-spacing: -.05em;
+  font-weight: 500;
+}
+
+.voyages-heading h2 em {
+  font-family: var(--font-serif);
+  font-weight: 300;
+}
+
+.voyages-heading__intro {
+  max-width: 560px;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 25px;
+  line-height: 1.35;
+  font-weight: 300;
+}
+
+.voyages-grid {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 70px;
+}
+
+.voyages-visual {
+  position: relative;
+  overflow: hidden;
+}
+
+.voyages-visual > img {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  object-fit: cover;
+}
+
+.voyages-visual__caption {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 26px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  color: white;
+}
+
+.voyages-visual__caption span {
+  font-family: var(--font-serif);
+  font-size: 58px;
+  font-weight: 300;
+}
+
+.voyages-visual__caption p {
+  margin: 0;
+  text-align: right;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.voyages-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.voyage-row {
+  display: grid;
+  grid-template-columns: 125px 1fr 28px;
+  gap: 22px;
+  align-items: center;
+  min-height: 82px;
+  border-top: 1px solid var(--line);
+}
+
+.voyage-row:last-of-type {
+  border-bottom: 1px solid var(--line);
+}
+
+.voyage-row__date {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .04em;
+}
+
+.voyage-row__body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.voyage-row__body strong {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.voyage-row__body small {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.voyage-row__arrow {
+  font-size: 20px;
+  transition: transform .2s ease;
+}
+
+.voyage-row:hover .voyage-row__arrow {
+  transform: translate(4px, -4px);
+}
+
+.voyages-actions {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-top: 30px;
+}
+
+
+/* --------------------------------
+   GRANDE PHOTO
+   -------------------------------- */
+
+.photo-break {
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: white;
+}
+
+.photo-break > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-break__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.28);
+}
+
+.photo-break__content {
+  position: relative;
+  z-index: 2;
+}
+
+.photo-break blockquote {
+  max-width: 1050px;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(52px, 6.2vw, 100px);
+  line-height: .98;
+  letter-spacing: -.04em;
+  font-weight: 300;
+}
+
+
+/* --------------------------------
+   MÉTHODE
+   -------------------------------- */
+
+.method-section {
+  display: flex;
+  align-items: center;
+  padding: 90px 0;
+  background: var(--paper);
+}
+
+.method-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 70px;
+}
+
+.method-card {
+  padding-top: 25px;
+  border-top: 1px solid var(--ink);
+}
+
+.method-card > span {
+  font-family: var(--font-serif);
+  font-size: 17px;
+}
+
+.method-card h3 {
+  margin: 90px 0 22px;
+  font-family: var(--font-serif);
+  font-size: clamp(46px, 4vw, 72px);
+  line-height: 1;
+  font-weight: 300;
+}
+
+.method-card p {
+  max-width: 360px;
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+
+/* --------------------------------
+   CARNETS
+   -------------------------------- */
+
+.carnets-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 0;
+  background: #e5e2dc;
+}
+
+.section-heading-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 50px;
+  margin-bottom: 48px;
+}
+
+.section-heading-row h2 {
+  margin: 0;
+  font-size: clamp(56px, 5.8vw, 92px);
+  line-height: .93;
+  letter-spacing: -.05em;
+  font-weight: 500;
+}
+
+.section-heading-row h2 em {
+  font-family: var(--font-serif);
+  font-weight: 300;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 34px;
+}
+
+.story-card__image {
+  display: block;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.story-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+
+.story-card:hover .story-card__image img {
+  transform: scale(1.025);
+}
+
+.story-card .eyebrow {
+  margin-bottom: 12px;
+  font-size: 10px;
+}
+
+.story-card h3 {
+  margin: 0 0 13px;
+  font-size: 21px;
+}
+
+.story-card > p:last-child {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+
+/* --------------------------------
+   YANN
+   -------------------------------- */
+
+.about-section {
+  display: flex;
+  align-items: center;
+  padding: 80px 0;
+  background: var(--paper);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: .85fr 1.15fr;
+  gap: 100px;
+  align-items: center;
+}
+
+.about-photo {
+  overflow: hidden;
+  max-height: 78svh;
+}
+
+.about-photo img {
+  width: 100%;
+  height: 78svh;
+  object-fit: cover;
+}
+
+.about-copy {
+  max-width: 650px;
+}
+
+.about-copy h2 {
+  margin: 0 0 40px;
+  font-size: clamp(76px, 8vw, 130px);
+  line-height: .80;
+  letter-spacing: -.06em;
+  font-weight: 500;
+}
+
+.about-copy h2 em {
+  font-family: var(--font-serif);
+  font-weight: 300;
+}
+
+.about-copy p {
+  max-width: 570px;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.about-copy__lead {
+  font-family: var(--font-serif);
+  font-size: 30px !important;
+  line-height: 1.3 !important;
+  font-weight: 300;
+}
+
+
+/* --------------------------------
+   FOOTER
+   -------------------------------- */
+
+.site-footer {
+  padding: 70px 0 28px;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 70px;
+  padding-bottom: 80px;
+}
+
+.site-footer__statement {
+  max-width: 720px;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(32px, 3.5vw, 56px);
+  line-height: 1.05;
+  font-weight: 300;
+}
+
+.site-footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 16px;
+}
+
+.site-footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255,255,255,.18);
+  font-size: 12px;
+}
+
+
+/* --------------------------------
+   MOBILE
+   -------------------------------- */
+
+@media (max-width: 800px) {
+
+  .home-screen {
+    min-height: auto;
+  }
+
+  .intro-section,
+  .voyages-section,
+  .method-section,
+  .carnets-section,
+  .about-section {
+    padding: 72px 0;
+  }
+
+  .intro-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .intro-section h2 {
+    font-size: clamp(52px, 15vw, 78px);
+  }
+
+  .intro-copy__lead {
+    font-size: 25px !important;
+  }
+
+  .voyages-heading {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    margin-bottom: 38px;
+  }
+
+  .voyages-heading h2 {
+    font-size: 56px;
+  }
+
+  .voyages-heading__intro {
+    font-size: 21px;
+  }
+
+  .voyages-grid {
+    grid-template-columns: 1fr;
+    gap: 38px;
+  }
+
+  .voyages-visual > img {
+    min-height: 430px;
+  }
+
+  .voyages-visual__caption span {
+    font-size: 48px;
+  }
+
+  .voyage-row {
+    grid-template-columns: 82px 1fr 20px;
+    gap: 12px;
+    min-height: 0;
+    padding: 15px 0;
+  }
+
+  .voyage-row__date {
+    font-size: 10px;
+  }
+
+  .voyage-row__body strong {
+    font-size: 14px;
+  }
+
+  .voyage-row__body small {
+    font-size: 14px;
+  }
+
+  .voyages-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .photo-break {
+    min-height: 100svh;
+  }
+
+  .photo-break blockquote {
+    font-size: clamp(47px, 13vw, 70px);
+  }
+
+  .method-grid {
+    grid-template-columns: 1fr;
+    gap: 55px;
+  }
+
+  .method-card h3 {
+    margin-top: 42px;
+  }
+
+  .section-heading-row {
+    display: block;
+  }
+
+  .section-heading-row h2 {
+    margin-bottom: 30px;
+    font-size: 51px;
+  }
+
+  .story-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .about-photo {
+    max-height: none;
+  }
+
+  .about-photo img {
+    height: auto;
+  }
+
+  .about-copy h2 {
+    font-size: 78px;
+  }
+
+  .site-footer__grid {
+    grid-template-columns: 1fr;
+    gap: 45px;
+    padding-bottom: 55px;
+  }
+
+  .site-footer__bottom {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+'''
+
+css_file.write_text(css, encoding="utf-8")
+
+print("✅ Accueil reconstruit depuis « UNE CERTAINE IDÉE DU VOYAGE ».")
+print("✅ Hero et réglages manuels situés au-dessus conservés.")
+PY

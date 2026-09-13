@@ -138,6 +138,7 @@ a {
 
 .hero h1 em {
   font-family: var(--font-serif);
+  font-size: 0.9em;
   font-weight: 300;
 }
 
@@ -206,20 +207,604 @@ a {
 /* Ajustements desktop */
 @media (min-width: 701px) {
   .site-brand {
-    font-size: 17px;
+    font-size: 22px;
   }
 
   .site-brand small {
-    font-size: 17px;
+    font-size: 19px;
   }
 
   .site-nav {
-    font-size: 16px;
+    font-size: 19px;
     gap: 38px;
   }
 
   .hero__kicker {
+    font-size: 19px;
+    letter-spacing: .15em;
+  }
+}
+
+
+/* === SUITE ACCUEIL LGRS === */
+
+.home-screen {
+  min-height: 100svh;
+}
+
+.eyebrow {
+  margin: 0 0 26px;
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.eyebrow--warm {
+  color: var(--warm);
+}
+
+.home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid currentColor;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+/* 02 — PHILOSOPHIE */
+
+.intro-section {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: 80px 0;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1.15fr .75fr;
+  gap: 100px;
+  align-items: center;
+}
+
+.intro-section h2 {
+  margin: 0;
+  font-size: clamp(68px, 7.4vw, 118px);
+  line-height: .88;
+  letter-spacing: -.055em;
+  font-weight: 500;
+}
+
+.intro-section h2 em {
+  font-family: var(--font-serif);
+  font-weight: 300;
+}
+
+.intro-copy {
+  max-width: 520px;
+}
+
+.intro-copy p {
+  margin: 0 0 28px;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.intro-copy__lead {
+  font-family: var(--font-serif);
+  font-size: 30px !important;
+  line-height: 1.28 !important;
+  font-weight: 300;
+}
+
+
+/* 03 — VOYAGES */
+
+.voyages-section {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 0;
+  background: var(--paper);
+}
+
+.voyages-heading {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 80px;
+  align-items: end;
+  margin-bottom: 52px;
+}
+
+.voyages-heading h2 {
+  margin: 0;
+  font-size: clamp(58px, 6vw, 96px);
+  line-height: .9;
+  letter-spacing: -.05em;
+  font-weight: 500;
+}
+
+.voyages-heading h2 em {
+  font-family: var(--font-serif);
+  font-weight: 300;
+}
+
+.voyages-heading__intro {
+  max-width: 560px;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 25px;
+  line-height: 1.35;
+  font-weight: 300;
+}
+
+.voyages-grid {
+  display: grid;
+  grid-template-columns: .9fr 1.1fr;
+  gap: 70px;
+}
+
+.voyages-photo {
+  position: relative;
+  overflow: hidden;
+}
+
+.voyages-photo img {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  object-fit: cover;
+}
+
+.voyages-photo__caption {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 26px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  color: white;
+}
+
+.voyages-photo__caption span {
+  font-family: var(--font-serif);
+  font-size: 58px;
+  font-weight: 300;
+}
+
+.voyages-photo__caption p {
+  margin: 0;
+  text-align: right;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.voyages-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.voyage-row {
+  min-height: 82px;
+  display: grid;
+  grid-template-columns: 125px 1fr 28px;
+  gap: 22px;
+  align-items: center;
+  border-top: 1px solid var(--line);
+}
+
+.voyage-row:last-of-type {
+  border-bottom: 1px solid var(--line);
+}
+
+.voyage-date {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.voyage-text {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.voyage-text strong {
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.voyage-text small {
+  font-family: var(--font-serif);
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.voyage-arrow {
+  font-size: 20px;
+}
+
+.voyages-actions {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-top: 30px;
+}
+
+.voyages-button {
+  display: inline-flex;
+  padding: 14px 19px;
+  background: var(--ink);
+  color: white;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+
+/* 04 — PHOTO */
+
+.photo-break {
+  min-height: 100svh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  color: white;
+}
+
+.photo-break > img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.photo-break__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,.28);
+}
+
+.photo-break__content {
+  position: relative;
+  z-index: 2;
+}
+
+.photo-break blockquote {
+  max-width: 1050px;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(52px, 6.2vw, 100px);
+  line-height: .98;
+  letter-spacing: -.04em;
+  font-weight: 300;
+}
+
+
+/* 05 — MÉTHODE */
+
+.method-section {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: 90px 0;
+}
+
+.method-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 70px;
+}
+
+.method-card {
+  padding-top: 25px;
+  border-top: 1px solid var(--ink);
+}
+
+.method-card > span {
+  font-family: var(--font-serif);
+  font-size: 17px;
+}
+
+.method-card h3 {
+  margin: 90px 0 22px;
+  font-family: var(--font-serif);
+  font-size: clamp(46px,4vw,72px);
+  font-weight: 300;
+}
+
+.method-card p {
+  max-width: 360px;
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+
+/* 06 — CARNETS */
+
+.carnets-section {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 80px 0;
+  background: #e5e2dc;
+}
+
+.section-heading-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 50px;
+  margin-bottom: 48px;
+}
+
+.section-heading-row h2 {
+  margin: 0;
+  font-size: clamp(56px,5.8vw,92px);
+  line-height: .93;
+  letter-spacing: -.05em;
+}
+
+.section-heading-row h2 em {
+  font-family: var(--font-serif);
+  font-weight: 300;
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 34px;
+}
+
+.story-card__image {
+  display: block;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+.story-card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.story-card .eyebrow {
+  margin-bottom: 12px;
+  font-size: 10px;
+}
+
+.story-card h3 {
+  margin: 0 0 13px;
+  font-size: 21px;
+}
+
+.story-card > p:last-child {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+
+/* 07 — YANN */
+
+.about-section {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: 80px 0;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: .85fr 1.15fr;
+  gap: 100px;
+  align-items: center;
+}
+
+.about-photo {
+  max-height: 78svh;
+  overflow: hidden;
+}
+
+.about-photo img {
+  width: 100%;
+  height: 78svh;
+  object-fit: cover;
+}
+
+.about-copy {
+  max-width: 650px;
+}
+
+.about-copy h2 {
+  margin: 0 0 40px;
+  font-size: clamp(76px,8vw,130px);
+  line-height: .8;
+  letter-spacing: -.06em;
+}
+
+.about-copy h2 em {
+  font-family: var(--font-serif);
+  font-weight: 300;
+}
+
+.about-copy p {
+  max-width: 570px;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.about-copy__lead {
+  font-family: var(--font-serif);
+  font-size: 30px !important;
+  line-height: 1.3 !important;
+  font-weight: 300;
+}
+
+
+/* FOOTER */
+
+.site-footer {
+  padding: 70px 0 28px;
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.site-footer__grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 70px;
+  padding-bottom: 80px;
+}
+
+.site-footer__statement {
+  max-width: 720px;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(32px,3.5vw,56px);
+  line-height: 1.05;
+  font-weight: 300;
+}
+
+.site-footer__links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.site-footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255,255,255,.18);
+  font-size: 12px;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 800px) {
+
+  .intro-section,
+  .voyages-section,
+  .method-section,
+  .carnets-section,
+  .about-section {
+    min-height: auto;
+    padding: 72px 0;
+  }
+
+  .intro-grid,
+  .voyages-heading,
+  .voyages-grid,
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .intro-grid {
+    gap: 50px;
+  }
+
+  .intro-section h2 {
+    font-size: clamp(52px,15vw,78px);
+  }
+
+  .voyages-heading {
+    gap: 28px;
+    margin-bottom: 38px;
+  }
+
+  .voyages-heading h2 {
+    font-size: 56px;
+  }
+
+  .voyages-grid {
+    gap: 38px;
+  }
+
+  .voyages-photo img {
+    min-height: 430px;
+  }
+
+  .voyage-row {
+    grid-template-columns: 82px 1fr 20px;
+    gap: 12px;
+    min-height: 0;
+    padding: 15px 0;
+  }
+
+  .voyage-text strong,
+  .voyage-text small {
     font-size: 14px;
-    letter-spacing: .16em;
+  }
+
+  .voyages-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .method-grid,
+  .story-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .method-grid {
+    gap: 55px;
+  }
+
+  .method-card h3 {
+    margin-top: 42px;
+  }
+
+  .section-heading-row {
+    display: block;
+  }
+
+  .section-heading-row h2 {
+    margin-bottom: 30px;
+    font-size: 51px;
+  }
+
+  .story-grid {
+    gap: 48px;
+  }
+
+  .about-grid {
+    gap: 48px;
+  }
+
+  .about-photo {
+    max-height: none;
+  }
+
+  .about-photo img {
+    height: auto;
+  }
+
+  .about-copy h2 {
+    font-size: 78px;
+  }
+
+  .site-footer__grid {
+    grid-template-columns: 1fr;
+    gap: 45px;
+  }
+
+  .site-footer__bottom {
+    flex-direction: column;
+    gap: 8px;
   }
 }
