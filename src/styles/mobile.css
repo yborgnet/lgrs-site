@@ -286,7 +286,7 @@
   }
 
   .about-copy h2 {
-    font-size: clamp(68px, 20vw, 92px);
+    font-size: clamp(44px, 13vw, 64px);
   }
 
 

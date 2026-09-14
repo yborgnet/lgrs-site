@@ -642,10 +642,10 @@ a {
 }
 
 .about-copy h2 {
-  margin: 0 0 40px;
-  font-size: clamp(76px,8vw,130px);
-  line-height: .8;
-  letter-spacing: -.06em;
+  margin: 0 0 32px;
+  font-size: clamp(48px,5vw,84px);
+  line-height: .9;
+  letter-spacing: -.05em;
 }
 
 .about-copy h2 em {
@@ -804,10 +804,6 @@ a {
 
   .about-photo img {
     height: auto;
-  }
-
-  .about-copy h2 {
-    font-size: 78px;
   }
 
   .site-footer__grid {
