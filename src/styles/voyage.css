@@ -1,0 +1,513 @@
+/* === PAGES VOYAGE === */
+/* Basé sur src/styles/global.css (identité visuelle de l'accueil). */
+/* Breakpoint réutilisé : 800px, comme les sections de l'accueil. */
+
+/* MASTHEAD */
+
+.voyage-masthead {
+  background: var(--paper);
+  border-bottom: 1px solid var(--line);
+  padding: 48px 0 44px;
+}
+
+.voyage-masthead__eyebrow {
+  margin: 0 0 34px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  opacity: .56;
+}
+
+.voyage-masthead h1 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(64px, 17vw, 122px);
+  font-weight: 300;
+  line-height: .92;
+  letter-spacing: -.045em;
+}
+
+.voyage-masthead__title-mobile {
+  display: inline;
+}
+
+.voyage-masthead__title-desktop {
+  display: none;
+}
+
+.voyage-masthead__meta {
+  margin: 7px 0 4px;
+  font-family: var(--font-serif);
+  font-size: clamp(26px, 6vw, 38px);
+  font-weight: 300;
+  line-height: 1.02;
+  letter-spacing: -.015em;
+}
+
+.voyage-masthead__meta span {
+  margin: 0 8px;
+  opacity: .45;
+}
+
+/* DESCRIPTION / INFO — deux colonnes desktop, empilé mobile */
+
+.voyage-row--description {
+  background: #f4f4f4;
+}
+
+.voyage-row--info {
+  background: var(--white);
+}
+
+.voyage-row__inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: stretch;
+}
+
+.voyage-row__text {
+  padding: 56px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.voyage-row--description .voyage-row__text {
+  padding-right: 0;
+}
+
+.voyage-row__heading {
+  margin: 0 0 22px;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(30px, 5vw, 42px);
+  line-height: 1.1;
+  letter-spacing: -.02em;
+}
+
+.voyage-row__copy p {
+  margin: 0 0 18px;
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(11, 11, 10, .78);
+}
+
+.voyage-row__copy p:last-child {
+  margin-bottom: 0;
+}
+
+.voyage-row__copy p em {
+  display: block;
+  margin-top: 20px;
+  font-size: 13px;
+  font-style: italic;
+  opacity: .62;
+}
+
+.voyage-row__copy--facts p:first-of-type {
+  line-height: 1.85;
+}
+
+.voyage-row__copy--facts p:first-of-type strong {
+  color: var(--ink);
+  font-size: .82em;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+
+/* Panneau photo (moitié de ligne sur desktop, pleine largeur sur mobile) */
+
+.voyage-photo-panel {
+  position: relative;
+  background: #ece9e2;
+}
+
+.voyage-photo-panel__image {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.voyage-photo-panel__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 3 / 2;
+  background: repeating-linear-gradient(
+    135deg,
+    var(--paper),
+    var(--paper) 12px,
+    #e9e6df 12px,
+    #e9e6df 24px
+  );
+  color: rgba(11, 11, 10, .5);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+.voyage-photo-panel--hide-mobile {
+  display: none;
+}
+
+/* Photo pleine largeur ("respiration" éditoriale) */
+
+.voyage-photo {
+  width: 100%;
+}
+
+.voyage-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.voyage-photo__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: repeating-linear-gradient(
+    135deg,
+    var(--paper),
+    var(--paper) 12px,
+    #e9e6df 12px,
+    #e9e6df 24px
+  );
+  color: rgba(11, 11, 10, .5);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+}
+
+/* ITINÉRAIRE */
+
+.voyage-itinerary {
+  background: #f4f4f4;
+  padding: 64px 0 72px;
+}
+
+.voyage-itinerary__head h2 {
+  margin: 14px 0 0;
+  font-family: var(--font-serif);
+  font-size: clamp(40px, 8vw, 72px);
+  font-weight: 300;
+  line-height: .98;
+  letter-spacing: -.035em;
+}
+
+.voyage-itinerary__intro {
+  max-width: 680px;
+  margin: 18px 0 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(11, 11, 10, .62);
+}
+
+.voyage-itinerary__map {
+  margin: 40px 0 0;
+  overflow: hidden;
+  background: #e8e4dc;
+}
+
+.voyage-itinerary__map img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.voyage-itinerary__timeline {
+  margin-top: 22px;
+}
+
+.voyage-itinerary__chapter {
+  display: block;
+  margin-top: 34px;
+  padding: 18px 0 13px;
+  border-top: 1px solid rgba(11, 11, 10, .18);
+}
+
+.voyage-itinerary__chapter span {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  opacity: .58;
+}
+
+.voyage-itinerary__chapter strong {
+  font-family: var(--font-serif);
+  font-size: clamp(26px, 6vw, 40px);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -.02em;
+}
+
+.voyage-day {
+  padding: 20px 0 22px;
+  border-top: 1px solid rgba(11, 11, 10, .10);
+}
+
+.voyage-day:first-of-type {
+  border-top: 0;
+}
+
+.voyage-day__date {
+  padding-top: 2px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.voyage-day__date span {
+  display: block;
+  margin-bottom: 3px;
+  opacity: .48;
+}
+
+.voyage-day__copy {
+  margin-top: 8px;
+}
+
+.voyage-day__copy h3 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 5vw, 27px);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -.015em;
+}
+
+.voyage-day__copy p {
+  max-width: 720px;
+  margin: 8px 0 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(11, 11, 10, .68);
+}
+
+.voyage-day--travel {
+  padding-top: 13px;
+  padding-bottom: 15px;
+}
+
+.voyage-day--travel .voyage-day__date {
+  font-size: 9px;
+  opacity: .68;
+}
+
+.voyage-day--travel .voyage-day__copy h3 {
+  font-size: 19px;
+  font-weight: 300;
+}
+
+.voyage-day--travel .voyage-day__copy p {
+  margin-top: 3px;
+  font-size: 12.5px;
+  color: rgba(11, 11, 10, .56);
+}
+
+.voyage-day--highlight {
+  padding-top: 26px;
+  padding-bottom: 28px;
+  border-top: 1px solid rgba(11, 11, 10, .20);
+}
+
+.voyage-day__highlight-label {
+  display: block;
+  margin: 0 0 7px;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  opacity: .55;
+}
+
+.voyage-day--highlight .voyage-day__copy h3 {
+  font-size: clamp(24px, 5.5vw, 31px);
+}
+
+.voyage-itinerary__note {
+  max-width: 760px;
+  margin: 34px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid rgba(11, 11, 10, .14);
+  font-size: 12px;
+  font-style: italic;
+  line-height: 1.55;
+  color: rgba(11, 11, 10, .58);
+}
+
+/* FICHE TECHNIQUE + EXPLORER AILLEURS */
+
+.voyage-tech-row {
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.voyage-tech-cta {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 56px 0;
+  text-align: center;
+}
+
+.voyage-tech-cta > span {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  opacity: .55;
+}
+
+.voyage-tech-cta h2 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(34px, 7vw, 56px);
+  font-weight: 300;
+  line-height: .98;
+  letter-spacing: -.03em;
+}
+
+.voyage-tech-cta p {
+  margin: 14px auto 24px;
+  max-width: 460px;
+  color: rgba(11, 11, 10, .62);
+}
+
+.voyage-tech-cta__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 50px;
+  padding: 0 22px;
+  background: var(--ink);
+  color: var(--white) !important;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.voyage-explore {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.voyage-explore__inner {
+  padding: 56px 0;
+  text-align: center;
+}
+
+.voyage-explore h3 {
+  margin: 0 0 22px;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(28px, 6vw, 42px);
+}
+
+.voyage-explore .voyages-button {
+  display: inline-flex;
+}
+
+/* DESKTOP (≥ 801px) */
+
+@media (min-width: 801px) {
+  .voyage-masthead {
+    padding: 78px 0 72px;
+  }
+
+  .voyage-masthead__title-desktop {
+    display: inline;
+  }
+
+  .voyage-masthead__title-mobile {
+    display: none;
+  }
+
+  .voyage-row__inner {
+    grid-template-columns: 1fr 1fr;
+    min-height: 640px;
+  }
+
+  .voyage-row__inner--reverse {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .voyage-row__text {
+    padding: 0 min(7vw, 90px);
+  }
+
+  .voyage-row__inner--reverse .voyage-row__text {
+    padding: 0 min(6vw, 76px) 0 min(5vw, 60px);
+  }
+
+  .voyage-photo-panel {
+    height: 100%;
+  }
+
+  .voyage-photo-panel__image,
+  .voyage-photo-panel__placeholder {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: auto;
+  }
+
+  .voyage-photo-panel--hide-mobile {
+    display: block;
+  }
+
+  .voyage-itinerary {
+    padding: 96px 0 104px;
+  }
+
+  .voyage-itinerary__head h2 {
+    max-width: 900px;
+  }
+
+  .voyage-itinerary__map {
+    margin: 48px 0 0;
+  }
+
+  .voyage-itinerary__map img {
+    aspect-ratio: 2.4 / 1;
+    object-fit: cover;
+    object-position: center 48%;
+  }
+
+  .voyage-itinerary__chapter {
+    display: grid;
+    grid-template-columns: 92px 1fr;
+    gap: 20px;
+    align-items: baseline;
+  }
+
+  .voyage-itinerary__chapter span {
+    margin-bottom: 0;
+  }
+
+  .voyage-day {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .voyage-day__copy {
+    margin-top: 0;
+  }
+}

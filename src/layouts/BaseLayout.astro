@@ -4,8 +4,13 @@ import "../styles/mobile.css";
 
 const {
   title = "Les Grands Raids à Ski",
-  description = "Voyages et raids à ski de randonnée en itinérance, dans les Alpes et les montagnes du monde."
+  description = "Voyages et raids à ski de randonnée en itinérance, dans les Alpes et les montagnes du monde.",
+  canonical,
+  ogImage,
+  ogType = "website"
 } = Astro.props;
+
+const canonicalURL = canonical ? new URL(canonical, Astro.site ?? Astro.url.origin) : null;
 ---
 
 <!doctype html>
@@ -16,6 +21,14 @@ const {
 
     <title>{title}</title>
     <meta name="description" content={description} />
+    {canonicalURL && <link rel="canonical" href={canonicalURL} />}
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonicalURL && <meta property="og:url" content={canonicalURL} />}
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

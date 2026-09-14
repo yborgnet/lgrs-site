@@ -1,4 +1,12 @@
-<header class="site-header">
+---
+type Props = {
+  solid?: boolean;
+};
+
+const { solid = false } = Astro.props;
+---
+
+<header class:list={["site-header", { "site-header--solid": solid }]}>
   <div class="site-shell site-header__inner">
     <a class="site-brand" href="/">
       <span>LES GRANDS RAIDS</span>

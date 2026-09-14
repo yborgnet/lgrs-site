@@ -1,0 +1,54 @@
+---
+import type { Voyage } from "../../data/voyages/types";
+
+type Props = {
+  itinerary: Voyage["itinerary"];
+};
+
+const { itinerary } = Astro.props;
+---
+
+<section class="voyage-itinerary">
+  <div class="site-shell voyage-itinerary__inner">
+    <header class="voyage-itinerary__head">
+      <p class="eyebrow">{itinerary.eyebrow}</p>
+      <h2>{itinerary.title}</h2>
+      {itinerary.intro && <p class="voyage-itinerary__intro">{itinerary.intro}</p>}
+    </header>
+
+    {
+      itinerary.map && (
+        <figure class="voyage-itinerary__map">
+          <img src={itinerary.map.src} alt={itinerary.map.alt} loading="lazy" decoding="async" />
+        </figure>
+      )
+    }
+
+    <div class="voyage-itinerary__timeline">
+      {
+        itinerary.items.map((item) =>
+          item.type === "chapter" ? (
+            <div class="voyage-itinerary__chapter">
+              <span>{item.label}</span>
+              <strong>{item.title}</strong>
+            </div>
+          ) : (
+            <article class:list={["voyage-day", item.variant && `voyage-day--${item.variant}`]}>
+              <div class="voyage-day__date">
+                <span>{item.dayNum}</span>
+                {item.dateLabel}
+              </div>
+              <div class="voyage-day__copy">
+                {item.highlightLabel && <span class="voyage-day__highlight-label">{item.highlightLabel}</span>}
+                <h3>{item.title}</h3>
+                <p set:html={item.text} />
+              </div>
+            </article>
+          )
+        )
+      }
+    </div>
+
+    {itinerary.note && <p class="voyage-itinerary__note">{itinerary.note}</p>}
+  </div>
+</section>

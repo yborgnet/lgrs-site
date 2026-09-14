@@ -1,0 +1,24 @@
+---
+import VoyagePhotoPanel from "./VoyagePhotoPanel.astro";
+import type { Voyage } from "../../data/voyages/types";
+
+type Props = {
+  info: Voyage["info"];
+  photo?: Voyage["photoInfo"];
+};
+
+const { info, photo } = Astro.props;
+---
+
+<section class="voyage-row voyage-row--info">
+  <div class="site-shell voyage-row__inner voyage-row__inner--reverse">
+    <VoyagePhotoPanel photo={photo} hideOnMobile />
+
+    <div class="voyage-row__text">
+      <p class="eyebrow">{info.label}</p>
+      <div class="voyage-row__copy voyage-row__copy--facts">
+        {info.paragraphs.map((p) => <p set:html={p} />)}
+      </div>
+    </div>
+  </div>
+</section>

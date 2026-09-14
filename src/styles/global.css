@@ -53,6 +53,11 @@ a {
   color: white;
 }
 
+.site-header--solid {
+  position: relative;
+  background: var(--ink);
+}
+
 .site-header__inner {
   min-height: 92px;
   display: flex;

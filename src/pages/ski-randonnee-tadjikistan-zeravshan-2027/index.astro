@@ -1,0 +1,17 @@
+---
+import VoyageLayout from "../../layouts/VoyageLayout.astro";
+import VoyageDescription from "../../components/voyage/VoyageDescription.astro";
+import VoyageInfo from "../../components/voyage/VoyageInfo.astro";
+import VoyagePhoto from "../../components/voyage/VoyagePhoto.astro";
+import VoyageItinerary from "../../components/voyage/VoyageItinerary.astro";
+import VoyageTechCta from "../../components/voyage/VoyageTechCta.astro";
+import { tadjikistan as voyage } from "../../data/voyages/tadjikistan";
+---
+
+<VoyageLayout voyage={voyage}>
+  <VoyageDescription description={voyage.description} photo={voyage.photoIntro} />
+  <VoyageInfo info={voyage.info} photo={voyage.photoInfo} />
+  <VoyagePhoto photo={voyage.bigPhoto} />
+  <VoyageItinerary itinerary={voyage.itinerary} />
+  <VoyageTechCta techCta={voyage.techCta} />
+</VoyageLayout>

@@ -1,0 +1,25 @@
+---
+import VoyagePhotoPanel from "./VoyagePhotoPanel.astro";
+import type { Voyage } from "../../data/voyages/types";
+
+type Props = {
+  description: Voyage["description"];
+  photo?: Voyage["photoIntro"];
+};
+
+const { description, photo } = Astro.props;
+---
+
+<section class="voyage-row voyage-row--description">
+  <div class="site-shell voyage-row__inner">
+    <div class="voyage-row__text">
+      <p class="eyebrow">{description.label}</p>
+      <h2 class="voyage-row__heading">{description.title}</h2>
+      <div class="voyage-row__copy">
+        {description.paragraphs.map((p) => <p set:html={p} />)}
+      </div>
+    </div>
+
+    <VoyagePhotoPanel photo={photo} />
+  </div>
+</section>

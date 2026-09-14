@@ -1,0 +1,27 @@
+---
+import type { Voyage } from "../../data/voyages/types";
+
+type Props = {
+  techCta: Voyage["techCta"];
+};
+
+const { techCta } = Astro.props;
+---
+
+<section class="voyage-tech-row">
+  <div class="site-shell voyage-tech-cta">
+    <span>{techCta.span}</span>
+    <h2>{techCta.title}</h2>
+    <p>{techCta.text}</p>
+    <a class="voyage-tech-cta__button" href={techCta.buttonHref} target="_blank" rel="noopener">
+      {techCta.buttonText}
+    </a>
+  </div>
+</section>
+
+<section class="voyage-explore">
+  <div class="site-shell voyage-explore__inner">
+    <h3>Explorer ailleurs.</h3>
+    <a class="voyages-button" href="/#voyages">Découvrir les autres raids programmés</a>
+  </div>
+</section>

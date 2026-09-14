@@ -1,0 +1,50 @@
+---
+import BaseLayout from "./BaseLayout.astro";
+import Header from "../components/Header.astro";
+import VoyageMasthead from "../components/voyage/VoyageMasthead.astro";
+import "../styles/voyage.css";
+import type { Voyage } from "../data/voyages/types";
+
+type Props = {
+  voyage: Voyage;
+};
+
+const { voyage } = Astro.props;
+const canonical = `https://lesgrandsraidsaski.com/${voyage.slug}/`;
+---
+
+<BaseLayout
+  title={voyage.seo.title}
+  description={voyage.seo.description}
+  canonical={canonical}
+  ogImage={voyage.seo.ogImage}
+  ogType="article"
+>
+  <Header solid />
+
+  <main class="voyage-single">
+    <VoyageMasthead eyebrow={voyage.masthead.eyebrow} title={voyage.masthead.title} meta={voyage.masthead.meta} />
+
+    <slot />
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-shell site-footer__grid">
+      <div>
+        <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+        <p class="site-footer__statement">Explorer · improviser · rencontrer · skier.</p>
+      </div>
+
+      <div class="site-footer__links">
+        <a href="https://wa.me/33689295826">WhatsApp · +33 6 89 29 58 26</a>
+        <a href="https://www.instagram.com/yannborgnet/">Instagram</a>
+        <a href="https://www.facebook.com/yannborgnet/">Facebook</a>
+      </div>
+    </div>
+
+    <div class="site-shell site-footer__bottom">
+      <span>Yann Borgnet · Guide de haute montagne UIAGM</span>
+      <span>© 2026</span>
+    </div>
+  </footer>
+</BaseLayout>

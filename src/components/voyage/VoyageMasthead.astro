@@ -1,0 +1,49 @@
+---
+import type { VoyageTitle } from "../../data/voyages/types";
+
+type Props = {
+  eyebrow: string;
+  title: VoyageTitle;
+  meta: string[];
+};
+
+const { eyebrow, title, meta } = Astro.props;
+const isSplitTitle = typeof title !== "string";
+---
+
+<section class="voyage-masthead" aria-labelledby="voyage-country-title">
+  <div class="site-shell voyage-masthead__inner">
+    <p class="voyage-masthead__eyebrow">{eyebrow}</p>
+
+    {
+      isSplitTitle ? (
+        <h1 id="voyage-country-title">
+          <span class="voyage-masthead__title-desktop">{title.desktop}</span>
+          <span class="voyage-masthead__title-mobile">
+            {title.mobileLines.map((line, i) => (
+              <>
+                {i > 0 && <br />}
+                {line}
+              </>
+            ))}
+          </span>
+        </h1>
+      ) : (
+        <h1 id="voyage-country-title" set:html={title} />
+      )
+    }
+
+    {
+      meta.length > 0 && (
+        <p class="voyage-masthead__meta">
+          {meta.map((part, i) => (
+            <>
+              {i > 0 && <span>·</span>}
+              {part}
+            </>
+          ))}
+        </p>
+      )
+    }
+  </div>
+</section>

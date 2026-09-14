@@ -1,0 +1,23 @@
+---
+import type { VoyagePhoto } from "../../data/voyages/types";
+
+type Props = {
+  photo?: VoyagePhoto;
+  /** Hides this panel on mobile (used when the same photo reappears full-width just below). */
+  hideOnMobile?: boolean;
+};
+
+const { photo, hideOnMobile = false } = Astro.props;
+---
+
+<div class:list={["voyage-photo-panel", { "voyage-photo-panel--hide-mobile": hideOnMobile }]}>
+  {
+    photo ? (
+      <div class="voyage-photo-panel__image" style={`background-image: url('${photo.src}')`} role="img" aria-label={photo.alt} />
+    ) : (
+      <div class="voyage-photo-panel__placeholder">
+        <span>Photo à venir</span>
+      </div>
+    )
+  }
+</div>
