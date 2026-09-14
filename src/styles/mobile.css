@@ -210,11 +210,11 @@
   /* PHOTO */
 
   .photo-break {
-    min-height: 58svh;
+    min-height: 44svh;
   }
 
   .photo-break blockquote {
-    font-size: clamp(44px, 12.5vw, 62px);
+    font-size: clamp(34px, 9vw, 48px);
   }
 
 
@@ -222,17 +222,21 @@
 
   .method-section {
     min-height: auto;
-    padding: 74px 0;
+    padding: 40px 0;
   }
 
   .method-grid {
     grid-template-columns: 1fr;
-    gap: 56px;
+    gap: 32px;
+  }
+
+  .method-card {
+    padding-top: 16px;
   }
 
   .method-card h3 {
-    margin: 38px 0 16px;
-    font-size: 50px;
+    margin: 18px 0 10px;
+    font-size: 32px;
   }
 
 
