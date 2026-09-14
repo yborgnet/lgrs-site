@@ -1,0 +1,349 @@
+
+.site-nav-mobile {
+  display: none;
+}
+
+@media (max-width: 700px) {
+
+  :root {
+    --shell: calc(100vw - 32px);
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* HEADER */
+
+  .site-header__inner {
+    min-height: 76px;
+  }
+
+  .site-brand {
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  .site-brand small {
+    margin-top: 3px;
+    font-size: 15px;
+  }
+
+  .site-nav {
+    display: none;
+  }
+
+  .site-nav-mobile {
+    display: block;
+  }
+
+  .site-nav-mobile summary {
+    list-style: none;
+    width: 38px;
+    cursor: pointer;
+  }
+
+  .site-nav-mobile summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .site-nav-mobile summary span {
+    display: block;
+    height: 1px;
+    margin: 7px 0;
+    background: white;
+  }
+
+  .site-nav-mobile summary span:first-child {
+    width: 30px;
+  }
+
+  .site-nav-mobile summary span:last-child {
+    width: 22px;
+    margin-left: auto;
+  }
+
+  .site-nav-mobile__panel {
+    position: absolute;
+    top: 70px;
+    right: 16px;
+    width: min(270px, calc(100vw - 32px));
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    background: var(--ink);
+    color: white;
+    font-size: 18px;
+  }
+
+
+  /* HERO */
+
+  .hero__content {
+    padding-bottom: 10vh;
+  }
+
+  .hero__kicker {
+    margin-bottom: 16px;
+    font-size: 12px;
+  }
+
+  .hero h1 {
+    font-size: clamp(54px, 16vw, 76px);
+    line-height: .84;
+  }
+
+  .hero h1 em {
+    font-size: .74em;
+  }
+
+  .hero__tagline {
+    max-width: 300px;
+    margin-top: 24px;
+    font-size: 21px;
+    line-height: 1.15;
+  }
+
+
+  /* PHILOSOPHIE */
+
+  .intro-section {
+    min-height: auto;
+    padding: 74px 0;
+  }
+
+  .intro-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .eyebrow {
+    margin-bottom: 20px;
+    font-size: 11px;
+    line-height: 1.3;
+  }
+
+  .intro-section h2 {
+    font-size: clamp(50px, 14vw, 68px);
+    line-height: .9;
+  }
+
+  .intro-copy__lead {
+    font-size: 25px !important;
+  }
+
+  .intro-copy p {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+
+  /* VOYAGES */
+
+  .voyages-section {
+    min-height: auto;
+    padding: 74px 0;
+  }
+
+  .voyages-heading,
+  .voyages-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .voyages-heading {
+    gap: 26px;
+    margin-bottom: 38px;
+  }
+
+  .voyages-heading h2 {
+    font-size: clamp(50px, 14vw, 67px);
+  }
+
+  .voyages-heading__intro {
+    font-size: 21px;
+  }
+
+  .voyages-grid {
+    gap: 38px;
+  }
+
+  .voyages-photo {
+    aspect-ratio: 4 / 5;
+  }
+
+  .voyages-photo img {
+    min-height: 0;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .voyages-photo__caption span {
+    font-size: 44px;
+  }
+
+  .voyage-row {
+    min-height: 0;
+    grid-template-columns: 1fr auto;
+    padding: 18px 0;
+  }
+
+  .voyage-date {
+    font-size: 10px;
+  }
+
+  .voyage-text strong {
+    font-size: 16px;
+  }
+
+  .voyage-text small {
+    font-size: 15px;
+    line-height: 1.3;
+  }
+
+  .voyages-actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+
+  /* PHOTO */
+
+  .photo-break {
+    min-height: 100svh;
+  }
+
+  .photo-break blockquote {
+    font-size: clamp(44px, 12.5vw, 62px);
+  }
+
+
+  /* MÉTHODE */
+
+  .method-section {
+    min-height: auto;
+    padding: 74px 0;
+  }
+
+  .method-grid {
+    grid-template-columns: 1fr;
+    gap: 56px;
+  }
+
+  .method-card h3 {
+    margin: 38px 0 16px;
+    font-size: 50px;
+  }
+
+
+  /* CARNETS */
+
+  .carnets-section {
+    min-height: auto;
+    padding: 74px 0;
+  }
+
+  .section-heading-row {
+    display: block;
+  }
+
+  .section-heading-row h2 {
+    margin-bottom: 28px;
+    font-size: clamp(48px, 13vw, 64px);
+  }
+
+  .story-grid {
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+
+  /* YANN */
+
+  .about-section {
+    min-height: auto;
+    padding: 74px 0;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 44px;
+  }
+
+  .about-photo {
+    max-height: none;
+    aspect-ratio: 4 / 5;
+  }
+
+  .about-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .about-copy h2 {
+    font-size: clamp(68px, 20vw, 92px);
+  }
+
+
+  /* FOOTER */
+
+  .site-footer__grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .site-footer__bottom {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+/* === CORRECTION ALIGNEMENT VOYAGES MOBILE === */
+
+@media (max-width: 700px) {
+
+  .voyage-row {
+    grid-template-columns: 84px minmax(0, 1fr) 20px;
+    grid-template-rows: auto;
+    column-gap: 12px;
+    align-items: start;
+    padding: 20px 0;
+  }
+
+  .voyage-date {
+    grid-column: 1;
+    grid-row: 1;
+    white-space: nowrap;
+    padding-top: 3px;
+    font-size: 10px;
+    line-height: 1.25;
+  }
+
+  .voyage-text {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: 0;
+  }
+
+  .voyage-text strong {
+    display: block;
+    font-size: 16px;
+    line-height: 1.18;
+  }
+
+  .voyage-text small {
+    display: block;
+    margin-top: 6px;
+    font-size: 15px;
+    line-height: 1.3;
+  }
+
+  .voyage-arrow {
+    grid-column: 3;
+    grid-row: 1;
+    align-self: start;
+    padding-top: 1px;
+  }
+
+}
