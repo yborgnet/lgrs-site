@@ -452,7 +452,7 @@ a {
 /* 04 — PHOTO */
 
 .photo-break {
-  min-height: 100svh;
+  min-height: 64vh;
   position: relative;
   display: flex;
   align-items: center;
@@ -493,10 +493,7 @@ a {
 /* 05 — MÉTHODE */
 
 .method-section {
-  min-height: 100svh;
-  display: flex;
-  align-items: center;
-  padding: 90px 0;
+  padding: 80px 0;
 }
 
 .method-grid {
