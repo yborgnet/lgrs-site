@@ -187,7 +187,7 @@
 
 .voyage-itinerary {
   background: #f4f4f4;
-  padding: 64px 0 72px;
+  padding: 64px 0 44px;
 }
 
 .voyage-itinerary__head h2 {
@@ -225,8 +225,8 @@
 
 .voyage-itinerary__chapter {
   display: block;
-  margin-top: 34px;
-  padding: 18px 0 13px;
+  margin-top: 17px;
+  padding: 35px 0 13px;
   border-top: 1px solid rgba(11, 11, 10, .18);
 }
 
@@ -501,7 +501,7 @@
   }
 
   .voyage-itinerary {
-    padding: 96px 0 104px;
+    padding: 96px 0 56px;
   }
 
   .voyage-itinerary__head h2 {
