@@ -52,6 +52,12 @@ export const georgie: Voyage = {
       src: "https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/carte-georgie-petit-caucase-2027-2400w-hq.webp",
       alt: "Carte de l’itinéraire à ski 2027 dans le Petit Caucase, entre Javakheti, Adjarie et Gourie",
     },
+    // Aucun fichier GPX fiable trouvé dans le repo pour ce voyage (ni dans les assets, ni dans
+    // les références WordPress) : la carte interactive s'activera automatiquement dès qu'un
+    // fichier sera déposé dans public/gpx/ et référencé ci-dessous. En attendant, la page garde
+    // la carte statique (`map`) ci-dessus.
+    // gpx: "/gpx/georgie-petit-caucase-2027.gpx",
+    mapTitle: "Carte de l’itinéraire du voyage à ski en Géorgie – Petit Caucase",
     items: [
       {
         type: "day",

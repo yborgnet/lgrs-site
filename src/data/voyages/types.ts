@@ -60,7 +60,12 @@ export type Voyage = {
     eyebrow: string;
     title: string;
     intro?: string;
+    /** Image statique de secours, affichée si `gpx` est absent ou introuvable. */
     map?: VoyagePhoto;
+    /** Chemin(s) public(s) vers le(s) fichier(s) GPX du voyage, ex. "/gpx/georgie-petit-caucase-2027.gpx". */
+    gpx?: string | string[];
+    /** Description accessible de la carte GPX (aria-label). */
+    mapTitle?: string;
     items: VoyageItineraryItem[];
     note?: string;
   };

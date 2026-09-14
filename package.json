@@ -12,7 +12,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^7.3.2"
+    "astro": "^7.3.2",
+    "leaflet": "^1.9.4"
   },
   "allowScripts": {
     "esbuild": true

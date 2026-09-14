@@ -1,0 +1,135 @@
+---
+import "../styles/gpx-map.css";
+
+type Props = {
+  /** Chemin(s) public(s) vers le(s) fichier(s) GPX, ex. "/gpx/georgie-petit-caucase-2027.gpx". */
+  gpx: string | string[];
+  /** Description accessible de la carte, ex. « Carte de l'itinéraire du voyage à ski en Géorgie – Petit Caucase ». */
+  title: string;
+  /** Image statique affichée tant que la carte interactive n'est pas chargée (et si le GPX est introuvable). */
+  fallback?: { src: string; alt: string };
+};
+
+const { gpx, title, fallback } = Astro.props;
+const gpxList = Array.isArray(gpx) ? gpx : [gpx];
+---
+
+<div class="gpx-map" data-gpx-map data-gpx={JSON.stringify(gpxList)}>
+  <div class="gpx-map__canvas" data-gpx-map-canvas role="group" aria-label={title}>
+    {fallback && <img src={fallback.src} alt={fallback.alt} loading="lazy" decoding="async" />}
+  </div>
+</div>
+
+<script>
+  // Carte Leaflet + trace(s) GPX — chargée uniquement quand la carte approche du viewport,
+  // et seulement si la page contient effectivement une carte (import dynamique de Leaflet).
+  const MAX_ZOOM = 15; // plafond global : au-delà, la carte n'aide plus à comprendre le voyage
+  const FIT_ZOOM = 12; // plafond au cadrage initial, même pour une trace très courte
+
+  function parseGpxLatLngs(xmlText: string): [number, number][] {
+    const doc = new DOMParser().parseFromString(xmlText, "application/xml");
+    if (doc.querySelector("parsererror")) return [];
+    return [...doc.querySelectorAll("trkpt")]
+      .map((pt) => {
+        const lat = parseFloat(pt.getAttribute("lat") ?? "");
+        const lon = parseFloat(pt.getAttribute("lon") ?? "");
+        return Number.isFinite(lat) && Number.isFinite(lon) ? ([lat, lon] as [number, number]) : null;
+      })
+      .filter((p): p is [number, number] => p !== null);
+  }
+
+  async function initMap(container: HTMLElement) {
+    const canvas = container.querySelector<HTMLElement>("[data-gpx-map-canvas]");
+    if (!canvas) return;
+
+    let files: string[] = [];
+    try {
+      files = JSON.parse(container.dataset.gpx ?? "[]");
+    } catch {
+      files = [];
+    }
+    if (!files.length) return;
+
+    const traces = await Promise.all(
+      files.map(async (url) => {
+        try {
+          const res = await fetch(url);
+          if (!res.ok) return [];
+          return parseGpxLatLngs(await res.text());
+        } catch {
+          return [];
+        }
+      })
+    );
+
+    const validTraces = traces.filter((t) => t.length > 1);
+    if (!validTraces.length) {
+      // Pas de trace exploitable : on garde l'image de secours déjà affichée, sans erreur visible.
+      return;
+    }
+
+    const [{ default: L }] = await Promise.all([import("leaflet"), import("leaflet/dist/leaflet.css")]);
+
+    canvas.replaceChildren();
+
+    const map = L.map(canvas, {
+      scrollWheelZoom: false,
+      zoomControl: true,
+      maxZoom: MAX_ZOOM,
+    });
+
+    L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+      maxZoom: MAX_ZOOM,
+      attribution:
+        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+        '<a href="https://opentopomap.org">OpenTopoMap</a> (CC-BY-SA)',
+    }).addTo(map);
+
+    const bounds = L.latLngBounds([]);
+    for (const latlngs of validTraces) {
+      // Halo blanc sous la trace : garde la ligne lisible sur les reliefs foncés du fond topo.
+      L.polyline(latlngs, {
+        color: "#ffffff",
+        weight: 6,
+        opacity: 0.9,
+        lineJoin: "round",
+      }).addTo(map);
+      L.polyline(latlngs, {
+        color: "#0b0b0a",
+        weight: 3,
+        opacity: 0.9,
+        lineJoin: "round",
+      }).addTo(map);
+      bounds.extend(latlngs);
+    }
+
+    map.fitBounds(bounds, { padding: [24, 24], maxZoom: FIT_ZOOM });
+
+    let resizeTimer: number | undefined;
+    window.addEventListener("resize", () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(() => map.invalidateSize(), 150);
+    });
+  }
+
+  function bootGpxMaps() {
+    const containers = document.querySelectorAll<HTMLElement>("[data-gpx-map]");
+    if (!containers.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries, obs) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            obs.unobserve(entry.target);
+            initMap(entry.target as HTMLElement);
+          }
+        }
+      },
+      { rootMargin: "200px" }
+    );
+
+    containers.forEach((el) => observer.observe(el));
+  }
+
+  bootGpxMaps();
+</script>
