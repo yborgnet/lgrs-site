@@ -2,6 +2,19 @@
 /* Basé sur src/styles/global.css (identité visuelle de l'accueil). */
 /* Breakpoint réutilisé : 800px, comme les sections de l'accueil. */
 
+:root {
+  /* Rythme vertical commun à tous les couples "petit surtitre → grand titre serif"
+     (masthead pays, itinéraire, cartouches Description/Informations) : une seule
+     échelle réutilisée partout plutôt que des marges réglées au cas par cas. */
+  --kicker-gap: 34px;
+  --kicker-gap-desktop: 42px;
+  --kicker-gap-wide: 48px;
+
+  /* Décalage additionnel du contenu voyage vers l'intérieur de la page, desktop
+     uniquement (mobile garde ses marges actuelles). */
+  --content-shift: 24px;
+}
+
 /* MASTHEAD */
 
 .voyage-masthead {
@@ -11,7 +24,7 @@
 }
 
 .voyage-masthead__eyebrow {
-  margin: 0 0 34px;
+  margin: 0 0 var(--kicker-gap);
   font-size: 12px;
   font-weight: 500;
   line-height: 1.2;
@@ -38,7 +51,7 @@
 }
 
 .voyage-masthead__meta {
-  margin: 14px 0 4px;
+  margin: 20px 0 4px;
   font-family: var(--font-serif);
   font-size: clamp(28px, 6.4vw, 38px);
   font-weight: 300;
@@ -54,11 +67,11 @@
 /* DESCRIPTION / INFO — deux colonnes desktop, empilé mobile */
 
 .voyage-row--description {
-  background: var(--offwhite);
+  background: var(--white);
 }
 
 .voyage-row--info {
-  background: var(--offwhite);
+  background: var(--white);
 }
 
 .voyage-row__inner {
@@ -74,10 +87,14 @@
   justify-content: center;
 }
 
-/* Cartouche noir — label de section "Description du voyage" / "Informations". */
+/* Cartouche noir — label de section "Description du voyage" / "Informations".
+   inline-flex + width:fit-content + align-self:flex-start : le fond noir épouse
+   strictement le texte, même dans une colonne flex (align-items:stretch par défaut). */
 .voyage-badge {
-  display: inline-block;
-  margin: 0 0 24px;
+  display: inline-flex;
+  align-self: flex-start;
+  width: fit-content;
+  margin: 0 0 var(--kicker-gap);
   padding: 6px 12px;
   background: #000;
   color: #fff;
@@ -85,6 +102,7 @@
   font-weight: 600;
   letter-spacing: .02em;
   line-height: 1.3;
+  border-radius: 0;
 }
 
 .voyage-row__heading {
@@ -120,10 +138,9 @@
 }
 
 .voyage-row__copy--facts p:first-of-type strong {
-  color: #111111;
-  font-size: .82em;
-  font-weight: 700;
-  letter-spacing: .055em;
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: .04em;
   text-transform: uppercase;
 }
 
@@ -208,7 +225,7 @@
    distinct du badge noir de Description/Informations — override scopé pour ne pas
    toucher le .eyebrow partagé avec l'accueil. */
 .voyage-itinerary__head .eyebrow {
-  margin: 0 0 14px;
+  margin: 0 0 var(--kicker-gap);
   font-size: 10px;
   font-weight: 600;
   letter-spacing: .22em;
@@ -217,7 +234,7 @@
 }
 
 .voyage-itinerary__head h2 {
-  margin: 14px 0 0;
+  margin: 0;
   font-family: var(--font-serif);
   font-size: clamp(40px, 8vw, 72px);
   font-weight: 300;
@@ -227,7 +244,7 @@
 
 .voyage-itinerary__intro {
   max-width: 680px;
-  margin: 18px 0 0;
+  margin: 24px 0 0;
   font-size: 15px;
   line-height: 1.6;
   color: rgba(11, 11, 10, .62);
@@ -475,7 +492,7 @@
 
   .voyage-masthead__eyebrow {
     font-size: 13px;
-    margin-bottom: 42px;
+    margin-bottom: var(--kicker-gap-desktop);
   }
 
   .voyage-masthead h1 {
@@ -483,6 +500,7 @@
   }
 
   .voyage-masthead__meta {
+    margin-top: 22px;
     font-size: clamp(36px, 3.2vw, 46px);
   }
 
@@ -494,9 +512,18 @@
     display: none;
   }
 
+  /* Contenu légèrement décalé vers l'intérieur de la page (desktop uniquement) —
+     masthead et itinéraire passent par leur site-shell, Description/Informations
+     par --shell-inset directement puisqu'elles cassent déjà la largeur du shell. */
+  .voyage-masthead__inner,
+  .voyage-itinerary__inner {
+    padding-left: var(--content-shift);
+  }
+
   /* Description / Informations : la ligne casse la largeur du site-shell pour que
      la photo aille jusqu'au bord droit (ou gauche, en inversé) réel du viewport ;
-     le texte garde --shell-inset pour rester aligné avec le reste de la page. */
+     le texte garde --shell-inset (+ le même décalage intérieur) pour rester aligné
+     avec le reste de la page. */
   .voyage-row--description .site-shell,
   .voyage-row--info .site-shell {
     width: 100%;
@@ -513,11 +540,15 @@
   }
 
   .voyage-row__text {
-    padding: 72px min(7vw, 90px) 72px var(--shell-inset);
+    padding: 72px min(7vw, 90px) 72px calc(var(--shell-inset) + var(--content-shift));
   }
 
   .voyage-row__inner--reverse .voyage-row__text {
-    padding: 72px var(--shell-inset) 72px min(5vw, 60px);
+    padding: 72px calc(var(--shell-inset) + var(--content-shift)) 72px min(5vw, 60px);
+  }
+
+  .voyage-badge {
+    margin-bottom: var(--kicker-gap-desktop);
   }
 
   .voyage-photo {
@@ -543,6 +574,10 @@
 
   .voyage-itinerary {
     padding: 96px 0 56px;
+  }
+
+  .voyage-itinerary__head .eyebrow {
+    margin-bottom: var(--kicker-gap-desktop);
   }
 
   .voyage-itinerary__head h2 {
@@ -589,7 +624,7 @@
   }
 
   .voyage-masthead__eyebrow {
-    margin-bottom: 48px;
+    margin-bottom: var(--kicker-gap-wide);
   }
 
   .voyage-masthead h1 {
@@ -603,5 +638,10 @@
   .voyage-itinerary__head .eyebrow {
     font-size: 14px;
     letter-spacing: .18em;
+    margin-bottom: var(--kicker-gap-wide);
+  }
+
+  .voyage-badge {
+    margin-bottom: var(--kicker-gap-wide);
   }
 }
