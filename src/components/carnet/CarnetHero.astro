@@ -1,0 +1,30 @@
+---
+type Props = {
+  eyebrow: string;
+  title: string;
+  subtitle?: string;
+  meta?: string[];
+};
+
+const { eyebrow, title, subtitle, meta = [] } = Astro.props;
+---
+
+<section class="carnet-hero" aria-labelledby="carnet-title">
+  <div class="site-shell">
+    <p class="carnet-hero__eyebrow">{eyebrow}</p>
+    <h1 id="carnet-title">{title}</h1>
+    {subtitle && <p class="carnet-hero__subtitle">{subtitle}</p>}
+    {
+      meta.length > 0 && (
+        <p class="carnet-hero__date">
+          {meta.map((item, i) => (
+            <>
+              {i > 0 && <span>·</span>}
+              {item}
+            </>
+          ))}
+        </p>
+      )
+    }
+  </div>
+</section>

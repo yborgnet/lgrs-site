@@ -137,17 +137,6 @@
   opacity: .62;
 }
 
-.voyage-row__copy--facts p:first-of-type {
-  line-height: 2;
-}
-
-.voyage-row__copy--facts p:first-of-type strong {
-  color: var(--ink);
-  font-weight: 600;
-  letter-spacing: .04em;
-  text-transform: uppercase;
-}
-
 /* Panneau photo (moitié de ligne sur desktop, pleine largeur sur mobile) */
 
 .voyage-photo-panel {

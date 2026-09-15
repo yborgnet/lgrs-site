@@ -51,8 +51,9 @@ export type Voyage = {
   photoIntro?: VoyagePhoto;
   info: {
     label: string;
-    /** Trusted HTML fragments (from source content, not user input). */
-    paragraphs: string[];
+    fields: { label: string; value: string }[];
+    /** Paragraphe libre sous la grille (ex. public visé du voyage). */
+    note?: string;
   };
   photoInfo?: VoyagePhoto;
   bigPhoto?: VoyagePhoto;

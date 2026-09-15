@@ -30,16 +30,31 @@ export const tadjikistan: Voyage = {
   },
   info: {
     label: "Informations",
-    paragraphs: [
-      "<strong>Pays :</strong> Tadjikistan<br/><strong>Région :</strong> vallées du Zeravshan et Haut-Zeravshan<br/><strong>Ville d’accès et de retour :</strong> Douchanbé, vols via Istanbul depuis Paris ou Genève<br/><strong>Durée :</strong> 9 jours / 8 nuits, environ 7 jours de ski<br/><strong>Dates :</strong> du dimanche 21 au lundi 29 mars 2027<br/><strong>Forme du voyage :</strong> exploration avec bivouac, puis itinérance de village en village<br/><strong>Hébergements :</strong> guest houses en pension complète et deux nuits sous tente<br/><strong>Participants :</strong> 5 à 6, plus le guide<br/><strong>Prix avec vol :</strong> 4 374 €<br/><strong>Prix hors vol :</strong> 3 374 € au départ de Douchanbé<br/><strong>Physique :</strong> ★★★★★ 5/5<br/><strong>Technique ski :</strong> ★★★☆☆ 3/5<br/><strong>Engagement :</strong> ★★★★★ 5/5<br/><strong>Encadrant :</strong> Yann Borgnet, guide de haute montagne UIAGM",
-      "Le séjour s’adresse à des skieurs de randonnée autonomes, en excellente condition physique, capables d’enchaîner plusieurs journées complètes avec un sac plus lourd pendant la partie bivouac. L’altitude, l’isolement, les deux nuits sous tente et l’absence de solutions de repli immédiates constituent l’essentiel de l’engagement.",
+    fields: [
+      { label: "Pays", value: "Tadjikistan" },
+      { label: "Région", value: "vallées du Zeravshan et Haut-Zeravshan" },
+      { label: "Ville d’accès et de retour", value: "Douchanbé, vols via Istanbul depuis Paris ou Genève" },
+      { label: "Durée", value: "9 jours / 8 nuits, environ 7 jours de ski" },
+      { label: "Dates", value: "du dimanche 21 au lundi 29 mars 2027" },
+      { label: "Forme du voyage", value: "exploration avec bivouac, puis itinérance de village en village" },
+      { label: "Hébergements", value: "guest houses en pension complète et deux nuits sous tente" },
+      { label: "Participants", value: "5 à 6, plus le guide" },
+      { label: "Prix avec vol", value: "4 374 €" },
+      { label: "Prix hors vol", value: "3 374 € au départ de Douchanbé" },
+      { label: "Physique", value: "★★★★★ 5/5" },
+      { label: "Technique ski", value: "★★★☆☆ 3/5" },
+      { label: "Engagement", value: "★★★★★ 5/5" },
+      { label: "Encadrant", value: "Yann Borgnet, guide de haute montagne UIAGM" },
     ],
+    note: "Le séjour s’adresse à des skieurs de randonnée autonomes, en excellente condition physique, capables d’enchaîner plusieurs journées complètes avec un sac plus lourd pendant la partie bivouac. L’altitude, l’isolement, les deux nuits sous tente et l’absence de solutions de repli immédiates constituent l’essentiel de l’engagement.",
   },
   itinerary: {
     eyebrow: "Itinéraire",
     title: "9 jours. Deux visages du Zeravshan.",
     intro:
       "Une première exploration autonome autour du Pereval Angisht, avec deux nuits sous tente, puis une traversée entre les villages d’hiver du Haut-Zeravshan.",
+    gpx: "/gpx/tadjikistan-zeravshan-2027.gpx",
+    mapTitle: "Carte de l’itinéraire du voyage à ski au Tadjikistan – vallées du Zeravshan",
     items: [
       {
         type: "day",

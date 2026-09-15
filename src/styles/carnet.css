@@ -1,0 +1,709 @@
+/* === TEMPLATE CARNET (récits de voyages passés) === */
+/* Architecture volontairement séparée du template voyage programmé (voyage.css) :
+   même identité (tokens de src/styles/global.css, header partagé), mais un
+   vocabulaire de classes propre (.carnet-*) pour ne jamais risquer de casser
+   les pages voyages en cours de validation.
+   Passe DESKTOP UNIQUEMENT : le rendu reste correct sur mobile (clamp(),
+   grilles qui se réduisent naturellement) mais n'a pas encore été optimisé
+   pour petit écran — une deuxième passe mobile suivra séparément. */
+
+:root {
+  /* Trois largeurs éditoriales coexistantes (item 3/20) — toutes centrées à
+     l'intérieur de .site-shell, jamais collées au bord gauche du conteneur. */
+  --carnet-narrow: min(100%, 640px);  /* texte de lecture continu */
+  --carnet-medium: min(100%, 900px);  /* contenu structuré */
+  /* les photos, la carte et les grilles deux colonnes utilisent --shell (large) */
+}
+
+/* HERO */
+
+.carnet-hero {
+  background: var(--paper);
+  padding: 64px 0 40px;
+}
+
+.carnet-hero__eyebrow {
+  margin: 0 0 20px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  opacity: .56;
+}
+
+.carnet-hero h1 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(64px, 10vw, 128px);
+  line-height: .95;
+  letter-spacing: -.03em;
+}
+
+.carnet-hero__subtitle {
+  margin: 16px 0 0;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(30px, 4vw, 48px);
+  line-height: 1.05;
+  letter-spacing: -.015em;
+}
+
+/* Retour à une ligne séparée, discrète — même traitement fin/gris que
+   "CARNET DE VOYAGE" (.carnet-hero__eyebrow), pas un second gros titre. */
+.carnet-hero__date {
+  margin: 20px 0 0;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  opacity: .56;
+}
+
+.carnet-hero__date span {
+  margin: 0 12px;
+  opacity: .6;
+}
+
+.carnet-hero__subtitle span {
+  margin: 0 18px;
+  opacity: .45;
+}
+
+/* PHOTOS */
+
+.carnet-photo {
+  width: 100%;
+  margin: 0; /* <figure> a une marge par défaut du navigateur (~1em 40px) : sans ce
+                reset, la photo n'était ni vraiment bord à bord ni collée à la
+                section suivante — c'était la vraie cause des deux symptômes. */
+  background: var(--paper);
+}
+
+.carnet-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.carnet-photo figcaption {
+  margin: 0;
+  padding: 12px var(--shell-inset, 24px) 0;
+  font-size: 12px;
+  color: rgba(11, 11, 10, .55);
+}
+
+/* "wide" : contenue dans la largeur éditoriale, ratio naturel. */
+.carnet-photo--wide {
+  max-width: var(--shell);
+  margin-inline: auto;
+}
+
+/* "hero" : pleine largeur d'écran, hauteur panoramique cadrée — la seule photo
+   du template dont le ratio d'origine est volontairement recadré, choix éditorial
+   assumé pour que le premier écran tienne titre + sous-titre + date + photo. */
+.carnet-photo--hero {
+  height: 64vh;
+  min-height: 500px;
+  max-height: 860px;
+  overflow: hidden;
+}
+
+.carnet-photo--hero img {
+  height: 100%;
+  object-fit: cover;
+  object-position: center 25%; /* préserve sommets/ciel par défaut ; réglable par
+                                   carnet via CarnetPhoto["position"] */
+}
+
+/* Cartouche "Itinéraire" — le cartouche Informations vient désormais du
+   composant partagé (src/styles/info-grid.css, .info-badge). Celui-ci reste
+   local à l'itinéraire du carnet, valeurs identiques. */
+.carnet-badge {
+  display: inline-flex;
+  align-self: flex-start;
+  width: fit-content;
+  margin: 0 0 16px;
+  padding: 6px 12px;
+  background: #000;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  line-height: 1.3;
+  border-radius: 0;
+}
+
+/* INTRO + INFORMATIONS + PHOTO VERTICALE — un seul bloc éditorial, centré,
+   qui occupe toute la largeur du site-shell (item 8). */
+
+.carnet-intro {
+  background: var(--white);
+  /* Pas de padding ici : il vit maintenant sur .carnet-intro__content, pour que
+     la colonne photo (align-items:stretch) s'étire sur la hauteur RÉELLE de la
+     section — bord à bord, sans marge au-dessus ni en dessous. */
+}
+
+.carnet-intro__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(280px, 1fr);
+  gap: 72px;
+  align-items: stretch; /* la photo occupe toute la hauteur de la section */
+}
+
+.carnet-intro__content {
+  padding: 88px 0;
+}
+
+.carnet-intro__content h2 {
+  margin: 0 0 26px;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(32px, 3.2vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -.02em;
+  max-width: var(--carnet-narrow);
+}
+
+.carnet-intro__content > p {
+  margin: 0 0 18px;
+  max-width: var(--carnet-narrow);
+  font-size: 18px;
+  line-height: 1.7;
+  color: rgba(11, 11, 10, .82);
+}
+
+.carnet-intro__content > p:last-of-type {
+  margin-bottom: 48px;
+}
+
+.carnet-intro__photo {
+  position: sticky;
+  top: 32px;
+  align-self: stretch;
+  min-height: 480px;
+  /* Bleed jusqu'au bord droit réel du viewport plutôt que de s'arrêter au bord
+     de .site-shell — même principe que les photos Description/Informations des
+     pages voyage (--shell-inset), en négatif sur le seul côté droit. */
+  margin-right: calc(-1 * var(--shell-inset));
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* INFORMATIONS — cartouche + grille dédiées au carnet, INDÉPENDANTES du
+   composant partagé InformationGrid (src/components/shared/InformationGrid.astro,
+   src/styles/info-grid.css), lequel reste réservé aux pages voyage. Bernina est
+   la référence visuelle pour les futurs carnets : ces valeurs ne doivent jamais
+   dériver pour "ressembler" aux pages voyage, et un changement côté voyage ne
+   doit jamais pouvoir modifier ce rendu. */
+
+.carnet-info {
+  background: var(--white);
+  padding: 72px 0;
+}
+
+.carnet-info__badge {
+  display: inline-flex;
+  align-self: flex-start;
+  width: fit-content;
+  margin: 0 0 16px;
+  padding: 6px 12px;
+  background: #000;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  line-height: 1.3;
+  border-radius: 0;
+}
+
+.carnet-info__grid {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px 48px;
+  max-width: var(--carnet-medium);
+}
+
+.carnet-info__field {
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
+}
+
+.carnet-info__field dt {
+  margin: 0 0 6px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.carnet-info__field dd {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(11, 11, 10, .78);
+}
+
+/* CARTE / ITINÉRAIRE — conservé tel quel (item 13), juste recentré. */
+
+.carnet-itinerary {
+  background: var(--paper);
+  padding: 80px 0 64px;
+}
+
+.carnet-itinerary__head {
+  max-width: var(--carnet-medium);
+  margin: 0 0 40px;
+}
+
+.carnet-itinerary__head h2 {
+  margin: max(20px, .34em) 0 0;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(34px, 3.6vw, 52px);
+  line-height: 1.02;
+  letter-spacing: -.025em;
+}
+
+.carnet-itinerary__intro {
+  max-width: var(--carnet-narrow);
+  margin: 18px 0 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(11, 11, 10, .62);
+}
+
+.carnet-itinerary__note {
+  margin: 14px 0 0;
+  font-size: 13px;
+  font-style: italic;
+  color: rgba(11, 11, 10, .55);
+}
+
+.carnet-itinerary__days {
+  margin: 48px 0 0;
+  display: grid;
+  gap: 0;
+}
+
+.carnet-day {
+  display: grid;
+  grid-template-columns: 148px minmax(0, 1fr);
+  gap: 28px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(11, 11, 10, .14);
+}
+
+.carnet-day:first-of-type {
+  border-top: 0;
+}
+
+.carnet-day__num {
+  padding-top: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  opacity: .5;
+}
+
+.carnet-day h3 {
+  margin: 0 0 6px;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(20px, 1.8vw, 25px);
+  line-height: 1.15;
+  letter-spacing: -.01em;
+}
+
+.carnet-day p {
+  margin: 0;
+  max-width: 620px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(11, 11, 10, .68);
+}
+
+.carnet-day p.carnet-day__via {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  color: rgba(11, 11, 10, .5);
+}
+
+.carnet-day p.carnet-day__stats {
+  margin: 10px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  color: rgba(11, 11, 10, .55);
+}
+
+/* RÉCIT — déroulable (details/summary), récit à gauche, photos par journée
+   à droite (items 16-21). */
+
+.carnet-story {
+  background: var(--white);
+  padding: 88px 0;
+}
+
+.carnet-story__eyebrow {
+  margin: 0 0 28px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  opacity: .5;
+}
+
+.carnet-story__details summary {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 18px;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(48px, 5.2vw, 76px);
+  line-height: 1.02;
+  letter-spacing: -.03em;
+}
+
+.carnet-story__details summary::-webkit-details-marker {
+  display: none;
+}
+
+.carnet-story__arrow {
+  display: inline-flex;
+  font-family: var(--font-sans);
+  font-size: 24px;
+  opacity: .55;
+  transition: transform .2s ease;
+}
+
+.carnet-story__details[open] .carnet-story__arrow {
+  transform: rotate(180deg);
+}
+
+.carnet-story__grid {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 1fr);
+  gap: 72px;
+  align-items: start;
+}
+
+.carnet-story__section + .carnet-story__section {
+  margin-top: 48px;
+}
+
+.carnet-story__section h3 {
+  margin: 0 0 22px;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(24px, 2.2vw, 32px);
+  line-height: 1.15;
+  letter-spacing: -.015em;
+}
+
+.carnet-story__section p {
+  margin: 0 0 18px;
+  font-size: 17px;
+  line-height: 1.75;
+  color: rgba(11, 11, 10, .82);
+}
+
+.carnet-story__section p:last-of-type {
+  margin-bottom: 0;
+}
+
+.carnet-story__photos {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.carnet-story__day-label {
+  margin: 0 0 12px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  opacity: .5;
+}
+
+.carnet-story__day-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.carnet-story__day-grid img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+/* Groupe de 3 photos : la 3e (impaire) occupe toute la largeur plutôt que de
+   laisser une case vide — rythme "2 côte à côte + 1 large". */
+.carnet-story__day-grid img:nth-child(3):last-child {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 6;
+}
+
+.carnet-story__day-grid img:first-child:nth-last-child(1) {
+  grid-column: 1 / -1;
+  aspect-ratio: 16 / 10;
+}
+
+/* PORTFOLIO — fond contrasté, grille généreuse, quelques images plus grandes. */
+
+.carnet-portfolio {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 88px 0;
+}
+
+.carnet-portfolio__head {
+  margin: 0 0 48px;
+}
+
+.carnet-portfolio__eyebrow {
+  margin: 0 0 16px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  opacity: .6;
+}
+
+/* Même langage typographique que "Le récit complet" (.carnet-story__details
+   summary) — cohérence explicitement demandée entre grands titres de section. */
+.carnet-portfolio h2 {
+  margin: max(20px, .34em) 0 0;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(48px, 5.2vw, 76px);
+  line-height: 1.02;
+  letter-spacing: -.03em;
+}
+
+.carnet-portfolio__meta {
+  margin: 16px 0 0;
+  max-width: var(--carnet-narrow);
+  font-size: 14px;
+  line-height: 1.5;
+  opacity: .62;
+}
+
+.carnet-portfolio__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.carnet-portfolio__trigger {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+.carnet-portfolio__trigger img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  transition: opacity .15s ease;
+}
+
+.carnet-portfolio__trigger:hover img,
+.carnet-portfolio__trigger:focus-visible img {
+  opacity: .85;
+}
+
+.carnet-portfolio__trigger:focus-visible {
+  outline: 2px solid var(--warm);
+  outline-offset: 2px;
+}
+
+.carnet-portfolio__item:nth-of-type(5n+1) {
+  grid-column: span 2;
+}
+
+.carnet-portfolio__item:nth-of-type(5n+1) .carnet-portfolio__trigger img {
+  aspect-ratio: 16 / 9;
+}
+
+/* LIGHTBOX — plein écran, fond sombre, contain (pas de recadrage). Structure
+   prête pour ajouter le swipe tactile plus tard (gestes sur .carnet-lightbox__stage). */
+
+.carnet-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr; /* panneau gauche | photo | panneau droit */
+  grid-template-rows: 100%; /* les panneaux s'étirent sur toute la hauteur réelle,
+    pas seulement la hauteur de la photo */
+  align-items: center; /* la stage reste centrée verticalement dans sa colonne */
+  background: var(--ink); /* opaque — un fond semi-transparent provoquait un
+    artefact de composition (bordures visibles) au screenshot headless */
+}
+
+.carnet-lightbox[hidden] {
+  display: none;
+}
+
+.carnet-lightbox__stage {
+  grid-column: 2;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 92vw;
+  max-height: 88vh;
+}
+
+.carnet-lightbox__image {
+  display: block;
+  max-width: 92vw;
+  max-height: 78vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.carnet-lightbox__caption {
+  margin: 18px 0 0;
+  max-width: 640px;
+  text-align: center;
+  font-size: 13px;
+  line-height: 1.5;
+  color: rgba(243, 241, 236, .72);
+}
+
+.carnet-lightbox__counter {
+  margin: 10px 0 0;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  color: rgba(243, 241, 236, .42);
+}
+
+.carnet-lightbox__close,
+.carnet-lightbox__nav {
+  border: 0;
+  background: transparent;
+  color: var(--paper);
+  cursor: pointer;
+  transition: opacity .15s ease, background-color .15s ease;
+}
+
+.carnet-lightbox__close:focus-visible,
+.carnet-lightbox__nav:focus-visible {
+  outline: 1px solid rgba(243, 241, 236, .5);
+}
+
+.carnet-lightbox__close {
+  position: absolute;
+  top: 28px;
+  right: 32px;
+  z-index: 2; /* reste cliquable au-dessus du panneau droit, désormais pleine hauteur */
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  font-size: 18px;
+  opacity: .6;
+  outline-offset: 2px;
+}
+
+.carnet-lightbox__close:hover,
+.carnet-lightbox__close:focus-visible {
+  opacity: 1;
+}
+
+/* Panneaux latéraux pleine hauteur — toute la zone est le bouton, la flèche
+   n'est qu'un repère visuel centré dedans (item 3/5). */
+.carnet-lightbox__nav {
+  grid-row: 1;
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-family: var(--font-serif);
+  font-size: 40px;
+  line-height: 1;
+  opacity: .65;
+  outline-offset: -6px;
+}
+
+.carnet-lightbox__nav:hover,
+.carnet-lightbox__nav:focus-visible {
+  opacity: 1;
+  background-color: rgba(255, 255, 255, .03);
+}
+
+.carnet-lightbox__nav--prev {
+  grid-column: 1;
+}
+
+.carnet-lightbox__nav--next {
+  grid-column: 3;
+}
+
+/* FIN DE CARNET */
+
+.carnet-closing {
+  background: var(--paper);
+  padding: 72px 0;
+  text-align: center;
+}
+
+.carnet-closing p {
+  margin: 0 0 24px;
+  max-width: var(--carnet-narrow);
+  margin-inline: auto;
+  font-size: 16px;
+  color: rgba(11, 11, 10, .68);
+}
+
+.carnet-closing__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 30px;
+  border: 1px solid var(--ink);
+  color: var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  transition: background-color .2s ease, color .2s ease;
+}
+
+.carnet-closing__cta:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.carnet-closing__cta:focus-visible {
+  outline: 2px solid var(--warm);
+  outline-offset: 3px;
+}

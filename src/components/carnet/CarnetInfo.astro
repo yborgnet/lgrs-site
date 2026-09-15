@@ -1,0 +1,46 @@
+---
+import type { Carnet } from "../../data/carnets/types";
+
+type Props = {
+  info: Carnet["info"];
+  /** true : rend uniquement le cartouche + la grille, sans section/fond propres
+   *  (utilisé quand le bloc est imbriqué dans CarnetIntro). */
+  bare?: boolean;
+};
+
+const { info, bare = false } = Astro.props;
+---
+
+{
+  bare ? (
+    <div class="carnet-info__inner">
+      <p class="carnet-info__badge">{info.label}</p>
+      <dl class="carnet-info__grid">
+        {
+          info.fields.map((field) => (
+            <div class="carnet-info__field">
+              <dt>{field.label}</dt>
+              <dd>{field.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+  ) : (
+    <section class="carnet-info">
+      <div class="site-shell carnet-info__inner">
+        <p class="carnet-info__badge">{info.label}</p>
+        <dl class="carnet-info__grid">
+          {
+            info.fields.map((field) => (
+              <div class="carnet-info__field">
+                <dt>{field.label}</dt>
+                <dd>{field.value}</dd>
+              </div>
+            ))
+          }
+        </dl>
+      </div>
+    </section>
+  )
+}

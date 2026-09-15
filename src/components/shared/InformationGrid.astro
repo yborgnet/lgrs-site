@@ -1,0 +1,32 @@
+---
+/**
+ * Cartouche noir + grille de faits à deux colonnes, séparateurs fins, labels
+ * forts / valeurs légères. Utilisé UNIQUEMENT par les pages voyage
+ * (VoyageInfo.astro) — le carnet a son propre rendu indépendant
+ * (CarnetInfo.astro + src/styles/carnet.css, .carnet-info__*).
+ */
+type Field = { label: string; value: string };
+
+type Props = {
+  label: string;
+  fields: Field[];
+  /** Paragraphe libre optionnel sous la grille (ex. public visé du voyage) —
+   *  absent sur les carnets, utilisé par les pages voyage. */
+  note?: string;
+};
+
+const { label, fields, note } = Astro.props;
+---
+
+<p class="info-badge">{label}</p>
+<dl class="info-grid">
+  {
+    fields.map((field) => (
+      <div class="info-grid__field">
+        <dt>{field.label}</dt>
+        <dd>{field.value}</dd>
+      </div>
+    ))
+  }
+  {note && <div class="info-grid__note">{note}</div>}
+</dl>

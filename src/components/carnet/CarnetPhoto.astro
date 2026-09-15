@@ -1,0 +1,24 @@
+---
+import type { CarnetPhoto } from "../../data/carnets/types";
+
+type Props = {
+  photo: CarnetPhoto;
+  /** "hero" = pleine largeur, hauteur cadrée (photo d'ouverture) ;
+   *  "wide" = contenue dans la largeur éditoriale, ratio naturel ;
+   *  "full" = pleine largeur, ratio naturel (aucun cadrage imposé). */
+  variant?: "hero" | "wide" | "full";
+};
+
+const { photo: img, variant = "wide" } = Astro.props;
+---
+
+<figure class:list={["carnet-photo", `carnet-photo--${variant}`]}>
+  <img
+    src={img.src}
+    alt={img.alt}
+    loading="lazy"
+    decoding="async"
+    style={img.position ? `object-position: ${img.position}` : undefined}
+  />
+  {img.caption && <figcaption>{img.caption}</figcaption>}
+</figure>

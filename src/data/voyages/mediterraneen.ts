@@ -30,16 +30,30 @@ export const mediterraneen: Voyage = {
   },
   info: {
     label: "Informations",
-    paragraphs: [
-      "<strong>Destination :</strong> choisie quelques jours ou semaines avant le départ selon les conditions<br/><strong>Massifs possibles :</strong> Haut Atlas, Kaçkar, Asturies, Abruzzes, Etna, Crète, Kabylie, Rila–Pirin, Corse ou Pyrénées françaises<br/><strong>Durée :</strong> 10 jours / 9 nuits, dont 7 à 8 jours de ski<br/><strong>Dates :</strong> du vendredi 5 au dimanche 14 mars 2027<br/><strong>Forme du voyage :</strong> itinérance dans le massif offrant les meilleures conditions<br/><strong>Hébergements :</strong> variables selon la destination : hébergements locaux, refuges, cabanes ou bivouacs<br/><strong>Participants :</strong> 5 à 6, plus le guide<br/><strong>Prix :</strong> de 1 500 € à 3 600 € selon la destination<br/><strong>Physique :</strong> ★★★★★ 5/5<br/><strong>Technique ski :</strong> ★★★★★ 5/5<br/><strong>Engagement :</strong> ★★★★★ 5/5<br/><strong>Encadrant :</strong> Yann Borgnet, guide de haute montagne UIAGM",
-      "Ce voyage s’adresse à des skieurs de randonnée très expérimentés, en excellente condition physique, capables de s’adapter à un itinéraire, un climat et une logistique arrêtés tardivement. Le niveau réel sera précisé dès que la destination aura été choisie.",
+    fields: [
+      { label: "Destination", value: "choisie quelques jours ou semaines avant le départ selon les conditions" },
+      { label: "Massifs possibles", value: "Haut Atlas, Kaçkar, Asturies, Abruzzes, Etna, Crète, Kabylie, Rila–Pirin, Corse ou Pyrénées françaises" },
+      { label: "Durée", value: "10 jours / 9 nuits, dont 7 à 8 jours de ski" },
+      { label: "Dates", value: "du vendredi 5 au dimanche 14 mars 2027" },
+      { label: "Forme du voyage", value: "itinérance dans le massif offrant les meilleures conditions" },
+      { label: "Hébergements", value: "variables selon la destination : hébergements locaux, refuges, cabanes ou bivouacs" },
+      { label: "Participants", value: "5 à 6, plus le guide" },
+      { label: "Prix", value: "de 1 500 € à 3 600 € selon la destination" },
+      { label: "Physique", value: "★★★★★ 5/5" },
+      { label: "Technique ski", value: "★★★★★ 5/5" },
+      { label: "Engagement", value: "★★★★★ 5/5" },
+      { label: "Encadrant", value: "Yann Borgnet, guide de haute montagne UIAGM" },
     ],
+    note: "Ce voyage s’adresse à des skieurs de randonnée très expérimentés, en excellente condition physique, capables de s’adapter à un itinéraire, un climat et une logistique arrêtés tardivement. Le niveau réel sera précisé dès que la destination aura été choisie.",
   },
   itinerary: {
     eyebrow: "Destinations possibles",
     title: "Une date fixe. Le meilleur massif du moment.",
     intro:
-      "Quelques jours ou semaines avant le départ, nous comparerons l’enneigement, la stabilité du manteau neigeux et la météo. Le voyage prendra alors la direction du massif offrant la meilleure combinaison entre qualité du ski, itinérance et présence de la mer.",
+      "Quelques jours ou semaines avant le départ, nous comparerons l’enneigement, la stabilité du manteau neigeux et la météo. Le voyage prendra alors la direction du massif offrant la meilleure combinaison entre qualité du ski, itinérance et présence de la mer. La Corse est le plan A, mais la destination définitive pourra être un autre massif selon les conditions.",
+    gpx: "/gpx/corse-alta-strada-2027.gpx",
+    mapTitle:
+      "Trace indicative de l’Alta Strada en Corse (Cinto et Rotondo) — plan A, la destination définitive dépendra de l’enneigement",
     items: [
       { type: "chapter", label: "Afrique", title: "Des sommets enneigés au-dessus de la Méditerranée" },
       {
@@ -84,8 +98,10 @@ export const mediterraneen: Voyage = {
       {
         type: "day",
         dayNum: "FRANCE",
+        highlightLabel: "Plan A",
         title: "Corse",
-        text: "Des lignes techniques et sauvages dans les massifs du Cinto et du Rotondo, avec la mer visible depuis les sommets. Un véritable raid insulaire lorsque l’enneigement permet les liaisons.",
+        text: "Des lignes techniques et sauvages dans les massifs du Cinto et du Rotondo, avec la mer visible depuis les sommets. Un véritable raid insulaire lorsque l’enneigement permet les liaisons. Option retenue en priorité : la destination définitive dépendra néanmoins de l’enneigement.",
+        variant: "highlight",
       },
       {
         type: "day",

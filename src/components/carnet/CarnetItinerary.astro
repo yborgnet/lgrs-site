@@ -1,0 +1,58 @@
+---
+import type { Carnet } from "../../data/carnets/types";
+import GpxMap from "../GpxMap.astro";
+
+type Props = {
+  map?: Carnet["map"];
+  itinerary?: Carnet["itinerary"];
+};
+
+const { map, itinerary } = Astro.props;
+---
+
+{
+  (map || itinerary) && (
+    <section class="carnet-itinerary">
+      <div class="site-shell">
+        {itinerary && (
+          <header class="carnet-itinerary__head">
+            <p class="carnet-badge">{itinerary.eyebrow}</p>
+            <h2>{itinerary.title}</h2>
+            {itinerary.intro && <p class="carnet-itinerary__intro">{itinerary.intro}</p>}
+          </header>
+        )}
+
+        {map && (
+          <>
+            <GpxMap gpx={map.gpx} title={map.title} />
+            {map.note && <p class="carnet-itinerary__note">{map.note}</p>}
+          </>
+        )}
+
+        {itinerary && (
+          <div class="carnet-itinerary__days">
+            {itinerary.days.map((day) => (
+              <article class="carnet-day">
+                <div class="carnet-day__num">{day.dayNum}</div>
+                <div>
+                  <h3>{day.title}</h3>
+                  {day.via && day.via.length > 0 && (
+                    <p class="carnet-day__via">{day.via.join(" · ")}</p>
+                  )}
+                  <p>{day.text}</p>
+                  {(day.distanceKm || day.ascentM || day.descentM) && (
+                    <p class="carnet-day__stats">
+                      {day.distanceKm != null && <span>{day.distanceKm.toFixed(1).replace(".", ",")} km</span>}
+                      {day.ascentM != null && <span>D+ {day.ascentM} m</span>}
+                      {day.descentM != null && <span>D− {day.descentM} m</span>}
+                    </p>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+  )
+}

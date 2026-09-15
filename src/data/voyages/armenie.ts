@@ -29,10 +29,23 @@ export const armenie: Voyage = {
   },
   info: {
     label: "Informations",
-    paragraphs: [
-      "<strong>Pays :</strong> Arménie<br/><strong>Massifs :</strong> Sevan, Dilijan, mont Ara et Aragats<br/><strong>Ville d’accès et de retour :</strong> Erevan, vols depuis Paris, Genève ou autres villes<br/><strong>Durée :</strong> 10 jours / 9 nuits, dont 8 jours de ski<br/><strong>Dates :</strong> du samedi 20 février au lundi 1er mars 2027<br/><strong>Forme du voyage :</strong> itinérance de village en village et traversée de massifs volcaniques<br/><strong>Hébergements :</strong> chez l’habitant, petites guest houses familiales, station météorologique de Kari Lake et hôtel à Erevan<br/><strong>Participants :</strong> 5 à 6, plus le guide<br/><strong>Prix avec vol :</strong> 3 770 €<br/><strong>Prix hors vol :</strong> 3 220 € au départ d’Erevan<br/><strong>Physique :</strong> ★★★★☆ 4/5<br/><strong>Technique ski :</strong> ★★★☆☆ 3/5<br/><strong>Engagement :</strong> ★★★☆☆ 3/5<br/><strong>Encadrant :</strong> Yann Borgnet, guide de haute montagne UIAGM",
-      "Le séjour s’adresse à des skieurs de randonnée expérimentés, en bonne condition physique, capables d’enchaîner plusieurs journées complètes. Une bonne maîtrise du ski en toutes neiges et des conversions est indispensable. L’itinérance, l’altitude et l’adaptation permanente aux conditions constituent l’essentiel de l’engagement.",
+    fields: [
+      { label: "Pays", value: "Arménie" },
+      { label: "Massifs", value: "Sevan, Dilijan, mont Ara et Aragats" },
+      { label: "Ville d’accès et de retour", value: "Erevan, vols depuis Paris, Genève ou autres villes" },
+      { label: "Durée", value: "10 jours / 9 nuits, dont 8 jours de ski" },
+      { label: "Dates", value: "du samedi 20 février au lundi 1er mars 2027" },
+      { label: "Forme du voyage", value: "itinérance de village en village et traversée de massifs volcaniques" },
+      { label: "Hébergements", value: "chez l’habitant, petites guest houses familiales, station météorologique de Kari Lake et hôtel à Erevan" },
+      { label: "Participants", value: "5 à 6, plus le guide" },
+      { label: "Prix avec vol", value: "3 770 €" },
+      { label: "Prix hors vol", value: "3 220 € au départ d’Erevan" },
+      { label: "Physique", value: "★★★★☆ 4/5" },
+      { label: "Technique ski", value: "★★★☆☆ 3/5" },
+      { label: "Engagement", value: "★★★☆☆ 3/5" },
+      { label: "Encadrant", value: "Yann Borgnet, guide de haute montagne UIAGM" },
     ],
+    note: "Le séjour s’adresse à des skieurs de randonnée expérimentés, en bonne condition physique, capables d’enchaîner plusieurs journées complètes. Une bonne maîtrise du ski en toutes neiges et des conversions est indispensable. L’itinérance, l’altitude et l’adaptation permanente aux conditions constituent l’essentiel de l’engagement.",
   },
   photoInfo: {
     src: "https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/Armenie-—-Mont-Aragats-depuis-Kari-Lake.jpg",

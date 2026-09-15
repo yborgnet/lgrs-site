@@ -29,10 +29,23 @@ export const ouzbekistan: Voyage = {
   },
   info: {
     label: "Informations",
-    paragraphs: [
-      "<strong>Pays :</strong> Ouzbékistan<br/><strong>Massif :</strong> Hissar<br/><strong>Ville d’accès et de retour :</strong> Samarcande, vols depuis Paris ou Genève<br/><strong>Durée :</strong> 10 jours / 9 nuits, 8 jours de ski<br/><strong>Dates :</strong> du jeudi 4 au samedi 13 février 2027<br/><strong>Forme du voyage :</strong> exploration itinérante puis traversée de village en village<br/><strong>Hébergements :</strong> guest-houses et une nuit en bivouac sous tente<br/><strong>Participants :</strong> 5 à 6, plus le guide<br/><strong>Prix avec vol :</strong> 4 090 €<br/><strong>Prix hors vol :</strong> 3 290 € au départ de Samarcande (réduction de 800 €)<br/><strong>Physique :</strong> ★★★★★<br/><strong>Technique ski :</strong> ★★★☆☆ 3/5<br/><strong>Engagement :</strong> ★★★★☆ 4/5<br/><strong>Encadrant :</strong> Yann Borgnet, guide de haute montagne UIAGM",
-      "Le séjour demande une très bonne condition physique : huit journées de ski, environ 1 200 à 2 000 m de dénivelé positif selon les étapes et du matériel de bivouac à porter dans la première partie. Les pentes sont généralement modérées à soutenues, avec quelques passages possibles autour de 40°. L’engagement vient surtout de l’isolement : plusieurs journées loin des secours, peu d’infrastructures et une évacuation complexe.",
+    fields: [
+      { label: "Pays", value: "Ouzbékistan" },
+      { label: "Massif", value: "Hissar" },
+      { label: "Ville d’accès et de retour", value: "Samarcande, vols depuis Paris ou Genève" },
+      { label: "Durée", value: "10 jours / 9 nuits, 8 jours de ski" },
+      { label: "Dates", value: "du jeudi 4 au samedi 13 février 2027" },
+      { label: "Forme du voyage", value: "exploration itinérante puis traversée de village en village" },
+      { label: "Hébergements", value: "guest-houses et une nuit en bivouac sous tente" },
+      { label: "Participants", value: "5 à 6, plus le guide" },
+      { label: "Prix avec vol", value: "4 090 €" },
+      { label: "Prix hors vol", value: "3 290 € au départ de Samarcande (réduction de 800 €)" },
+      { label: "Physique", value: "★★★★★" },
+      { label: "Technique ski", value: "★★★☆☆ 3/5" },
+      { label: "Engagement", value: "★★★★☆ 4/5" },
+      { label: "Encadrant", value: "Yann Borgnet, guide de haute montagne UIAGM" },
     ],
+    note: "Le séjour demande une très bonne condition physique : huit journées de ski, environ 1 200 à 2 000 m de dénivelé positif selon les étapes et du matériel de bivouac à porter dans la première partie. Les pentes sont généralement modérées à soutenues, avec quelques passages possibles autour de 40°. L’engagement vient surtout de l’isolement : plusieurs journées loin des secours, peu d’infrastructures et une évacuation complexe.",
   },
   photoInfo: {
     src: "https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/Illustration-FT-Ouzbekistan-1-scaled.jpeg",
@@ -47,6 +60,8 @@ export const ouzbekistan: Voyage = {
     title: "10 jours. Le Hissar en deux temps.",
     intro:
       "D’abord une exploration de vallées isolées, avec une nuit sous tente au cœur du massif. Puis une itinérance de village en village, avant une journée de battement qui pourra devenir dernière journée de ski ou découverte de Samarcande.",
+    gpx: "/gpx/ouzbekistan-hissar-2027.gpx",
+    mapTitle: "Carte de l’itinéraire du voyage à ski en Ouzbékistan – massif du Hissar",
     items: [
       {
         type: "day",

@@ -1,5 +1,6 @@
 ---
 import VoyagePhotoPanel from "./VoyagePhotoPanel.astro";
+import InformationGrid from "../shared/InformationGrid.astro";
 import type { Voyage } from "../../data/voyages/types";
 
 type Props = {
@@ -15,10 +16,7 @@ const { info, photo } = Astro.props;
     <VoyagePhotoPanel photo={photo} hideOnMobile />
 
     <div class="voyage-row__text">
-      <p class="voyage-badge">{info.label}</p>
-      <div class="voyage-row__copy voyage-row__copy--facts">
-        {info.paragraphs.map((p) => <p set:html={p} />)}
-      </div>
+      <InformationGrid label={info.label} fields={info.fields} note={info.note} />
     </div>
   </div>
 </section>

@@ -30,10 +30,24 @@ export const georgie: Voyage = {
   },
   info: {
     label: "Informations",
-    paragraphs: [
-      "<strong>Pays :</strong> Géorgie<br/><strong>Massif :</strong> Petit Caucase<br/><strong>Ville d’accès et de retour :</strong> Tbilissi, vols depuis Genève ou Paris via Istanbul<br/><strong>Durée :</strong> 10 jours / 9 nuits, environ 7 jours de ski<br/><strong>Dates :</strong> du dimanche 17 au mardi 26 janvier 2027<br/><strong>Forme du voyage :</strong> deux itinérances reliées par une traversée routière du pays<br/><strong>Territoires :</strong> Javakheti, Adjarie et Gourie<br/><strong>Hébergements :</strong> petits hôtels, maisons d’hôtes et hébergements de montagne chauffés<br/><strong>Participants :</strong> 5 à 6, plus le guide<br/><strong>Prix avec vol :</strong> 3 980 €<br/><strong>Prix hors vol :</strong> 3 480 € au départ de Tbilissi<br/><strong>Physique :</strong> ★★★★☆ 4/5<br/><strong>Technique ski :</strong> ★★☆☆☆ 2/5<br/><strong>Engagement :</strong> ★★★☆☆ 3/5<br/><strong>Encadrant :</strong> Yann Borgnet, guide de haute montagne UIAGM",
-      "Le séjour s’adresse à des skieurs de randonnée autonomes, en bonne condition physique, capables d’enchaîner plusieurs journées complètes. Les pentes sont généralement modérées ; une bonne maîtrise du ski en toutes neiges et des conversions reste indispensable. L’isolement, le froid, la neige profonde et les changements possibles d’itinéraire constituent l’essentiel de l’engagement.",
+    fields: [
+      { label: "Pays", value: "Géorgie" },
+      { label: "Massif", value: "Petit Caucase" },
+      { label: "Ville d’accès et de retour", value: "Tbilissi, vols depuis Genève ou Paris via Istanbul" },
+      { label: "Durée", value: "10 jours / 9 nuits, environ 7 jours de ski" },
+      { label: "Dates", value: "du dimanche 17 au mardi 26 janvier 2027" },
+      { label: "Forme du voyage", value: "deux itinérances reliées par une traversée routière du pays" },
+      { label: "Territoires", value: "Javakheti, Adjarie et Gourie" },
+      { label: "Hébergements", value: "petits hôtels, maisons d’hôtes et hébergements de montagne chauffés" },
+      { label: "Participants", value: "5 à 6, plus le guide" },
+      { label: "Prix avec vol", value: "3 980 €" },
+      { label: "Prix hors vol", value: "3 480 € au départ de Tbilissi" },
+      { label: "Physique", value: "★★★★☆ 4/5" },
+      { label: "Technique ski", value: "★★☆☆☆ 2/5" },
+      { label: "Engagement", value: "★★★☆☆ 3/5" },
+      { label: "Encadrant", value: "Yann Borgnet, guide de haute montagne UIAGM" },
     ],
+    note: "Le séjour s’adresse à des skieurs de randonnée autonomes, en bonne condition physique, capables d’enchaîner plusieurs journées complètes. Les pentes sont généralement modérées ; une bonne maîtrise du ski en toutes neiges et des conversions reste indispensable. L’isolement, le froid, la neige profonde et les changements possibles d’itinéraire constituent l’essentiel de l’engagement.",
   },
   photoInfo: {
     src: "https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/georgie-svanetie-2024DSC02883.jpg",
@@ -52,11 +66,7 @@ export const georgie: Voyage = {
       src: "https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/carte-georgie-petit-caucase-2027-2400w-hq.webp",
       alt: "Carte de l’itinéraire à ski 2027 dans le Petit Caucase, entre Javakheti, Adjarie et Gourie",
     },
-    // Aucun fichier GPX fiable trouvé dans le repo pour ce voyage (ni dans les assets, ni dans
-    // les références WordPress) : la carte interactive s'activera automatiquement dès qu'un
-    // fichier sera déposé dans public/gpx/ et référencé ci-dessous. En attendant, la page garde
-    // la carte statique (`map`) ci-dessus.
-    // gpx: "/gpx/georgie-petit-caucase-2027.gpx",
+    gpx: "/gpx/georgie-petit-caucase-2027.gpx",
     mapTitle: "Carte de l’itinéraire du voyage à ski en Géorgie – Petit Caucase",
     items: [
       {

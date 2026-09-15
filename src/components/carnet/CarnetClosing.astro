@@ -1,0 +1,18 @@
+---
+import type { Carnet } from "../../data/carnets/types";
+
+type Props = {
+  closing: Carnet["closing"];
+};
+
+const { closing } = Astro.props;
+---
+
+<section class="carnet-closing">
+  <div class="site-shell">
+    {closing.text && <p>{closing.text}</p>}
+    <a class="carnet-closing__cta" href={closing.ctaHref}>
+      {closing.ctaLabel} <span aria-hidden="true">→</span>
+    </a>
+  </div>
+</section>

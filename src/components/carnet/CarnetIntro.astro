@@ -1,0 +1,29 @@
+---
+import CarnetInfo from "./CarnetInfo.astro";
+import type { Carnet } from "../../data/carnets/types";
+
+type Props = {
+  intro: Carnet["intro"];
+  info: Carnet["info"];
+};
+
+const { intro, info } = Astro.props;
+---
+
+<section class="carnet-intro">
+  <div class="site-shell carnet-intro__grid">
+    <div class="carnet-intro__content">
+      <h2>{intro.heading}</h2>
+      {intro.paragraphs.map((p) => <p>{p}</p>)}
+
+      <CarnetInfo info={info} bare />
+    </div>
+
+    <div
+      class="carnet-intro__photo"
+      style={`background-image: url('${intro.photo.src}'); background-position: ${intro.photo.position ?? "center"};`}
+      role="img"
+      aria-label={intro.photo.alt}
+    />
+  </div>
+</section>

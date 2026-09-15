@@ -1,0 +1,50 @@
+---
+import type { Carnet } from "../../data/carnets/types";
+
+type Props = {
+  story: Carnet["story"];
+};
+
+const { story } = Astro.props;
+---
+
+<section class="carnet-story">
+  <div class="site-shell">
+    <p class="carnet-story__eyebrow">{story.eyebrow}</p>
+
+    <details class="carnet-story__details">
+      <summary>
+        <span>{story.toggleLabel}</span>
+        <span class="carnet-story__arrow" aria-hidden="true">↓</span>
+      </summary>
+
+      <div class="carnet-story__grid">
+        <div class="carnet-story__text">
+          {
+            story.sections.map((section) => (
+              <div class="carnet-story__section">
+                {section.heading && <h3>{section.heading}</h3>}
+                {section.paragraphs.map((p) => <p>{p}</p>)}
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="carnet-story__photos">
+          {
+            story.dayPhotos.map((group) => (
+              <div class="carnet-story__day">
+                <p class="carnet-story__day-label">{group.dayNum}</p>
+                <div class="carnet-story__day-grid">
+                  {group.photos.map((photo) => (
+                    <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" />
+                  ))}
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </details>
+  </div>
+</section>

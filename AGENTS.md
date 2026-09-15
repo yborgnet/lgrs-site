@@ -8,6 +8,15 @@ astro dev --background
 
 Manage the background server with `astro dev stop`, `astro dev status`, and `astro dev logs`.
 
+## Contenu GPX (carnets et voyages)
+
+Avant toute reconstruction d'itinéraire (étapes, distance, dénivelé,
+toponymie) à partir d'un GPX, suivre `docs/gpx-methodology.md` : hiérarchie
+des sources, découpage en journées, lissage du dénivelé, et — pour les
+itinéraires alpins — croisement systématique avec Camptocamp/Skitour comme
+sources secondaires de validation (jamais pour remplacer la géométrie du
+GPX).
+
 ## Documentation
 
 Full documentation: https://docs.astro.build
