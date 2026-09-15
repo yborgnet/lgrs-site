@@ -3,12 +3,16 @@
 /* Breakpoint réutilisé : 800px, comme les sections de l'accueil. */
 
 :root {
-  /* Rythme vertical commun à tous les couples "petit surtitre → grand titre serif"
-     (masthead pays, itinéraire, cartouches Description/Informations) : une seule
-     échelle réutilisée partout plutôt que des marges réglées au cas par cas. */
-  --kicker-gap: 34px;
-  --kicker-gap-desktop: 42px;
-  --kicker-gap-wide: 48px;
+  /* TYPE A — petit surtitre → grand titre display serif (masthead pays, itinéraire).
+     Exprimé en em (relatif à la taille du grand titre qui suit) + plancher absolu :
+     le même rapport de respiration reste cohérent que le titre fasse 70px ou 190px,
+     ce qu'un simple écart en pixels fixes ne peut pas donner puisque GÉORGIE (h1) et
+     "10 jours…" (h2) n'ont jamais la même taille. Une seule règle pour les deux. */
+  --gap-kicker-display: 0.34em;
+
+  /* TYPE B — cartouche de section → contenu (Description/Informations) : rythme
+     court et constant, volontairement distinct du TYPE A. */
+  --gap-label-content: 16px;
 
   /* Décalage additionnel du contenu voyage vers l'intérieur de la page, desktop
      uniquement (mobile garde ses marges actuelles). */
@@ -24,7 +28,7 @@
 }
 
 .voyage-masthead__eyebrow {
-  margin: 0 0 var(--kicker-gap);
+  margin: 0;
   font-size: 12px;
   font-weight: 500;
   line-height: 1.2;
@@ -34,7 +38,7 @@
 }
 
 .voyage-masthead h1 {
-  margin: 0;
+  margin: max(20px, var(--gap-kicker-display)) 0 0;
   font-family: var(--font-serif);
   font-size: clamp(78px, 19vw, 122px);
   font-weight: 300;
@@ -94,7 +98,7 @@
   display: inline-flex;
   align-self: flex-start;
   width: fit-content;
-  margin: 0 0 var(--kicker-gap);
+  margin: 0 0 var(--gap-label-content);
   padding: 6px 12px;
   background: #000;
   color: #fff;
@@ -225,7 +229,7 @@
    distinct du badge noir de Description/Informations — override scopé pour ne pas
    toucher le .eyebrow partagé avec l'accueil. */
 .voyage-itinerary__head .eyebrow {
-  margin: 0 0 var(--kicker-gap);
+  margin: 0;
   font-size: 10px;
   font-weight: 600;
   letter-spacing: .22em;
@@ -234,7 +238,7 @@
 }
 
 .voyage-itinerary__head h2 {
-  margin: 0;
+  margin: max(20px, var(--gap-kicker-display)) 0 0;
   font-family: var(--font-serif);
   font-size: clamp(40px, 8vw, 72px);
   font-weight: 300;
@@ -492,7 +496,6 @@
 
   .voyage-masthead__eyebrow {
     font-size: 13px;
-    margin-bottom: var(--kicker-gap-desktop);
   }
 
   .voyage-masthead h1 {
@@ -547,10 +550,6 @@
     padding: 72px calc(var(--shell-inset) + var(--content-shift)) 72px min(5vw, 60px);
   }
 
-  .voyage-badge {
-    margin-bottom: var(--kicker-gap-desktop);
-  }
-
   .voyage-photo {
     display: none;
   }
@@ -574,10 +573,6 @@
 
   .voyage-itinerary {
     padding: 96px 0 56px;
-  }
-
-  .voyage-itinerary__head .eyebrow {
-    margin-bottom: var(--kicker-gap-desktop);
   }
 
   .voyage-itinerary__head h2 {
@@ -623,10 +618,6 @@
     padding: 88px 0 82px;
   }
 
-  .voyage-masthead__eyebrow {
-    margin-bottom: var(--kicker-gap-wide);
-  }
-
   .voyage-masthead h1 {
     font-size: clamp(138px, 11.4vw, 194px);
   }
@@ -638,10 +629,5 @@
   .voyage-itinerary__head .eyebrow {
     font-size: 14px;
     letter-spacing: .18em;
-    margin-bottom: var(--kicker-gap-wide);
-  }
-
-  .voyage-badge {
-    margin-bottom: var(--kicker-gap-wide);
   }
 }
