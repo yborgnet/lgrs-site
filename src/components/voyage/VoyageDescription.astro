@@ -10,10 +10,10 @@ type Props = {
 const { description, photo } = Astro.props;
 ---
 
-<section class="voyage-row voyage-row--description">
+<section class="voyage-row--description">
   <div class="site-shell voyage-row__inner">
     <div class="voyage-row__text">
-      <p class="eyebrow">{description.label}</p>
+      <p class="voyage-badge">{description.label}</p>
       <h2 class="voyage-row__heading">{description.title}</h2>
       <div class="voyage-row__copy">
         {description.paragraphs.map((p) => <p set:html={p} />)}

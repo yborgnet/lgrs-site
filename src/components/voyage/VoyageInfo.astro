@@ -10,12 +10,12 @@ type Props = {
 const { info, photo } = Astro.props;
 ---
 
-<section class="voyage-row voyage-row--info">
+<section class="voyage-row--info">
   <div class="site-shell voyage-row__inner voyage-row__inner--reverse">
     <VoyagePhotoPanel photo={photo} hideOnMobile />
 
     <div class="voyage-row__text">
-      <p class="eyebrow">{info.label}</p>
+      <p class="voyage-badge">{info.label}</p>
       <div class="voyage-row__copy voyage-row__copy--facts">
         {info.paragraphs.map((p) => <p set:html={p} />)}
       </div>

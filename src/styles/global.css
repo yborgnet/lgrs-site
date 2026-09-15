@@ -1,6 +1,7 @@
 :root {
   --ink: #0b0b0a;
   --paper: #f3f1ec;
+  --offwhite: #f4f4f4;
   --warm: #d6a17a;
   --line: rgba(11, 11, 10, 0.16);
   --white: #ffffff;
@@ -9,6 +10,9 @@
   --font-serif: "Newsreader", serif;
 
   --shell: min(1360px, calc(100vw - 48px));
+  /* Distance from the true viewport edge to .site-shell's own edge — used to align
+     full-bleed sections (photo bleeding to the edge) with shell-constrained content. */
+  --shell-inset: max(24px, calc((100vw - 1360px) / 2));
 }
 
 *,
@@ -86,7 +90,9 @@ a {
   display: flex;
   gap: 32px;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 400;
+  letter-spacing: .13em;
+  text-transform: uppercase;
 }
 
 /* HERO */
@@ -220,13 +226,21 @@ a {
   }
 
   .site-nav {
-    font-size: 19px;
-    gap: 38px;
+    font-size: 14px;
+    gap: 42px;
+    letter-spacing: .13em;
   }
 
   .hero__kicker {
     font-size: 19px;
     letter-spacing: .15em;
+  }
+}
+
+/* Nav fine-tune for wide desktop — matches WordPress's ≥1100px tier. */
+@media (min-width: 1100px) {
+  .site-nav {
+    font-size: 15px;
   }
 }
 
