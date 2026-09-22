@@ -7,10 +7,16 @@ const {
   description = "Voyages et raids à ski de randonnée en itinérance, dans les Alpes et les montagnes du monde.",
   canonical,
   ogImage,
-  ogType = "website"
+  ogType = "website",
+  noindex = false
 } = Astro.props;
 
 const canonicalURL = canonical ? new URL(canonical, Astro.site ?? Astro.url.origin) : null;
+// Toujours une URL absolue pour og:image (obligatoire pour les crawlers
+// sociaux) — encode au passage les espaces/accents d'un chemin local
+// (ex. "/photos/Grèce Tzoumerka Pindes/…") comme le fait déjà le navigateur
+// pour les <img>.
+const ogImageURL = ogImage ? new URL(ogImage, Astro.site ?? Astro.url.origin) : null;
 ---
 
 <!doctype html>
@@ -22,12 +28,13 @@ const canonicalURL = canonical ? new URL(canonical, Astro.site ?? Astro.url.orig
     <title>{title}</title>
     <meta name="description" content={description} />
     {canonicalURL && <link rel="canonical" href={canonicalURL} />}
+    {noindex && <meta name="robots" content="noindex, follow" />}
 
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     {canonicalURL && <meta property="og:url" content={canonicalURL} />}
-    {ogImage && <meta property="og:image" content={ogImage} />}
+    {ogImageURL && <meta property="og:image" content={ogImageURL} />}
     <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />

@@ -1,11 +1,15 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
+
+const canonical = "https://lesgrandsraidsaski.com/";
 ---
 
 <BaseLayout
   title="Voyages & raids à ski de randonnée | Yann Borgnet"
   description="Voyages et raids à ski de randonnée en itinérance, dans les Alpes et les montagnes du monde, avec Yann Borgnet, guide de haute montagne UIAGM."
+  canonical={canonical}
+  ogImage="https://lesgrandsraidsaski.com/wp-content/uploads/2025/12/DSC07143_DxO-3-scaled.jpg"
 >
   <Header />
 
