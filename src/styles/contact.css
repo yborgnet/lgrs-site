@@ -124,17 +124,6 @@
   min-height: 140px;
 }
 
-/* Honeypot anti-spam — même champ que WordPress ("website"), masqué
-   visuellement mais laissé dans le flux du DOM pour les bots. */
-.contact-form__hp {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-}
-
 .contact-form button {
   align-self: flex-start;
   margin-top: 4px;
