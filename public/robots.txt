@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://lesgrandsraidsaski.com/sitemap-index.xml
