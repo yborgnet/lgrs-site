@@ -1,0 +1,103 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Header from "../components/Header.astro";
+---
+
+<BaseLayout
+  title="Page introuvable | Les Grands Raids à Ski"
+  description="Cette page n'existe pas ou plus. Retrouvez les carnets de voyage, les prochains voyages à ski et la philosophie des Grands Raids à Ski."
+  noindex
+>
+  <Header solid />
+
+  <main class="not-found">
+    <div class="site-shell not-found__inner">
+      <p class="not-found__eyebrow">Erreur 404</p>
+      <h1>Cette page n'existe pas.</h1>
+      <p class="not-found__text">
+        Le lien suivi est incorrect, ou la page a été déplacée. Voici quelques pages pour continuer :
+      </p>
+
+      <ul class="not-found__links">
+        <li><a href="/">Accueil</a></li>
+        <li><a href="/carnets-de-voyage-ski/">Carnets de voyage à ski</a></li>
+        <li><a href="/prochains-voyages/">Les prochains voyages</a></li>
+        <li><a href="/voyage-ski-randonnee/">Voyage ski de randonnée</a></li>
+        <li><a href="/philosophie/">Philosophie</a></li>
+        <li><a href="/yann-borgnet-guide-haute-montagne/">Yann Borgnet, guide de haute montagne</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-shell site-footer__grid">
+      <div>
+        <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+        <p class="site-footer__statement">Explorer · improviser · rencontrer · skier.</p>
+      </div>
+
+      <div class="site-footer__links">
+        <a href="https://wa.me/33689295826">WhatsApp · +33 6 89 29 58 26</a>
+        <a href="https://www.instagram.com/yannborgnet/">Instagram</a>
+        <a href="https://www.facebook.com/yannborgnet/">Facebook</a>
+      </div>
+    </div>
+
+    <div class="site-shell site-footer__bottom">
+      <a href="/yann-borgnet-guide-haute-montagne/">Yann Borgnet · Guide de haute montagne UIAGM</a>
+      <span>© 2026</span>
+    </div>
+  </footer>
+</BaseLayout>
+
+<style>
+  .not-found {
+    padding: 160px 0 120px;
+    min-height: 60vh;
+  }
+
+  .not-found__inner {
+    max-width: 640px;
+  }
+
+  .not-found__eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin: 0 0 18px;
+  }
+
+  .not-found h1 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(32px, 5vw, 48px);
+    margin: 0 0 18px;
+  }
+
+  .not-found__text {
+    font-size: 16px;
+    line-height: 1.6;
+    opacity: 0.8;
+    margin: 0 0 36px;
+  }
+
+  .not-found__links {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .not-found__links a {
+    display: inline-block;
+    padding-bottom: 4px;
+    border-bottom: 1px solid currentColor;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 500;
+  }
+</style>
