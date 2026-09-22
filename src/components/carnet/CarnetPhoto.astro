@@ -1,5 +1,6 @@
 ---
 import type { CarnetPhoto } from "../../data/carnets/types";
+import { withBase } from "../../lib/url";
 
 type Props = {
   photo: CarnetPhoto;
@@ -19,7 +20,7 @@ const { photo: img, variant = "wide" } = Astro.props;
     </div>
   ) : (
     <img
-      src={img.src}
+      src={withBase(img.src)}
       alt={img.alt}
       loading="lazy"
       decoding="async"

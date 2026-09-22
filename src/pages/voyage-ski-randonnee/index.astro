@@ -4,6 +4,7 @@ import Header from "../../components/Header.astro";
 import "../../styles/voyage-ski-randonnee.css";
 import { carnets } from "../../data/carnets/index";
 import { voyages } from "../../data/voyages/index";
+import { withBase } from "../../lib/url";
 
 const canonical = "https://lesgrandsraidsaski.com/voyage-ski-randonnee/";
 
@@ -127,7 +128,7 @@ const faqJsonLd = {
           </p>
         </div>
 
-        <a class="vsr-cta" href="/prochains-voyages/">Voir les voyages à ski →</a>
+        <a class="vsr-cta" href={withBase("/prochains-voyages/")}>Voir les voyages à ski →</a>
       </div>
     </section>
 
@@ -162,7 +163,7 @@ const faqJsonLd = {
           </p>
         </div>
 
-        <a class="vsr-inline-link" href="/raid-a-ski/">Comment se construit une ligne : le raid à ski →</a>
+        <a class="vsr-inline-link" href={withBase("/raid-a-ski/")}>Comment se construit une ligne : le raid à ski →</a>
       </div>
     </section>
 
@@ -188,7 +189,7 @@ const faqJsonLd = {
               <p>Changer de vallée ou de massif au fil des jours.</p>
               <p>Le point de départ et le point d'arrivée sont différents.</p>
               <p>La progression géographique donne sa cohérence au voyage.</p>
-              <a class="vsr-inline-link vsr-inline-link--tight" href="/raid-a-ski/">
+              <a class="vsr-inline-link vsr-inline-link--tight" href={withBase("/raid-a-ski/")}>
                 Comprendre comment se construit un raid à ski →
               </a>
             </div>
@@ -273,8 +274,8 @@ const faqJsonLd = {
         </div>
 
         <div class="vsr-cta-row">
-          <a class="vsr-cta" href="/prochains-voyages/">Voir les destinations et dates →</a>
-          <a class="vsr-cta" href="/carnets-de-voyage-ski/">Voir les voyages déjà réalisés →</a>
+          <a class="vsr-cta" href={withBase("/prochains-voyages/")}>Voir les destinations et dates →</a>
+          <a class="vsr-cta" href={withBase("/carnets-de-voyage-ski/")}>Voir les voyages déjà réalisés →</a>
         </div>
       </div>
     </section>
@@ -341,7 +342,7 @@ const faqJsonLd = {
           <p>Le voyage se construit aussi dans ces moments-là.</p>
         </div>
 
-        <a class="vsr-inline-link" href="/philosophie/">Lire la philosophie des Grands Raids à Ski →</a>
+        <a class="vsr-inline-link" href={withBase("/philosophie/")}>Lire la philosophie des Grands Raids à Ski →</a>
       </div>
     </section>
 
@@ -371,8 +372,8 @@ const faqJsonLd = {
         </div>
 
         <div class="vsr-cta-row">
-          <a class="vsr-cta" href="/raid-a-ski/">Construire un raid à ski →</a>
-          <a class="vsr-inline-link vsr-inline-link--tight" href="/philosophie/">Philosophie →</a>
+          <a class="vsr-cta" href={withBase("/raid-a-ski/")}>Construire un raid à ski →</a>
+          <a class="vsr-inline-link vsr-inline-link--tight" href={withBase("/philosophie/")}>Philosophie →</a>
         </div>
       </div>
     </section>
@@ -399,7 +400,7 @@ const faqJsonLd = {
           <p>Pour un projet précis, les fiches voyage indiquent durée, dénivelé, terrain et contraintes d'itinérance.</p>
         </div>
 
-        <a class="vsr-cta" href="/prochains-voyages/">Comparer les voyages →</a>
+        <a class="vsr-cta" href={withBase("/prochains-voyages/")}>Comparer les voyages →</a>
 
         <h3 class="vsr-subheading">Plusieurs jours pour entrer dans le territoire.</h3>
 
@@ -466,7 +467,7 @@ const faqJsonLd = {
           </p>
         </div>
 
-        <a class="vsr-inline-link" href="/yann-borgnet-guide-haute-montagne/">
+        <a class="vsr-inline-link" href={withBase("/yann-borgnet-guide-haute-montagne/")}>
           Yann Borgnet, guide de haute montagne et géographe →
         </a>
       </div>
@@ -481,7 +482,7 @@ const faqJsonLd = {
         <div class="vsr-list">
           {
             voyages.map((voyage) => (
-              <a class="vsr-list__row" href={`/${voyage.slug}/`}>
+              <a class="vsr-list__row" href={withBase(`/${voyage.slug}/`)}>
                 <span class="vsr-list__meta">
                   {[voyage.dateLabel, voyage.duration].filter(Boolean).join(" · ")}
                 </span>
@@ -496,7 +497,7 @@ const faqJsonLd = {
           }
         </div>
 
-        <a class="vsr-cta" href="/prochains-voyages/">Voir tous les prochains voyages →</a>
+        <a class="vsr-cta" href={withBase("/prochains-voyages/")}>Voir tous les prochains voyages →</a>
       </div>
     </section>
 
@@ -521,7 +522,7 @@ const faqJsonLd = {
         <div class="vsr-list">
           {
             vsrCarnets.map((carnet) => (
-              <a class="vsr-list__row" href={`/${carnet.slug}/`}>
+              <a class="vsr-list__row" href={withBase(`/${carnet.slug}/`)}>
                 <span class="vsr-list__title">
                   {carnet.title}
                   {carnet.subtitle && <span class="vsr-list__subtitle"> — {carnet.subtitle}</span>}
@@ -533,7 +534,7 @@ const faqJsonLd = {
           }
         </div>
 
-        <a class="vsr-cta" href="/carnets-de-voyage-ski/">Découvrir tous les carnets →</a>
+        <a class="vsr-cta" href={withBase("/carnets-de-voyage-ski/")}>Découvrir tous les carnets →</a>
       </div>
     </section>
 
@@ -549,7 +550,7 @@ const faqJsonLd = {
                 <p class="vsr-faq__q">{item.q}</p>
                 <p class="vsr-faq__a">{item.a}</p>
                 {item.link && (
-                  <a class="vsr-inline-link vsr-inline-link--tight" href={item.link.href}>
+                  <a class="vsr-inline-link vsr-inline-link--tight" href={withBase(item.link.href)}>
                     {item.link.label}
                   </a>
                 )}
@@ -559,8 +560,8 @@ const faqJsonLd = {
         </div>
 
         <div class="vsr-cta-row">
-          <a class="vsr-cta" href="/prochains-voyages/">Voir les voyages à ski →</a>
-          <a class="vsr-cta" href="/contact/">Parler d'un projet →</a>
+          <a class="vsr-cta" href={withBase("/prochains-voyages/")}>Voir les voyages à ski →</a>
+          <a class="vsr-cta" href={withBase("/contact/")}>Parler d'un projet →</a>
         </div>
       </div>
     </section>
@@ -581,7 +582,7 @@ const faqJsonLd = {
     </div>
 
     <div class="site-shell site-footer__bottom">
-      <a href="/yann-borgnet-guide-haute-montagne/">Yann Borgnet · Guide de haute montagne UIAGM</a>
+      <a href={withBase("/yann-borgnet-guide-haute-montagne/")}>Yann Borgnet · Guide de haute montagne UIAGM</a>
       <span>© 2026</span>
     </div>
   </footer>

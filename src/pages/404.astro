@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
+import { withBase } from "../lib/url";
 ---
 
 <BaseLayout
@@ -19,12 +20,12 @@ import Header from "../components/Header.astro";
       </p>
 
       <ul class="not-found__links">
-        <li><a href="/">Accueil</a></li>
-        <li><a href="/carnets-de-voyage-ski/">Carnets de voyage à ski</a></li>
-        <li><a href="/prochains-voyages/">Les prochains voyages</a></li>
-        <li><a href="/voyage-ski-randonnee/">Voyage ski de randonnée</a></li>
-        <li><a href="/philosophie/">Philosophie</a></li>
-        <li><a href="/yann-borgnet-guide-haute-montagne/">Yann Borgnet, guide de haute montagne</a></li>
+        <li><a href={withBase("/")}>Accueil</a></li>
+        <li><a href={withBase("/carnets-de-voyage-ski/")}>Carnets de voyage à ski</a></li>
+        <li><a href={withBase("/prochains-voyages/")}>Les prochains voyages</a></li>
+        <li><a href={withBase("/voyage-ski-randonnee/")}>Voyage ski de randonnée</a></li>
+        <li><a href={withBase("/philosophie/")}>Philosophie</a></li>
+        <li><a href={withBase("/yann-borgnet-guide-haute-montagne/")}>Yann Borgnet, guide de haute montagne</a></li>
       </ul>
     </div>
   </main>
@@ -44,7 +45,7 @@ import Header from "../components/Header.astro";
     </div>
 
     <div class="site-shell site-footer__bottom">
-      <a href="/yann-borgnet-guide-haute-montagne/">Yann Borgnet · Guide de haute montagne UIAGM</a>
+      <a href={withBase("/yann-borgnet-guide-haute-montagne/")}>Yann Borgnet · Guide de haute montagne UIAGM</a>
       <span>© 2026</span>
     </div>
   </footer>

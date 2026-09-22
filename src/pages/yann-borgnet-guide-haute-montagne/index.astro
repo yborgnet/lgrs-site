@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
 import "../../styles/yann.css";
+import { withBase } from "../../lib/url";
 
 const canonical = "https://lesgrandsraidsaski.com/yann-borgnet-guide-haute-montagne/";
 
@@ -55,7 +56,7 @@ const groupPhoto = {
         </div>
 
         <div class="yann-hero__photo">
-          <img src={portrait.src} alt={portrait.alt} loading="eager" decoding="async" />
+          <img src={withBase(portrait.src)} alt={portrait.alt} loading="eager" decoding="async" />
         </div>
       </div>
     </section>
@@ -83,7 +84,7 @@ const groupPhoto = {
 
     <img
       class="yann-photo-full"
-      src={groupPhoto.src}
+      src={withBase(groupPhoto.src)}
       alt={groupPhoto.alt}
       loading="lazy"
       decoding="async"
@@ -137,10 +138,10 @@ const groupPhoto = {
         </p>
 
         <div class="yann-synthesis__links">
-          <a href="/philosophie/">Découvrir la philosophie →</a>
-          <a href="/raid-a-ski/">Comprendre le raid à ski →</a>
-          <a href="/prochains-voyages/">Voir les prochains voyages →</a>
-          <a href="/carnets-de-voyage-ski/">Lire les carnets →</a>
+          <a href={withBase("/philosophie/")}>Découvrir la philosophie →</a>
+          <a href={withBase("/raid-a-ski/")}>Comprendre le raid à ski →</a>
+          <a href={withBase("/prochains-voyages/")}>Voir les prochains voyages →</a>
+          <a href={withBase("/carnets-de-voyage-ski/")}>Lire les carnets →</a>
         </div>
       </div>
     </section>

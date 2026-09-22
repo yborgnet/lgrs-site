@@ -5,6 +5,7 @@ import VoyageMasthead from "../components/voyage/VoyageMasthead.astro";
 import "../styles/info-grid.css";
 import "../styles/voyage.css";
 import type { Voyage } from "../data/voyages/types";
+import { withBase } from "../lib/url";
 
 type Props = {
   voyage: Voyage;
@@ -44,7 +45,7 @@ const canonical = `https://lesgrandsraidsaski.com/${voyage.slug}/`;
     </div>
 
     <div class="site-shell site-footer__bottom">
-      <a href="/yann-borgnet-guide-haute-montagne/">Yann Borgnet · Guide de haute montagne UIAGM</a>
+      <a href={withBase("/yann-borgnet-guide-haute-montagne/")}>Yann Borgnet · Guide de haute montagne UIAGM</a>
       <span>© 2026</span>
     </div>
   </footer>

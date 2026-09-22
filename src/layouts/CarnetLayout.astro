@@ -5,6 +5,7 @@ import CarnetHero from "../components/carnet/CarnetHero.astro";
 import "../styles/info-grid.css";
 import "../styles/carnet.css";
 import type { Carnet } from "../data/carnets/types";
+import { withBase } from "../lib/url";
 
 type Props = {
   carnet: Carnet;
@@ -49,7 +50,7 @@ const canonical = `https://lesgrandsraidsaski.com/${carnet.slug}/`;
     </div>
 
     <div class="site-shell site-footer__bottom">
-      <a href="/yann-borgnet-guide-haute-montagne/">Yann Borgnet · Guide de haute montagne UIAGM</a>
+      <a href={withBase("/yann-borgnet-guide-haute-montagne/")}>Yann Borgnet · Guide de haute montagne UIAGM</a>
       <span>© 2026</span>
     </div>
   </footer>

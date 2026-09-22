@@ -4,6 +4,7 @@ import Header from "../../components/Header.astro";
 import "../../styles/carnets-index.css";
 import { carnets, carnetZones, carnetYears } from "../../data/carnets/index";
 import { indexHeroPhoto } from "../../data/carnets/argentera";
+import { withBase } from "../../lib/url";
 
 const canonical = "https://lesgrandsraidsaski.com/carnets-de-voyage-ski/";
 ---
@@ -34,7 +35,7 @@ const canonical = "https://lesgrandsraidsaski.com/carnets-de-voyage-ski/";
               de la frontale, des photos — beaucoup de photos — et, bien sûr,
               une ligne tracée sur une carte.
             </p>
-            <a class="home-link carnets-index-hero__link" href="/raid-a-ski/">
+            <a class="home-link carnets-index-hero__link" href={withBase("/raid-a-ski/")}>
               Comprendre comment se construit un raid à ski →
             </a>
           </div>
@@ -44,7 +45,7 @@ const canonical = "https://lesgrandsraidsaski.com/carnets-de-voyage-ski/";
 
     <img
       class="carnets-index-photo"
-      src={indexHeroPhoto.src}
+      src={withBase(indexHeroPhoto.src)}
       alt={indexHeroPhoto.alt}
       loading="eager"
       decoding="async"
@@ -93,14 +94,14 @@ const canonical = "https://lesgrandsraidsaski.com/carnets-de-voyage-ski/";
               data-zones={carnet.zones.join(" ")}
               data-year={carnet.year ?? ""}
             >
-              <a class="carnets-list__photo" href={`/${carnet.slug}/`}>
+              <a class="carnets-list__photo" href={withBase(`/${carnet.slug}/`)}>
                 {carnet.cover.placeholder ? (
                   <div class="carnets-list__photo-placeholder" role="img" aria-label={carnet.cover.alt}>
                     <span>Photo à venir</span>
                   </div>
                 ) : (
                   <img
-                    src={carnet.cover.src}
+                    src={withBase(carnet.cover.src)}
                     alt={carnet.cover.alt}
                     loading="lazy"
                     decoding="async"
@@ -113,7 +114,7 @@ const canonical = "https://lesgrandsraidsaski.com/carnets-de-voyage-ski/";
                 <p class="carnets-list__label">{`Carnet ${String(i + 1).padStart(2, "0")}`}</p>
 
                 <h2 class="carnets-list__title">
-                  <a href={`/${carnet.slug}/`}>{carnet.title}</a>
+                  <a href={withBase(`/${carnet.slug}/`)}>{carnet.title}</a>
                 </h2>
 
                 {carnet.subtitle && <p class="carnets-list__subtitle">{carnet.subtitle}</p>}
@@ -124,7 +125,7 @@ const canonical = "https://lesgrandsraidsaski.com/carnets-de-voyage-ski/";
 
                 <p class="carnets-list__excerpt">{carnet.excerpt}</p>
 
-                <a class="carnets-list__link" href={`/${carnet.slug}/`}>
+                <a class="carnets-list__link" href={withBase(`/${carnet.slug}/`)}>
                   Lire le carnet →
                 </a>
               </div>
@@ -155,7 +156,7 @@ const canonical = "https://lesgrandsraidsaski.com/carnets-de-voyage-ski/";
     </div>
 
     <div class="site-shell site-footer__bottom">
-      <a href="/yann-borgnet-guide-haute-montagne/">Yann Borgnet · Guide de haute montagne UIAGM</a>
+      <a href={withBase("/yann-borgnet-guide-haute-montagne/")}>Yann Borgnet · Guide de haute montagne UIAGM</a>
       <span>© 2026</span>
     </div>
   </footer>

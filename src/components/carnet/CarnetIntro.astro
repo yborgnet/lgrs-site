@@ -1,6 +1,7 @@
 ---
 import CarnetInfo from "./CarnetInfo.astro";
 import type { Carnet } from "../../data/carnets/types";
+import { withBase } from "../../lib/url";
 
 type Props = {
   intro: Carnet["intro"];
@@ -26,7 +27,7 @@ const { intro, info } = Astro.props;
     ) : (
       <div
         class="carnet-intro__photo"
-        style={`background-image: url('${intro.photo.src}'); background-position: ${intro.photo.position ?? "center"};`}
+        style={`background-image: url('${withBase(intro.photo.src)}'); background-position: ${intro.photo.position ?? "center"};`}
         role="img"
         aria-label={intro.photo.alt}
       />

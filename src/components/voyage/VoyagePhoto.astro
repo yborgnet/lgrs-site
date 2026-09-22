@@ -1,5 +1,6 @@
 ---
 import type { VoyagePhoto } from "../../data/voyages/types";
+import { withBase } from "../../lib/url";
 
 type Props = {
   photo?: VoyagePhoto;
@@ -11,7 +12,7 @@ const { photo } = Astro.props;
 <div class="voyage-photo">
   {
     photo ? (
-      <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" />
+      <img src={withBase(photo.src)} alt={photo.alt} loading="lazy" decoding="async" />
     ) : (
       <div class="voyage-photo__placeholder">
         <span>Photo à venir</span>

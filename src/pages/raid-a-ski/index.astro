@@ -4,6 +4,7 @@ import Header from "../../components/Header.astro";
 import "../../styles/raid-a-ski.css";
 import { carnets } from "../../data/carnets/index";
 import { voyages } from "../../data/voyages/index";
+import { withBase } from "../../lib/url";
 
 const canonical = "https://lesgrandsraidsaski.com/raid-a-ski/";
 
@@ -111,7 +112,7 @@ const faqJsonLd = {
           </p>
         </div>
 
-        <a class="raid-inline-link" href="/voyage-ski-randonnee/">Une notion plus large : le voyage à ski de randonnée →</a>
+        <a class="raid-inline-link" href={withBase("/voyage-ski-randonnee/")}>Une notion plus large : le voyage à ski de randonnée →</a>
       </div>
     </section>
 
@@ -491,7 +492,7 @@ const faqJsonLd = {
 
         <p class="raid-statement">Préparer minutieusement pour pouvoir ensuite improviser.</p>
 
-        <a class="raid-inline-link" href="/philosophie/">Lire la philosophie des Grands Raids à Ski →</a>
+        <a class="raid-inline-link" href={withBase("/philosophie/")}>Lire la philosophie des Grands Raids à Ski →</a>
       </div>
     </section>
 
@@ -614,7 +615,7 @@ const faqJsonLd = {
         <div class="raid-list">
           {
             raidCarnets.map((carnet) => (
-              <a class="raid-list__row" href={`/${carnet.slug}/`}>
+              <a class="raid-list__row" href={withBase(`/${carnet.slug}/`)}>
                 <span class="raid-list__title">
                   {carnet.title}
                   {carnet.subtitle && <span class="raid-list__subtitle"> — {carnet.subtitle}</span>}
@@ -626,7 +627,7 @@ const faqJsonLd = {
           }
         </div>
 
-        <a class="raid-cta" href="/carnets-de-voyage-ski/">Découvrir les carnets de voyage →</a>
+        <a class="raid-cta" href={withBase("/carnets-de-voyage-ski/")}>Découvrir les carnets de voyage →</a>
       </div>
     </section>
 
@@ -647,7 +648,7 @@ const faqJsonLd = {
         <div class="raid-list">
           {
             voyages.map((voyage) => (
-              <a class="raid-list__row" href={`/${voyage.slug}/`}>
+              <a class="raid-list__row" href={withBase(`/${voyage.slug}/`)}>
                 <span class="raid-list__title">
                   {voyage.title}
                   {voyage.subtitle && <span class="raid-list__subtitle"> — {voyage.subtitle}</span>}
@@ -659,7 +660,7 @@ const faqJsonLd = {
           }
         </div>
 
-        <a class="raid-cta" href="/prochains-voyages/">Voir les prochains voyages →</a>
+        <a class="raid-cta" href={withBase("/prochains-voyages/")}>Voir les prochains voyages →</a>
       </div>
     </section>
 
@@ -697,7 +698,7 @@ const faqJsonLd = {
     </div>
 
     <div class="site-shell site-footer__bottom">
-      <a href="/yann-borgnet-guide-haute-montagne/">Yann Borgnet · Guide de haute montagne UIAGM</a>
+      <a href={withBase("/yann-borgnet-guide-haute-montagne/")}>Yann Borgnet · Guide de haute montagne UIAGM</a>
       <span>© 2026</span>
     </div>
   </footer>

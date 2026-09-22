@@ -1,4 +1,5 @@
 ---
+import { withBase } from "../lib/url";
 type Props = {
   solid?: boolean;
 };
@@ -8,15 +9,15 @@ const { solid = false } = Astro.props;
 
 <header class:list={["site-header", { "site-header--solid": solid }]}>
   <div class="site-shell site-header__inner">
-    <a class="site-brand" href="/">
+    <a class="site-brand" href={withBase("/")}>
       <span>LES GRANDS RAIDS</span>
       <small>À SKI</small>
     </a>
 
     <nav class="site-nav" aria-label="Navigation principale">
-      <a href="/prochains-voyages/">Voyages</a>
-      <a href="/philosophie/">Philosophie</a>
-      <a href="/carnets-de-voyage-ski/">Carnets</a>
+      <a href={withBase("/prochains-voyages/")}>Voyages</a>
+      <a href={withBase("/philosophie/")}>Philosophie</a>
+      <a href={withBase("/carnets-de-voyage-ski/")}>Carnets</a>
       <a href="#">Contact</a>
     </nav>
 
@@ -27,10 +28,10 @@ const { solid = false } = Astro.props;
       </summary>
 
       <div class="site-nav-mobile__panel">
-        <a href="/prochains-voyages/">Voyages</a>
-        <a href="/philosophie/">Philosophie</a>
-        <a href="/carnets-de-voyage-ski/">Carnets</a>
-        <a href="/contact/">Contact</a>
+        <a href={withBase("/prochains-voyages/")}>Voyages</a>
+        <a href={withBase("/philosophie/")}>Philosophie</a>
+        <a href={withBase("/carnets-de-voyage-ski/")}>Carnets</a>
+        <a href={withBase("/contact/")}>Contact</a>
       </div>
     </details>
 

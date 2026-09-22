@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
 import "../../styles/philosophie.css";
+import { withBase } from "../../lib/url";
 
 const canonical = "https://lesgrandsraidsaski.com/philosophie/";
 
@@ -61,7 +62,7 @@ const offsetPhoto = {
 
     <img
       class="philo-photo-full"
-      src={heroPhoto.src}
+      src={withBase(heroPhoto.src)}
       alt={heroPhoto.alt}
       loading="eager"
       decoding="async"
@@ -154,7 +155,7 @@ const offsetPhoto = {
 
     <img
       class="philo-photo-full"
-      src={offsetPhoto.src}
+      src={withBase(offsetPhoto.src)}
       alt={offsetPhoto.alt}
       loading="lazy"
       decoding="async"
@@ -219,13 +220,13 @@ const offsetPhoto = {
       <div class="site-shell">
         <p class="philo-transition__eyebrow">Mettre cette philosophie en mouvement</p>
         <h2>Une saison à écrire.</h2>
-        <a class="philo-transition__link" href="/prochains-voyages/">Découvrir les prochains voyages →</a>
+        <a class="philo-transition__link" href={withBase("/prochains-voyages/")}>Découvrir les prochains voyages →</a>
 
         <div class="philo-transition__secondary">
-          <a href="/voyage-ski-randonnee/">Voyager à ski de randonnée →</a>
-          <a href="/raid-a-ski/">Construire un raid à ski →</a>
-          <a href="/carnets-de-voyage-ski/">Voir ce que ces lignes deviennent une fois parcourues → Carnets</a>
-          <a href="/yann-borgnet-guide-haute-montagne/">Découvrir mon parcours →</a>
+          <a href={withBase("/voyage-ski-randonnee/")}>Voyager à ski de randonnée →</a>
+          <a href={withBase("/raid-a-ski/")}>Construire un raid à ski →</a>
+          <a href={withBase("/carnets-de-voyage-ski/")}>Voir ce que ces lignes deviennent une fois parcourues → Carnets</a>
+          <a href={withBase("/yann-borgnet-guide-haute-montagne/")}>Découvrir mon parcours →</a>
         </div>
       </div>
     </section>
@@ -246,7 +247,7 @@ const offsetPhoto = {
     </div>
 
     <div class="site-shell site-footer__bottom">
-      <a href="/yann-borgnet-guide-haute-montagne/">Yann Borgnet · Guide de haute montagne UIAGM</a>
+      <a href={withBase("/yann-borgnet-guide-haute-montagne/")}>Yann Borgnet · Guide de haute montagne UIAGM</a>
       <span>© 2026</span>
     </div>
   </footer>

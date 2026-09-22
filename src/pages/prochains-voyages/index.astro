@@ -3,6 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
 import "../../styles/voyages-index.css";
 import { voyages } from "../../data/voyages/index";
+import { withBase } from "../../lib/url";
 
 const canonical = "https://lesgrandsraidsaski.com/prochains-voyages/";
 
@@ -40,7 +41,7 @@ const heroPhoto = {
               Cinq voyages construits autour de l'itinérance, de l'exploration
               et de ce que le terrain voudra bien nous laisser écrire.
             </p>
-            <a class="home-link voyages-index-hero__link" href="/voyage-ski-randonnee/">
+            <a class="home-link voyages-index-hero__link" href={withBase("/voyage-ski-randonnee/")}>
               Qu'est-ce qu'un voyage à ski de randonnée ? →
             </a>
           </div>
@@ -51,7 +52,7 @@ const heroPhoto = {
     <div class="voyages-index-photo-wrap">
       <img
         class="voyages-index-photo"
-        src={heroPhoto.src}
+        src={withBase(heroPhoto.src)}
         alt={heroPhoto.alt}
         loading="eager"
         decoding="async"
@@ -68,14 +69,14 @@ const heroPhoto = {
             <article
               class:list={["voyages-index-item", { "voyages-index-item--reverse": i % 2 === 1 }]}
             >
-              <a class="voyages-index-item__photo" href={`/${voyage.slug}/`}>
+              <a class="voyages-index-item__photo" href={withBase(`/${voyage.slug}/`)}>
                 {voyage.cover.placeholder ? (
                   <div class="voyages-index-item__photo-placeholder" role="img" aria-label={voyage.cover.alt}>
                     <span>Photo à venir</span>
                   </div>
                 ) : (
                   <img
-                    src={voyage.cover.src}
+                    src={withBase(voyage.cover.src)}
                     alt={voyage.cover.alt}
                     loading="lazy"
                     decoding="async"
@@ -90,7 +91,7 @@ const heroPhoto = {
                 {voyage.dateLabel && <p class="voyages-index-item__dates">{voyage.dateLabel}</p>}
 
                 <h2 class="voyages-index-item__title">
-                  <a href={`/${voyage.slug}/`}>{voyage.title}</a>
+                  <a href={withBase(`/${voyage.slug}/`)}>{voyage.title}</a>
                 </h2>
 
                 {voyage.subtitle && <p class="voyages-index-item__subtitle">{voyage.subtitle}</p>}
@@ -103,7 +104,7 @@ const heroPhoto = {
                   </p>
                 )}
 
-                <a class="voyages-index-item__link" href={`/${voyage.slug}/`}>
+                <a class="voyages-index-item__link" href={withBase(`/${voyage.slug}/`)}>
                   Découvrir le voyage →
                 </a>
               </div>
@@ -121,7 +122,7 @@ const heroPhoto = {
 
         <div class="voyages-index-cta__links">
           <a href="https://wa.me/33689295826">WhatsApp · +33 6 89 29 58 26</a>
-          <a href="/contact/">Contact</a>
+          <a href={withBase("/contact/")}>Contact</a>
         </div>
       </div>
     </section>
@@ -136,7 +137,7 @@ const heroPhoto = {
           </h2>
         </div>
 
-        <a class="voyages-index-transition__link" href="/carnets-de-voyage-ski/">
+        <a class="voyages-index-transition__link" href={withBase("/carnets-de-voyage-ski/")}>
           Découvrir les carnets →
         </a>
       </div>
@@ -158,7 +159,7 @@ const heroPhoto = {
     </div>
 
     <div class="site-shell site-footer__bottom">
-      <a href="/yann-borgnet-guide-haute-montagne/">Yann Borgnet · Guide de haute montagne UIAGM</a>
+      <a href={withBase("/yann-borgnet-guide-haute-montagne/")}>Yann Borgnet · Guide de haute montagne UIAGM</a>
       <span>© 2026</span>
     </div>
   </footer>

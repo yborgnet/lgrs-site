@@ -1,6 +1,7 @@
 ---
 import type { Voyage } from "../../data/voyages/types";
 import GpxMap from "../GpxMap.astro";
+import { withBase } from "../../lib/url";
 
 type Props = {
   itinerary: Voyage["itinerary"];
@@ -27,7 +28,7 @@ const { itinerary } = Astro.props;
       ) : (
         itinerary.map && (
           <figure class="voyage-itinerary__map">
-            <img src={itinerary.map.src} alt={itinerary.map.alt} loading="lazy" decoding="async" />
+            <img src={withBase(itinerary.map.src)} alt={itinerary.map.alt} loading="lazy" decoding="async" />
           </figure>
         )
       )

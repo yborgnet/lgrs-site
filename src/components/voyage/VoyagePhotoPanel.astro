@@ -1,5 +1,6 @@
 ---
 import type { VoyagePhoto } from "../../data/voyages/types";
+import { withBase } from "../../lib/url";
 
 type Props = {
   photo?: VoyagePhoto;
@@ -13,7 +14,7 @@ const { photo, hideOnMobile = false } = Astro.props;
 <div class:list={["voyage-photo-panel", { "voyage-photo-panel--hide-mobile": hideOnMobile }]}>
   {
     photo ? (
-      <div class="voyage-photo-panel__image" style={`background-image: url('${photo.src}')`} role="img" aria-label={photo.alt} />
+      <div class="voyage-photo-panel__image" style={`background-image: url('${withBase(photo.src)}')`} role="img" aria-label={photo.alt} />
     ) : (
       <div class="voyage-photo-panel__placeholder">
         <span>Photo à venir</span>

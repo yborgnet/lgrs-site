@@ -1,6 +1,7 @@
 ---
 import type { Carnet, CarnetPhoto } from "../../data/carnets/types";
 import CarnetLightbox from "./CarnetLightbox.astro";
+import { withBase } from "../../lib/url";
 
 type Props = {
   story: Carnet["story"];
@@ -51,7 +52,7 @@ function photoStyle(photo: CarnetPhoto): string | undefined {
                 {story.closingLinks.map((link) => (
                   <li>
                     {link.href ? (
-                      <a href={link.href}>{link.label}</a>
+                      <a href={withBase(link.href)}>{link.label}</a>
                     ) : (
                       <span class="carnet-story__closing-links-placeholder">{link.label}</span>
                     )}
@@ -83,7 +84,7 @@ function photoStyle(photo: CarnetPhoto): string | undefined {
                           aria-label={`Agrandir la photo : ${photo.alt}`}
                         >
                           <img
-                            src={photo.src}
+                            src={withBase(photo.src)}
                             alt={photo.alt}
                             width={photo.width}
                             height={photo.height}

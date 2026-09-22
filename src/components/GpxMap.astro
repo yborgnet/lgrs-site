@@ -1,5 +1,6 @@
 ---
 import "../styles/gpx-map.css";
+import { withBase } from "../lib/url";
 
 type Props = {
   /** Chemin(s) public(s) vers le(s) fichier(s) GPX, ex. "/gpx/georgie-petit-caucase-2027.gpx". */
@@ -11,12 +12,12 @@ type Props = {
 };
 
 const { gpx, title, fallback } = Astro.props;
-const gpxList = Array.isArray(gpx) ? gpx : [gpx];
+const gpxList = (Array.isArray(gpx) ? gpx : [gpx]).map(withBase);
 ---
 
 <div class="gpx-map" data-gpx-map data-gpx={JSON.stringify(gpxList)}>
   <div class="gpx-map__canvas" data-gpx-map-canvas role="group" aria-label={title}>
-    {fallback && <img src={fallback.src} alt={fallback.alt} loading="lazy" decoding="async" />}
+    {fallback && <img src={withBase(fallback.src)} alt={fallback.alt} loading="lazy" decoding="async" />}
   </div>
 </div>
 

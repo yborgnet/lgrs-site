@@ -1,6 +1,7 @@
 ---
 import type { Carnet, CarnetPhoto } from "../../data/carnets/types";
 import CarnetLightbox from "./CarnetLightbox.astro";
+import { withBase } from "../../lib/url";
 
 type Props = {
   portfolio: Carnet["portfolio"];
@@ -43,7 +44,7 @@ function photoStyle(photo: CarnetPhoto): string | undefined {
                 aria-label={`Agrandir la photo : ${photo.alt}`}
               >
                 <img
-                  src={photo.src}
+                  src={withBase(photo.src)}
                   alt={photo.alt}
                   width={photo.width}
                   height={photo.height}

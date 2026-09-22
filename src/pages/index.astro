@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
+import { withBase } from "../lib/url";
 
 const canonical = "https://lesgrandsraidsaski.com/";
 ---
@@ -55,7 +56,7 @@ const canonical = "https://lesgrandsraidsaski.com/";
             au terrain, à la neige et aux rencontres.
           </p>
 
-          <a class="home-link" href="/philosophie/">
+          <a class="home-link" href={withBase("/philosophie/")}>
             Lire la philosophie <span>↗</span>
           </a>
         </div>
@@ -96,7 +97,7 @@ const canonical = "https://lesgrandsraidsaski.com/";
 
         <div class="voyages-list">
 
-          <a class="voyage-row" href="/ski-randonnee-georgie-petit-caucase-2027/">
+          <a class="voyage-row" href={withBase("/ski-randonnee-georgie-petit-caucase-2027/")}>
             <span class="voyage-date">17 — 26 JAN</span>
             <span class="voyage-text">
               <strong>GÉORGIE › PETIT CAUCASE</strong>
@@ -105,7 +106,7 @@ const canonical = "https://lesgrandsraidsaski.com/";
             <span class="voyage-arrow">↗</span>
           </a>
 
-          <a class="voyage-row" href="/ski-randonnee-ouzbekistan-traversee-baysun/">
+          <a class="voyage-row" href={withBase("/ski-randonnee-ouzbekistan-traversee-baysun/")}>
             <span class="voyage-date">04 — 13 FÉV</span>
             <span class="voyage-text">
               <strong>OUZBÉKISTAN › HISSAR</strong>
@@ -114,7 +115,7 @@ const canonical = "https://lesgrandsraidsaski.com/";
             <span class="voyage-arrow">↗</span>
           </a>
 
-          <a class="voyage-row" href="/ski-randonnee-armenie-sevan-aragats-2027/">
+          <a class="voyage-row" href={withBase("/ski-randonnee-armenie-sevan-aragats-2027/")}>
             <span class="voyage-date">20 FÉV — 01 MAR</span>
             <span class="voyage-text">
               <strong>ARMÉNIE › SEVAN → ARAGATS</strong>
@@ -123,7 +124,7 @@ const canonical = "https://lesgrandsraidsaski.com/";
             <span class="voyage-arrow">↗</span>
           </a>
 
-          <a class="voyage-row" href="/raid-ski-mediterraneen-2027/">
+          <a class="voyage-row" href={withBase("/raid-ski-mediterraneen-2027/")}>
             <span class="voyage-date">06 — 14 MAR</span>
             <span class="voyage-text">
               <strong>RAID MÉDITERRANÉEN</strong>
@@ -132,7 +133,7 @@ const canonical = "https://lesgrandsraidsaski.com/";
             <span class="voyage-arrow">↗</span>
           </a>
 
-          <a class="voyage-row" href="/ski-randonnee-tadjikistan-zeravshan-2027/">
+          <a class="voyage-row" href={withBase("/ski-randonnee-tadjikistan-zeravshan-2027/")}>
             <span class="voyage-date">21 — 29 MAR</span>
             <span class="voyage-text">
               <strong>TADJIKISTAN › ZERAVSHAN</strong>
@@ -143,7 +144,7 @@ const canonical = "https://lesgrandsraidsaski.com/";
 
 
           <div class="voyages-actions">
-            <a class="voyages-button" href="/prochains-voyages/">
+            <a class="voyages-button" href={withBase("/prochains-voyages/")}>
               Voir les voyages 2027
             </a>
 
@@ -227,7 +228,7 @@ const canonical = "https://lesgrandsraidsaski.com/";
           </h2>
         </div>
 
-        <a class="home-link" href="/carnets-de-voyage-ski/">
+        <a class="home-link" href={withBase("/carnets-de-voyage-ski/")}>
           Tous les récits →
         </a>
 
@@ -237,7 +238,7 @@ const canonical = "https://lesgrandsraidsaski.com/";
       <div class="site-shell story-grid">
 
         <article class="story-card">
-          <a class="story-card__image" href="/bernina-tour-massif-ski-randonnee/">
+          <a class="story-card__image" href={withBase("/bernina-tour-massif-ski-randonnee/")}>
             <img
               src="https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/bernina-ski-randonnee-01-panorama-piz-palu-glaciers-1024x684.jpg"
               alt="Bernina — Tour du massif"
@@ -254,9 +255,9 @@ const canonical = "https://lesgrandsraidsaski.com/";
 
 
         <article class="story-card">
-          <a class="story-card__image" href="/traversee-ski-argentera-mercantour/">
+          <a class="story-card__image" href={withBase("/traversee-ski-argentera-mercantour/")}>
             <img
-              src="/photos/Argentera%202026/Argentera/traversee-ski-mercantour-argentera-panorama.jpg"
+              src={withBase("/photos/Argentera%202026/Argentera/traversee-ski-mercantour-argentera-panorama.jpg")}
               alt="Argentera — Mercantour"
               loading="lazy"
             />
@@ -271,7 +272,7 @@ const canonical = "https://lesgrandsraidsaski.com/";
 
 
         <article class="story-card">
-          <a class="story-card__image" href="/alpes-ligures-traversee-ski-randonnee/">
+          <a class="story-card__image" href={withBase("/alpes-ligures-traversee-ski-randonnee/")}>
             <img
               src="https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/alpes-ligures-j3-cima-degli-arpetti-01-1024x684.jpg"
               alt="Alpes Ligures"
@@ -325,7 +326,7 @@ const canonical = "https://lesgrandsraidsaski.com/";
             celle que l’on traverse autant qu’on la rencontre.
           </p>
 
-          <a class="home-link" href="/yann-borgnet-guide-haute-montagne/">
+          <a class="home-link" href={withBase("/yann-borgnet-guide-haute-montagne/")}>
             Découvrir mon parcours →
           </a>
 
@@ -355,7 +356,7 @@ const canonical = "https://lesgrandsraidsaski.com/";
     </div>
 
     <div class="site-shell site-footer__bottom">
-      <a href="/yann-borgnet-guide-haute-montagne/">Yann Borgnet · Guide de haute montagne UIAGM</a>
+      <a href={withBase("/yann-borgnet-guide-haute-montagne/")}>Yann Borgnet · Guide de haute montagne UIAGM</a>
       <span>© 2026</span>
     </div>
 
