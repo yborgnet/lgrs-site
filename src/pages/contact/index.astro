@@ -1,33 +1,90 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
+import "../../styles/contact.css";
 import { withBase } from "../../lib/url";
 
 const canonical = "https://lesgrandsraidsaski.com/contact/";
+
+/**
+ * Contenu repris tel quel de la page WordPress live
+ * https://lesgrandsraidsaski.com/contact/ : hero, bloc "Un projet sur
+ * mesure", formulaire (mêmes champs/libellés/bouton) et CTA WhatsApp.
+ * Charte visuelle du nouveau site (tokens de global.css, mêmes patterns
+ * d'eyebrow/h1/CTA que /philosophie/ et les pages voyage) plutôt que le
+ * CSS WordPress d'origine.
+ *
+ * Le formulaire pointe vers le vrai endpoint WordPress
+ * (wp-admin/admin-post.php, avec le nonce tel que fourni par le site au
+ * moment de la reprise) : un site statique GitHub Pages ne peut pas
+ * traiter lui-même l'envoi. Ça fonctionne tant que WordPress reste en
+ * ligne, mais le nonce expire au bout de ~24h (mécanisme WordPress) — il
+ * faudra le regénérer, ou brancher un vrai backend de formulaire, avant
+ * la bascule définitive.
+ */
 ---
 
 <BaseLayout
   title="Contact | Les Grands Raids à Ski"
-  description="Contacter Yann Borgnet, guide de haute montagne UIAGM, pour un voyage ou un raid à ski : WhatsApp, Instagram, Facebook."
+  description="Un voyage déjà au programme, une traversée à imaginer ou simplement un pays ou un massif qui vous fait rêver : contactez Yann Borgnet pour en discuter directement."
   canonical={canonical}
 >
   <Header solid />
 
-  <main class="contact">
-    <div class="site-shell contact__inner">
-      <p class="contact__eyebrow">Contact</p>
-      <h1>Parler d'un projet.</h1>
-      <p class="contact__text">
-        Pour toute question sur un voyage, un raid à ski ou un projet privé, le plus simple est WhatsApp.
-        Les prochains départs sont aussi annoncés sur Instagram et Facebook.
-      </p>
+  <main>
+    <section class="contact-hero">
+      <div class="site-shell">
+        <p class="contact-hero__eyebrow">Contact</p>
+        <h1>Parler d'un<br /><em>projet.</em></h1>
+        <p class="contact-hero__lead">
+          Un voyage déjà au programme, une traversée à imaginer ou simplement un pays ou un massif qui vous fait
+          rêver, le plus simple est d'en discuter directement.
+        </p>
+      </div>
+    </section>
 
-      <ul class="contact__links">
-        <li><a href="https://wa.me/33689295826">WhatsApp · +33 6 89 29 58 26</a></li>
-        <li><a href="https://www.instagram.com/yannborgnet/">Instagram</a></li>
-        <li><a href="https://www.facebook.com/yannborgnet/">Facebook</a></li>
-      </ul>
-    </div>
+    <section class="contact-main">
+      <div class="site-shell contact-grid">
+        <div class="contact-copy">
+          <p class="contact-copy__eyebrow">Un projet sur mesure</p>
+          <h2>Partir d'une envie.<br /><em>Tracer la ligne ensuite.</em></h2>
+          <p>
+            Vous avez une destination en tête, une période disponible ou simplement l'envie d'une itinérance à ski
+            différente des voyages déjà programmés ? Écrivez-moi avec quelques éléments : nombre de personnes, dates
+            possibles, niveau du groupe et terrain recherché.
+          </p>
+          <p>Je vous répondrai pour voir ce qu'il est possible de construire ensemble.</p>
+        </div>
+
+        <div class="contact-panel">
+          <form class="contact-form" action="https://lesgrandsraidsaski.com/wp-admin/admin-post.php" method="post">
+            <input type="hidden" name="action" value="les_grands_raids_contact" />
+            <input type="hidden" name="les_grands_raids_contact_nonce" value="1e4254e628" />
+            <input type="hidden" name="_wp_http_referer" value="/contact/" />
+
+            <div class="contact-form__hp" aria-hidden="true">
+              <label>Site web<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+            </div>
+
+            <label>Nom<input type="text" name="name" required /></label>
+            <label>E-mail<input type="email" name="email" required /></label>
+            <label>Votre projet<textarea name="message" rows="7" required></textarea></label>
+
+            <button type="submit">Envoyer le message</button>
+          </form>
+
+          <hr class="contact-panel__divider" />
+
+          <a class="contact-panel__whatsapp" href="https://wa.me/33689295826" target="_blank" rel="noopener">
+            <span class="contact-panel__whatsapp-eyebrow">Ou par WhatsApp</span>
+            <span class="contact-panel__whatsapp-row">
+              <strong>M'écrire directement</strong>
+              <span aria-hidden="true">→</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -50,55 +107,3 @@ const canonical = "https://lesgrandsraidsaski.com/contact/";
     </div>
   </footer>
 </BaseLayout>
-
-<style>
-  .contact {
-    padding: 160px 0 120px;
-    min-height: 60vh;
-  }
-
-  .contact__inner {
-    max-width: 640px;
-  }
-
-  .contact__eyebrow {
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    opacity: 0.6;
-    margin: 0 0 18px;
-  }
-
-  .contact h1 {
-    font-family: var(--font-serif);
-    font-weight: 400;
-    font-size: clamp(32px, 5vw, 48px);
-    margin: 0 0 18px;
-  }
-
-  .contact__text {
-    font-size: 16px;
-    line-height: 1.6;
-    opacity: 0.8;
-    margin: 0 0 36px;
-  }
-
-  .contact__links {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
-
-  .contact__links a {
-    display: inline-block;
-    padding-bottom: 4px;
-    border-bottom: 1px solid currentColor;
-    color: var(--ink);
-    text-decoration: none;
-    font-weight: 500;
-  }
-</style>
