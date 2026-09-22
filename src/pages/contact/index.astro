@@ -14,14 +14,14 @@ const canonical = "https://lesgrandsraidsaski.com/contact/";
  * d'eyebrow/h1/CTA que /philosophie/ et les pages voyage) plutôt que le
  * CSS WordPress d'origine.
  *
- * Le formulaire pointe vers le vrai endpoint WordPress
- * (wp-admin/admin-post.php, avec le nonce tel que fourni par le site au
- * moment de la reprise) : un site statique GitHub Pages ne peut pas
- * traiter lui-même l'envoi. Ça fonctionne tant que WordPress reste en
- * ligne, mais le nonce expire au bout de ~24h (mécanisme WordPress) — il
- * faudra le regénérer, ou brancher un vrai backend de formulaire, avant
- * la bascule définitive.
+ * Le formulaire poste vers Formspree (https://formspree.io) plutôt que
+ * vers WordPress : un site statique GitHub Pages ne peut pas traiter
+ * lui-même un envoi de formulaire, et poster vers wp-admin/admin-post.php
+ * dépendait d'un nonce WordPress qui expire au bout de ~24h. Remplacer
+ * FORMSPREE_ENDPOINT ci-dessous par l'URL réelle une fois le formulaire
+ * créé côté Formspree (voir demande faite à l'utilisateur).
  */
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/REPLACE_WITH_FORM_ID";
 ---
 
 <BaseLayout
@@ -57,13 +57,9 @@ const canonical = "https://lesgrandsraidsaski.com/contact/";
         </div>
 
         <div class="contact-panel">
-          <form class="contact-form" action="https://lesgrandsraidsaski.com/wp-admin/admin-post.php" method="post">
-            <input type="hidden" name="action" value="les_grands_raids_contact" />
-            <input type="hidden" name="les_grands_raids_contact_nonce" value="1e4254e628" />
-            <input type="hidden" name="_wp_http_referer" value="/contact/" />
-
+          <form class="contact-form" action={FORMSPREE_ENDPOINT} method="POST">
             <div class="contact-form__hp" aria-hidden="true">
-              <label>Site web<input type="text" name="website" tabindex="-1" autocomplete="off" /></label>
+              <label>Site web<input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
             </div>
 
             <label>Nom<input type="text" name="name" required /></label>
