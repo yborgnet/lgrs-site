@@ -7,7 +7,7 @@ export const armenie: Voyage = {
     description:
       "Traversée à ski en Arménie, du lac Sevan au massif de l’Aragats : forêts, hauts plateaux, volcans et nuits chez l’habitant.",
     ogImage:
-      "https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/Armenie-—-Parc-national-de-Dilijan-en-hiver.jpg",
+      "/images/Armenie-—-Parc-national-de-Dilijan-en-hiver.jpg",
   },
   masthead: {
     eyebrow: "Voyage à ski de randonnée",
@@ -24,7 +24,7 @@ export const armenie: Voyage = {
     ],
   },
   photoIntro: {
-    src: "https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/Armenie-—-Parc-national-de-Dilijan-en-hiver.jpg",
+    src: "/images/Armenie-—-Parc-national-de-Dilijan-en-hiver.jpg",
     alt: "Parc national de Dilijan en hiver, Arménie",
   },
   info: {
@@ -48,11 +48,11 @@ export const armenie: Voyage = {
     note: "Le séjour s’adresse à des skieurs de randonnée expérimentés, en bonne condition physique, capables d’enchaîner plusieurs journées complètes. Une bonne maîtrise du ski en toutes neiges et des conversions est indispensable. L’itinérance, l’altitude et l’adaptation permanente aux conditions constituent l’essentiel de l’engagement.",
   },
   photoInfo: {
-    src: "https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/Armenie-—-Mont-Aragats-depuis-Kari-Lake.jpg",
+    src: "/images/Armenie-—-Mont-Aragats-depuis-Kari-Lake.jpg",
     alt: "Mont Aragats enneigé vu depuis le lac Kari gelé en Arménie",
   },
   bigPhoto: {
-    src: "https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/Armenie-—-Mont-Aragats-depuis-Kari-Lake.jpg",
+    src: "/images/Armenie-—-Mont-Aragats-depuis-Kari-Lake.jpg",
     alt: "Mont Aragats enneigé vu depuis le lac Kari gelé en Arménie",
   },
   itinerary: {

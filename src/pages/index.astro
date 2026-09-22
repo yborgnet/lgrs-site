@@ -10,7 +10,7 @@ const canonical = "https://lesgrandsraidsaski.com/";
   title="Voyages & raids à ski de randonnée | Yann Borgnet"
   description="Voyages et raids à ski de randonnée en itinérance, dans les Alpes et les montagnes du monde, avec Yann Borgnet, guide de haute montagne UIAGM."
   canonical={canonical}
-  ogImage="https://lesgrandsraidsaski.com/wp-content/uploads/2025/12/DSC07143_DxO-3-scaled.jpg"
+  ogImage="/images/DSC07143_DxO-3-scaled.jpg"
 >
   <Header />
 
@@ -18,7 +18,7 @@ const canonical = "https://lesgrandsraidsaski.com/";
     <section class="hero">
       <img
         class="hero__image"
-        src="https://lesgrandsraidsaski.com/wp-content/uploads/2025/12/DSC07143_DxO-3-scaled.jpg"
+        src={withBase("/images/DSC07143_DxO-3-scaled.jpg")}
         alt="Grand raid à ski dans les montagnes"
       />
 
@@ -83,7 +83,7 @@ const canonical = "https://lesgrandsraidsaski.com/";
 
         <div class="voyages-photo">
           <img
-            src="https://lesgrandsraidsaski.com/wp-content/uploads/2025/12/DSC02181-1024x684.jpg"
+            src={withBase("/images/DSC02181-1024x684.jpg")}
             alt="Terrain de grand raid à ski"
             loading="lazy"
           />
@@ -240,7 +240,7 @@ const canonical = "https://lesgrandsraidsaski.com/";
         <article class="story-card">
           <a class="story-card__image" href={withBase("/bernina-tour-massif-ski-randonnee/")}>
             <img
-              src="https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/bernina-ski-randonnee-01-panorama-piz-palu-glaciers-1024x684.jpg"
+              src={withBase("/images/bernina-ski-randonnee-01-panorama-piz-palu-glaciers-1024x684.jpg")}
               alt="Bernina — Tour du massif"
               loading="lazy"
             />
@@ -274,7 +274,7 @@ const canonical = "https://lesgrandsraidsaski.com/";
         <article class="story-card">
           <a class="story-card__image" href={withBase("/alpes-ligures-traversee-ski-randonnee/")}>
             <img
-              src="https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/alpes-ligures-j3-cima-degli-arpetti-01-1024x684.jpg"
+              src={withBase("/images/alpes-ligures-j3-cima-degli-arpetti-01-1024x684.jpg")}
               alt="Alpes Ligures"
               loading="lazy"
             />
@@ -298,7 +298,7 @@ const canonical = "https://lesgrandsraidsaski.com/";
 
         <div class="about-photo">
           <img
-            src="https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/fba56613-bfe2-4d63-ab54-90bd71f10e09-1-819x1024.png"
+            src={withBase("/images/fba56613-bfe2-4d63-ab54-90bd71f10e09-1-819x1024.png")}
             alt="Yann Borgnet, guide de haute montagne UIAGM"
             loading="lazy"
           />

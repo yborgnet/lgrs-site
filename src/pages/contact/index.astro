@@ -1,0 +1,104 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import { withBase } from "../../lib/url";
+
+const canonical = "https://lesgrandsraidsaski.com/contact/";
+---
+
+<BaseLayout
+  title="Contact | Les Grands Raids à Ski"
+  description="Contacter Yann Borgnet, guide de haute montagne UIAGM, pour un voyage ou un raid à ski : WhatsApp, Instagram, Facebook."
+  canonical={canonical}
+>
+  <Header solid />
+
+  <main class="contact">
+    <div class="site-shell contact__inner">
+      <p class="contact__eyebrow">Contact</p>
+      <h1>Parler d'un projet.</h1>
+      <p class="contact__text">
+        Pour toute question sur un voyage, un raid à ski ou un projet privé, le plus simple est WhatsApp.
+        Les prochains départs sont aussi annoncés sur Instagram et Facebook.
+      </p>
+
+      <ul class="contact__links">
+        <li><a href="https://wa.me/33689295826">WhatsApp · +33 6 89 29 58 26</a></li>
+        <li><a href="https://www.instagram.com/yannborgnet/">Instagram</a></li>
+        <li><a href="https://www.facebook.com/yannborgnet/">Facebook</a></li>
+      </ul>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-shell site-footer__grid">
+      <div>
+        <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+        <p class="site-footer__statement">Explorer · improviser · rencontrer · skier.</p>
+      </div>
+
+      <div class="site-footer__links">
+        <a href="https://wa.me/33689295826">WhatsApp · +33 6 89 29 58 26</a>
+        <a href="https://www.instagram.com/yannborgnet/">Instagram</a>
+        <a href="https://www.facebook.com/yannborgnet/">Facebook</a>
+      </div>
+    </div>
+
+    <div class="site-shell site-footer__bottom">
+      <a href={withBase("/yann-borgnet-guide-haute-montagne/")}>Yann Borgnet · Guide de haute montagne UIAGM</a>
+      <span>© 2026</span>
+    </div>
+  </footer>
+</BaseLayout>
+
+<style>
+  .contact {
+    padding: 160px 0 120px;
+    min-height: 60vh;
+  }
+
+  .contact__inner {
+    max-width: 640px;
+  }
+
+  .contact__eyebrow {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.6;
+    margin: 0 0 18px;
+  }
+
+  .contact h1 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-size: clamp(32px, 5vw, 48px);
+    margin: 0 0 18px;
+  }
+
+  .contact__text {
+    font-size: 16px;
+    line-height: 1.6;
+    opacity: 0.8;
+    margin: 0 0 36px;
+  }
+
+  .contact__links {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .contact__links a {
+    display: inline-block;
+    padding-bottom: 4px;
+    border-bottom: 1px solid currentColor;
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 500;
+  }
+</style>

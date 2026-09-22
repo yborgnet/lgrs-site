@@ -7,7 +7,7 @@ export const georgie: Voyage = {
     description:
       "Du Javakheti à l’Adjarie et la Gourie : 7 jours de ski de randonnée en itinérance dans le Petit Caucase géorgien, du 17 au 26 janvier 2027.",
     ogImage:
-      "https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/georgie-svanetie-2024DSC03959.jpg",
+      "/images/georgie-svanetie-2024DSC03959.jpg",
   },
   masthead: {
     eyebrow: "Voyage à ski de randonnée",
@@ -25,7 +25,7 @@ export const georgie: Voyage = {
     ],
   },
   photoIntro: {
-    src: "https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/georgie-svanetie-2024DSC03959.jpg",
+    src: "/images/georgie-svanetie-2024DSC03959.jpg",
     alt: "Ski de randonnée en Géorgie — Petit Caucase",
   },
   info: {
@@ -50,11 +50,11 @@ export const georgie: Voyage = {
     note: "Le séjour s’adresse à des skieurs de randonnée autonomes, en bonne condition physique, capables d’enchaîner plusieurs journées complètes. Les pentes sont généralement modérées ; une bonne maîtrise du ski en toutes neiges et des conversions reste indispensable. L’isolement, le froid, la neige profonde et les changements possibles d’itinéraire constituent l’essentiel de l’engagement.",
   },
   photoInfo: {
-    src: "https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/georgie-svanetie-2024DSC02883.jpg",
+    src: "/images/georgie-svanetie-2024DSC02883.jpg",
     alt: "Skieur en descente dans un vaste vallon enneigé de Haute-Svanétie, Géorgie",
   },
   bigPhoto: {
-    src: "https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/georgie-svanetie-2024DSC02883.jpg",
+    src: "/images/georgie-svanetie-2024DSC02883.jpg",
     alt: "Skieur en descente dans un vaste vallon enneigé de Haute-Svanétie, Géorgie",
   },
   itinerary: {
@@ -63,7 +63,7 @@ export const georgie: Voyage = {
     intro:
       "Un voyage construit en deux temps : quatre journées dans les hauts plateaux volcaniques du Javakheti, puis trois journées dans les neiges profondes de l’Adjarie et de la Gourie. Entre les deux, une traversée du pays, qui fait elle aussi partie de l’histoire.",
     map: {
-      src: "https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/carte-georgie-petit-caucase-2027-2400w-hq.webp",
+      src: "/images/carte-georgie-petit-caucase-2027-2400w-hq.webp",
       alt: "Carte de l’itinéraire à ski 2027 dans le Petit Caucase, entre Javakheti, Adjarie et Gourie",
     },
     gpx: "/gpx/georgie-petit-caucase-2027.gpx",

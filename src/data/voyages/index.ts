@@ -141,7 +141,7 @@ export const voyages: VoyageSummary[] = [
     excerpt:
       "Des volcans du Javakheti aux neiges profondes d'Adjarie et de Gourie, au fil d'une traversée de village en village.",
     cover: {
-      src: "https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/georgie-svanetie-2024DSC03959.jpg",
+      src: "/images/georgie-svanetie-2024DSC03959.jpg",
       alt: "Skieur de randonnée sur une arête, massif du Petit Caucase, Géorgie",
       position: "35% 40%",
     },
@@ -151,7 +151,7 @@ export const voyages: VoyageSummary[] = [
     excerpt:
       "Exploration du massif du Hissar puis itinérance de village en village, dans un terrain encore peu parcouru à ski.",
     cover: {
-      src: "https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/Illustration-FT-Ouzbekistan-1-scaled.jpeg",
+      src: "/images/Illustration-FT-Ouzbekistan-1-scaled.jpeg",
       alt: "Panorama sur le massif du Hissar, Ouzbékistan",
       position: "50% 30%",
     },
@@ -161,7 +161,7 @@ export const voyages: VoyageSummary[] = [
     excerpt:
       "Forêts, hauts plateaux et reliefs volcaniques : une traversée hivernale entre le lac Sevan et le massif de l'Aragats.",
     cover: {
-      src: "https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/Armenie-—-Mont-Aragats-depuis-Kari-Lake.jpg",
+      src: "/images/Armenie-—-Mont-Aragats-depuis-Kari-Lake.jpg",
       alt: "Khachkar de pierre sous le mont Aragats enneigé, Arménie",
       position: "65% 40%",
     },

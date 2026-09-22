@@ -7,7 +7,7 @@ export const ouzbekistan: Voyage = {
     description:
       "Raid à ski dans le massif du Hissar en Ouzbékistan : exploration sauvage, bivouac, villages d’altitude et hospitalité au cœur de l’Asie centrale.",
     ogImage:
-      "https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/Illustration-FT-Ouzbekistan-scaled.jpeg",
+      "/images/Illustration-FT-Ouzbekistan-scaled.jpeg",
   },
   masthead: {
     eyebrow: "Voyage à ski de randonnée",
@@ -24,7 +24,7 @@ export const ouzbekistan: Voyage = {
     ],
   },
   photoIntro: {
-    src: "https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/Illustration-FT-Ouzbekistan-scaled.jpeg",
+    src: "/images/Illustration-FT-Ouzbekistan-scaled.jpeg",
     alt: "Ski de randonnée en Ouzbékistan — massif du Hissar",
   },
   info: {
@@ -48,11 +48,11 @@ export const ouzbekistan: Voyage = {
     note: "Le séjour demande une très bonne condition physique : huit journées de ski, environ 1 200 à 2 000 m de dénivelé positif selon les étapes et du matériel de bivouac à porter dans la première partie. Les pentes sont généralement modérées à soutenues, avec quelques passages possibles autour de 40°. L’engagement vient surtout de l’isolement : plusieurs journées loin des secours, peu d’infrastructures et une évacuation complexe.",
   },
   photoInfo: {
-    src: "https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/Illustration-FT-Ouzbekistan-1-scaled.jpeg",
+    src: "/images/Illustration-FT-Ouzbekistan-1-scaled.jpeg",
     alt: "Montagnes enneigées du massif du Hissar en Ouzbékistan",
   },
   bigPhoto: {
-    src: "https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/Illustration-FT-Ouzbekistan-1-scaled.jpeg",
+    src: "/images/Illustration-FT-Ouzbekistan-1-scaled.jpeg",
     alt: "Montagnes enneigées du massif du Hissar en Ouzbékistan",
   },
   itinerary: {
