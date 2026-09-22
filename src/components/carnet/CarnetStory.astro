@@ -1,14 +1,22 @@
 ---
-import type { Carnet } from "../../data/carnets/types";
+import type { Carnet, CarnetPhoto } from "../../data/carnets/types";
+import CarnetLightbox from "./CarnetLightbox.astro";
 
 type Props = {
   story: Carnet["story"];
 };
 
 const { story } = Astro.props;
+
+const storyDays = story.storyDays ?? [];
+
+function photoStyle(photo: CarnetPhoto): string | undefined {
+  if (!photo.cropRatio) return undefined;
+  return `aspect-ratio: ${photo.cropRatio}; object-fit: cover;${photo.position ? ` object-position: ${photo.position};` : ""}`;
+}
 ---
 
-<section class="carnet-story">
+<section class="carnet-story" data-carnet-gallery>
   <div class="site-shell">
     <p class="carnet-story__eyebrow">{story.eyebrow}</p>
 
@@ -18,7 +26,7 @@ const { story } = Astro.props;
         <span class="carnet-story__arrow" aria-hidden="true">↓</span>
       </summary>
 
-      <div class="carnet-story__grid">
+      <div class:list={["carnet-story__grid", { "carnet-story__grid--text-only": storyDays.length === 0 }]}>
         <div class="carnet-story__text">
           {
             story.sections.map((section) => (
@@ -28,23 +36,73 @@ const { story } = Astro.props;
               </div>
             ))
           }
+          {story.sourceNote && (
+            <footer class="carnet-story__source-note">
+              <p>
+                {story.sourceNote.text}
+                {" "}
+                <a href={story.sourceNote.href}>{story.sourceNote.linkLabel}</a>
+              </p>
+            </footer>
+          )}
+          {story.closingLinks && story.closingLinks.length > 0 && (
+            <footer class="carnet-story__closing-links">
+              <ul>
+                {story.closingLinks.map((link) => (
+                  <li>
+                    {link.href ? (
+                      <a href={link.href}>{link.label}</a>
+                    ) : (
+                      <span class="carnet-story__closing-links-placeholder">{link.label}</span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </footer>
+          )}
         </div>
 
-        <div class="carnet-story__photos">
-          {
-            story.dayPhotos.map((group) => (
-              <div class="carnet-story__day">
-                <p class="carnet-story__day-label">{group.dayNum}</p>
-                <div class="carnet-story__day-grid">
-                  {group.photos.map((photo) => (
-                    <img src={photo.src} alt={photo.alt} loading="lazy" decoding="async" />
-                  ))}
+        {storyDays.length > 0 && (
+          <div class="carnet-story__days" data-lightbox-gallery>
+            {
+              storyDays.map((storyDay) => (
+                <div class="carnet-story__day">
+                  <p class="carnet-story__day-label">
+                    <span class="carnet-story__day-number">{storyDay.day}</span>
+                    <span class="carnet-story__day-route">{storyDay.route}</span>
+                  </p>
+
+                  <div class="carnet-story__day-grid">
+                    {storyDay.photos.map((photo) => (
+                      <figure class="carnet-story__day-item">
+                        <button
+                          type="button"
+                          class="carnet-story__photo-trigger"
+                          data-lightbox-trigger
+                          data-caption={photo.caption ?? ""}
+                          aria-label={`Agrandir la photo : ${photo.alt}`}
+                        >
+                          <img
+                            src={photo.src}
+                            alt={photo.alt}
+                            width={photo.width}
+                            height={photo.height}
+                            loading="lazy"
+                            decoding="async"
+                            style={photoStyle(photo)}
+                          />
+                        </button>
+                      </figure>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))
-          }
-        </div>
+              ))
+            }
+          </div>
+        )}
       </div>
     </details>
   </div>
+
+  <CarnetLightbox />
 </section>

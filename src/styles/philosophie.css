@@ -1,0 +1,370 @@
+/* === PAGE PHILOSOPHIE (/philosophie/) === */
+/* Page manifeste : très éditoriale, dépouillée, textuelle mais jamais
+   compacte. Même vocabulaire graphique que le reste du site (tokens de
+   global.css), classes propres (.philo-*). Peu de ruptures de fond : chaque
+   changement correspond à un vrai changement de chapitre (voir brief).
+   DESKTOP UNIQUEMENT pour cette passe — pas de media query mobile ici. */
+
+/* HERO — beaucoup d'air, pas de gros paragraphe sous le titre. */
+
+.philo-hero {
+  background: var(--paper);
+  padding: 96px 0 80px;
+}
+
+.philo-hero__eyebrow {
+  margin: 0 0 28px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  opacity: .56;
+}
+
+.philo-hero h1 {
+  /* Volontairement moins monumental que les noms de pays des pages Voyages
+     (clamp 92px là-bas) — Philosophie reste un mot, pas un lieu à afficher. */
+  margin: 0 0 40px;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(48px, 7vw, 84px);
+  line-height: .98;
+  letter-spacing: -.03em;
+}
+
+.philo-hero__lead {
+  max-width: 620px;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height: 1.35;
+  font-weight: 300;
+  opacity: .88;
+}
+
+/* GRANDE PHOTO D'OUVERTURE — pleine largeur viewport, bande courte (40-50vh),
+   même mécanique que carnets-index.css/voyages-index.css : object-fit
+   directement sur le <img>, jamais un wrapper qui l'annule. */
+.philo-photo-full {
+  display: block;
+  width: 100%;
+  height: 48vh;
+  min-height: 400px;
+  max-height: 620px;
+  margin: 0;
+  overflow: hidden;
+  object-fit: cover;
+}
+
+/* SECTION MÉTHODE — Préparer · Improviser · Relier. Trois colonnes
+   éditoriales séparées par des lignes fines : pas de cartes, pas d'ombre,
+   pas de fond par case, pas de border-radius (voir brief). */
+
+.philo-method {
+  background: var(--white);
+  padding: 104px 0;
+}
+
+.philo-method__eyebrow {
+  margin: 0 0 16px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  opacity: .48;
+  text-align: center;
+}
+
+.philo-method__lead {
+  max-width: 720px;
+  margin: 0 auto 72px;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.2;
+  letter-spacing: -.01em;
+}
+
+.philo-method__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.philo-method__col {
+  padding: 0 48px;
+  border-left: 1px solid var(--line);
+}
+
+.philo-method__col:first-child {
+  border-left: 0;
+  padding-left: 0;
+}
+
+.philo-method__col:last-child {
+  padding-right: 0;
+}
+
+.philo-method__num {
+  margin: 0 0 24px;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  opacity: .4;
+}
+
+.philo-method__col h3 {
+  margin: 0 0 18px;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 26px;
+  letter-spacing: -.01em;
+}
+
+.philo-method__col p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.65;
+  opacity: .8;
+}
+
+/* SECTION PRINCIPES — "Explorer. Partager l'aventure." Composition verticale,
+   pas quatre cartes identiques : chaque bloc séparé par une ligne fine,
+   largeur/retrait qui varie légèrement pour casser la répétition. */
+
+.philo-principles {
+  background: var(--paper);
+  padding: 104px 0;
+}
+
+.philo-principles__head {
+  max-width: 760px;
+  margin: 0 0 72px;
+}
+
+.philo-principles__eyebrow {
+  margin: 0 0 16px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  opacity: .48;
+}
+
+.philo-principles__head h2 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(32px, 3.6vw, 48px);
+  line-height: 1.1;
+  letter-spacing: -.01em;
+}
+
+.philo-principle {
+  display: grid;
+  grid-template-columns: 100px minmax(0, 720px);
+  gap: 0 32px;
+  padding: 44px 0;
+  border-top: 1px solid var(--line);
+}
+
+.philo-principle:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.philo-principle__num {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .1em;
+  opacity: .4;
+  padding-top: 6px;
+}
+
+.philo-principle__body h3 {
+  margin: 0 0 14px;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(24px, 2.6vw, 32px);
+  letter-spacing: -.01em;
+}
+
+.philo-principle__body p {
+  margin: 0;
+  max-width: 620px;
+  font-size: 16px;
+  line-height: 1.7;
+  opacity: .82;
+}
+
+/* SECTION ORIGINE DU NOM — rupture éditoriale volontaire, fond sombre. */
+
+.philo-origin {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 112px 0;
+}
+
+/* Spécificité ".philo-origin .xxx" (et non juste ".xxx") volontaire : sans
+   ça, la règle générique ".philo-origin p" plus bas (même spécificité de
+   base, déclarée après) l'emportait et l'eyebrow héritait par erreur de la
+   taille/opacité du corps de texte (17px/.82 au lieu de 13px/.56 — bug
+   corrigé). */
+.philo-origin .philo-origin__eyebrow {
+  margin: 0 0 20px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  opacity: .56;
+}
+
+.philo-origin h2 {
+  margin: 0 0 40px;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(36px, 4vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  max-width: 720px;
+}
+
+.philo-origin p {
+  max-width: 680px;
+  margin: 0 0 20px;
+  font-size: 17px;
+  line-height: 1.75;
+  opacity: .82;
+}
+
+.philo-origin p:last-child {
+  margin-bottom: 0;
+}
+
+/* SECTION ALPES / EXTRA-ALPIN — deux blocs côte à côte, pas de "versus". */
+
+.philo-split {
+  background: var(--white);
+  padding: 112px 0;
+}
+
+.philo-split__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 96px;
+}
+
+.philo-split__col--right {
+  padding-left: 96px;
+  border-left: 1px solid var(--line);
+}
+
+/* Spécificité ".philo-split__col .xxx" volontaire — même correctif que
+   .philo-origin__eyebrow plus haut (sans ça, ".philo-split__col p", déclarée
+   après, l'emportait). */
+.philo-split__col .philo-split__eyebrow {
+  margin: 0 0 16px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  opacity: .48;
+}
+
+.philo-split__col h2 {
+  margin: 0 0 24px;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(28px, 2.8vw, 38px);
+  line-height: 1.1;
+  letter-spacing: -.01em;
+}
+
+.philo-split__col p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.75;
+  opacity: .82;
+}
+
+/* GRANDE PHRASE — le groupe / la co-construction, isolée pour rester bien
+   visible (voir brief). Pas de guillemets : ce sont les mots de l'auteur,
+   pas une citation externe. */
+
+.philo-statement {
+  background: var(--paper);
+  padding: 128px 0;
+}
+
+.philo-statement p {
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(28px, 3.4vw, 44px);
+  line-height: 1.3;
+  letter-spacing: -.01em;
+}
+
+/* TRANSITIONS DE FIN — vers les Voyages (principale) puis liens sobres vers
+   les Carnets et le parcours de Yann. Pas de gros CTA commercial. */
+
+.philo-transition {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 96px 0 64px;
+}
+
+.philo-transition__eyebrow {
+  margin: 0 0 20px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  opacity: .56;
+}
+
+.philo-transition h2 {
+  margin: 0 0 32px;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(32px, 3.6vw, 48px);
+  line-height: 1.1;
+  letter-spacing: -.02em;
+}
+
+.philo-transition__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid currentColor;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--paper);
+  text-decoration: none;
+}
+
+.philo-transition__secondary {
+  display: flex;
+  gap: 40px;
+  margin-top: 56px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(243, 241, 236, .18);
+}
+
+.philo-transition__secondary a {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--paper);
+  opacity: .68;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 3px;
+}
+
+.philo-transition__secondary a:hover {
+  opacity: 1;
+}

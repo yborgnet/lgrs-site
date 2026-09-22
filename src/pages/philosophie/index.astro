@@ -1,0 +1,253 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import "../../styles/philosophie.css";
+
+const canonical = "https://lesgrandsraidsaski.com/philosophie/";
+
+/**
+ * Textes repris tel quels de deux pages WordPress live :
+ * - https://lesgrandsraidsaski.com/philosophie/ (hero, "D'où vient ce nom ?",
+ *   "En partir" / transition finale)
+ * - https://lesgrandsraidsaski.com/voyages-a-ski-grands-raids-a-ski-en-itinerance/
+ *   (triptyque Préparer/Improviser/Relier version "gammes du jazzman" —
+ *   c'est la version citée telle quelle dans le brief, distincte de la
+ *   version "cartes, images aériennes..." utilisée par ailleurs sur le site ;
+ *   les 4 principes "Explorer. Partager l'aventure." ; le split Alpes/
+ *   extra-alpin. "Autres pratiques encadrées" volontairement écarté de cette
+ *   page (hors-sujet ici, voir brief) — laissé pour la page Yann/prestations.
+ *
+ * La citation "Co-construire l'aventure" apparaît deux fois à dessein :
+ * comme 4e principe (texte complet) puis reprise en grande citation isolée
+ * plus bas — un pull-quote, pas une vraie redite (mêmes mots déjà publiés,
+ * juste mis en avant une seconde fois).
+ */
+
+// Groupe de trois skieurs en ligne, ascension dans le Mercantour — évoque
+// déplacement/groupe/ligne dans le paysage plutôt qu'un simple sommet.
+const heroPhoto = {
+  src: "/photos/Argentera%202026/Argentera/groupe-ski-randonnee-mercantour.jpg",
+  alt: "Trois skieurs de randonnée en ligne, ascension dans le massif du Mercantour",
+  position: "40% 85%",
+};
+
+// Bivouac de haute montagne — évoque la halte, la préparation, l'itinérance
+// habitée plutôt qu'un simple sommet.
+const offsetPhoto = {
+  src: "https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/bernina-ski-randonnee-17-bivouac-rouge-montagne.jpg",
+  alt: "Bivouac de haute montagne perché sur une arête rocheuse, massif de la Bernina",
+  position: "50% 65%",
+};
+---
+
+<BaseLayout
+  title="Philosophie des Grands Raids à Ski | Yann Borgnet"
+  description="Itinérance à ski, préparation et improvisation, rapport au territoire et au groupe : la manière dont sont pensés les grands raids à ski, dans les Alpes et les montagnes du monde."
+  canonical={canonical}
+  ogImage={heroPhoto.src}
+>
+  <Header solid />
+
+  <main>
+    <section class="philo-hero">
+      <div class="site-shell">
+        <p class="philo-hero__eyebrow">Philosophie</p>
+        <h1>Itin-Errer</h1>
+        <p class="philo-hero__lead">
+          Préparer minutieusement pour pouvoir ensuite improviser.
+        </p>
+      </div>
+    </section>
+
+    <img
+      class="philo-photo-full"
+      src={heroPhoto.src}
+      alt={heroPhoto.alt}
+      loading="eager"
+      decoding="async"
+      style={`object-position: ${heroPhoto.position}`}
+    />
+
+    <section class="philo-method">
+      <div class="site-shell">
+        <p class="philo-method__eyebrow">Une méthode</p>
+        <p class="philo-method__lead">Préparer · Improviser · Relier</p>
+
+        <div class="philo-method__grid">
+          <div class="philo-method__col">
+            <p class="philo-method__num">01</p>
+            <h3>Préparer</h3>
+            <p>Poser un cadre, comme les gammes du jazzman. Ouvrir le champ des possibles.</p>
+          </div>
+
+          <div class="philo-method__col">
+            <p class="philo-method__num">02</p>
+            <h3>Improviser</h3>
+            <p>Jouer avec ce qui se présente, sans sortir du cadre. Errer, parfois, si cela est nécessaire à retrouver le cadre.</p>
+          </div>
+
+          <div class="philo-method__col">
+            <p class="philo-method__num">03</p>
+            <h3>Relier</h3>
+            <p>Vallées, villages, bivouacs, habitants... Habiter le territoire, de façon éphémère.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="philo-principles">
+      <div class="site-shell">
+        <div class="philo-principles__head">
+          <p class="philo-principles__eyebrow">Voyager à ski : une logique de traversée</p>
+          <h2>Explorer. Partager l'aventure.</h2>
+        </div>
+
+        <div class="philo-principle">
+          <p class="philo-principle__num">01</p>
+          <div class="philo-principle__body">
+            <h3>Des pièces uniques</h3>
+            <p>
+              À la manière d'un artisan, je façonne chaque grand raid à ski comme une pièce unique.
+              Dans les Alpes, j'avance par petites touches, en élargissant peu à peu le territoire exploré.
+              À l'étranger, je pars sans repérage ni répétition : chaque itinéraire est une première.
+            </p>
+          </div>
+        </div>
+
+        <div class="philo-principle">
+          <p class="philo-principle__num">02</p>
+          <div class="philo-principle__body">
+            <h3>L'itinérance comme fil conducteur</h3>
+            <p>
+              L'itinérance structure ma manière de voyager à ski et mon rapport à la montagne.
+              Tracer des lignes horizontales, qui traversent, plutôt que des lignes verticales.
+              De vallée en vallée, de village en village, de bivouac en bivouac : une autre façon d'habiter la montagne.
+            </p>
+          </div>
+        </div>
+
+        <div class="philo-principle">
+          <p class="philo-principle__num">03</p>
+          <div class="philo-principle__body">
+            <h3>Tracer un grand raid à ski</h3>
+            <p>
+              Tracer un grand raid à ski, c'est d'abord un long travail en amont.
+              Regarder longuement les cartes, confronter les images aériennes, questionner les locaux, recouper les informations.
+              Puis, sur le terrain, accepter que l'itinéraire s'ajuste, se déforme, parfois s'invente.
+            </p>
+          </div>
+        </div>
+
+        <div class="philo-principle">
+          <p class="philo-principle__num">04</p>
+          <div class="philo-principle__body">
+            <h3>Co-construire l'aventure</h3>
+            <p>
+              Un grand raid à ski est d'abord une histoire de groupe.
+              Avancer ensemble, décider ensemble, composer avec les limites et les envies de chacun.
+              L'itinérance crée un cadre, l'aventure naît de ce qui s'y partage.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <img
+      class="philo-photo-full"
+      src={offsetPhoto.src}
+      alt={offsetPhoto.alt}
+      loading="lazy"
+      decoding="async"
+      style={`object-position: ${offsetPhoto.position}`}
+    />
+
+    <section class="philo-origin">
+      <div class="site-shell">
+        <p class="philo-origin__eyebrow">D'où vient ce nom ?</p>
+        <h2>LES GRANDS RAIDS À SKI</h2>
+        <p>
+          « Les grands raids à ski » est le titre de deux ouvrages fondateurs publiés dans les années 1980
+          par Michel Berruex et Michel Parmentier. Ils y décrivent des voyages exploratoires à ski, en
+          autonomie complète, tente sur le dos, parfois dans des régions fermées ou en guerre.
+        </p>
+        <p>
+          Cette manière de concevoir le ski comme un moyen d'exploration continue aujourd'hui de m'inspirer,
+          nourrie également par les itinéraires de guides contemporains comme Jean Annequin, Jean-René Minelli,
+          Paulo Grobel ou Yvan Estienne.
+        </p>
+      </div>
+    </section>
+
+    <section class="philo-split">
+      <div class="site-shell philo-split__grid">
+        <div class="philo-split__col">
+          <p class="philo-split__eyebrow">Sortir des rando classiques</p>
+          <h2>Les grands raids alpins</h2>
+          <p>
+            Certains voient les Alpes comme un massif surfréquenté. Or, en dehors des domaines skiables et
+            des itinéraires classiques, il reste une myriade de vallons discrets et de bivouacs isolés,
+            autant de points d'ancrage pour tracer des lignes loin des foules. C'est ces espaces en marge
+            que j'aime explorer à ski — et où je vous propose de partir. Une montagne à habiter, le temps
+            d'un raid.
+          </p>
+        </div>
+
+        <div class="philo-split__col philo-split__col--right">
+          <p class="philo-split__eyebrow">Complexifier l'aventure</p>
+          <h2>Les voyages extra-alpins</h2>
+          <p>
+            Partir hors des Alpes est pour moi l'occasion de pousser plus loin la complexité de
+            l'organisation. Tracer une ligne devient alors une équation logistique : trouver chaque soir
+            un point de chute. Aller, autant que possible, de village en village, en restant ancré dans
+            les lieux habités. Habiter temporairement le territoire parcouru.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="philo-statement">
+      <div class="site-shell">
+        <p>
+          Un grand raid à ski est d'abord une histoire de groupe. Avancer ensemble, décider ensemble,
+          composer avec les limites et les envies de chacun. L'itinérance crée un cadre, l'aventure naît
+          de ce qui s'y partage.
+        </p>
+      </div>
+    </section>
+
+    <section class="philo-transition">
+      <div class="site-shell">
+        <p class="philo-transition__eyebrow">Mettre cette philosophie en mouvement</p>
+        <h2>Une saison à écrire.</h2>
+        <a class="philo-transition__link" href="/prochains-voyages/">Découvrir les prochains voyages →</a>
+
+        <div class="philo-transition__secondary">
+          <a href="/voyage-ski-randonnee/">Voyager à ski de randonnée →</a>
+          <a href="/raid-a-ski/">Construire un raid à ski →</a>
+          <a href="/carnets-de-voyage-ski/">Voir ce que ces lignes deviennent une fois parcourues → Carnets</a>
+          <a href="/yann-borgnet-guide-haute-montagne/">Découvrir mon parcours →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-shell site-footer__grid">
+      <div>
+        <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+        <p class="site-footer__statement">Explorer · improviser · rencontrer · skier.</p>
+      </div>
+
+      <div class="site-footer__links">
+        <a href="https://wa.me/33689295826">WhatsApp · +33 6 89 29 58 26</a>
+        <a href="https://www.instagram.com/yannborgnet/">Instagram</a>
+        <a href="https://www.facebook.com/yannborgnet/">Facebook</a>
+      </div>
+    </div>
+
+    <div class="site-shell site-footer__bottom">
+      <a href="/yann-borgnet-guide-haute-montagne/">Yann Borgnet · Guide de haute montagne UIAGM</a>
+      <span>© 2026</span>
+    </div>
+  </footer>
+</BaseLayout>

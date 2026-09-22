@@ -1,0 +1,706 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import "../../styles/raid-a-ski.css";
+import { carnets } from "../../data/carnets/index";
+import { voyages } from "../../data/voyages/index";
+
+const canonical = "https://lesgrandsraidsaski.com/raid-a-ski/";
+
+/**
+ * Page de référence "Raid à ski" — texte fourni par Yann Borgnet, repris
+ * quasi tel quel (voir brief). Ne pas réécrire dans un style marketing.
+ *
+ * Sources éditoriales :
+ * - Montagnes Magazine #501, Yann Borgnet, « Préparer une itinérance improvisée »
+ * - Yann Borgnet, « Léon "Zwing", pionnier dans l'inconnu »
+ * - Brief Yann Borgnet, « Les Grands Raids à Ski — Récits d'itinérance »
+ * - Léon Zwingelstein, Carnet de route (reproduction Gallica / BnF)
+ * - Jacques Dieterlen, Léon Zwingelstein — Le Chemineau de la montagne
+ * - Gérard Guerrier, « La première traversée hivernale des Alpes à ski,
+ *   par Léon Zwingelstein », Alpine Mag, 26 mars 2024 — sert uniquement à la
+ *   vérification factuelle, jamais cité comme texte de Yann.
+ *
+ * Précaution historique : Zwingelstein n'est pas présenté comme l'inventeur
+ * du raid à ski (Paulcke 1897, Tocqueville & Fogès 1928 rappelés en amont).
+ *
+ * Bibliographie Berruex/Parmentier : l'année de première édition du premier
+ * volume ("De la Vanoise au Spitzberg") diverge selon les sources (1981,
+ * 1984, 1991 selon les catalogues consultés) — volontairement non affichée,
+ * conservé "début des années 1980" tant qu'aucune source institutionnelle
+ * définitive n'est trouvée.
+ *
+ * Slots image facultatifs (non renseignés à dessein, voir brief) :
+ * heroImage / historyImage / zwingImage / toolboxImage / anthropologicalImage.
+ * La page doit rester complète sans elles.
+ *
+ * /voyage-ski-randonnee/ existe maintenant (page pilier créée dans la même
+ * session) : lien réciproque ajouté sous le hero, voir raid-hero__intro.
+ */
+
+const raidCarnets = ["bernina-tour-massif-ski-randonnee", "traversee-ski-argentera-mercantour", "alpes-ligures-traversee-ski-randonnee"]
+  .map((slug) => carnets.find((c) => c.slug === slug))
+  .filter((c): c is NonNullable<typeof c> => Boolean(c));
+
+const faq = [
+  {
+    q: "Qu'est-ce qu'un raid à ski ?",
+    a: "Un raid à ski est une itinérance de plusieurs jours en ski de randonnée. Il relie des vallées, des cols, des refuges, des cabanes, des villages ou des bivouacs selon une logique de progression géographique.",
+  },
+  {
+    q: "Combien de jours faut-il pour parler réellement d'itinérance ?",
+    a: "Il n'existe pas de règle absolue. À mon sens, il devient difficile de réellement éprouver l'immersion de l'itinérance en dessous de trois jours. Deux journées peuvent cependant déjà permettre une véritable traversée.",
+  },
+  {
+    q: "Quelle différence entre un raid à ski et des randonnées en étoile ?",
+    a: "Dans un séjour en étoile, on revient généralement chaque soir au même hébergement. Dans un raid, le déplacement lui-même structure le voyage : on avance et l'on change d'étape.",
+  },
+  {
+    q: "Un raid à ski est-il entièrement défini avant le départ ?",
+    a: "Je préfère préparer une ligne principale et de nombreuses variantes. L'objectif est de connaître suffisamment le territoire pour pouvoir adapter le parcours aux conditions nivo-météorologiques, au terrain et au groupe.",
+  },
+  {
+    q: "Faut-il forcément gravir des sommets ?",
+    a: "Non. Un raid peut parfaitement être construit autour de cols, de vallées, de refuges ou de villages. La cohérence de la ligne compte davantage que l'accumulation de sommets.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.a,
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title="Raid à ski | Itinérance et traversées à ski de randonnée"
+  description="Qu'est-ce qu'un raid à ski ? Yann Borgnet raconte son histoire, de Léon Zwingelstein aux Grands Raids à Ski, et partage sa manière de construire une itinérance : préparer, tracer, improviser et traverser un territoire."
+  canonical={canonical}
+>
+  <Header solid />
+
+  <main>
+    <!-- HERO -->
+    <section class="raid-hero">
+      <div class="site-shell">
+        <p class="raid-hero__kicker">Itinérance · traversée · immersion</p>
+        <h1>Raid à ski</h1>
+        <p class="raid-hero__tagline">Tracer des lignes horizontales.</p>
+
+        <div class="raid-hero__intro">
+          <p>
+            Le raid à ski est progressivement devenu le cœur, puis l'unique forme de ma pratique
+            hivernale. Une traversée des Alpes réalisée en amateur en 2015, de la Corse à la
+            Slovénie, dont près de la moitié à ski de randonnée, a également joué un rôle décisif.
+          </p>
+          <p>
+            Ces expériences ont durablement orienté ma manière d'envisager la pratique de la
+            montagne, moins comme une succession de courses ou de sommets à cocher que comme un
+            espace à relier, à traverser et à habiter dans la durée.
+          </p>
+          <p>
+            Le ski de randonnée s'est révélé être un formidable moyen de découverte des
+            territoires alpins et extra-alpins.
+          </p>
+        </div>
+
+        <a class="raid-inline-link" href="/voyage-ski-randonnee/">Une notion plus large : le voyage à ski de randonnée →</a>
+      </div>
+    </section>
+
+    <!-- SECTION 01 — QU'EST-CE QU'UN RAID À SKI ? -->
+    <section class="raid-section raid-section--white">
+      <div class="site-shell raid-section__inner">
+        <h2>Qu'est-ce qu'un raid à ski&nbsp;?</h2>
+
+        <div class="raid-body">
+          <p>
+            J'ai l'habitude de définir l'itinérance par la durée de l'expérience. Je raconte
+            souvent aux personnes que j'accompagne qu'en dessous de trois jours, il est difficile
+            de faire de l'itinérance.
+          </p>
+          <p>
+            En deux jours, la modalité de pratique est plus classique&nbsp;: accès au refuge le
+            premier jour et ascension d'un sommet le lendemain. Il existe évidemment des
+            itinérances plus courtes, mais le pendant d'une compression du temps est souvent
+            l'inflation des dénivelés quotidiens.
+          </p>
+          <p>
+            À mon sens, l'itinérance est intimement liée au sentiment d'immersion, qui ne peut
+            survenir qu'en passant du temps en montagne.
+          </p>
+          <p>
+            Le fait de vivre au moins une journée pleine en montagne, du lever au coucher, sans
+            rallier la vallée ni prendre la voiture est un corollaire de ce sentiment si profond,
+            qui tend au contraire à étirer le temps.
+          </p>
+          <p>
+            Qui fait l'expérience de l'itinérance fait l'expérience d'un temps qui se suspend, un
+            temps long rythmé par les conditions et par des choses souvent insignifiantes en
+            bas&nbsp;: l'aurore ou le crépuscule, la faim, la soif, la contemplation…
+          </p>
+          <p>
+            En progressant dans ma réflexion, je me suis rendu compte que la forme des lignes
+            esquissées puis tracées était au cœur de l'expérience vécue.
+          </p>
+          <p>
+            Aux lignes verticales, qui se dressent vers les sommets et symbolisent un rapport
+            moderne et conquérant à la montagne, se substituent des lignes horizontales, qui
+            traversent vers des horizons parfois incertains.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 02 — UNE BRÈVE HISTOIRE DE LIGNES (Zwingelstein) -->
+    <section class="raid-section raid-section--archive">
+      <div class="site-shell raid-section__inner">
+        <p class="raid-section__kicker">Une brève histoire de lignes</p>
+        <h2>Léon Zwingelstein,<br />pionnier dans l'inconnu.</h2>
+
+        <div class="raid-body">
+          <p>
+            L'histoire du raid à ski est plus ancienne. Wilhelm Paulcke réalise dès 1897 un raid à
+            ski de plusieurs jours dans l'Oberland. D'autres grandes traversées suivront.
+          </p>
+          <p>Mais l'histoire que j'ai envie de raconter ici commence avec Léon Zwingelstein.</p>
+          <p>
+            Léon Zwingelstein est un personnage intrigant. C'est en m'intéressant à sa traversée
+            solitaire des Alpes à ski que j'ai découvert un parcours de montagnard qui force
+            l'admiration.
+          </p>
+          <p>
+            En 1933, «&nbsp;Zwing&nbsp;» se lance dans une immense traversée des Alpes. Il part de
+            Grenoble, descend d'abord vers Nice, remonte ensuite l'arc alpin jusqu'au Tyrol avant
+            de repartir vers l'ouest.
+          </p>
+          <p>
+            Près de trois mois d'itinérance hivernale, dans un style épuré qui cherche l'inconnu
+            tout en l'anticipant par le recours à des outils qui pourraient l'en prémunir.
+          </p>
+          <p>
+            Rennais d'origine, Zwing a marqué de son sceau un esprit de pratique porté par
+            l'aventure et l'improvisation.
+          </p>
+          <p>
+            Il n'y a qu'à lire son carnet de route pour mesurer son rapport aux incertitudes et
+            aux impondérables de la montagne.
+          </p>
+        </div>
+
+        <blockquote class="raid-quote">Mon itinéraire a fait l'objet d'une étude minutieuse sur les cartes.</blockquote>
+
+        <div class="raid-body">
+          <p>
+            La suite de la phrase est presque aussi intéressante&nbsp;: Zwing explique avoir tracé
+            son itinéraire à sa guise, sans documentation préalable et sans se soucier de savoir
+            si certaines parties avaient déjà été parcourues à ski.
+          </p>
+          <p>Il prépare énormément.</p>
+          <p>
+            Sa tente ultralégère peut devenir sac de couchage. Elle lui donne une indépendance
+            presque complète. Il étudie ses cartes, son matériel, sa nourriture, ses étapes.
+          </p>
+          <p>L'inconnu n'est donc pas le contraire de la préparation.</p>
+          <p>Il en est presque le produit.</p>
+          <p>C'est précisément ce qui me fascine dans son histoire.</p>
+        </div>
+
+        <div class="raid-landmarks">
+          <div class="raid-landmark">
+            <p class="raid-landmark__year">1897</p>
+            <p class="raid-landmark__name">Wilhelm Paulcke</p>
+            <p class="raid-landmark__desc">Un des premiers grands raids à ski documentés dans l'Oberland.</p>
+          </div>
+          <div class="raid-landmark">
+            <p class="raid-landmark__year">1928</p>
+            <p class="raid-landmark__name">Tocqueville &amp; Fogès</p>
+            <p class="raid-landmark__desc">Nice → Les Contamines.</p>
+          </div>
+          <div class="raid-landmark">
+            <p class="raid-landmark__year">1933</p>
+            <p class="raid-landmark__name">Léon Zwingelstein</p>
+            <p class="raid-landmark__desc">Une immense traversée solitaire de l'arc alpin.</p>
+          </div>
+        </div>
+
+        <h3 class="raid-subheading">Voyager plutôt que collectionner.</h3>
+
+        <div class="raid-body">
+          <p>
+            Ce qui me rapproche peut-être le plus de Zwingelstein n'est pourtant pas l'ampleur de
+            son entreprise.
+          </p>
+          <p>C'est sa manière de traverser.</p>
+          <p>
+            Hormis quelques grands sommets, il ne construit pas son voyage comme une collection de
+            cimes. Il avance à travers le massif.
+          </p>
+          <p>La ligne compte davantage que l'accumulation.</p>
+          <p>Le déplacement devient le projet.</p>
+          <p>
+            Son carnet montre aussi un homme qui sait attendre. Après de grosses chutes de neige,
+            il reporte son départ. Il observe, calcule, renonce parfois, puis repart.
+          </p>
+          <p>Préparation et aventure ne s'opposent pas.</p>
+        </div>
+
+        <blockquote class="raid-quote">
+          J'aurais pu faire du bruit, de la publicité autour de mon voyage, me faire recevoir,
+          être encouragé… J'ai préféré passer inaperçu.
+        </blockquote>
+
+        <div class="raid-body">
+          <p>
+            Voilà probablement ce qui me touche le plus dans cette histoire&nbsp;: derrière les
+            chiffres extraordinaires du voyage, Zwingelstein ne semble pas chercher le record.
+          </p>
+          <p>Il cherche à être en montagne.</p>
+          <p>
+            Jacques Dieterlen écrit à son sujet que la technique importe peu et «&nbsp;l'exploit
+            encore moins&nbsp;».
+          </p>
+          <p>Une formule de Zwingelstein résume peut-être ce rapport&nbsp;:</p>
+        </div>
+
+        <blockquote class="raid-quote raid-quote--small">Le véritable alpinisme est intérieur.</blockquote>
+      </div>
+    </section>
+
+    <!-- SECTION 03 — LES GRANDS RAIDS À SKI (transition, filiation) -->
+    <section class="raid-section raid-section--ink">
+      <div class="site-shell raid-section__inner">
+        <p class="raid-section__kicker">Une filiation</p>
+        <h2>Les Grands Raids à Ski.</h2>
+
+        <div class="raid-body">
+          <p>
+            Quelques décennies plus tard, une série d'ouvrages allait profondément marquer mon
+            imaginaire du raid à ski.
+          </p>
+          <p>
+            Les Grands Raids à Ski, de Michel Berruex et Michel Parmentier, puis Montagnes de
+            Méditerranée, de Michel Parmentier, proposent de grandes traversées à ski dans les
+            Alpes et bien au-delà.
+          </p>
+          <p>Des récits, des photographies, des cartes, quelques repères pratiques.</p>
+          <p>Et surtout des lignes.</p>
+          <p>
+            Ces ouvrages publiés au début des années 1980 font encore aujourd'hui référence chez
+            certains pratiquants.
+          </p>
+          <p>Le nom de ce site leur rend directement hommage.</p>
+          <p>
+            Lorsque j'ai imaginé Les Grands Raids à Ski, il ne s'agissait pas de reproduire ces
+            itinéraires ni de réactiver avec nostalgie une époque disparue.
+          </p>
+          <p>
+            Ce qui m'intéressait était l'intuition contenue dans ces livres&nbsp;: imaginer de
+            grandes lignes, les parcourir, puis raconter l'expérience.
+          </p>
+          <p>
+            Depuis, les conditions ont sensiblement changé&nbsp;: variabilité accrue de
+            l'enneigement, développement massif du ski de randonnée, regain d'intérêt pour
+            l'itinérance, fréquentation plus importante de certains massifs ou itinéraires,
+            évolutions géopolitiques qui reconfigurent certains horizons du voyage.
+          </p>
+          <p>Mais l'idée demeure&nbsp;:</p>
+        </div>
+
+        <p class="raid-statement">imaginer une ligne et partir la vivre.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 04 — CONSTRUIRE UN RAID À SKI -->
+    <section class="raid-section raid-section--paper">
+      <div class="site-shell raid-section__inner">
+        <p class="raid-section__kicker">La boîte à outils</p>
+        <h2>Construire un raid à ski.</h2>
+
+        <div class="raid-body raid-body--intro">
+          <p>
+            L'itinérance ne peut se préparer et se vivre de la même manière que la montagne
+            ascensionnelle, celle que l'on gravit habituellement de bas en haut autour d'un
+            objectif préalablement fixé.
+          </p>
+          <p>
+            La pratique de l'itinérance doit s'envisager, à mon sens, comme un processus
+            improvisé.
+          </p>
+          <p>Cela ne signifie surtout pas partir sans préparation.</p>
+          <p>Au contraire.</p>
+          <p>La préparation est une phase cruciale.</p>
+          <p>Mais elle ne consiste pas à verrouiller un itinéraire.</p>
+          <p>Elle consiste à ouvrir le champ des possibles.</p>
+        </div>
+
+        <div class="raid-tools">
+          <article class="raid-tool">
+            <p class="raid-tool__num">01</p>
+            <div class="raid-tool__body">
+              <h3>Borner l'espace.</h3>
+              <p>
+                La première étape consiste à cibler un massif puis à comprendre son relief.
+              </p>
+              <p>
+                Je cherche les barrières naturelles, les cols, les lignes de faiblesse, les
+                bassins entre lesquels il semble raisonnable de circuler.
+              </p>
+              <p>
+                Les modèles numériques de terrain, les cartes de pentes, les cartes topographiques,
+                les images aériennes et les photographies permettent progressivement de se forger
+                une cartographie mentale du terrain.
+              </p>
+              <p>Dès que j'ai un doute sur un passage, je croise les sources.</p>
+              <p>Il ne s'agit pas encore de dessiner la ligne.</p>
+              <p>Il s'agit de comprendre où plusieurs lignes pourraient exister.</p>
+            </div>
+          </article>
+
+          <article class="raid-tool">
+            <p class="raid-tool__num">02</p>
+            <div class="raid-tool__body">
+              <h3>Identifier le maillage.</h3>
+              <p>Dans les Alpes, les cabanes, bivouacs et refuges structurent souvent l'itinérance.</p>
+              <p>Ailleurs, ce sont parfois les villages.</p>
+              <p>
+                À moins de porter une tente, les lieux où l'on peut passer la nuit dessinent une
+                première géographie du voyage.
+              </p>
+              <p>Je quadrille donc le territoire en cherchant les hébergements possibles.</p>
+              <p>
+                Dans les Alpes, un réseau de cabanes permet parfois de construire une ligne qui
+                aurait été impossible à la journée.
+              </p>
+              <p>
+                Dans le Caucase, les Balkans ou l'Asie centrale, ce sont souvent des villages
+                habités qui deviennent les points d'ancrage.
+              </p>
+              <p>Le raid apparaît alors peu à peu comme un réseau de points qu'il reste à relier.</p>
+            </div>
+          </article>
+
+          <article class="raid-tool">
+            <p class="raid-tool__num">03</p>
+            <div class="raid-tool__body">
+              <h3>Tracer des lignes.</h3>
+              <p>Vient ensuite le travail le plus important&nbsp;: relier chacun de ces points.</p>
+              <p>
+                Ma stratégie consiste d'abord à tracer les lignes les plus simples entre chaque
+                hébergement.
+              </p>
+              <p>
+                La facilité se définit par le dénivelé et la distance, mais aussi et surtout par
+                la nature des pentes.
+              </p>
+              <p>
+                Je privilégie toujours la recherche d'un itinéraire aussi robuste que possible,
+                capable de rester envisageable dans un grand nombre de situations.
+              </p>
+              <p>À partir de cette ligne «&nbsp;toutes conditions&nbsp;», j'explore les variantes possibles.</p>
+              <p>Un col plutôt qu'un autre.</p>
+              <p>Une vallée différente.</p>
+              <p>Un sommet si les conditions le permettent.</p>
+              <p>Un passage plus simple si elles se dégradent.</p>
+              <p>Une étape raccourcie.</p>
+              <p>Une autre prolongée.</p>
+              <p>La préparation devient alors une sorte de kaléidoscope des options qu'offre le terrain.</p>
+              <p>Le tracé principal cesse d'être une obligation.</p>
+              <p>Il devient une possibilité parmi d'autres.</p>
+            </div>
+          </article>
+
+          <article class="raid-tool">
+            <p class="raid-tool__num">04</p>
+            <div class="raid-tool__body">
+              <h3>Préparer le terrain, les conditions et l'humain.</h3>
+              <p>Préparer une itinérance implique de confronter en permanence trois choses&nbsp;:</p>
+              <p>le terrain,<br />les conditions,<br />le groupe.</p>
+              <p>
+                La météo et la nivologie permettent d'identifier ce qui pourrait changer le cours
+                des événements.
+              </p>
+              <p>Mais il existe aussi un facteur humain.</p>
+              <p>
+                Outre le niveau physique ou technique, je m'intéresse beaucoup au «&nbsp;curseur de
+                l'aventure&nbsp;»&nbsp;: dans quelle mesure les personnes que je vais accompagner en
+                montagne ont-elles envie de composer avec des incertitudes concernant l'itinéraire,
+                les conditions ou la météo&nbsp;?
+              </p>
+              <p>Un raid à ski n'est jamais seulement une ligne sur une carte.</p>
+              <p>C'est une ligne parcourue par un groupe.</p>
+            </div>
+          </article>
+
+          <article class="raid-tool">
+            <p class="raid-tool__num">05</p>
+            <div class="raid-tool__body">
+              <h3>Conduire l'itinérance.</h3>
+              <p>
+                Une fois parti, il s'agit finalement de refaire le même travail de préparation,
+                mais en l'actualisant avec les nouvelles données issues du terrain et de l'humain.
+              </p>
+              <p>
+                La préparation en amont a normalement permis d'identifier certaines zones et
+                certaines sources d'incertitude.
+              </p>
+              <p>Le déplacement permet ensuite de les lever une à une.</p>
+              <p>
+                Il faut faire en permanence le lien entre les tracés théoriques, le terrain, les
+                conditions nivo-météorologiques et l'humain.
+              </p>
+              <p>La ligne se précise en avançant.</p>
+              <p>
+                Et en filigrane de tout ce cheminement, le plan R — comme renoncement — doit
+                toujours rester une option possible.
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 05 — PRÉPARER POUR IMPROVISER -->
+    <section class="raid-section raid-section--ink raid-section--strong">
+      <div class="site-shell raid-section__inner">
+        <p class="raid-section__kicker">Improviser</p>
+        <h2>Préparer minutieusement<br />pour pouvoir ensuite improviser.</h2>
+
+        <div class="raid-body">
+          <p>Oubliez l'impréparation.</p>
+          <p>L'improvisation est bien plus cadrée que son usage courant le laisse présupposer.</p>
+          <p>Pensez à la musique, au jazz, à Keith Jarrett.</p>
+          <p>L'improvisation est préparation, savoir-faire et expérience.</p>
+          <p>
+            Elle permet de conserver de grands degrés de liberté pour composer jusqu'à la dernière
+            minute avec les incertitudes qui s'immiscent sur le chemin du skieur itinérant.
+          </p>
+          <p>
+            S'inscrire dans l'itinérance ne se résume donc pas au tracé d'une ligne qui ne revient
+            jamais sur ses pas.
+          </p>
+          <p>C'est l'adoption d'un certain état d'esprit.</p>
+        </div>
+
+        <p class="raid-statement">Préparer minutieusement pour pouvoir ensuite improviser.</p>
+
+        <a class="raid-inline-link" href="/philosophie/">Lire la philosophie des Grands Raids à Ski →</a>
+      </div>
+    </section>
+
+    <!-- SECTION 06 — UNE LIGNE PLUTÔT QU'UN SOMMET -->
+    <section class="raid-section raid-section--white">
+      <div class="site-shell raid-section__inner">
+        <h2>Une ligne plutôt qu'un sommet.</h2>
+
+        <div class="raid-body">
+          <p>Le raid ne relève pas nécessairement du récit d'exploit.</p>
+          <p>
+            Il ne cherche ni la performance, ni l'accumulation de sommets, ni la dramatisation.
+          </p>
+          <p>Ce qui m'intéresse davantage est ce qui se joue dans la continuité d'une traversée&nbsp;:</p>
+        </div>
+
+        <blockquote class="raid-quote">
+          Relier des espaces, tenir une ligne, l'infléchir, parfois la perdre, l'abandonner ou la
+          réinventer.
+        </blockquote>
+
+        <div class="raid-body">
+          <p>
+            Certains des plus beaux raids que j'ai parcourus n'avaient d'ailleurs aucun sommet
+            majeur comme objectif.
+          </p>
+          <p>Un col peut suffire à organiser une traversée.</p>
+          <p>Un village peut devenir une étape.</p>
+          <p>Une cabane peut devenir la destination de la journée.</p>
+          <p>
+            La montagne cesse alors d'être une collection d'objectifs verticaux et devient un
+            territoire dans lequel on se déplace.
+          </p>
+          <p>C'est aussi ce que je retrouve chez Zwingelstein.</p>
+          <p>Dans son grand voyage de 1933, il ne cherche pas systématiquement les sommets.</p>
+          <p>Il voyage.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 07 — UNE AVENTURE COLLECTIVE -->
+    <section class="raid-section raid-section--paper">
+      <div class="site-shell raid-section__inner">
+        <h2>Le raid est une aventure collective.</h2>
+
+        <div class="raid-body">
+          <p>Un grand raid à ski est d'abord une histoire de groupe.</p>
+          <p>Avancer ensemble, décider ensemble, composer avec les limites et les envies de chacun.</p>
+          <p>L'itinérance crée un cadre&nbsp;; l'aventure naît de ce qui s'y partage.</p>
+          <p>Le rôle du guide change lui aussi.</p>
+          <p>Il n'est pas seulement celui qui connaît l'itinéraire ou celui qui marche devant.</p>
+          <p>
+            Il prépare le champ des possibles, lit le terrain, conserve des marges de manœuvre et
+            accompagne la construction progressive de la ligne.
+          </p>
+        </div>
+
+        <blockquote class="raid-quote">L'improvisation est collective ou n'est pas.</blockquote>
+      </div>
+    </section>
+
+    <!-- SECTION 08 — TRAVERSER UN TERRITOIRE (raid anthropologique) -->
+    <section class="raid-section raid-section--white">
+      <div class="site-shell raid-section__inner">
+        <p class="raid-section__kicker">Au-delà de la ligne</p>
+        <h2>Traverser un territoire,<br />pas seulement une montagne.</h2>
+
+        <div class="raid-body">
+          <p>
+            Cette manière de pratiquer le raid m'a également conduit à imaginer ce que j'ai appelé
+            des «&nbsp;raids anthropologiques&nbsp;».
+          </p>
+          <p>
+            Le premier, dans le Queyras, mêlait une itinérance à ski de randonnée et la découverte
+            d'un territoire par la rencontre des personnes qui y vivent, qui y travaillent et qui,
+            en somme, font ce territoire.
+          </p>
+          <p>
+            L'itinéraire et les haltes de chaque soir avaient été pensés à la fois pour
+            l'esthétisme de la ligne tracée à ski et pour la pertinence des rencontres.
+          </p>
+          <p>
+            Nous avons traversé le Queyras de village en village, en rencontrant agriculteurs,
+            élus, hébergeurs et acteurs du tourisme.
+          </p>
+          <p>
+            Il ne s'agissait donc pas seulement de skier, mais de partager des temps d'échange et
+            de réfléchir collectivement aux transformations des territoires de montagne.
+          </p>
+          <p>
+            Cette expérience a donné naissance au film documentaire&nbsp;: Transition — un raid
+            anthropologique dans le Queyras.
+          </p>
+          <p>Elle résume aussi une dimension importante de ce que peut devenir un raid&nbsp;:</p>
+          <p>
+            non seulement traverser un relief, mais habiter momentanément un territoire, passer
+            d'un village à l'autre, rencontrer celles et ceux qui y vivent et donner une épaisseur
+            humaine à la ligne dessinée sur la carte.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 09 — DES LIGNES VÉCUES (Carnets) -->
+    <section class="raid-section raid-section--paper">
+      <div class="site-shell raid-section__inner">
+        <p class="raid-section__kicker">Carnets</p>
+        <h2>Des lignes vécues.</h2>
+
+        <div class="raid-body raid-body--intro">
+          <p>Je ne cherche pas ici à proposer des itinéraires à reproduire à l'identique.</p>
+          <p>
+            Les Carnets racontent au contraire ce qui s'est réellement passé lorsque des lignes
+            imaginées ont rencontré le terrain&nbsp;: celles qui ont fonctionné, celles qui ont dû
+            être infléchies, celles que nous avons abandonnées et celles qui sont apparues en
+            cours de route.
+          </p>
+        </div>
+
+        <div class="raid-list">
+          {
+            raidCarnets.map((carnet) => (
+              <a class="raid-list__row" href={`/${carnet.slug}/`}>
+                <span class="raid-list__title">
+                  {carnet.title}
+                  {carnet.subtitle && <span class="raid-list__subtitle"> — {carnet.subtitle}</span>}
+                </span>
+                <span class="raid-list__excerpt">{carnet.excerpt}</span>
+                <span class="raid-list__arrow">→</span>
+              </a>
+            ))
+          }
+        </div>
+
+        <a class="raid-cta" href="/carnets-de-voyage-ski/">Découvrir les carnets de voyage →</a>
+      </div>
+    </section>
+
+    <!-- SECTION 10 — LES PROCHAINS RAIDS -->
+    <section class="raid-section raid-section--white">
+      <div class="site-shell raid-section__inner">
+        <p class="raid-section__kicker">À venir</p>
+        <h2>Les prochains raids.</h2>
+
+        <div class="raid-body raid-body--intro">
+          <p>Chaque voyage est construit comme une pièce unique.</p>
+          <p>
+            Une ligne préparée au long cours, suffisamment précisément pour permettre ensuite de
+            composer avec les conditions, le territoire et le groupe.
+          </p>
+        </div>
+
+        <div class="raid-list">
+          {
+            voyages.map((voyage) => (
+              <a class="raid-list__row" href={`/${voyage.slug}/`}>
+                <span class="raid-list__title">
+                  {voyage.title}
+                  {voyage.subtitle && <span class="raid-list__subtitle"> — {voyage.subtitle}</span>}
+                </span>
+                <span class="raid-list__excerpt">{voyage.excerpt}</span>
+                <span class="raid-list__arrow">→</span>
+              </a>
+            ))
+          }
+        </div>
+
+        <a class="raid-cta" href="/prochains-voyages/">Voir les prochains voyages →</a>
+      </div>
+    </section>
+
+    <!-- SECTION 11 — FAQ -->
+    <section class="raid-section raid-section--paper raid-section--faq">
+      <div class="site-shell raid-section__inner">
+        <h2>Quelques repères.</h2>
+
+        <div class="raid-faq">
+          {
+            faq.map((item) => (
+              <div class="raid-faq__item">
+                <p class="raid-faq__q">{item.q}</p>
+                <p class="raid-faq__a">{item.a}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-shell site-footer__grid">
+      <div>
+        <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+        <p class="site-footer__statement">Explorer · improviser · rencontrer · skier.</p>
+      </div>
+
+      <div class="site-footer__links">
+        <a href="https://wa.me/33689295826">WhatsApp · +33 6 89 29 58 26</a>
+        <a href="https://www.instagram.com/yannborgnet/">Instagram</a>
+        <a href="https://www.facebook.com/yannborgnet/">Facebook</a>
+      </div>
+    </div>
+
+    <div class="site-shell site-footer__bottom">
+      <a href="/yann-borgnet-guide-haute-montagne/">Yann Borgnet · Guide de haute montagne UIAGM</a>
+      <span>© 2026</span>
+    </div>
+  </footer>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+</BaseLayout>

@@ -1,0 +1,165 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import "../../styles/voyages-index.css";
+import { voyages } from "../../data/voyages/index";
+
+const canonical = "https://lesgrandsraidsaski.com/prochains-voyages/";
+
+// Grande photo d'ouverture — distincte de la couverture Géorgie utilisée plus
+// bas dans la liste (voir data/voyages/index.ts), pour ne pas répéter deux
+// fois la même image sur cette page.
+const heroPhoto = {
+  src: "https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/georgie-svanetie-2024DSC02883.jpg",
+  alt: "Skieur de randonnée en descente dans un vaste vallon enneigé, massif du Petit Caucase, Géorgie",
+  position: "30% 75%",
+};
+---
+
+<BaseLayout
+  title="Voyages à ski de randonnée 2027 | Les Grands Raids à Ski"
+  description="Cinq voyages à ski de randonnée pour l'hiver 2027 : itinérance dans les Alpes et les montagnes du monde, avec Yann Borgnet, guide de haute montagne UIAGM."
+  canonical={canonical}
+  ogImage={heroPhoto.src}
+>
+  <Header solid />
+
+  <main>
+    <section class="voyages-index-hero">
+      <div class="site-shell">
+        <p class="voyages-index-hero__eyebrow">Les prochains voyages</p>
+
+        <div class="voyages-index-hero__grid">
+          <h1>
+            Une saison<br />
+            <em>à écrire.</em>
+          </h1>
+
+          <div>
+            <p class="voyages-index-hero__intro">
+              Cinq voyages construits autour de l'itinérance, de l'exploration
+              et de ce que le terrain voudra bien nous laisser écrire.
+            </p>
+            <a class="home-link voyages-index-hero__link" href="/voyage-ski-randonnee/">
+              Qu'est-ce qu'un voyage à ski de randonnée ? →
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="voyages-index-photo-wrap">
+      <img
+        class="voyages-index-photo"
+        src={heroPhoto.src}
+        alt={heroPhoto.alt}
+        loading="eager"
+        decoding="async"
+        style={`object-position: ${heroPhoto.position}`}
+      />
+      <p class="voyages-index-photo__badge">Hiver 2027</p>
+    </div>
+
+    <section class="voyages-index-list">
+      <div class="site-shell">
+        <div class="voyages-index-list__grid">
+        {
+          voyages.map((voyage, i) => (
+            <article
+              class:list={["voyages-index-item", { "voyages-index-item--reverse": i % 2 === 1 }]}
+            >
+              <a class="voyages-index-item__photo" href={`/${voyage.slug}/`}>
+                {voyage.cover.placeholder ? (
+                  <div class="voyages-index-item__photo-placeholder" role="img" aria-label={voyage.cover.alt}>
+                    <span>Photo à venir</span>
+                  </div>
+                ) : (
+                  <img
+                    src={voyage.cover.src}
+                    alt={voyage.cover.alt}
+                    loading="lazy"
+                    decoding="async"
+                    style={voyage.cover.position ? `object-position: ${voyage.cover.position}` : undefined}
+                  />
+                )}
+              </a>
+
+              <div class="voyages-index-item__body">
+                <p class="voyages-index-item__label">{`Voyage ${String(i + 1).padStart(2, "0")}`}</p>
+
+                {voyage.dateLabel && <p class="voyages-index-item__dates">{voyage.dateLabel}</p>}
+
+                <h2 class="voyages-index-item__title">
+                  <a href={`/${voyage.slug}/`}>{voyage.title}</a>
+                </h2>
+
+                {voyage.subtitle && <p class="voyages-index-item__subtitle">{voyage.subtitle}</p>}
+
+                <p class="voyages-index-item__excerpt">{voyage.excerpt}</p>
+
+                {(voyage.duration || voyage.country || voyage.massif) && (
+                  <p class="voyages-index-item__meta">
+                    {[voyage.duration, voyage.country, voyage.massif].filter(Boolean).join(" · ")}
+                  </p>
+                )}
+
+                <a class="voyages-index-item__link" href={`/${voyage.slug}/`}>
+                  Découvrir le voyage →
+                </a>
+              </div>
+            </article>
+          ))
+        }
+        </div>
+      </div>
+    </section>
+
+    <section class="voyages-index-cta">
+      <div class="site-shell">
+        <p class="voyages-index-cta__eyebrow">Une question sur un voyage ?</p>
+        <h2>Recevoir une fiche technique ou échanger sur le programme.</h2>
+
+        <div class="voyages-index-cta__links">
+          <a href="https://wa.me/33689295826">WhatsApp · +33 6 89 29 58 26</a>
+          <a href="/contact/">Contact</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="voyages-index-transition">
+      <div class="site-shell voyages-index-transition__inner">
+        <div>
+          <p class="voyages-index-transition__eyebrow">Les voyages passés</p>
+          <h2>
+            Les Grands Raids vécus<br />
+            laissent des traces.
+          </h2>
+        </div>
+
+        <a class="voyages-index-transition__link" href="/carnets-de-voyage-ski/">
+          Découvrir les carnets →
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-shell site-footer__grid">
+      <div>
+        <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+        <p class="site-footer__statement">Explorer · improviser · rencontrer · skier.</p>
+      </div>
+
+      <div class="site-footer__links">
+        <a href="https://wa.me/33689295826">WhatsApp · +33 6 89 29 58 26</a>
+        <a href="https://www.instagram.com/yannborgnet/">Instagram</a>
+        <a href="https://www.facebook.com/yannborgnet/">Facebook</a>
+      </div>
+    </div>
+
+    <div class="site-shell site-footer__bottom">
+      <a href="/yann-borgnet-guide-haute-montagne/">Yann Borgnet · Guide de haute montagne UIAGM</a>
+      <span>© 2026</span>
+    </div>
+  </footer>
+</BaseLayout>

@@ -12,13 +12,19 @@ type Props = {
 const { photo: img, variant = "wide" } = Astro.props;
 ---
 
-<figure class:list={["carnet-photo", `carnet-photo--${variant}`]}>
-  <img
-    src={img.src}
-    alt={img.alt}
-    loading="lazy"
-    decoding="async"
-    style={img.position ? `object-position: ${img.position}` : undefined}
-  />
+<figure class:list={["carnet-photo", `carnet-photo--${variant}`, { "carnet-photo--placeholder": img.placeholder }]}>
+  {img.placeholder ? (
+    <div class="carnet-photo__placeholder" role="img" aria-label={img.alt}>
+      <span>Photo à venir</span>
+    </div>
+  ) : (
+    <img
+      src={img.src}
+      alt={img.alt}
+      loading="lazy"
+      decoding="async"
+      style={img.position ? `object-position: ${img.position}` : undefined}
+    />
+  )}
   {img.caption && <figcaption>{img.caption}</figcaption>}
 </figure>

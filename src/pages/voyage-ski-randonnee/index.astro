@@ -1,0 +1,590 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import "../../styles/voyage-ski-randonnee.css";
+import { carnets } from "../../data/carnets/index";
+import { voyages } from "../../data/voyages/index";
+
+const canonical = "https://lesgrandsraidsaski.com/voyage-ski-randonnee/";
+
+/**
+ * Page pilier "Voyage ski de randonnée" — audit préalable de la page
+ * WordPress live (https://lesgrandsraidsaski.com/voyage-ski-randonnee/,
+ * inspectée via WebFetch avant rédaction) : texte, liens, FAQ et structure
+ * SEO déjà validés par Yann. Principe suivi : garder ses formulations
+ * réelles chaque fois qu'elles existent, ne combler avec le texte du brief
+ * que les sections absentes du live (ex. l'exemple Šar, "Habiter
+ * momentanément un territoire", "Un camp de base, parfois").
+ *
+ * Écarts volontaires avec le live WordPress, pour ne pas dupliquer /
+ * cannibaliser les pages déjà reconstruites :
+ * - Section "Deux manières de voyager" (Alpes/extra-alpins, texte
+ *   "Sortir des randos classiques" / "Complexifier l'aventure") NON reprise
+ *   ici : texte strictement identique déjà publié sur /philosophie/
+ *   (.philo-split). Remplacée par les 4 "formes de voyage" du brief.
+ * - Triptyque "Préparer / Improviser / Relier" (gammes du jazzman) NON
+ *   repris : identique à .philo-method sur /philosophie/. Remplacé par le
+ *   texte "Préparer suffisamment pour rester libre" du brief.
+ * - Pull-quote "Relier des espaces, tenir une ligne..." NON repris : déjà
+ *   la citation d'ouverture de la section "Une ligne plutôt qu'un sommet"
+ *   sur /raid-a-ski/. Remplacé par le texte "moyen de déplacement" du brief
+ *   pour la section "Qu'est-ce qu'un voyage à ski ?", avec renvoi vers
+ *   /raid-a-ski/ pour qui veut la version longue.
+ * - Newsletter (bloc MailPoet en bas de la page live) non reconstruite :
+ *   aucune infra newsletter équivalente ailleurs dans le rebuild, hors
+ *   scope de ce brief.
+ *
+ * FAQ : les 6 questions/réponses sont celles, réelles, déjà en ligne — la
+ * première ("Quelle différence entre ski de randonnée, raid à ski et
+ * voyage à ski ?") couvre exactement la distinction sémantique demandée en
+ * tête de brief, un lien vers /raid-a-ski/ y a été ajouté comme demandé.
+ *
+ * Slots image facultatifs (non renseignés à dessein, voir brief) :
+ * heroImage / territoiresImage / sarImage / conceptionImage. La page doit
+ * rester complète sans elles.
+ */
+
+const territoires = [
+  {
+    name: "Alpes",
+    text: "Traversées transalpines, refuges, bivouacs et vallées secondaires. L'enjeu est souvent de retrouver des espaces en marge au sein d'un massif très parcouru.",
+  },
+  {
+    name: "Balkans & Caucase",
+    text: "Des massifs où le voyage peut se construire au contact des villages, avec une logistique locale et des itinéraires beaucoup moins standardisés.",
+  },
+  {
+    name: "Asie centrale",
+    text: "Des territoires plus lointains où préparation, transferts, hébergements et parfois bivouacs deviennent indissociables du raid à ski lui-même.",
+  },
+];
+
+const vsrCarnets = ["bernina-tour-massif-ski-randonnee", "traversee-ski-argentera-mercantour", "kosovo"]
+  .map((slug) => carnets.find((c) => c.slug === slug))
+  .filter((c): c is NonNullable<typeof c> => Boolean(c));
+
+const faq = [
+  {
+    q: "Quelle différence entre ski de randonnée, raid à ski et voyage à ski ?",
+    a: "Le ski de randonnée désigne la pratique. Le raid à ski est une itinérance de plusieurs jours. J'emploie « voyage à ski » lorsque la traversée ne se résume pas à l'enchaînement des étapes : découverte d'un territoire, villages, hébergements, rencontres et logistique font partie de l'expérience.",
+    link: { href: "/raid-a-ski/", label: "En savoir plus sur le raid à ski →" },
+  },
+  {
+    q: "Quelle différence entre un raid alpin et un voyage à ski à l'étranger ?",
+    a: "Dans les Alpes, je cherche surtout les espaces en marge des itinéraires classiques et les possibilités de construire une ligne continue. À l'étranger, la logistique devient une composante plus importante : trouver des hébergements, relier des villages, organiser les transferts et travailler avec des contacts locaux.",
+  },
+  {
+    q: "Combien de jours dure un raid à ski ?",
+    a: "La plupart des itinérances proposées se déroulent sur plusieurs jours consécutifs. La durée exacte dépend du massif, des possibilités d'hébergement, des transferts et de la longueur de la traversée. Elle est indiquée sur chaque fiche voyage.",
+  },
+  {
+    q: "Quel niveau de ski faut-il ?",
+    a: "Il faut être à l'aise en ski hors-piste dans des neiges variées et disposer d'une expérience du ski de randonnée. Les exigences d'endurance et de technicité varient ensuite fortement d'un voyage à l'autre.",
+  },
+  {
+    q: "Pourquoi partir avec un guide de haute montagne UIAGM ?",
+    a: "Sur une itinérance, le rôle du guide consiste à préparer puis à adapter une ligne sur plusieurs jours en fonction du terrain, des conditions nivologiques et météorologiques et du groupe. Sur les voyages lointains, cette préparation inclut également une part importante de logistique locale.",
+  },
+  {
+    q: "Peut-on rejoindre un voyage seul ?",
+    a: "Oui. Les départs programmés permettent de rejoindre un petit groupe. Pour un groupe déjà constitué, un projet privé peut aussi être construit autour d'une destination ou d'une traversée.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.a,
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title="Voyage ski de randonnée | Alpes et montagnes du monde"
+  description="Voyager à ski de randonnée pour traverser et découvrir les Alpes et les montagnes du monde : itinérance, refuges, villages, rencontres et voyages guidés par Yann Borgnet."
+  canonical={canonical}
+>
+  <Header solid />
+
+  <main>
+    <!-- HERO -->
+    <section class="vsr-hero">
+      <div class="site-shell">
+        <p class="vsr-hero__kicker">Voyager à ski</p>
+        <h1>Voyage ski de randonnée</h1>
+        <p class="vsr-hero__tagline">Découvrir des territoires, skis aux pieds.</p>
+
+        <div class="vsr-hero__intro">
+          <p>
+            Des traversées de plusieurs jours pour relier des vallées, des villages, des refuges
+            ou des bivouacs. Le ski comme moyen de voyage, dans les Alpes et bien au-delà.
+          </p>
+        </div>
+
+        <a class="vsr-cta" href="/prochains-voyages/">Voir les voyages à ski →</a>
+      </div>
+    </section>
+
+    <!-- SECTION 01 — QU'EST-CE QU'UN VOYAGE À SKI DE RANDONNÉE ? -->
+    <section class="vsr-section vsr-section--white">
+      <div class="site-shell vsr-section__inner">
+        <p class="vsr-section__kicker">Voyager</p>
+        <h2>Le ski de randonnée<br />comme moyen de déplacement.</h2>
+
+        <div class="vsr-body">
+          <p>
+            Un voyage à ski de randonnée commence lorsque le ski cesse d'être uniquement une
+            activité pratiquée autour d'un point de départ et devient un moyen de déplacement.
+          </p>
+          <p>On ne chausse plus seulement pour gravir puis redescendre un sommet.</p>
+          <p>On se déplace.</p>
+          <p>
+            On relie une vallée à une autre, un refuge à un village, une cabane à un col, parfois
+            un pays à un autre.
+          </p>
+          <p>Le déplacement devient alors une partie essentielle du voyage.</p>
+          <p>
+            Le ski permet d'entrer dans des territoires qui, l'hiver, sont parfois presque coupés
+            du reste du monde. Il donne accès à des villages, des vallées et des montagnes que
+            l'on ne regarderait probablement pas de la même manière depuis une route.
+          </p>
+          <p>Il permet aussi de ralentir.</p>
+          <p>
+            La distance n'est plus seulement mesurée en kilomètres ou en dénivelé&nbsp;: elle se
+            mesure en journées, en étapes, en lumières, en repas partagés, en changements de neige
+            et en rencontres.
+          </p>
+        </div>
+
+        <a class="vsr-inline-link" href="/raid-a-ski/">Comment se construit une ligne : le raid à ski →</a>
+      </div>
+    </section>
+
+    <!-- SECTION 02 — PLUSIEURS MANIÈRES DE VOYAGER À SKI -->
+    <section class="vsr-section vsr-section--paper">
+      <div class="site-shell vsr-section__inner">
+        <p class="vsr-section__kicker">Formes du voyage</p>
+        <h2>Une pratique,<br />plusieurs manières de partir.</h2>
+
+        <div class="vsr-body vsr-body--intro">
+          <p>Un voyage à ski de randonnée ne prend pas nécessairement une forme unique.</p>
+          <p>
+            Ce site accorde une place centrale à l'itinérance, mais selon le territoire, les
+            conditions, le groupe ou la logistique, plusieurs formes peuvent se combiner.
+          </p>
+        </div>
+
+        <div class="vsr-forms">
+          <article class="vsr-form">
+            <p class="vsr-form__num">01</p>
+            <div class="vsr-form__body">
+              <h3>La traversée</h3>
+              <p>Changer de vallée ou de massif au fil des jours.</p>
+              <p>Le point de départ et le point d'arrivée sont différents.</p>
+              <p>La progression géographique donne sa cohérence au voyage.</p>
+              <a class="vsr-inline-link vsr-inline-link--tight" href="/raid-a-ski/">
+                Comprendre comment se construit un raid à ski →
+              </a>
+            </div>
+          </article>
+
+          <article class="vsr-form">
+            <p class="vsr-form__num">02</p>
+            <div class="vsr-form__body">
+              <h3>De village en village</h3>
+              <p>
+                Une forme que je privilégie particulièrement hors des Alpes. Les étapes à ski
+                relient des lieux habités&nbsp;; les hébergements, les repas, les rencontres et les
+                transferts éventuels deviennent une partie du voyage.
+              </p>
+            </div>
+          </article>
+
+          <article class="vsr-form">
+            <p class="vsr-form__num">03</p>
+            <div class="vsr-form__body">
+              <h3>Refuges, cabanes et bivouacs</h3>
+              <p>
+                La forme classique du raid à ski dans les Alpes&nbsp;: plusieurs étapes reliées
+                sans retour au point de départ. Elle permet de traverser un massif avec un sac
+                relativement léger et de conserver une grande continuité.
+              </p>
+              <p>
+                Lorsque la géographie l'impose, une ou plusieurs nuits sous tente ou en bivouac
+                permettent de prolonger la ligne. L'autonomie augmente le poids du sac et change
+                nettement l'engagement du voyage.
+              </p>
+            </div>
+          </article>
+
+          <article class="vsr-form">
+            <p class="vsr-form__num">04</p>
+            <div class="vsr-form__body">
+              <h3>Un camp de base, parfois</h3>
+              <p>Tous les territoires ne se prêtent pas à une traversée continue.</p>
+              <p>
+                Il peut être plus pertinent de rester quelques nuits au même endroit pour explorer
+                plusieurs vallées avant de reprendre l'itinérance.
+              </p>
+              <p>Le format doit rester au service du territoire et des conditions, jamais l'inverse.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 03 — DES ALPES AUX MONTAGNES DU MONDE -->
+    <section class="vsr-section vsr-section--white">
+      <div class="site-shell vsr-section__inner">
+        <p class="vsr-section__kicker">Territoires</p>
+        <h2>Les Alpes.<br />Et beaucoup plus loin.</h2>
+
+        <div class="vsr-body">
+          <p>Les Alpes constituent un formidable territoire de voyage à ski.</p>
+          <p>
+            Le maillage des vallées, des cols, des refuges et des bivouacs permet d'imaginer une
+            infinité de traversées.
+          </p>
+          <p>Mais le ski de randonnée est également un formidable moyen de découvrir d'autres montagnes.</p>
+          <p>Le Caucase, les Balkans ou l'Asie centrale obligent à penser le voyage différemment.</p>
+          <p>Les cartes sont parfois approximatives.</p>
+          <p>Les refuges disparaissent.</p>
+          <p>Les villages deviennent des étapes.</p>
+          <p>Les transferts, les hébergements ou les repas se construisent avec les habitants.</p>
+          <p>Et l'itinéraire ne traverse plus uniquement une montagne.</p>
+          <p>Il traverse un territoire.</p>
+        </div>
+
+        <div class="vsr-landmarks">
+          {
+            territoires.map((t) => (
+              <div class="vsr-landmark">
+                <p class="vsr-landmark__name">{t.name}</p>
+                <p class="vsr-landmark__desc">{t.text}</p>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="vsr-cta-row">
+          <a class="vsr-cta" href="/prochains-voyages/">Voir les destinations et dates →</a>
+          <a class="vsr-cta" href="/carnets-de-voyage-ski/">Voir les voyages déjà réalisés →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SÉQUENCE — MONTAGNES DE ŠAR -->
+    <section class="vsr-section vsr-section--archive">
+      <div class="site-shell vsr-section__inner">
+        <p class="vsr-section__kicker">Un exemple</p>
+        <h2>Neuf jours,<br />de village en village.</h2>
+
+        <div class="vsr-body">
+          <p>
+            Lorsque j'ai préparé la traversée des montagnes de Šar, entre Albanie, Kosovo et
+            Macédoine du Nord, j'ai passé des heures à étudier les cartes afin de trouver une
+            ligne traversant l'intégralité du massif à ski tout en conciliant le désir de visiter
+            les villages des trois pays frontaliers.
+          </p>
+          <p>Cette traversée a finalement été un voyage au long cours&nbsp;:</p>
+        </div>
+
+        <p class="vsr-statement">
+          neuf jours de ski, de village en village, avec des dénivelés importants et parfois de
+          longues distances à parcourir.
+        </p>
+
+        <div class="vsr-body">
+          <p>Mais ce dont je garde le souvenir dépasse largement le ski.</p>
+          <p>
+            Des mosquées et leurs appels à la prière, des cafés enfumés, des repas, des taxis
+            improbables, des discussions avec nos hôtes, des villages très différents les uns des
+            autres.
+          </p>
+          <p>
+            À mesure que nous avancions, le massif prenait une épaisseur géographique, historique
+            et humaine.
+          </p>
+          <p>C'est aussi cela, voyager à ski.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 04 — HABITER MOMENTANÉMENT UN TERRITOIRE -->
+    <section class="vsr-section vsr-section--paper">
+      <div class="site-shell vsr-section__inner">
+        <h2>Habiter momentanément<br />un territoire.</h2>
+
+        <div class="vsr-body">
+          <p>
+            Ce qui m'intéresse dans un voyage à ski dépasse largement la qualité de la neige ou la
+            beauté d'un sommet.
+          </p>
+          <p>
+            Les choix d'itinéraire, les ajustements imposés par les conditions, les relations au
+            groupe, les rencontres, les ressources locales ou encore l'épaisseur géographique,
+            historique et humaine des territoires traversés participent pleinement de
+            l'expérience.
+          </p>
+          <p>
+            Selon les voyages, cela signifie dormir dans un refuge isolé, partager un repas dans
+            une maison, traverser un village où notre présence en hiver paraît incongrue, attendre
+            un taxi, chercher du pain, discuter autour d'un poêle ou simplement observer la manière
+            dont un territoire continue à vivre sous la neige.
+          </p>
+          <p>Le voyage se construit aussi dans ces moments-là.</p>
+        </div>
+
+        <a class="vsr-inline-link" href="/philosophie/">Lire la philosophie des Grands Raids à Ski →</a>
+      </div>
+    </section>
+
+    <!-- SECTION 05 — PRÉPARER SANS TOUT ÉCRIRE À L'AVANCE -->
+    <section class="vsr-section vsr-section--white">
+      <div class="site-shell vsr-section__inner">
+        <p class="vsr-section__kicker">Préparation</p>
+        <h2>Préparer suffisamment<br />pour rester libre.</h2>
+
+        <div class="vsr-body">
+          <p>Un voyage à ski demande beaucoup de préparation.</p>
+          <p>
+            Cartes, relief, enneigement, hébergements, transports, météo, nivologie, possibilités
+            de repli&nbsp;: une grande partie du voyage se construit avant même le départ.
+          </p>
+          <p>Mais cette préparation ne sert pas à figer le programme.</p>
+          <p>
+            Elle sert au contraire à conserver suffisamment de possibilités pour pouvoir composer
+            avec le réel.
+          </p>
+          <p>Une traversée imaginée plusieurs mois auparavant rencontre nécessairement autre chose&nbsp;:</p>
+          <p>une météo,<br />une neige,<br />un groupe,<br />un territoire.</p>
+          <p>
+            Le voyage se construit dans cet écart entre ce qui avait été imaginé et ce qui devient
+            effectivement possible.
+          </p>
+        </div>
+
+        <div class="vsr-cta-row">
+          <a class="vsr-cta" href="/raid-a-ski/">Construire un raid à ski →</a>
+          <a class="vsr-inline-link vsr-inline-link--tight" href="/philosophie/">Philosophie →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 06 — NIVEAU + DURÉE + GROUPE -->
+    <section class="vsr-section vsr-section--paper">
+      <div class="site-shell vsr-section__inner">
+        <p class="vsr-section__kicker">Niveau</p>
+        <h2>Le niveau ne tient pas<br />dans un seul chiffre.</h2>
+
+        <div class="vsr-body">
+          <p>Il n'existe pas un niveau unique.</p>
+          <p>
+            Un raid de six jours en terrain peu technique peut demander davantage d'endurance
+            qu'un court séjour comportant des passages plus raides. Le niveau se lit donc à
+            travers plusieurs critères&nbsp;: dénivelé quotidien, durée des étapes, qualité de ski,
+            technicité du terrain, portage et nombre de jours consécutifs.
+          </p>
+          <p>
+            Pour profiter d'une itinérance, il faut surtout être à l'aise à ski hors-piste dans des
+            neiges variées et avoir déjà une expérience du ski de randonnée. Chaque programme
+            précise ensuite ses exigences propres.
+          </p>
+          <p>Pour un projet précis, les fiches voyage indiquent durée, dénivelé, terrain et contraintes d'itinérance.</p>
+        </div>
+
+        <a class="vsr-cta" href="/prochains-voyages/">Comparer les voyages →</a>
+
+        <h3 class="vsr-subheading">Plusieurs jours pour entrer dans le territoire.</h3>
+
+        <div class="vsr-body">
+          <p>
+            L'intérêt du raid commence lorsque les journées cessent d'être indépendantes. Le lieu
+            atteint le soir devient le point de départ du lendemain. La météo, la neige, la
+            fatigue et le groupe s'accumulent et obligent parfois à déplacer la ligne imaginée.
+          </p>
+          <p>
+            Chaque traversée se construit ainsi moins comme un programme à dérouler que comme une
+            expérience à composer, au fil des jours, avec un territoire, des conditions et un
+            groupe.
+          </p>
+        </div>
+
+        <h3 class="vsr-subheading">Voyager ensemble.</h3>
+
+        <div class="vsr-body">
+          <p>Le voyage à ski est une expérience collective.</p>
+          <p>
+            Pendant plusieurs jours, le groupe avance, mange, dort, doute, décide et s'adapte
+            ensemble.
+          </p>
+          <p>
+            Les différences de rythme, les conditions, la fatigue ou simplement les envies du jour
+            influencent nécessairement le voyage.
+          </p>
+          <p>C'est aussi pour cela que je privilégie des groupes réduits.</p>
+          <p>
+            L'itinéraire peut alors être réellement adapté au groupe au lieu d'imposer au groupe un
+            itinéraire décidé plusieurs mois auparavant. Le petit effectif facilite les décisions,
+            les adaptations, les transports locaux et l'accueil dans de petits hébergements.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 07 — VOYAGER À SKI AVEC UN GUIDE -->
+    <section class="vsr-section vsr-section--white">
+      <div class="site-shell vsr-section__inner">
+        <p class="vsr-section__kicker">Guider</p>
+        <h2>Ouvrir le champ<br />des possibles.</h2>
+
+        <div class="vsr-body">
+          <p>
+            Le rôle du guide, dans un voyage à ski, ne consiste pas uniquement à suivre un
+            itinéraire connu.
+          </p>
+          <p>Il commence bien avant le départ&nbsp;:</p>
+          <p>
+            comprendre le territoire, chercher les passages, identifier les hébergements, imaginer
+            les variantes, anticiper les conditions et construire un projet adapté au groupe.
+          </p>
+          <p>Une fois parti, ce travail continue.</p>
+          <p>
+            Les choix sont réévalués au fil des jours en fonction du terrain, de la météo, de la
+            neige et de l'état du groupe.
+          </p>
+          <p>Le guide n'est donc pas seulement celui qui connaît le chemin.</p>
+          <p>
+            Il est celui qui permet de conserver suffisamment de possibilités pour que le voyage
+            puisse continuer à se construire.
+          </p>
+        </div>
+
+        <a class="vsr-inline-link" href="/yann-borgnet-guide-haute-montagne/">
+          Yann Borgnet, guide de haute montagne et géographe →
+        </a>
+      </div>
+    </section>
+
+    <!-- SECTION 08 — LES VOYAGES À VENIR -->
+    <section class="vsr-section vsr-section--paper">
+      <div class="site-shell vsr-section__inner">
+        <p class="vsr-section__kicker">Prochains départs</p>
+        <h2>Les prochains voyages<br />à ski de randonnée.</h2>
+
+        <div class="vsr-list">
+          {
+            voyages.map((voyage) => (
+              <a class="vsr-list__row" href={`/${voyage.slug}/`}>
+                <span class="vsr-list__meta">
+                  {[voyage.dateLabel, voyage.duration].filter(Boolean).join(" · ")}
+                </span>
+                <span class="vsr-list__title">
+                  {voyage.title}
+                  {voyage.subtitle && <span class="vsr-list__subtitle"> — {voyage.subtitle}</span>}
+                </span>
+                <span class="vsr-list__excerpt">{voyage.excerpt}</span>
+                <span class="vsr-list__arrow">→</span>
+              </a>
+            ))
+          }
+        </div>
+
+        <a class="vsr-cta" href="/prochains-voyages/">Voir tous les prochains voyages →</a>
+      </div>
+    </section>
+
+    <!-- SECTION 09 — LES VOYAGES DÉJÀ VÉCUS -->
+    <section class="vsr-section vsr-section--white">
+      <div class="site-shell vsr-section__inner">
+        <p class="vsr-section__kicker">Carnets</p>
+        <h2>Les voyages laissent des traces.</h2>
+
+        <div class="vsr-body vsr-body--intro">
+          <p>
+            Les itinéraires projetés ne racontent jamais complètement ce qu'un voyage devient
+            réellement.
+          </p>
+          <p>
+            Les Carnets rassemblent les traces laissées par ces itinérances&nbsp;: un récit, des
+            photographies, une ligne, des étapes et ce qui s'est passé lorsque le projet a
+            rencontré le terrain.
+          </p>
+        </div>
+
+        <div class="vsr-list">
+          {
+            vsrCarnets.map((carnet) => (
+              <a class="vsr-list__row" href={`/${carnet.slug}/`}>
+                <span class="vsr-list__title">
+                  {carnet.title}
+                  {carnet.subtitle && <span class="vsr-list__subtitle"> — {carnet.subtitle}</span>}
+                </span>
+                <span class="vsr-list__excerpt">{carnet.excerpt}</span>
+                <span class="vsr-list__arrow">→</span>
+              </a>
+            ))
+          }
+        </div>
+
+        <a class="vsr-cta" href="/carnets-de-voyage-ski/">Découvrir tous les carnets →</a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="vsr-section vsr-section--paper vsr-section--faq">
+      <div class="site-shell vsr-section__inner">
+        <h2>Questions fréquentes.</h2>
+
+        <div class="vsr-faq">
+          {
+            faq.map((item) => (
+              <div class="vsr-faq__item">
+                <p class="vsr-faq__q">{item.q}</p>
+                <p class="vsr-faq__a">{item.a}</p>
+                {item.link && (
+                  <a class="vsr-inline-link vsr-inline-link--tight" href={item.link.href}>
+                    {item.link.label}
+                  </a>
+                )}
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="vsr-cta-row">
+          <a class="vsr-cta" href="/prochains-voyages/">Voir les voyages à ski →</a>
+          <a class="vsr-cta" href="/contact/">Parler d'un projet →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-shell site-footer__grid">
+      <div>
+        <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+        <p class="site-footer__statement">Explorer · improviser · rencontrer · skier.</p>
+      </div>
+
+      <div class="site-footer__links">
+        <a href="https://wa.me/33689295826">WhatsApp · +33 6 89 29 58 26</a>
+        <a href="https://www.instagram.com/yannborgnet/">Instagram</a>
+        <a href="https://www.facebook.com/yannborgnet/">Facebook</a>
+      </div>
+    </div>
+
+    <div class="site-shell site-footer__bottom">
+      <a href="/yann-borgnet-guide-haute-montagne/">Yann Borgnet · Guide de haute montagne UIAGM</a>
+      <span>© 2026</span>
+    </div>
+  </footer>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+</BaseLayout>

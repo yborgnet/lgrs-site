@@ -1,0 +1,358 @@
+/* === PAGE VOYAGE SKI DE RANDONNÉE (/voyage-ski-randonnee/) === */
+/* Page pilier éditoriale — même vocabulaire graphique que raid-a-ski.css /
+   philosophie.css (tokens de global.css, classes propres .vsr-*).
+   Pas de cartes commerciales, pas d'ombres, pas de gros CTA.
+   DESKTOP D'ABORD pour cette passe (voir brief). */
+
+/* HERO — plus court que /raid-a-ski/ : reprend le hero réel, déjà validé,
+   du site WordPress live plutôt qu'un long texte d'ouverture. */
+
+.vsr-hero {
+  background: var(--paper);
+  padding: 100px 0 84px;
+}
+
+.vsr-hero__kicker {
+  margin: 0 0 28px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  opacity: .56;
+}
+
+.vsr-hero h1 {
+  margin: 0 0 20px;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(52px, 7.4vw, 96px);
+  line-height: .98;
+  letter-spacing: -.03em;
+}
+
+.vsr-hero__tagline {
+  max-width: 700px;
+  margin: 0 0 40px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height: 1.3;
+  opacity: .88;
+}
+
+.vsr-hero__intro {
+  max-width: 600px;
+  margin-bottom: 36px;
+}
+
+.vsr-hero__intro p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+/* SECTIONS GÉNÉRIQUES — mêmes gabarits que raid-a-ski.css, pour une
+   cohérence immédiate entre les deux pages. */
+
+.vsr-section {
+  padding: 104px 0;
+}
+
+.vsr-section--white {
+  background: var(--white);
+}
+
+.vsr-section--paper {
+  background: var(--paper);
+}
+
+.vsr-section--faq {
+  padding: 96px 0 112px;
+}
+
+.vsr-section--archive {
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.vsr-section__inner {
+  max-width: 760px;
+}
+
+.vsr-section__kicker {
+  margin: 0 0 20px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  opacity: .5;
+}
+
+.vsr-section h2 {
+  margin: 0 0 44px;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(34px, 4vw, 52px);
+  line-height: 1.08;
+  letter-spacing: -.02em;
+}
+
+.vsr-subheading {
+  margin: 56px 0 28px;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(24px, 2.6vw, 32px);
+  line-height: 1.15;
+  letter-spacing: -.015em;
+}
+
+/* CORPS DE TEXTE */
+
+.vsr-body p {
+  margin: 0 0 20px;
+  font-size: 17px;
+  line-height: 1.75;
+  opacity: .86;
+}
+
+.vsr-body p:last-child {
+  margin-bottom: 0;
+}
+
+.vsr-body--intro p {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  line-height: 1.5;
+  font-weight: 300;
+  opacity: 1;
+}
+
+.vsr-statement {
+  max-width: 780px;
+  margin: 16px 0 28px;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-style: italic;
+  font-size: clamp(24px, 2.6vw, 34px);
+  line-height: 1.35;
+  letter-spacing: -.01em;
+  padding-left: 28px;
+  border-left: 2px solid var(--warm);
+}
+
+/* LIENS DISCRETS + CTA */
+
+.vsr-inline-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 36px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid currentColor;
+  font-size: 14px;
+  font-weight: 500;
+  opacity: .68;
+}
+
+.vsr-inline-link:hover {
+  opacity: 1;
+}
+
+.vsr-inline-link--tight {
+  margin-top: 18px;
+}
+
+.vsr-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 36px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid currentColor;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.vsr-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 40px;
+}
+
+.vsr-cta-row .vsr-cta,
+.vsr-cta-row .vsr-inline-link {
+  margin-top: 36px;
+}
+
+/* FORMES DU VOYAGE — même gabarit que .raid-tools (grands numéros légers,
+   filets fins), sans reproduire la même grille de colonnes. */
+
+.vsr-forms {
+  margin-top: 60px;
+  max-width: 720px;
+}
+
+.vsr-form {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 0 40px;
+  padding: 44px 0;
+  border-top: 1px solid var(--line);
+}
+
+.vsr-form:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.vsr-form__num {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: 58px;
+  line-height: 1;
+  letter-spacing: -.02em;
+  opacity: .22;
+}
+
+.vsr-form__body h3 {
+  margin: 0 0 16px;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 24px;
+  letter-spacing: -.01em;
+}
+
+.vsr-form__body p {
+  margin: 0 0 14px;
+  font-size: 16px;
+  line-height: 1.7;
+  opacity: .86;
+}
+
+.vsr-form__body p:last-of-type {
+  margin-bottom: 0;
+}
+
+/* TERRITOIRES — trois repères sobres, même logique que .raid-landmarks. */
+
+.vsr-landmarks {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin: 48px 0 8px;
+  padding: 36px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.vsr-landmark__name {
+  margin: 0 0 10px;
+  font-family: var(--font-serif);
+  font-size: 19px;
+  font-weight: 400;
+}
+
+.vsr-landmark__desc {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  opacity: .72;
+}
+
+/* LISTES ÉDITORIALES — Voyages à venir / Carnets. */
+
+.vsr-list {
+  margin-top: 56px;
+  max-width: 760px;
+}
+
+.vsr-list__row {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 24px;
+  align-items: baseline;
+  gap: 6px 24px;
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+  color: inherit;
+}
+
+.vsr-list__row:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.vsr-list__meta {
+  grid-column: 1 / -1;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  opacity: .48;
+}
+
+.vsr-list__title {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.vsr-list__subtitle {
+  font-weight: 300;
+  opacity: .68;
+}
+
+.vsr-list__excerpt {
+  font-size: 15px;
+  line-height: 1.6;
+  opacity: .72;
+}
+
+.vsr-list__arrow {
+  justify-self: end;
+  font-size: 16px;
+  opacity: .5;
+  transition: opacity .15s ease, transform .15s ease;
+}
+
+.vsr-list__row:hover .vsr-list__arrow {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+/* FAQ */
+
+.vsr-faq {
+  margin-top: 48px;
+  max-width: 760px;
+}
+
+.vsr-faq__item {
+  padding: 32px 0;
+  border-top: 1px solid var(--line);
+}
+
+.vsr-faq__item:last-child {
+  border-bottom: 1px solid var(--line);
+}
+
+.vsr-faq__q {
+  margin: 0 0 12px;
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.vsr-faq__a {
+  margin: 0;
+  max-width: 640px;
+  font-size: 16px;
+  line-height: 1.7;
+  opacity: .8;
+}
+
+.vsr-faq__item .vsr-inline-link {
+  margin-top: 16px;
+}

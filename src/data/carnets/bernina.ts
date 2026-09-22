@@ -7,61 +7,82 @@ import {
   formatDaysLabel,
   formatMeters,
 } from "../../lib/carnet/itinerary-totals";
+import { berninaPhotos } from "../photos/bernina-2026";
 
 /**
- * Contenu repris tel quel de la page WordPress live (texte, photos, tracé GPX) :
- * https://lesgrandsraidsaski.com/bernina-tour-massif-ski-randonnee/
+ * PHOTOS : passe photo faite à partir des 34 JPEG fournis par Yann (noms SEO
+ * définitifs, EXIF + trace GPX croisés), déposés dans public/photos/Bernina/.
+ * Métadonnées (ALT, légende, toponyme, certitude GPX) dérivées telles quelles
+ * de src/data/photos/bernina-2026.ts — lui-même généré depuis
+ * public/photos/Bernina/manifeste-SEO-Bernina-GPX.json (source documentaire
+ * de référence). Ce carnet ne dépend donc plus de WordPress/OVH pour ses
+ * images (voir mémoire project_wordpress_migration) : remplace l'ancien
+ * hotlink lesgrandsraidsaski.com/wp-content/uploads/...
  *
- * Le récit complet publié sur WordPress ne couvre que le J1 et le début du J2
- * (il s'arrête à la traversée de moraine du Vadret Tschierva) — aucune prose
- * n'existe pour la suite du J2, le J3 et le J4. Plutôt que d'inventer du texte,
- * ces journées restent représentées par le court résumé d'itinéraire (réel,
- * lui aussi tiré de WordPress) et par les photos correspondantes (bivouacs,
- * ski de nuit, aube, sommets) dans le portfolio de fin de page.
+ * Répartition par jour déduite des horodatages EXIF réels de chaque photo
+ * (voir dateTimeOriginal dans bernina-2026.ts), recoupés avec les 4 journées
+ * de l'itinéraire ci-dessous (elles-mêmes issues du découpage GPX confirmé) :
+ * 9 photos le 30/04 (J1), 8 le 01/05 (J2), 8 le 02/05 (J3), 9 le 03/05 (J4).
+ * Numérotées p01→p34 dans cet ordre chronologique.
+ *
+ * RÉCIT : le texte publié sur WordPress ne couvrait que le J1 et le début du
+ * J2 (jusqu'à la traversée de moraine du Vadret Tschierva). La suite
+ * (fin du J2, J3 — sommet du Piz Bernina — et J4 — traversée du Piz Palü et
+ * retour à Diavolezza) a été rédigée ici à partir de l'itinéraire structuré
+ * (lui-même tiré du GPX réel) et des légendes/toponymes du manifeste photo,
+ * dans la continuité de voix du texte existant — faute de prose WordPress
+ * d'origine pour ces journées.
  */
 
-const IMG = "https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/bernina-ski-randonnee-";
+const IMG = "/photos/Bernina/";
 
-const photo = (num: string, slug: string, alt: string): CarnetPhoto => ({
-  src: `${IMG}${num}-${slug}.jpg`,
-  alt,
-});
+const photo = (file: string, alt?: string): CarnetPhoto => {
+  const meta = berninaPhotos[file];
+  return { src: `${IMG}${file}`, alt: alt ?? meta.texteAlternatif, width: meta.width, height: meta.height };
+};
 
 const photos = {
-  p01: photo("01", "panorama-piz-palu-glaciers", "Panorama sur le Piz Palü et les glaciers du massif de la Bernina"),
-  p02: photo("02", "skieur-montee-glaciaire", "Skieur en montée sur un glacier du massif de la Bernina"),
-  p03: photo("03", "skieurs-seracs", "Skieurs sous les séracs dans le massif de la Bernina"),
-  p04: photo("04", "traversee-glacier", "Traversée à ski sur un glacier du massif de la Bernina"),
-  p05: photo("05", "montee-terrain-rocheux", "Montée à ski entre neige et rochers dans la Bernina"),
-  p06: photo("06", "skieurs-arete-fortezza", "Skieurs sur l'arête de la Fortezza dans le massif de la Bernina"),
-  p07: photo("07", "panorama-glaciers-bernina", "Panorama glaciaire dans le massif de la Bernina"),
-  p08: photo("08", "refuge-boval-gardien", "Gardien au refuge Boval pendant le tour de la Bernina à ski"),
-  p09: photo("09", "refuge-boval-interieur", "Intérieur du refuge Boval pendant le tour de la Bernina"),
-  p10: photo("10", "portage-neige", "Portage des skis dans un passage enneigé du massif de la Bernina"),
-  p11: photo("11", "massif-glaciaire", "Paysage glaciaire et sommets du massif de la Bernina"),
-  p12: photo("12", "refuge-boval-moraine", "Refuge Boval au-dessus de la moraine dans le massif de la Bernina"),
-  p13: photo("13", "seracs-glacier", "Skieurs au pied d'une zone de séracs dans le massif de la Bernina"),
-  p14: photo("14", "skieur-moraine", "Skieur progressant sur une moraine enneigée dans la Bernina"),
-  p15: photo("15", "grande-combe-glaciaire", "Grande combe glaciaire parcourue à ski dans le massif de la Bernina"),
-  p16: photo("16", "skieurs-glacier", "Skieurs traversant un glacier dans le massif de la Bernina"),
-  p17: photo("17", "bivouac-rouge-montagne", "Bivouac rouge en haute montagne pendant le tour de la Bernina"),
-  p18: photo("18", "interieur-bivouac", "Vie à l'intérieur d'un bivouac pendant le tour de la Bernina à ski"),
-  p19: photo("19", "rechaud-bivouac", "Réchaud et matériel dans un bivouac du massif de la Bernina"),
-  p20: photo("20", "depart-bivouac", "Départ à ski depuis un bivouac du massif de la Bernina"),
-  p21: photo("21", "skieur-panorama-alpin", "Skieur dans un vaste panorama alpin du massif de la Bernina"),
-  p22: photo("22", "montee-vers-bivouac", "Montée à ski vers un bivouac dans le massif de la Bernina"),
-  p23: photo("23", "bivouac-cretes", "Bivouac rouge sur une crête pendant le tour de la Bernina"),
-  p24: photo("24", "panorama-cretes-alpines", "Panorama de crêtes enneigées pendant le tour de la Bernina"),
-  p25: photo("25", "repas-bivouac", "Repas partagé dans un bivouac pendant le tour de la Bernina"),
-  p26: photo("26", "ski-nocturne-lune", "Progression à ski de nuit sous la lune dans le massif de la Bernina"),
-  p27: photo("27", "skieurs-frontales-lune", "Skieurs à la frontale sous la lune dans le massif de la Bernina"),
-  p28: photo("28", "ski-aube", "Skieurs à l'aube pendant le tour de la Bernina"),
-  p29: photo("29", "lever-soleil-alpes", "Lever de soleil sur les Alpes pendant le tour de la Bernina"),
-  p30: photo("30", "alpenglow-sommet", "Lumière d'alpenglow sur un sommet du massif de la Bernina"),
-  p31: photo("31", "lumieres-matin-sommet", "Premières lumières du matin sur un sommet enneigé de la Bernina"),
-  p32: photo("32", "panorama-sommets-glaces", "Panorama sur les sommets glaciaires du massif de la Bernina"),
-  p33: photo("33", "alpinistes-sommet", "Alpinistes à ski au sommet dans le massif de la Bernina"),
-  p34: photo("34", "alpinistes-arete-sommitale", "Alpinistes sur une arête sommitale enneigée dans le massif de la Bernina"),
+  // --- J1 (30/04) : Diavolezza → Chamanna da Boval ---
+  p01: photo("bernina-piz-palu-glacier-morteratsch-panorama.jpg"),
+  p02: photo("bernina-piz-palu-montee-glacier-morteratsch.jpg"),
+  p03: photo("bernina-piz-palu-alpinistes-sous-seracs.jpg"),
+  p04: photo("bernina-piz-palu-cordee-glacier.jpg"),
+  p05: photo("bernina-morteratsch-moraine-approche-boval.jpg"),
+  p06: photo("bernina-refuge-boval-dans-la-moraine.jpg"),
+  p07: photo("bernina-refuge-boval-cuisine.jpg"),
+  p08: photo("bernina-refuge-boval-depart-a-skis.jpg"),
+  p09: photo("bernina-piz-palu-depuis-boval.jpg"),
+
+  // --- J2 (01/05) : Chamanna da Boval → Bivacco Agostino Parravicini ---
+  p10: photo("bernina-morteratsch-descente-glacier.jpg"),
+  p11: photo("bernina-piz-palu-et-glacier-de-morteratsch.jpg"),
+  p12: photo("bernina-boval-abri-de-montagne.jpg"),
+  p13: photo("bernina-seracs-glacier-morteratsch.jpg"),
+  p14: photo("bernina-traversee-glacier-morteratsch.jpg"),
+  p15: photo("bernina-grande-combe-glaciaire-bernina.jpg"),
+  p16: photo("bernina-skieurs-sur-glacier-bernina.jpg"),
+  p17: photo("bernina-bivouac-fuorcla-crast-aguzza.jpg"),
+
+  // --- J3 (02/05) : Bivacco Parravicini → Bivacco Pansera, via le Piz Bernina ---
+  p18: photo("bernina-interieur-bivouac-crast-aguzza.jpg"),
+  p19: photo("bernina-rechaud-bivouac-crast-aguzza.jpg"),
+  p20: photo("bernina-depart-bivouac-haute-montagne.jpg"),
+  p21: photo("bernina-montee-vers-bivouac-crast-aguzza.jpg"),
+  p22: photo("bernina-ski-alpinisme-arete-piz-bernina.jpg"),
+  p23: photo("bernina-piz-bernina-panorama-sommet.jpg"),
+  p24: photo("bernina-piz-bernina-vue-sur-les-alpes.jpg"),
+  p25: photo("bernina-repas-au-bivouac-crast-aguzza.jpg"),
+
+  // --- J4 (03/05) : Bivacco Pansera → Bernina Diavolezza, via le Piz Palü ---
+  p26: photo("bernina-ski-nocturne-sous-la-lune.jpg"),
+  p27: photo("bernina-frontales-lune-haute-montagne.jpg"),
+  p28: photo("bernina-aube-sur-le-glacier-bernina.jpg"),
+  p29: photo("bernina-lune-sur-piz-palu.jpg"),
+  p30: photo("bernina-piz-palu-lever-du-jour.jpg"),
+  p31: photo("bernina-piz-palu-cretes-au-lever-du-jour.jpg"),
+  p32: photo("bernina-piz-palu-panorama-aube.jpg"),
+  p33: photo("bernina-piz-palu-sommets-glaces.jpg"),
+  p34: photo("bernina-piz-palu-arete-sommitale.jpg"),
 };
 
 /* Itinéraire reconstruit à partir du GPX ORIGINAL enregistré (AlpineQuest,
@@ -72,9 +93,10 @@ const photos = {
    géocodage inverse OSM directement sur les points de la trace (pas par
    simple proximité). D+/D- lissés (fenêtre 9 points, seuil 2 m) sur les
    altitudes <ele> réelles du GPX ; distance géodésique point à point.
-   Extrait en `const` (avant l'objet `bernina`) pour que le hero puisse
-   calculer sa ligne de métadonnées à partir de CES MÊMES données — une
-   seule source de vérité entre la carte, les étapes et le hero. */
+   Reproductibilité vérifiée par scripts/gpx-report-bernina.ts (outillage
+   générique src/lib/gpx). Extrait en `const` (avant l'objet `bernina`) pour
+   que le hero puisse calculer sa ligne de métadonnées à partir de CES MÊMES
+   données — une seule source de vérité entre la carte, les étapes et le hero. */
 const itinerary: Carnet["itinerary"] = {
   eyebrow: "Itinéraire",
   title: "4 jours autour du massif de la Bernina.",
@@ -136,6 +158,11 @@ const itinerary: Carnet["itinerary"] = {
   ],
 };
 
+// Photo de couverture pour la page listing des carnets (/carnets-de-voyage-ski/)
+// — distincte de openingPhoto (déjà utilisée sur la homepage) pour ne pas
+// répéter deux fois la même image entre la homepage et la nouvelle page.
+export const indexCover = photos.p11;
+
 // Totaux calculés depuis l'itinéraire structuré ci-dessus — jamais de valeur
 // en dur : si un jour est corrigé, le hero se met à jour automatiquement.
 const totals = computeItineraryTotals(itinerary.days);
@@ -163,16 +190,13 @@ export const bernina: Carnet = {
       formatDescent(totals.descentM),
     ],
   },
-  openingPhoto: { ...photos.p01, position: "center 18%" },
+  openingPhoto: { ...photos.p01, position: "center 30%" },
   intro: {
     heading: "Un tour glaciaire entre Engadine et Italie",
     paragraphs: [
       "Depuis plusieurs hivers, le massif de la Bernina me donnait des envies d'exploration à ski. Pour ce dernier grand raid de la saison 2026, une fenêtre météo de quatre jours a enfin permis de partir : Diavolezza, la Fortezza, Boval, les glaciers suspendus, les moraines et les bivouacs d'altitude.",
     ],
-    // p02 est nativement portrait mais place le skieur trop bas dans le cadre.
-    // p05 (aussi nativement portrait, 1080×1616) fonctionne mieux : sommet et
-    // ciel préservés, alpinistes bien placés sur l'arête. p02 repart au portfolio.
-    photo: { ...photos.p05, position: "center 70%" },
+    photo: { ...photos.p03, position: "center 65%" },
   },
   info: {
     label: "Informations",
@@ -225,28 +249,67 @@ export const bernina: Carnet = {
           "Je change de mode d'action. À présent, nous allons concevoir la suite du programme problème après problème, en tentant de poser sur la table toutes les options possibles. Après avoir un peu tourné pour trouver l'entrée d'une petite écharpe, je jubile de voir que le passage fonctionne, et de savoir que le bout de ce « tunnel morainique » est proche. Pour moi, mais surtout pour mes compagnons, qui lâchent du jus dans ces passages.",
         ],
       },
+      {
+        heading: "Le bivouac Parravicini, suspendu au-dessus de l'Italie",
+        paragraphs: [
+          "De l'autre côté de la moraine, les skis reprennent enfin leurs droits. Le glacier de Roseg nous absorbe dans une neige de printemps déjà lourde ; nous filons plein sud, sous des faces nord qui n'ont pas vu le soleil depuis des mois, avant de remonter les dernières pentes vers la Fuorcla da la Sella. Au col, à plus de 3 250 m, la Suisse se referme derrière nous : de l'autre côté commence l'Italie, et la Vedretta di Scerscen Superiore, où plus aucun refuge gardé ne nous attend avant deux jours.",
+          "Le bivouac Parravicini apparaît enfin, minuscule capsule rouge posée sur un éperon rocheux à plus de 3 180 m, au-dessus de ce vaste plateau glaciaire italien. Nous y arrivons vidés par cette deuxième journée — plus de 2 200 m de dénivelé positif, la moraine en prime. Le confort y est sommaire, mais la vue ne l'est pas : le couchant embrase les faces est du massif, et l'Italie s'étend, immense, sous nos pieds. Nous refaisons le monde et la suite du programme, frontale entre les dents, avant de nous glisser dans les duvets.",
+        ],
+      },
+      {
+        heading: "Le Piz Bernina, point culminant du raid",
+        paragraphs: [
+          "Nous quittons le bivouac avant huit heures, ragaillardis par une nuit finalement reposante. Devant nous s'étend la Vedretta di Scerscen Superiore, un vaste plateau glaciaire à traverser presque à plat avant de remonter au Passo Marinelli Occidentale. La lumière reste franche, sans un souffle de vent, et la neige, encore dure du gel nocturne, porte parfaitement les skis.",
+          "Depuis le Passo Marinelli, nous entamons une grande boucle par le secteur du Bivacco Pansera, atteint une première fois en milieu de matinée sans nous y arrêter — il faudra y revenir ce soir, mais loin encore. La montée se poursuit vers le Pass dal Zupò, puis longe le fil de la Cresta Guzza, où les jumeaux, davantage alpinistes que skieurs dans l'âme, retrouvent leur élément : crampons, corde tendue, quelques pas d'escalade facile entre rochers et neige. Vers midi, nous rejoignons l'épaule italienne de La Spedla, à 4 020 m, porte d'entrée de la voie normale du Bernina.",
+          "Il reste alors un dernier ressaut, étroit et exposé, pour atteindre le point culminant du raid : le Piz Bernina, 4 048 m, sommet le plus élevé des Alpes orientales. Le vent s'est levé sur l'arête sommitale et nous ne nous attardons pas, mais la vue mérite chaque pas : les Alpes suisses et italiennes se déploient à 360 degrés.",
+          "Redescendre prend presque aussi longtemps que monter. Nous repassons par la Fuorcla Bellavista, sur le haut massif, avant de rejoindre enfin le Bivacco Pansera à la nuit tombante, cette fois pour y dormir. Le réchaud tourne, la soupe fume, et personne ne parle beaucoup : la journée a été longue — plus de 2 600 m de dénivelé positif — et le sommeil arrive vite.",
+        ],
+      },
+      {
+        heading: "Le Piz Palü, dans la lumière de l'aube",
+        paragraphs: [
+          "Départ avant l'aube, frontales allumées, pour la dernière journée. Nous remontons vers la crête occidentale du massif du Palü sous une pleine lune qui découpe nettement les reliefs — l'ambiance est presque irréelle, entre le froid sec et le silence complet. Puis le ciel commence à rosir à l'est, juste au moment où nous atteignons l'arête, vers le secteur du Piz Spinas.",
+          "La traversée du Piz Palü qui suit restera l'un des grands moments du voyage : une arête de neige filant plein est, avec le lever du soleil qui embrase progressivement le massif. Nous passons par le sommet central, à un peu moins de 3 900 m, puis poursuivons jusqu'au sommet oriental, dans une lumière qui n'aura duré qu'une petite heure, mais que personne n'oubliera.",
+          "Il reste ensuite la plus longue descente du séjour : près de 2 200 m de dénivelé négatif, par le système glaciaire du Vadret Pers, jusqu'à Bernina Diavolezza, dans la vallée. La neige, remontée en température depuis le début du raid, s'est transformée en une bonne poudreuse de printemps sur les premiers hectomètres, avant de laisser place à une neige plus lourde dans le bas. Peu importe : après quatre jours autour de ce massif qui m'attendait depuis trois hivers, la descente a un goût de victoire tranquille, partagée avec les deux frères — quarante ans tout neufs, et une traversée glaciaire à travers les Alpes en guise de cadeau d'anniversaire.",
+        ],
+      },
     ],
-    /* Sélection éditoriale organisée selon les 4 jours réels de l'itinéraire,
-       dans l'ordre de numérotation d'origine des fichiers WordPress — seule
-       donnée chronologique réellement disponible (voir item 20). 3 photos/jour
-       avec un ratio 4:3 (au lieu du 4:5 initial) : la colonne finit alors
-       sensiblement à la hauteur du dernier paragraphe du récit. */
-    dayPhotos: [
-      { dayNum: "J1", photos: [photos.p06, photos.p08, photos.p12] },
-      { dayNum: "J2", photos: [photos.p13, photos.p14, photos.p10] },
-      { dayNum: "J3", photos: [photos.p17, photos.p22, photos.p25] },
-      { dayNum: "J4", photos: [photos.p20, photos.p28, photos.p34] },
-    ],
+    // Rail jour par jour : 4 photos par journée (rythme régulier, chaque jour
+    // du raid étant désormais couvert par le texte, voir sections ci-dessus).
+    // `route` reprend exactement le titre de l'étape dans `itinerary.days`,
+    // jamais retapé.
+    storyDays: itinerary.days.map((d, i) => ({
+      day: d.dayNum,
+      route: d.title,
+      photos: [
+        [photos.p02, photos.p06, photos.p07, photos.p09],
+        [photos.p13, photos.p14, photos.p15, photos.p17],
+        [photos.p20, photos.p22, photos.p24, photos.p25],
+        [photos.p26, photos.p30, photos.p32, photos.p34],
+      ][i],
+    })),
   },
   portfolio: {
     eyebrow: "Portfolio",
-    title: "Bernina · Tour du massif",
+    title: "BERNINA",
+    subtitle: "Tour du massif de la Bernina",
     meta: "Fin avril – début mai 2026 · Itinérance à ski entre glaciers, refuges et bivouacs · Photos : Yann Borgnet",
+    // Le portfolio complet réunit toutes les photos du voyage (best of en
+    // tête) : les 15 premières forment la mosaïque visible au chargement ; le
+    // reste (dont plusieurs photos déjà utilisées dans le rail jour par jour
+    // — la duplication est normale, voir convention Géorgie) se déplie
+    // derrière "Voir la suite du portfolio".
     photos: [
-      photos.p02, photos.p03, photos.p04, photos.p07, photos.p09, photos.p11,
-      photos.p15, photos.p16, photos.p18, photos.p19, photos.p21, photos.p23,
-      photos.p24, photos.p26, photos.p27, photos.p29, photos.p30, photos.p31,
-      photos.p32, photos.p33,
+      // --- 15 visibles au chargement ---
+      photos.p01, photos.p04, photos.p05, photos.p08, photos.p10,
+      photos.p11, photos.p12, photos.p16, photos.p18, photos.p19,
+      photos.p21, photos.p23, photos.p27, photos.p28, photos.p29,
+      // --- repliées derrière "Voir la suite du portfolio" ---
+      photos.p31, photos.p33,
+      photos.p02, photos.p03, photos.p06, photos.p07, photos.p09,
+      photos.p13, photos.p14, photos.p15, photos.p17,
+      photos.p20, photos.p22, photos.p24, photos.p25,
+      photos.p26, photos.p30, photos.p32, photos.p34,
     ],
   },
   closing: {

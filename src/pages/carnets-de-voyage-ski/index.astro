@@ -1,0 +1,205 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import "../../styles/carnets-index.css";
+import { carnets, carnetZones, carnetYears } from "../../data/carnets/index";
+import { indexHeroPhoto } from "../../data/carnets/argentera";
+
+const canonical = "https://lesgrandsraidsaski.com/carnets-de-voyage-ski/";
+---
+
+<BaseLayout
+  title="Carnets de voyage à ski de randonnée | Les Grands Raids à Ski"
+  description="Récits de traversées à ski dans les Alpes et les montagnes du monde : itinéraires, cartes GPX et photographies des raids passés en itinérance."
+  canonical={canonical}
+  ogImage={indexHeroPhoto.src}
+>
+  <Header solid />
+
+  <main>
+    <section class="carnets-index-hero">
+      <div class="site-shell">
+        <p class="carnets-index-hero__eyebrow">Carnets de terrain</p>
+
+        <div class="carnets-index-hero__grid">
+          <h1>
+            Les Grands Raids<br />
+            <em>laissent des traces.</em>
+          </h1>
+
+          <div>
+            <p class="carnets-index-hero__intro">
+              Un carnet se compose de toutes les traces que laisse une
+              itinérance à ski. Un récit, souvent écrit chaque soir à la lueur
+              de la frontale, des photos — beaucoup de photos — et, bien sûr,
+              une ligne tracée sur une carte.
+            </p>
+            <a class="home-link carnets-index-hero__link" href="/raid-a-ski/">
+              Comprendre comment se construit un raid à ski →
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <img
+      class="carnets-index-photo"
+      src={indexHeroPhoto.src}
+      alt={indexHeroPhoto.alt}
+      loading="eager"
+      decoding="async"
+      style={indexHeroPhoto.position ? `object-position: ${indexHeroPhoto.position}` : undefined}
+    />
+
+    {
+      (carnetZones.length > 0 || carnetYears.length > 0) && (
+        <section class="carnets-filters">
+          <div class="site-shell carnets-filters__grid">
+            {carnetZones.length > 0 && (
+              <div>
+                <p class="carnets-filters__label">Par grande zone</p>
+                <div class="carnets-filters__row" data-filter-group="zone" role="group" aria-label="Filtrer les carnets par zone">
+                  <button type="button" class="is-active" data-zone="all">Toutes les zones</button>
+                  {carnetZones.map((zone) => (
+                    <button type="button" data-zone={zone.slug}>{zone.label}</button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {carnetYears.length > 0 && (
+              <div>
+                <p class="carnets-filters__label">Par année</p>
+                <div class="carnets-filters__row" data-filter-group="year" role="group" aria-label="Filtrer les carnets par année">
+                  <button type="button" class="is-active" data-year="all">Toutes les années</button>
+                  {carnetYears.map((year) => (
+                    <button type="button" data-year={year}>{year}</button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+      )
+    }
+
+    <section class="carnets-list">
+      <div class="site-shell">
+        <div class="carnets-list__grid">
+        {
+          carnets.map((carnet, i) => (
+            <article
+              class:list={["carnets-list__item", { "carnets-list__item--reverse": i % 2 === 1 }]}
+              data-zones={carnet.zones.join(" ")}
+              data-year={carnet.year ?? ""}
+            >
+              <a class="carnets-list__photo" href={`/${carnet.slug}/`}>
+                {carnet.cover.placeholder ? (
+                  <div class="carnets-list__photo-placeholder" role="img" aria-label={carnet.cover.alt}>
+                    <span>Photo à venir</span>
+                  </div>
+                ) : (
+                  <img
+                    src={carnet.cover.src}
+                    alt={carnet.cover.alt}
+                    loading="lazy"
+                    decoding="async"
+                    style={carnet.cover.position ? `object-position: ${carnet.cover.position}` : undefined}
+                  />
+                )}
+              </a>
+
+              <div class="carnets-list__body">
+                <p class="carnets-list__label">{`Carnet ${String(i + 1).padStart(2, "0")}`}</p>
+
+                <h2 class="carnets-list__title">
+                  <a href={`/${carnet.slug}/`}>{carnet.title}</a>
+                </h2>
+
+                {carnet.subtitle && <p class="carnets-list__subtitle">{carnet.subtitle}</p>}
+
+                {carnet.meta.length > 0 && (
+                  <p class="carnets-list__meta">{carnet.meta.join(" · ")}</p>
+                )}
+
+                <p class="carnets-list__excerpt">{carnet.excerpt}</p>
+
+                <a class="carnets-list__link" href={`/${carnet.slug}/`}>
+                  Lire le carnet →
+                </a>
+              </div>
+            </article>
+          ))
+        }
+        </div>
+
+        <p class="carnets-list__empty" data-filter-empty hidden>
+          Aucun carnet ne correspond à ce filtre.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-shell site-footer__grid">
+      <div>
+        <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+        <p class="site-footer__statement">Explorer · improviser · rencontrer · skier.</p>
+      </div>
+
+      <div class="site-footer__links">
+        <a href="https://wa.me/33689295826">WhatsApp · +33 6 89 29 58 26</a>
+        <a href="https://www.instagram.com/yannborgnet/">Instagram</a>
+        <a href="https://www.facebook.com/yannborgnet/">Facebook</a>
+      </div>
+    </div>
+
+    <div class="site-shell site-footer__bottom">
+      <a href="/yann-borgnet-guide-haute-montagne/">Yann Borgnet · Guide de haute montagne UIAGM</a>
+      <span>© 2026</span>
+    </div>
+  </footer>
+</BaseLayout>
+
+<script>
+  // Filtrage léger côté client — même logique que le filtre du site WordPress
+  // historique (deux dimensions indépendantes, combinées en ET), portée sur
+  // la nouvelle liste : on bascule `hidden` sur les <article>, sans reload et
+  // sans renuméroter les labels "Carnet 0X" (déjà figés au rendu serveur).
+  const zoneButtons = document.querySelectorAll<HTMLButtonElement>('[data-filter-group="zone"] button');
+  const yearButtons = document.querySelectorAll<HTMLButtonElement>('[data-filter-group="year"] button');
+  const items = document.querySelectorAll<HTMLElement>(".carnets-list__item");
+  const emptyState = document.querySelector<HTMLElement>("[data-filter-empty]");
+
+  let activeZone = "all";
+  let activeYear = "all";
+
+  function applyFilters() {
+    let visibleCount = 0;
+    items.forEach((item) => {
+      const zones = (item.dataset.zones || "").split(" ");
+      const zoneMatch = activeZone === "all" || zones.includes(activeZone);
+      const yearMatch = activeYear === "all" || item.dataset.year === activeYear;
+      const visible = zoneMatch && yearMatch;
+      item.hidden = !visible;
+      if (visible) visibleCount++;
+    });
+    if (emptyState) emptyState.hidden = visibleCount > 0;
+  }
+
+  zoneButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      activeZone = button.dataset.zone ?? "all";
+      zoneButtons.forEach((b) => b.classList.toggle("is-active", b === button));
+      applyFilters();
+    });
+  });
+
+  yearButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      activeYear = button.dataset.year ?? "all";
+      yearButtons.forEach((b) => b.classList.toggle("is-active", b === button));
+      applyFilters();
+    });
+  });
+</script>

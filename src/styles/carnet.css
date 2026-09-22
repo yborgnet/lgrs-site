@@ -23,7 +23,11 @@
 }
 
 .carnet-hero__eyebrow {
-  margin: 0 0 20px;
+  /* 20px laissait l'accent d'un titre commençant par une majuscule accentuée
+     (ex. "GÉORGIE") toucher/traverser ce kicker en Newsreader (ascenders hauts,
+     line-height .95 très serré sur le h1 juste en dessous) — 34px donne une
+     vraie respiration sans changer le rythme du reste de la page. */
+  margin: 0 0 34px;
   font-size: 13px;
   font-weight: 500;
   letter-spacing: .18em;
@@ -99,21 +103,15 @@
   margin-inline: auto;
 }
 
-/* "hero" : pleine largeur d'écran, hauteur panoramique cadrée — la seule photo
-   du template dont le ratio d'origine est volontairement recadré, choix éditorial
-   assumé pour que le premier écran tienne titre + sous-titre + date + photo. */
-.carnet-photo--hero {
-  height: 64vh;
-  min-height: 500px;
-  max-height: 860px;
-  overflow: hidden;
-}
-
+/* "hero" : pleine largeur d'écran, ratio intrinsèque intégral — plus de
+   recadrage panoramique forcé (essayé, mais coupait systématiquement soit le
+   haut/les sommets soit les skieurs selon la largeur d'écran, voir historique
+   Géorgie du 17/09). La photo peut donc être haute sur desktop : c'est
+   volontaire, une grande photo entière plutôt qu'un bandeau artificiel. */
 .carnet-photo--hero img {
-  height: 100%;
-  object-fit: cover;
-  object-position: center 25%; /* préserve sommets/ciel par défaut ; réglable par
-                                   carnet via CarnetPhoto["position"] */
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 /* Cartouche "Itinéraire" — le cartouche Informations vient désormais du
@@ -189,6 +187,32 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+/* Placeholder "photo à venir" (carnets préparés avant la passe photo) — même
+   gabarit que la vraie photo, pas d'image générée, juste un repère sobre. */
+.carnet-intro__photo--placeholder,
+.carnet-photo__placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--paper);
+  border: 1px solid var(--line);
+}
+
+.carnet-intro__photo--placeholder span,
+.carnet-photo__placeholder span {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  opacity: .4;
+}
+
+.carnet-photo__placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
 }
 
 /* INFORMATIONS — cartouche + grille dédiées au carnet, INDÉPENDANTES du
@@ -347,8 +371,8 @@
   color: rgba(11, 11, 10, .55);
 }
 
-/* RÉCIT — déroulable (details/summary), récit à gauche, photos par journée
-   à droite (items 16-21). */
+/* RÉCIT — déroulable (details/summary), texte continu à gauche, rail jour par
+   jour à droite (une mosaïque par journée du raid, voir CarnetStoryDay). */
 
 .carnet-story {
   background: var(--white);
@@ -396,9 +420,20 @@
 .carnet-story__grid {
   margin-top: 56px;
   display: grid;
-  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 1fr);
-  gap: 72px;
+  grid-template-columns: minmax(0, 1.55fr) minmax(240px, 0.65fr);
+  gap: clamp(32px, 4vw, 72px);
   align-items: start;
+}
+
+/* Carnet préparé avant la passe photo (aucune journée illustrée) : le texte
+   reprend toute la largeur plutôt que de laisser une colonne vide à droite. */
+.carnet-story__grid--text-only {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: 760px;
+}
+
+.carnet-story__text {
+  min-width: 0;
 }
 
 .carnet-story__section + .carnet-story__section {
@@ -425,45 +460,140 @@
   margin-bottom: 0;
 }
 
-.carnet-story__photos {
+/* Note éditoriale (ex. mention Alpine Mag) — jamais un paragraphe du récit :
+   séparée visuellement (filet fin, petit corps, gris, Manrope) après le
+   dernier paragraphe narratif. */
+.carnet-story__source-note {
+  margin: 40px 0 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--line);
+  max-width: var(--carnet-narrow);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.6;
+  color: rgba(11, 11, 10, .55);
+}
+
+.carnet-story__source-note p {
+  margin: 0;
+}
+
+.carnet-story__source-note a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.carnet-story__closing-links {
+  margin: 20px 0 0;
+  max-width: var(--carnet-narrow);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.carnet-story__closing-links ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 4px;
 }
 
+.carnet-story__closing-links a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.carnet-story__closing-links-placeholder {
+  color: rgba(11, 11, 10, .4);
+  font-style: italic;
+}
+
+.carnet-story__days {
+  min-width: 0;
+}
+
+/* Repère de lecture discret — pas de cartouche, pas de fond, pas de bouton :
+   juste le numéro du jour et son itinéraire réel (voir CarnetStoryDay.route),
+   pour "lire" le raid jour par jour dans la colonne de droite (correction du
+   17/09, v4). */
 .carnet-story__day-label {
-  margin: 0 0 12px;
+  margin: 0 0 10px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-family: var(--font-sans);
   font-size: 12px;
-  font-weight: 600;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  opacity: .5;
+  color: rgba(11, 11, 10, .5);
 }
 
+.carnet-story__day-number {
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.carnet-story__day-route {
+  font-weight: 500;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+}
+
+/* Mosaïque dense par journée — 2 colonnes, gaps très réduits, jamais de
+   hauteur fixe ni d'object-fit: cover par défaut (chaque miniature garde son
+   ratio intrinsèque). Le nombre de lignes suit la longueur du texte
+   correspondant à cette journée (voir CarnetStoryDay), jamais un quota fixe. */
 .carnet-story__day-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px 10px;
 }
 
-.carnet-story__day-grid img {
+.carnet-story__day-item {
+  margin: 0;
+  min-width: 0;
+}
+
+.carnet-story__day-item img {
   display: block;
   width: 100%;
-  height: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
 }
 
-/* Groupe de 3 photos : la 3e (impaire) occupe toute la largeur plutôt que de
-   laisser une case vide — rythme "2 côte à côte + 1 large". */
-.carnet-story__day-grid img:nth-child(3):last-child {
-  grid-column: 1 / -1;
-  aspect-ratio: 16 / 6;
+/* Air entre deux journées pour marquer le changement de séquence — sans
+   créer un grand vide (item 6 : 28px, jamais 80px). */
+.carnet-story__day + .carnet-story__day {
+  margin-top: 28px;
 }
 
-.carnet-story__day-grid img:first-child:nth-last-child(1) {
-  grid-column: 1 / -1;
-  aspect-ratio: 16 / 10;
+.carnet-story__photo-trigger {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: zoom-in;
+}
+
+.carnet-story__photo-trigger img {
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: opacity .15s ease;
+}
+
+.carnet-story__photo-trigger:hover img,
+.carnet-story__photo-trigger:focus-visible img {
+  opacity: .85;
+}
+
+.carnet-story__photo-trigger:focus-visible {
+  outline: 2px solid var(--warm);
+  outline-offset: 2px;
 }
 
 /* PORTFOLIO — fond contrasté, grille généreuse, quelques images plus grandes. */
@@ -498,36 +628,73 @@
   letter-spacing: -.03em;
 }
 
+.carnet-portfolio__subtitle {
+  margin: 12px 0 0;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(22px, 2.6vw, 34px);
+  line-height: 1.15;
+  letter-spacing: -.015em;
+  opacity: .85;
+}
+
+/* Même traitement que .carnet-hero__date (masthead) — la ligne de méta du
+   portfolio doit se lire comme la même famille typographique. */
 .carnet-portfolio__meta {
   margin: 16px 0 0;
   max-width: var(--carnet-narrow);
-  font-size: 14px;
-  line-height: 1.5;
-  opacity: .62;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  opacity: .56;
 }
 
-.carnet-portfolio__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
+/* Vraie mosaïque masonry (CSS columns) : chaque photo garde son ratio
+   intrinsèque, `break-inside: avoid` empêche une image d'être coupée entre
+   deux colonnes. Pas de CSS Grid à spans (qui crée des trous dès que le
+   navigateur doit estimer des hauteurs avant chargement — essayé, cassé,
+   voir git history) : les colonnes s'équilibrent seules, sans case vide
+   volontaire. */
+.carnet-portfolio__masonry {
+  column-count: 3;
+  column-gap: 16px;
+}
+
+@media (max-width: 1100px) {
+  .carnet-portfolio__masonry {
+    column-count: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .carnet-portfolio__masonry {
+    column-count: 1;
+  }
+}
+
+.carnet-portfolio__item {
+  margin: 0 0 16px;
+  break-inside: avoid;
 }
 
 .carnet-portfolio__trigger {
   display: block;
   width: 100%;
-  height: 100%;
   padding: 0;
   border: 0;
   background: none;
   cursor: zoom-in;
 }
 
+/* Ratio intrinsèque par défaut (pas d'aspect-ratio/object-fit forcé, aucune
+   hauteur imposée) : une photo verticale reste étroite et haute, une
+   panoramique reste large. `photo.cropRatio` (+ `position`) reste
+   l'échappatoire explicite pour une photo qui a vraiment besoin d'un crop. */
 .carnet-portfolio__trigger img {
   display: block;
   width: 100%;
-  height: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  height: auto;
   transition: opacity .15s ease;
 }
 
@@ -541,12 +708,38 @@
   outline-offset: 2px;
 }
 
-.carnet-portfolio__item:nth-of-type(5n+1) {
-  grid-column: span 2;
+/* Repli "Voir la suite du portfolio" (item 11-13 du brief Géorgie) — bouton
+   sobre, pas de style commercial. */
+.carnet-portfolio__more {
+  margin: 32px 0 0;
+  text-align: center;
 }
 
-.carnet-portfolio__item:nth-of-type(5n+1) .carnet-portfolio__trigger img {
-  aspect-ratio: 16 / 9;
+.carnet-portfolio__more-toggle {
+  padding: 10px 0;
+  border: 0;
+  border-top: 1px solid rgba(250, 250, 248, .25);
+  background: none;
+  color: var(--paper);
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  opacity: .75;
+  cursor: pointer;
+  width: 100%;
+  max-width: 360px;
+}
+
+.carnet-portfolio__more-toggle:hover,
+.carnet-portfolio__more-toggle:focus-visible {
+  opacity: 1;
+}
+
+.carnet-portfolio__more-toggle:focus-visible {
+  outline: 2px solid var(--warm);
+  outline-offset: 4px;
 }
 
 /* LIGHTBOX — plein écran, fond sombre, contain (pas de recadrage). Structure

@@ -1,0 +1,179 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import "../../styles/yann.css";
+
+const canonical = "https://lesgrandsraidsaski.com/yann-borgnet-guide-haute-montagne/";
+
+/**
+ * Textes repris tel quels de la page WordPress live :
+ * https://lesgrandsraidsaski.com/yann-borgnet-guide-haute-montagne/
+ * (sections "Parcours", "Le métier", "Recherche & transmission"), et du
+ * hero "Yann Borgnet" déjà validé sur la homepage (eyebrow/titre/lead —
+ * voir src/pages/index.astro, .about-section) pour rester cohérent plutôt
+ * que retaper un texte différent au même endroit.
+ *
+ * Volontairement absents (voir brief) : liste de diplômes façon CV, détail
+ * du cursus administratif ENSA, liste des publications académiques —
+ * cette page reste éditoriale, pas un CV. La philosophie des raids n'est
+ * pas recopiée ici : seule la section "Une manière de guider" en reprend
+ * la substance en une ou deux phrases, avec un lien vers /philosophie/.
+ */
+
+const portrait = {
+  src: "https://lesgrandsraidsaski.com/wp-content/uploads/2026/09/fba56613-bfe2-4d63-ab54-90bd71f10e09-1-819x1024.png",
+  alt: "Yann Borgnet écrivant dans son carnet de voyage, bivouac de haute montagne",
+};
+
+// Deux skieurs en portage, panorama alpin — photo de groupe/traversée entre
+// les chapitres, distincte du portrait (voir brief : "photo de groupe /
+// traversée").
+const groupPhoto = {
+  src: "/photos/Argentera%202026/Argentera/portage-skis-panorama-argentera.jpg",
+  alt: "Deux skieurs de randonnée en portage, panorama sur les Alpes",
+  position: "50% 100%",
+};
+---
+
+<BaseLayout
+  title="Yann Borgnet | Guide de haute montagne et géographe"
+  description="Yann Borgnet, guide de haute montagne UIAGM, professeur à l'ENSA et docteur en géographie. Une pratique du métier tournée vers l'itinérance, l'exploration et les voyages à ski au long cours."
+  canonical={canonical}
+  ogImage={portrait.src}
+>
+  <Header solid />
+
+  <main>
+    <section class="yann-hero">
+      <div class="site-shell yann-hero__grid">
+        <div>
+          <p class="yann-hero__eyebrow">Guide de haute montagne · Géographe</p>
+          <h1>Yann<br />Borgnet.</h1>
+          <p class="yann-hero__lead">
+            Originaire d'Annecy, guide UIAGM, professeur à l'ENSA et docteur en géographie.
+          </p>
+        </div>
+
+        <div class="yann-hero__photo">
+          <img src={portrait.src} alt={portrait.alt} loading="eager" decoding="async" />
+        </div>
+      </div>
+    </section>
+
+    <section class="yann-chapter yann-chapter--white">
+      <div class="site-shell">
+        <div class="yann-chapter__inner">
+          <p class="yann-chapter__eyebrow">Guide de haute montagne</p>
+          <h2>Tracer des lignes plutôt que collectionner des sommets.</h2>
+          <p>
+            Guide de haute montagne UIAGM depuis 2019, je consacre aujourd'hui une grande partie
+            de mes hivers aux raids et traversées à ski, dans les Alpes comme dans les montagnes
+            du monde. Les voyages sont construits autour d'une ligne : relier des vallées, des
+            villages, des refuges ou des bivouacs, et comprendre un territoire en le traversant.
+          </p>
+          <p>
+            En 2015, une traversée des Alpes de la Corse à la Slovénie, réalisée sans moyens
+            motorisés et en mêlant plusieurs pratiques alpines, a profondément orienté ma manière
+            d'envisager le métier de guide. Depuis, l'itinérance est devenue le fil conducteur de
+            ma pratique.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <img
+      class="yann-photo-full"
+      src={groupPhoto.src}
+      alt={groupPhoto.alt}
+      loading="lazy"
+      decoding="async"
+      style={`object-position: ${groupPhoto.position}`}
+    />
+
+    <section class="yann-chapter yann-chapter--paper">
+      <div class="site-shell">
+        <div class="yann-chapter__inner">
+          <p class="yann-chapter__eyebrow">Enseigner</p>
+          <h2>Transmettre la lecture du terrain et l'autonomie.</h2>
+          <p>
+            Professeur à l'École nationale de ski et d'alpinisme (ENSA) à Chamonix depuis 2022,
+            j'interviens dans la formation des professionnels de la montagne. J'écris également
+            sur le métier de guide, la gestion du risque et les transformations du tourisme en
+            montagne.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="yann-chapter yann-chapter--white">
+      <div class="site-shell">
+        <div class="yann-chapter__inner">
+          <p class="yann-chapter__eyebrow">Géographe</p>
+          <h2>Penser les transformations de la montagne.</h2>
+          <p>
+            Docteur en géographie (Université Grenoble Alpes, thèse soutenue en mai 2024), mes
+            recherches portent sur les transformations du tourisme alpin, les effets du
+            changement climatique et les recompositions des pratiques et des territoires de
+            montagne.
+          </p>
+          <p>
+            Mes recherches sur l'avenir du tourisme alpin ont nourri un intérêt pour la montagne
+            habitée : celle que l'on traverse autant qu'on la rencontre. Cette réflexion nourrit
+            aussi ma manière d'enseigner et de guider — et explique pourquoi les voyages que je
+            propose ne sont pas seulement des lignes à ski.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="yann-synthesis">
+      <div class="site-shell">
+        <p class="yann-synthesis__eyebrow">Une manière de guider</p>
+        <h2>Préparer minutieusement pour pouvoir ensuite improviser.</h2>
+        <p>
+          Guide, enseignant, géographe : trois pratiques qui se rejoignent dans une même façon de
+          concevoir un raid à ski — privilégier l'itinérance, relier les vallées et les lieux
+          habités, et construire le voyage avec le groupe plutôt que pour lui.
+        </p>
+
+        <div class="yann-synthesis__links">
+          <a href="/philosophie/">Découvrir la philosophie →</a>
+          <a href="/raid-a-ski/">Comprendre le raid à ski →</a>
+          <a href="/prochains-voyages/">Voir les prochains voyages →</a>
+          <a href="/carnets-de-voyage-ski/">Lire les carnets →</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="yann-contact">
+      <div class="site-shell">
+        <p class="yann-contact__eyebrow">Contact</p>
+        <div class="yann-contact__links">
+          <a href="https://wa.me/33689295826">WhatsApp · +33 6 89 29 58 26</a>
+          <a href="https://www.instagram.com/yannborgnet/">Instagram</a>
+          <a href="https://www.facebook.com/yannborgnet/">Facebook</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-shell site-footer__grid">
+      <div>
+        <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+        <p class="site-footer__statement">Explorer · improviser · rencontrer · skier.</p>
+      </div>
+
+      <div class="site-footer__links">
+        <a href="https://wa.me/33689295826">WhatsApp · +33 6 89 29 58 26</a>
+        <a href="https://www.instagram.com/yannborgnet/">Instagram</a>
+        <a href="https://www.facebook.com/yannborgnet/">Facebook</a>
+      </div>
+    </div>
+
+    <div class="site-shell site-footer__bottom">
+      <span>Yann Borgnet · Guide de haute montagne UIAGM</span>
+      <span>© 2026</span>
+    </div>
+  </footer>
+</BaseLayout>

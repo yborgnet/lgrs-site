@@ -1,0 +1,19 @@
+---
+import CarnetLayout from "../../layouts/CarnetLayout.astro";
+import CarnetPhoto from "../../components/carnet/CarnetPhoto.astro";
+import CarnetIntro from "../../components/carnet/CarnetIntro.astro";
+import CarnetItinerary from "../../components/carnet/CarnetItinerary.astro";
+import CarnetStory from "../../components/carnet/CarnetStory.astro";
+import CarnetGallery from "../../components/carnet/CarnetGallery.astro";
+import CarnetClosing from "../../components/carnet/CarnetClosing.astro";
+import { grece as carnet } from "../../data/carnets/grece";
+---
+
+<CarnetLayout carnet={carnet}>
+  <CarnetPhoto photo={carnet.openingPhoto} variant="hero" />
+  <CarnetIntro intro={carnet.intro} info={carnet.info} />
+  <CarnetItinerary map={carnet.map} itinerary={carnet.itinerary} />
+  <CarnetStory story={carnet.story} />
+  <CarnetGallery portfolio={carnet.portfolio} />
+  <CarnetClosing closing={carnet.closing} />
+</CarnetLayout>

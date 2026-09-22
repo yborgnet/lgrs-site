@@ -19,11 +19,17 @@ const { intro, info } = Astro.props;
       <CarnetInfo info={info} bare />
     </div>
 
-    <div
-      class="carnet-intro__photo"
-      style={`background-image: url('${intro.photo.src}'); background-position: ${intro.photo.position ?? "center"};`}
-      role="img"
-      aria-label={intro.photo.alt}
-    />
+    {intro.photo.placeholder ? (
+      <div class="carnet-intro__photo carnet-intro__photo--placeholder" role="img" aria-label={intro.photo.alt}>
+        <span>Photo à venir</span>
+      </div>
+    ) : (
+      <div
+        class="carnet-intro__photo"
+        style={`background-image: url('${intro.photo.src}'); background-position: ${intro.photo.position ?? "center"};`}
+        role="img"
+        aria-label={intro.photo.alt}
+      />
+    )}
   </div>
 </section>
