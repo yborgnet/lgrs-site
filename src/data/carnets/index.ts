@@ -4,7 +4,7 @@ import { argentera, indexCover as argenteraCover } from "./argentera";
 import { georgie, indexCover as georgieCover } from "./georgie";
 import { grece, indexCover as greceCover } from "./grece";
 import { prokletije, indexCover as prokletijeCover } from "./prokletije";
-import { maroc } from "./maroc";
+import { maroc, indexCover as marocCover } from "./maroc";
 import { kazakhstan, indexCover as kazakhstanCover } from "./kazakhstan";
 import { kosovo, indexCover as kosovoCover } from "./kosovo";
 import { alpesLigures, indexCover as alpesLiguresCover } from "./alpesLigures";
@@ -112,7 +112,7 @@ export const carnets: CarnetSummary[] = [
   }),
   toSummary(maroc, {
     excerpt: "Une traversée faite d'incertitudes, de hauts plateaux, de villages suspendus et de neige capricieuse.",
-    cover: { src: "", alt: maroc.openingPhoto.alt, placeholder: true },
+    cover: marocCover,
     zones: [],
   }),
   toSummary(kazakhstan, {
