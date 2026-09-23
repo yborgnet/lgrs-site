@@ -103,8 +103,8 @@
   }
 
   .hero h1 {
-    font-size: clamp(60px, 18vw, 74px);
-    line-height: .84;
+    font-size: clamp(40px, 16vw, 100px);
+    line-height: 0.85;
   }
 
   .hero-break--desktop {
