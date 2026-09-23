@@ -2,8 +2,9 @@ name: Deploy rebuild-v1 to GitHub Pages
 
 # Publie uniquement depuis rebuild-v1 (jamais main), tant que la migration
 # SEO n'est pas validée : voir docs/migration-seo/migration-seo-brief-claude.md.
-# Aucun domaine personnalisé ici — le futur domaine lesgrandsraidsaski.com
-# reste géré hors du dépôt (DNS/CDN) jusqu'à la bascule.
+# Domaine personnalisé lesgrandsraidsaski.com branché côté GitHub Pages
+# (hors dépôt, DNS/CDN) ; le build ici tourne donc avec BASE_PATH=/ pour
+# servir le site à la racine du domaine.
 on:
   push:
     branches: [rebuild-v1]
@@ -28,6 +29,8 @@ jobs:
           node-version: 22
       - run: npm ci
       - run: npm run build
+        env:
+          BASE_PATH: /
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
