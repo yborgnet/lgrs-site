@@ -1,0 +1,447 @@
+{
+  "source": "https://lesgrandsraidsaski.com/traversee-prokletije-ski-montenegro/",
+  "recupere_le": "2026-09-22",
+  "note": "Images téléchargées depuis la page WordPress live (wp-content/uploads) et déposées localement (voir mémoire migration OVH/WordPress) — plus aucune dépendance à wp-content après ce transfert. Pas d'EXIF DateTimeOriginal exploitable (dépouillé par WordPress à l'upload) ni de GPX horodaté pour cette traversée (voir note en tête de prokletije.ts) : contrairement au Kazakhstan/Géorgie, aucune corrélation jour par jour n'a donc pu être établie — l'ordre ci-dessous reprend tel quel l'ordre éditorial déjà choisi par WordPress dans son bloc Portfolio (data-full, avec ALT quand la source en fournissait un ; générique sinon, jamais inventé de détail précis).",
+  "fichiers": [
+    {
+      "ordre_portfolio": 1,
+      "fichier_wordpress": "DSC02041-3.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02041-3.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-ouverture-traversee-prokletije-001.jpg",
+      "texte_alternatif": "Ski de randonnée dans les Prokletije entre Albanie et Monténégro",
+      "alt_specifique_wordpress": true,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 2,
+      "fichier_wordpress": "DSC01935-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC01935-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-002.jpg",
+      "texte_alternatif": "Ski de randonnée dans les Prokletije, sur la ligne de crête entre Albanie, Monténégro et Kosovo.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 3,
+      "fichier_wordpress": "DSC01861-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC01861-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-003.jpg",
+      "texte_alternatif": "Scène de voyage pendant la traversée à ski des Prokletije, dans les Balkans.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 4,
+      "fichier_wordpress": "DSC01903-2.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC01903-2.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-arrivee-ski-village-lepushe-004.jpg",
+      "texte_alternatif": "Arrivée à ski dans le village de Lepushë au cœur des Prokletije",
+      "alt_specifique_wordpress": true,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 5,
+      "fichier_wordpress": "DSC02439-2.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02439-2.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-005.jpg",
+      "texte_alternatif": "Traversée à ski des Prokletije, entre Albanie, Monténégro et Kosovo.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 6,
+      "fichier_wordpress": "DSC02351-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02351-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-mosquee-village-vusanje-006.jpg",
+      "texte_alternatif": "Mosquée du village de Vusanje dans le massif des Prokletije au Monténégro",
+      "alt_specifique_wordpress": true,
+      "largeur": 1080,
+      "hauteur": 1616
+    },
+    {
+      "ordre_portfolio": 7,
+      "fichier_wordpress": "DSC02517-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02517-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-007.jpg",
+      "texte_alternatif": "Scène de voyage pendant la traversée à ski des Prokletije, dans les Balkans.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 8,
+      "fichier_wordpress": "DSC02341-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02341-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-008.jpg",
+      "texte_alternatif": "Itinérance à ski dans les Prokletije, entre forêts, cols et villages isolés.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 9,
+      "fichier_wordpress": "DSC01819-2.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC01819-2.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-009.jpg",
+      "texte_alternatif": "Traversée à ski des Prokletije, entre Albanie, Monténégro et Kosovo.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 10,
+      "fichier_wordpress": "DSC02323-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02323-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-010.jpg",
+      "texte_alternatif": "Ski de randonnée dans les Prokletije, sur la ligne de crête entre Albanie, Monténégro et Kosovo.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 11,
+      "fichier_wordpress": "DSC02584-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02584-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-011.jpg",
+      "texte_alternatif": "Scène de voyage pendant la traversée à ski des Prokletije, dans les Balkans.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 12,
+      "fichier_wordpress": "DSC01838-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC01838-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-012.jpg",
+      "texte_alternatif": "Itinérance à ski dans les Prokletije, entre forêts, cols et villages isolés.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 13,
+      "fichier_wordpress": "DSC01818-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC01818-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-013.jpg",
+      "texte_alternatif": "Traversée à ski des Prokletije, entre Albanie, Monténégro et Kosovo.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 14,
+      "fichier_wordpress": "DSC02592-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02592-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-014.jpg",
+      "texte_alternatif": "Ski de randonnée dans les Prokletije, sur la ligne de crête entre Albanie, Monténégro et Kosovo.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1080,
+      "hauteur": 1616
+    },
+    {
+      "ordre_portfolio": 15,
+      "fichier_wordpress": "DSC02191-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02191-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-015.jpg",
+      "texte_alternatif": "Scène de voyage pendant la traversée à ski des Prokletije, dans les Balkans.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 16,
+      "fichier_wordpress": "DSC02167-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02167-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-016.jpg",
+      "texte_alternatif": "Itinérance à ski dans les Prokletije, entre forêts, cols et villages isolés.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 17,
+      "fichier_wordpress": "DSC02772-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02772-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-017.jpg",
+      "texte_alternatif": "Traversée à ski des Prokletije, entre Albanie, Monténégro et Kosovo.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 18,
+      "fichier_wordpress": "DSC02369-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02369-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-018.jpg",
+      "texte_alternatif": "Ski de randonnée dans les Prokletije, sur la ligne de crête entre Albanie, Monténégro et Kosovo.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 19,
+      "fichier_wordpress": "DSC02353-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02353-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-019.jpg",
+      "texte_alternatif": "Scène de voyage pendant la traversée à ski des Prokletije, dans les Balkans.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1080,
+      "hauteur": 1616
+    },
+    {
+      "ordre_portfolio": 20,
+      "fichier_wordpress": "DSC02816-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02816-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-020.jpg",
+      "texte_alternatif": "Itinérance à ski dans les Prokletije, entre forêts, cols et villages isolés.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 21,
+      "fichier_wordpress": "DSC02387-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02387-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-021.jpg",
+      "texte_alternatif": "Traversée à ski des Prokletije, entre Albanie, Monténégro et Kosovo.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 22,
+      "fichier_wordpress": "DSC02448-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02448-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-022.jpg",
+      "texte_alternatif": "Ski de randonnée dans les Prokletije, sur la ligne de crête entre Albanie, Monténégro et Kosovo.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 23,
+      "fichier_wordpress": "DSC03053-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC03053-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-023.jpg",
+      "texte_alternatif": "Scène de voyage pendant la traversée à ski des Prokletije, dans les Balkans.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1080,
+      "hauteur": 1616
+    },
+    {
+      "ordre_portfolio": 24,
+      "fichier_wordpress": "DSC02422-2.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02422-2.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-024.jpg",
+      "texte_alternatif": "Itinérance à ski dans les Prokletije, entre forêts, cols et villages isolés.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 25,
+      "fichier_wordpress": "DSC02588-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02588-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-025.jpg",
+      "texte_alternatif": "Traversée à ski des Prokletije, entre Albanie, Monténégro et Kosovo.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 26,
+      "fichier_wordpress": "DSC02620-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02620-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-026.jpg",
+      "texte_alternatif": "Ski de randonnée dans les Prokletije, sur la ligne de crête entre Albanie, Monténégro et Kosovo.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 27,
+      "fichier_wordpress": "DSC02571-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02571-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-rencontre-habitant-valbone-027.jpg",
+      "texte_alternatif": "Rencontre avec un habitant à Valbonë lors d’une traversée à ski des Prokletije",
+      "alt_specifique_wordpress": true,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 28,
+      "fichier_wordpress": "DSC03080-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC03080-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-028.jpg",
+      "texte_alternatif": "Itinérance à ski dans les Prokletije, entre forêts, cols et villages isolés.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 29,
+      "fichier_wordpress": "DSC02750-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02750-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-029.jpg",
+      "texte_alternatif": "Traversée à ski des Prokletije, entre Albanie, Monténégro et Kosovo.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 30,
+      "fichier_wordpress": "DSC02711-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02711-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-030.jpg",
+      "texte_alternatif": "Ski de randonnée dans les Prokletije, sur la ligne de crête entre Albanie, Monténégro et Kosovo.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 31,
+      "fichier_wordpress": "DSC02859-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02859-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-031.jpg",
+      "texte_alternatif": "Scène de voyage pendant la traversée à ski des Prokletije, dans les Balkans.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 32,
+      "fichier_wordpress": "DSC02894-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02894-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-032.jpg",
+      "texte_alternatif": "Itinérance à ski dans les Prokletije, entre forêts, cols et villages isolés.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 33,
+      "fichier_wordpress": "DSC02933-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02933-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-033.jpg",
+      "texte_alternatif": "Traversée à ski des Prokletije, entre Albanie, Monténégro et Kosovo.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 34,
+      "fichier_wordpress": "DSC02872-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02872-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-034.jpg",
+      "texte_alternatif": "Ski de randonnée dans les Prokletije, sur la ligne de crête entre Albanie, Monténégro et Kosovo.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 35,
+      "fichier_wordpress": "DSC02915-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02915-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-035.jpg",
+      "texte_alternatif": "Scène de voyage pendant la traversée à ski des Prokletije, dans les Balkans.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 36,
+      "fichier_wordpress": "DSC03042-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC03042-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-036.jpg",
+      "texte_alternatif": "Itinérance à ski dans les Prokletije, entre forêts, cols et villages isolés.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1080,
+      "hauteur": 1616
+    },
+    {
+      "ordre_portfolio": 37,
+      "fichier_wordpress": "DSC02968-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02968-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-037.jpg",
+      "texte_alternatif": "Traversée à ski des Prokletije, entre Albanie, Monténégro et Kosovo.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 38,
+      "fichier_wordpress": "DSC02959-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02959-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-038.jpg",
+      "texte_alternatif": "Ski de randonnée dans les Prokletije, sur la ligne de crête entre Albanie, Monténégro et Kosovo.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 39,
+      "fichier_wordpress": "DSC03060-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC03060-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-039.jpg",
+      "texte_alternatif": "Scène de voyage pendant la traversée à ski des Prokletije, dans les Balkans.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 40,
+      "fichier_wordpress": "DSC03048-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC03048-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-040.jpg",
+      "texte_alternatif": "Itinérance à ski dans les Prokletije, entre forêts, cols et villages isolés.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 41,
+      "fichier_wordpress": "DSC01985-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC01985-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-041.jpg",
+      "texte_alternatif": "Traversée à ski des Prokletije, entre Albanie, Monténégro et Kosovo.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1080,
+      "hauteur": 1616
+    },
+    {
+      "ordre_portfolio": 42,
+      "fichier_wordpress": "DSC02115-2.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02115-2.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-au-dessus-de-skala-042.jpg",
+      "texte_alternatif": "Ski de randonnée au-dessus de Škala dans les Prokletije entre Lepushë et le Monténégro",
+      "alt_specifique_wordpress": true,
+      "largeur": 1616,
+      "hauteur": 1080
+    },
+    {
+      "ordre_portfolio": 43,
+      "fichier_wordpress": "DSC03032-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC03032-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-cuisson-pain-babino-polje-043.jpg",
+      "texte_alternatif": "Cuisson traditionnelle du pain à Babino Polje dans les Prokletije",
+      "alt_specifique_wordpress": true,
+      "largeur": 1080,
+      "hauteur": 1616
+    },
+    {
+      "ordre_portfolio": 44,
+      "fichier_wordpress": "DSC02071-1.jpg",
+      "url_wordpress": "https://lesgrandsraidsaski.com/wp-content/uploads/2026/05/DSC02071-1.jpg",
+      "fichier_web": "prokletije-montenegro-ski-randonnee-044.jpg",
+      "texte_alternatif": "Itinérance à ski dans les Prokletije, entre forêts, cols et villages isolés.",
+      "alt_specifique_wordpress": false,
+      "largeur": 1616,
+      "hauteur": 1080
+    }
+  ]
+}

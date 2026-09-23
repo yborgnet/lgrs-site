@@ -1,5 +1,6 @@
 import type { Carnet } from "./types";
 import { computeItineraryTotals, formatAscent, formatDescent, formatDistanceKm, formatDaysLabel, formatMeters } from "../../lib/carnet/itinerary-totals";
+import { kazakhstanPhotos } from "../photos/kazakhstan-2025";
 
 /**
  * Contenu repris tel quel de la page WordPress live :
@@ -9,9 +10,17 @@ import { computeItineraryTotals, formatAscent, formatDescent, formatDistanceKm, 
  * (mention reprise en fin de récit, sans le lien cliquable — CarnetStorySection
  * ne supporte pas de liens riches dans ses paragraphes).
  *
- * PHOTOS : passe photo pas encore faite — openingPhoto/intro.photo sont des
- * placeholders, portfolio vide. Aucune image WordPress
- * référencée (voir mémoire project_wordpress_migration).
+ * PHOTOS : passe photo faite à partir des 54 JPEG fournis par Yann (EXIF
+ * complets, noms SEO définitifs, localisation croisée GPX par jour),
+ * déposés dans public/photos/Kazakhstan/. Métadonnées (ALT, légende,
+ * localisation, jour, certitude GPX) dérivées telles quelles de
+ * src/data/photos/kazakhstan-2025.ts — lui-même généré depuis
+ * controle-exif-et-manifeste-kazakhstan.json (source documentaire de
+ * référence). openingPhoto et intro.photo reprennent les choix déjà faits
+ * sur la page WordPress live (même photo de couverture — DSC02253 — et même
+ * photo de prologue — DSC01777 —, jamais choisies au hasard). Portfolio :
+ * les 54 photos, dans un ordre chronologique par jour ; les 15 premières
+ * (réparties sur les 6 jours) forment la mosaïque visible au chargement.
  *
  * GPX ORIGINAL fourni par l'utilisateur le 16/09/2026 (9204 points horodatés,
  * 20-25/04/2025) — voir data/gpx-sources/kazakhstan-ile-alatau-2025.original.gpx.
@@ -23,8 +32,83 @@ import { computeItineraryTotals, formatAscent, formatDescent, formatDistanceKm, 
  * WordPress (à 0.3 km près) ; les D+/D- diffèrent davantage (jusqu'à ~15%
  * sur certains jours, probablement un paramétrage de lissage différent côté
  * WordPress) — les valeurs ci-dessous sont celles recalculées directement
- * sur le GPX, jugées plus fiables (même méthode que Bernina/Argentera).
+ * sur le GPX, jugées plus fiables (même méthode que Bernina/Argentera). Le
+ * "jour" GPX (1-6) des photos, dérivé des mêmes coupures temporelles,
+ * correspond directement à J1-J6 ci-dessous.
  */
+
+const IMG = "/photos/Kazakhstan/";
+
+/** ALT = texte_alternatif du manifeste, jamais réécrit à la main (voir
+ *  src/data/photos/kazakhstan-2025.ts). Générique par jour (pas de légende
+ *  distincte par photo côté source) — reflet fidèle du manifeste fourni. */
+const photo = (file: string) => {
+  const meta = kazakhstanPhotos[file];
+  return { src: `${IMG}${file}`, alt: meta.texteAlternatif, width: meta.width, height: meta.height };
+};
+
+const photos = {
+  // Jour 1
+  j1_dsc01038: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01038-1-013.jpg"),
+  j1_dsc01077: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01077-014.jpg"),
+  j1_dsc01101: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01101-015.jpg"),
+  j1_dsc01118: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01118-2025-04-30t07-24-22-176-016.jpg"),
+  j1_dsc01173: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01173-1-017.jpg"),
+  j1_dsc01212: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01212-018.jpg"),
+  j1_dsc01251: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01251-019.jpg"),
+  j1_dsc01305: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01305-020.jpg"),
+  // Jour 2
+  j2_dsc01363: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01363-021.jpg"),
+  j2_dsc01501: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01501-022.jpg"),
+  j2_dsc01514: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01514-023.jpg"),
+  j2_dsc01522: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01522-1-024.jpg"),
+  j2_dsc01566: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01566-025.jpg"),
+  j2_dsc01582: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01582-026.jpg"),
+  // Jour 3
+  j3_dsc01634: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01634-027.jpg"),
+  j3_dsc01667: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01667-2025-04-29t13-10-08-404-028.jpg"),
+  j3_dsc01689: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01689-029.jpg"),
+  j3_dsc01724: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01724-030.jpg"),
+  j3_dsc01777: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01777-1-2025-04-29t13-09-47-272-031.jpg"),
+  j3_p20250422093322: photo("kazakhstan-ile-alatau-ski-randonnee-20250422-093322-1-001.jpg"),
+  j3_p20250422120555: photo("kazakhstan-ile-alatau-ski-randonnee-20250422-120555-002.jpg"),
+  // Jour 4
+  j4_p20250423050840: photo("kazakhstan-ile-alatau-ski-randonnee-20250423-050840-1-003.jpg"),
+  j4_p20250423061238: photo("kazakhstan-ile-alatau-ski-randonnee-20250423-061238-004.jpg"),
+  j4_p20250423081349: photo("kazakhstan-ile-alatau-ski-randonnee-20250423-081349-1-005.jpg"),
+  j4_p20250423101337: photo("kazakhstan-ile-alatau-ski-randonnee-20250423-101337-006.jpg"),
+  j4_p20250423144634: photo("kazakhstan-ile-alatau-ski-randonnee-20250423-144634-1-007.jpg"),
+  j4_p20250423153240: photo("kazakhstan-ile-alatau-ski-randonnee-20250423-153240-009.jpg"),
+  j4_p20250423150749: photo("kazakhstan-ile-alatau-ski-randonnee-20250423-150749-008.jpg"),
+  j4_dsc01836: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01836-1-032.jpg"),
+  j4_dsc01852: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01852-033.jpg"),
+  j4_dsc01880: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01880-034.jpg"),
+  j4_dsc01885: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01885-2025-04-27t11-41-30-967-035.jpg"),
+  j4_dsc01923: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01923-036.jpg"),
+  j4_dsc01925: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01925-037.jpg"),
+  j4_dsc01949: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01949-1-038.jpg"),
+  // Jour 5
+  j5_p20250424050153: photo("kazakhstan-ile-alatau-ski-randonnee-20250424-050153-010.jpg"),
+  j5_dsc01956: photo("kazakhstan-ile-alatau-ski-randonnee-dsc01956-039.jpg"),
+  j5_dsc02004: photo("kazakhstan-ile-alatau-ski-randonnee-dsc02004-040.jpg"),
+  j5_dsc02036: photo("kazakhstan-ile-alatau-ski-randonnee-dsc02036-041.jpg"),
+  j5_dsc02110: photo("kazakhstan-ile-alatau-ski-randonnee-dsc02110-042.jpg"),
+  j5_dsc02121: photo("kazakhstan-ile-alatau-ski-randonnee-dsc02121-043.jpg"),
+  // Jour 6
+  j6_dsc02166: photo("kazakhstan-ile-alatau-ski-randonnee-dsc02166-044.jpg"),
+  j6_dsc02199: photo("kazakhstan-ile-alatau-ski-randonnee-dsc02199-2025-04-27t11-41-32-920-045.jpg"),
+  j6_dsc02253: photo("kazakhstan-ile-alatau-ski-randonnee-dsc02253-2025-04-27t11-41-35-349-046.jpg"),
+  j6_dsc02323: photo("kazakhstan-ile-alatau-ski-randonnee-dsc02323-047.jpg"),
+  j6_dsc02363: photo("kazakhstan-ile-alatau-ski-randonnee-dsc02363-048.jpg"),
+  j6_dsc02411: photo("kazakhstan-ile-alatau-ski-randonnee-dsc02411-049.jpg"),
+  j6_dsc02419: photo("kazakhstan-ile-alatau-ski-randonnee-dsc02419-050.jpg"),
+  j6_p20250425140324: photo("kazakhstan-ile-alatau-ski-randonnee-20250425-140324-011.jpg"),
+  j6_dsc02453: photo("kazakhstan-ile-alatau-ski-randonnee-dsc02453-051.jpg"),
+  j6_dsc02478: photo("kazakhstan-ile-alatau-ski-randonnee-dsc02478-052.jpg"),
+  j6_dsc02481: photo("kazakhstan-ile-alatau-ski-randonnee-dsc02481-053.jpg"),
+  j6_dsc02501: photo("kazakhstan-ile-alatau-ski-randonnee-dsc02501-054.jpg"),
+  j6_p20250426122432: photo("kazakhstan-ile-alatau-ski-randonnee-20250426-122432-012.jpg"),
+};
 
 const itinerary: Carnet["itinerary"] = {
   eyebrow: "Itinéraire",
@@ -106,6 +190,7 @@ export const kazakhstan: Carnet = {
     title: "Ski au Kazakhstan : traversée des monts Ile Alatau",
     description:
       "Raid à ski au Kazakhstan : traversée en itinérance des monts Ile Alatau : hautes montagnes glaciaires et bivouacs en Asie centrale.",
+    ogImage: photos.j6_dsc02253.src,
   },
   masthead: {
     eyebrow: "Carnet de voyage",
@@ -119,22 +204,16 @@ export const kazakhstan: Carnet = {
       formatDescent(totals.descentM),
     ],
   },
-  openingPhoto: {
-    src: "",
-    alt: "Skieurs en traversée glaciaire dans les monts Ile Alatau, Kazakhstan",
-    placeholder: true,
-  },
+  // Même photo de couverture que la page WordPress live (DSC02253, jour 6).
+  openingPhoto: photos.j6_dsc02253,
   intro: {
     heading: "Raid à ski au Kazakhstan — Traversée des monts Ile Alatau",
     paragraphs: [
       "Cette traversée à ski des monts Ile Alatau, au Kazakhstan, est un raid à ski original et engagé au cœur de l'Asie centrale. Entre glaciers, bivouacs sommaires et vestiges de l'ère soviétique, ce périple à ski de rando nous a permis d'explorer des montagnes peu parcourues, où l'itinérance impose une lecture fine du terrain et une adaptation constante.",
       "Plus qu'un simple voyage à ski, cette traversée interroge le rapport à l'engagement, à l'isolement et aux limites — humaines autant que géographiques.",
     ],
-    photo: {
-      src: "",
-      alt: "Bivouac isolé dans les monts Ile Alatau, Kazakhstan",
-      placeholder: true,
-    },
+    // Même photo de prologue que la page WordPress live (DSC01777, jour 3).
+    photo: photos.j3_dsc01777,
   },
   info: {
     label: "Informations",
@@ -214,9 +293,107 @@ export const kazakhstan: Carnet = {
       linkLabel: "Lire l'article original",
       href: "https://alpinemag.fr/ski-rando-yann-borgnet-kazakhstan-traversee-monts-ile-alatau/",
     },
+    /* Rail jour par jour : 2-4 photos par journée selon la longueur du
+       passage de récit qui lui correspond (J3 "La chute" et J4 "Cosmo" sont
+       les plus longs, J1/J2/J5/J6 partagent des paragraphes plus courts ou
+       une heading commune "Jours 5 & 6") — sélection chronologique dans
+       chaque jour GPX (voir la note "jour" en tête de fichier), jamais un
+       sous-ensemble choisi au hasard. */
+    storyDays: itinerary.days.map((d, i) => ({
+      day: d.dayNum,
+      route: d.title,
+      photos: [
+        // J1 — Chimbulak → bivouac de Tuyuk-Su
+        [photos.j1_dsc01038, photos.j1_dsc01251],
+        // J2 — Tuyuk-Su → gorge gauche du Talgar
+        [photos.j2_dsc01363, photos.j2_dsc01566],
+        // J3 — Gorge gauche du Talgar → Kuzylsau
+        [photos.j3_dsc01634, photos.j3_dsc01689, photos.j3_dsc01777, photos.j3_p20250422120555],
+        // J4 — Kuzylsau → Cosmo Tian-Shan
+        [photos.j4_p20250423050840, photos.j4_p20250423101337, photos.j4_dsc01923],
+        // J5 — Cosmo Tian-Shan → gorges de Kargaly
+        [photos.j5_p20250424050153, photos.j5_dsc02110],
+        // J6 — Gorges de Kargaly → Koklaisay
+        [photos.j6_dsc02166, photos.j6_dsc02253, photos.j6_p20250426122432],
+      ][i],
+    })),
+  },
+  portfolio: {
+    eyebrow: "Portfolio",
+    title: "KAZAKHSTAN",
+    subtitle: "Une traversée des monts Ile Alatau",
+    meta: "Avril 2025 · 6 jours de traversée à ski des monts Ile Alatau, entre glaciers et vestiges soviétiques · Photos : Yann Borgnet",
+    // Les 54 photos disponibles, dans l'ordre chronologique par jour (voir
+    // src/data/photos/kazakhstan-2025.ts) — pas de séquence "best of"
+    // distincte de la chronologie faute de jugement visuel photo par photo :
+    // les 15 premières (réparties sur les 6 jours) forment la mosaïque
+    // visible au chargement, le reste se déplie au clic (CarnetGallery).
+    photos: [
+      // --- 15 visibles au chargement (2-3 par jour) ---
+      photos.j1_dsc01038,
+      photos.j1_dsc01251,
+      photos.j2_dsc01363,
+      photos.j2_dsc01514,
+      photos.j3_dsc01634,
+      photos.j3_p20250422093322,
+      photos.j3_p20250422120555,
+      photos.j4_p20250423101337,
+      photos.j4_dsc01923,
+      photos.j4_dsc01885,
+      photos.j5_p20250424050153,
+      photos.j5_dsc02036,
+      photos.j6_dsc02253,
+      photos.j6_dsc02419,
+      photos.j6_p20250425140324,
+      // --- repliées derrière "Voir la suite du portfolio" ---
+      photos.j1_dsc01077,
+      photos.j1_dsc01101,
+      photos.j1_dsc01118,
+      photos.j1_dsc01173,
+      photos.j1_dsc01212,
+      photos.j1_dsc01305,
+      photos.j2_dsc01501,
+      photos.j2_dsc01522,
+      photos.j2_dsc01566,
+      photos.j2_dsc01582,
+      photos.j3_dsc01667,
+      photos.j3_dsc01689,
+      photos.j3_dsc01724,
+      photos.j3_dsc01777,
+      photos.j4_p20250423050840,
+      photos.j4_p20250423061238,
+      photos.j4_p20250423081349,
+      photos.j4_p20250423144634,
+      photos.j4_p20250423153240,
+      photos.j4_p20250423150749,
+      photos.j4_dsc01836,
+      photos.j4_dsc01852,
+      photos.j4_dsc01880,
+      photos.j4_dsc01925,
+      photos.j4_dsc01949,
+      photos.j5_dsc01956,
+      photos.j5_dsc02004,
+      photos.j5_dsc02110,
+      photos.j5_dsc02121,
+      photos.j6_dsc02166,
+      photos.j6_dsc02199,
+      photos.j6_dsc02323,
+      photos.j6_dsc02363,
+      photos.j6_dsc02411,
+      photos.j6_dsc02453,
+      photos.j6_dsc02478,
+      photos.j6_dsc02481,
+      photos.j6_dsc02501,
+      photos.j6_p20250426122432,
+    ],
   },
   closing: {
     ctaLabel: "Voir d'autres carnets",
     ctaHref: "/carnets-de-voyage-ski/",
   },
 };
+
+/** Photo de couverture pour le listing /carnets-de-voyage-ski/ (voir
+ *  src/data/carnets/index.ts) — même mécanisme que Bernina/Argentera/Géorgie,
+ *  jamais une photo retapée séparément. */
+export const indexCover = photos.j6_dsc02253;

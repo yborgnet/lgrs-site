@@ -3,9 +3,9 @@ import { bernina, indexCover as berninaCover } from "./bernina";
 import { argentera, indexCover as argenteraCover } from "./argentera";
 import { georgie, indexCover as georgieCover } from "./georgie";
 import { grece, indexCover as greceCover } from "./grece";
-import { prokletije } from "./prokletije";
+import { prokletije, indexCover as prokletijeCover } from "./prokletije";
 import { maroc } from "./maroc";
-import { kazakhstan } from "./kazakhstan";
+import { kazakhstan, indexCover as kazakhstanCover } from "./kazakhstan";
 import { kosovo, indexCover as kosovoCover } from "./kosovo";
 import { alpesLigures, indexCover as alpesLiguresCover } from "./alpesLigures";
 import { otztal, indexCover as otztalCover } from "./otztal";
@@ -107,7 +107,7 @@ export const carnets: CarnetSummary[] = [
   }),
   toSummary(prokletije, {
     excerpt: "Huit jours de traversée entre forêts serrées, villages reculés et crêtes frontières.",
-    cover: { src: "", alt: prokletije.openingPhoto.alt, placeholder: true },
+    cover: prokletijeCover,
     zones: ["balkans"],
   }),
   toSummary(maroc, {
@@ -118,7 +118,7 @@ export const carnets: CarnetSummary[] = [
   toSummary(kazakhstan, {
     excerpt:
       "Glaciers immenses, bivouacs sommaires, vestiges soviétiques et isolement total : six jours de raid dans les monts Ile Alatau.",
-    cover: { src: "", alt: kazakhstan.openingPhoto.alt, placeholder: true },
+    cover: kazakhstanCover,
     zones: ["asie-centrale"],
   }),
   toSummary(kosovo, {

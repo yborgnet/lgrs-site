@@ -1,5 +1,6 @@
 import type { Carnet } from "./types";
 import { computeItineraryTotals, formatAscent, formatDescent, formatDistanceKm, formatDaysLabel, formatMeters } from "../../lib/carnet/itinerary-totals";
+import { montenegroPhotos } from "../photos/prokletije-montenegro-2026";
 
 /**
  * Contenu repris tel quel de la page WordPress live :
@@ -7,9 +8,18 @@ import { computeItineraryTotals, formatAscent, formatDescent, formatDistanceKm, 
  * (masthead WordPress : "MONTÉNÉGRO 2026" — le massif traversé, à cheval sur
  * trois pays, est le Prokletije).
  *
- * PHOTOS : passe photo pas encore faite — openingPhoto/intro.photo sont des
- * placeholders, portfolio vide. Aucune image WordPress
- * référencée (voir mémoire project_wordpress_migration).
+ * PHOTOS : passe photo faite à partir des 44 photos du bloc Portfolio de la
+ * page WordPress live, téléchargées et déposées localement dans
+ * public/photos/Montenegro/ (voir mémoire migration OVH/WordPress — plus
+ * aucune dépendance à wp-content). Métadonnées dans
+ * src/data/photos/prokletije-montenegro-2026.ts, elles-mêmes dérivées de
+ * public/photos/Montenegro/manifeste-photos-wordpress-montenegro.json.
+ * openingPhoto et intro.photo reprennent les choix déjà faits côté WordPress
+ * (même photo de couverture et même photo de prologue/arrivée à Lepushë),
+ * jamais choisies au hasard. Contrairement au Kazakhstan/Géorgie, aucun EXIF
+ * ni GPX horodaté n'a permis de corréler les photos aux jours de
+ * l'itinéraire : pas de rail storyDays pour ce carnet, le portfolio reprend
+ * tel quel l'ordre éditorial déjà choisi par WordPress.
  *
  * GPX : pas de GPX original téléchargeable sur WordPress — tracé lat/lon de
  * la carte interactive récupéré tel quel et resérialisé en `.gpx` minimal
@@ -18,6 +28,60 @@ import { computeItineraryTotals, formatAscent, formatDescent, formatDistanceKm, 
  * bloc Itinéraire (pas issues d'une analyse GPX) — reprises telles quelles
  * ci-dessous.
  */
+
+const IMG = "/photos/Montenegro/";
+
+const photo = (file: string) => {
+  const meta = montenegroPhotos[file];
+  return { src: `${IMG}${file}`, alt: meta.alt, width: meta.width, height: meta.height };
+};
+
+const photos = {
+  p001: photo("prokletije-montenegro-ski-randonnee-ouverture-traversee-prokletije-001.jpg"),
+  p002: photo("prokletije-montenegro-ski-randonnee-002.jpg"),
+  p003: photo("prokletije-montenegro-ski-randonnee-003.jpg"),
+  p004: photo("prokletije-montenegro-ski-randonnee-arrivee-ski-village-lepushe-004.jpg"),
+  p005: photo("prokletije-montenegro-ski-randonnee-005.jpg"),
+  p006: photo("prokletije-montenegro-ski-randonnee-mosquee-village-vusanje-006.jpg"),
+  p007: photo("prokletije-montenegro-ski-randonnee-007.jpg"),
+  p008: photo("prokletije-montenegro-ski-randonnee-008.jpg"),
+  p009: photo("prokletije-montenegro-ski-randonnee-009.jpg"),
+  p010: photo("prokletije-montenegro-ski-randonnee-010.jpg"),
+  p011: photo("prokletije-montenegro-ski-randonnee-011.jpg"),
+  p012: photo("prokletije-montenegro-ski-randonnee-012.jpg"),
+  p013: photo("prokletije-montenegro-ski-randonnee-013.jpg"),
+  p014: photo("prokletije-montenegro-ski-randonnee-014.jpg"),
+  p015: photo("prokletije-montenegro-ski-randonnee-015.jpg"),
+  p016: photo("prokletije-montenegro-ski-randonnee-016.jpg"),
+  p017: photo("prokletije-montenegro-ski-randonnee-017.jpg"),
+  p018: photo("prokletije-montenegro-ski-randonnee-018.jpg"),
+  p019: photo("prokletije-montenegro-ski-randonnee-019.jpg"),
+  p020: photo("prokletije-montenegro-ski-randonnee-020.jpg"),
+  p021: photo("prokletije-montenegro-ski-randonnee-021.jpg"),
+  p022: photo("prokletije-montenegro-ski-randonnee-022.jpg"),
+  p023: photo("prokletije-montenegro-ski-randonnee-023.jpg"),
+  p024: photo("prokletije-montenegro-ski-randonnee-024.jpg"),
+  p025: photo("prokletije-montenegro-ski-randonnee-025.jpg"),
+  p026: photo("prokletije-montenegro-ski-randonnee-026.jpg"),
+  p027: photo("prokletije-montenegro-ski-randonnee-rencontre-habitant-valbone-027.jpg"),
+  p028: photo("prokletije-montenegro-ski-randonnee-028.jpg"),
+  p029: photo("prokletije-montenegro-ski-randonnee-029.jpg"),
+  p030: photo("prokletije-montenegro-ski-randonnee-030.jpg"),
+  p031: photo("prokletije-montenegro-ski-randonnee-031.jpg"),
+  p032: photo("prokletije-montenegro-ski-randonnee-032.jpg"),
+  p033: photo("prokletije-montenegro-ski-randonnee-033.jpg"),
+  p034: photo("prokletije-montenegro-ski-randonnee-034.jpg"),
+  p035: photo("prokletije-montenegro-ski-randonnee-035.jpg"),
+  p036: photo("prokletije-montenegro-ski-randonnee-036.jpg"),
+  p037: photo("prokletije-montenegro-ski-randonnee-037.jpg"),
+  p038: photo("prokletije-montenegro-ski-randonnee-038.jpg"),
+  p039: photo("prokletije-montenegro-ski-randonnee-039.jpg"),
+  p040: photo("prokletije-montenegro-ski-randonnee-040.jpg"),
+  p041: photo("prokletije-montenegro-ski-randonnee-041.jpg"),
+  p042: photo("prokletije-montenegro-ski-randonnee-au-dessus-de-skala-042.jpg"),
+  p043: photo("prokletije-montenegro-ski-randonnee-cuisson-pain-babino-polje-043.jpg"),
+  p044: photo("prokletije-montenegro-ski-randonnee-044.jpg"),
+};
 
 const itinerary: Carnet["itinerary"] = {
   eyebrow: "Itinéraire",
@@ -103,6 +167,7 @@ export const prokletije: Carnet = {
     title: "Ski dans les Prokletije : Albanie, Monténégro et Kosovo",
     description:
       "Traversée à ski des Prokletije entre Albanie, Monténégro et Kosovo : forêts, villages isolés et itinérance de frontière en frontière.",
+    ogImage: photos.p001.src,
   },
   masthead: {
     eyebrow: "Carnet de voyage",
@@ -116,11 +181,8 @@ export const prokletije: Carnet = {
       formatDescent(totals.descentM),
     ],
   },
-  openingPhoto: {
-    src: "",
-    alt: "Skieurs en traversée dans les Prokletije, entre Albanie, Monténégro et Kosovo",
-    placeholder: true,
-  },
+  // Même photo de couverture que la page WordPress live.
+  openingPhoto: photos.p001,
   intro: {
     heading: "Les forêts des Prokletije",
     paragraphs: [
@@ -128,11 +190,9 @@ export const prokletije: Carnet = {
       "Premiers contacts avec la forêt albanaise, identifiée dès la préparation comme l'une des grandes incertitudes de l'itinéraire. Au fil des jours, les Prokletije révèlent leurs contrastes : vallées encaissées, forêts parfois impénétrables, combes ouvertes, villages isolés et frontières que l'on franchit à ski.",
       "Entre Albanie, Monténégro et Kosovo, cette traversée est une ligne d'adaptation permanente, où l'itinéraire se construit autant sur la carte que sur le terrain.",
     ],
-    photo: {
-      src: "",
-      alt: "Forêts et villages isolés des Prokletije, entre Albanie et Monténégro",
-      placeholder: true,
-    },
+    // Même photo que la colonne "prologue" de la page WordPress live
+    // (arrivée à ski à Lëpushë).
+    photo: photos.p004,
   },
   info: {
     label: "Informations",
@@ -196,8 +256,35 @@ export const prokletije: Carnet = {
       },
     ],
   },
+  portfolio: {
+    eyebrow: "Portfolio",
+    title: "MONTÉNÉGRO",
+    subtitle: "Une traversée des Prokletije",
+    meta: "Mars 2026 · 8 jours de traversée à ski entre Albanie, Monténégro et Kosovo · Photos : Yann Borgnet",
+    // Les 44 photos du portfolio WordPress, dans l'ordre éditorial déjà
+    // choisi côté WordPress (voir la note en tête de fichier — aucune
+    // corrélation jour par jour possible faute d'EXIF/GPX horodaté, jamais
+    // reclassé à la main). Les 15 premières forment la mosaïque visible au
+    // chargement, le reste se déplie au clic (CarnetGallery).
+    photos: [
+      photos.p001, photos.p002, photos.p003, photos.p004, photos.p005,
+      photos.p006, photos.p007, photos.p008, photos.p009, photos.p010,
+      photos.p011, photos.p012, photos.p013, photos.p014, photos.p015,
+      photos.p016, photos.p017, photos.p018, photos.p019, photos.p020,
+      photos.p021, photos.p022, photos.p023, photos.p024, photos.p025,
+      photos.p026, photos.p027, photos.p028, photos.p029, photos.p030,
+      photos.p031, photos.p032, photos.p033, photos.p034, photos.p035,
+      photos.p036, photos.p037, photos.p038, photos.p039, photos.p040,
+      photos.p041, photos.p042, photos.p043, photos.p044,
+    ],
+  },
   closing: {
     ctaLabel: "Voir d'autres carnets",
     ctaHref: "/carnets-de-voyage-ski/",
   },
 };
+
+/** Photo de couverture pour le listing /carnets-de-voyage-ski/ (voir
+ *  src/data/carnets/index.ts) — même mécanisme que Bernina/Argentera/Géorgie/
+ *  Kazakhstan, jamais une photo retapée séparément. */
+export const indexCover = photos.p001;

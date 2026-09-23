@@ -1,0 +1,385 @@
+/**
+ * Métadonnées éditoriales des 44 photos Monténégro/Prokletije 2026,
+ * récupérées depuis le bloc Portfolio de la page WordPress live :
+ * https://lesgrandsraidsaski.com/traversee-prokletije-ski-montenegro/
+ * puis déposées localement dans public/photos/Montenegro/ (voir mémoire
+ * migration OVH/WordPress — plus aucune dépendance à wp-content).
+ *
+ * Contrairement au Kazakhstan/Géorgie, aucun EXIF DateTimeOriginal
+ * exploitable (dépouillé par WordPress à l'upload) ni de GPX horodaté
+ * pour cette traversée (voir note en tête de prokletije.ts) : impossible
+ * d'établir une corrélation jour par jour. `ordrePortfolio` reprend tel
+ * quel l'ordre éditorial déjà choisi côté WordPress (voir
+ * manifeste-photos-wordpress-montenegro.json, même dossier) — jamais
+ * réordonné à la main. `alt` reprend le texte alternatif WordPress quand
+ * il existait (`altSpecifique: true`) ; sinon une description générique
+ * honnête de la traversée (jamais un détail précis inventé).
+ *
+ * width/height : dimensions réelles du JPEG (lues avec Pillow), même usage
+ * que georgie-2024.ts/kazakhstan-2025.ts (réserver le bon ratio avant
+ * chargement).
+ */
+
+export type MontenegroPhotoMeta = {
+  fichierWeb: string;
+  ordrePortfolio: number;
+  alt: string;
+  altSpecifique: boolean;
+  width: number;
+  height: number;
+};
+
+export const montenegroPhotos: Record<string, MontenegroPhotoMeta> = {
+  "prokletije-montenegro-ski-randonnee-ouverture-traversee-prokletije-001.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-ouverture-traversee-prokletije-001.jpg",
+    ordrePortfolio: 1,
+    alt: "Ski de randonnée dans les Prokletije entre Albanie et Monténégro",
+    altSpecifique: true,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-002.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-002.jpg",
+    ordrePortfolio: 2,
+    alt: "Ski de randonnée dans les Prokletije, sur la ligne de crête entre Albanie, Monténégro et Kosovo.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-003.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-003.jpg",
+    ordrePortfolio: 3,
+    alt: "Scène de voyage pendant la traversée à ski des Prokletije, dans les Balkans.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-arrivee-ski-village-lepushe-004.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-arrivee-ski-village-lepushe-004.jpg",
+    ordrePortfolio: 4,
+    alt: "Arrivée à ski dans le village de Lepushë au cœur des Prokletije",
+    altSpecifique: true,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-005.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-005.jpg",
+    ordrePortfolio: 5,
+    alt: "Traversée à ski des Prokletije, entre Albanie, Monténégro et Kosovo.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-mosquee-village-vusanje-006.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-mosquee-village-vusanje-006.jpg",
+    ordrePortfolio: 6,
+    alt: "Mosquée du village de Vusanje dans le massif des Prokletije au Monténégro",
+    altSpecifique: true,
+    width: 1080,
+    height: 1616,
+  },
+  "prokletije-montenegro-ski-randonnee-007.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-007.jpg",
+    ordrePortfolio: 7,
+    alt: "Scène de voyage pendant la traversée à ski des Prokletije, dans les Balkans.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-008.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-008.jpg",
+    ordrePortfolio: 8,
+    alt: "Itinérance à ski dans les Prokletije, entre forêts, cols et villages isolés.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-009.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-009.jpg",
+    ordrePortfolio: 9,
+    alt: "Traversée à ski des Prokletije, entre Albanie, Monténégro et Kosovo.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-010.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-010.jpg",
+    ordrePortfolio: 10,
+    alt: "Ski de randonnée dans les Prokletije, sur la ligne de crête entre Albanie, Monténégro et Kosovo.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-011.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-011.jpg",
+    ordrePortfolio: 11,
+    alt: "Scène de voyage pendant la traversée à ski des Prokletije, dans les Balkans.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-012.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-012.jpg",
+    ordrePortfolio: 12,
+    alt: "Itinérance à ski dans les Prokletije, entre forêts, cols et villages isolés.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-013.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-013.jpg",
+    ordrePortfolio: 13,
+    alt: "Traversée à ski des Prokletije, entre Albanie, Monténégro et Kosovo.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-014.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-014.jpg",
+    ordrePortfolio: 14,
+    alt: "Ski de randonnée dans les Prokletije, sur la ligne de crête entre Albanie, Monténégro et Kosovo.",
+    altSpecifique: false,
+    width: 1080,
+    height: 1616,
+  },
+  "prokletije-montenegro-ski-randonnee-015.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-015.jpg",
+    ordrePortfolio: 15,
+    alt: "Scène de voyage pendant la traversée à ski des Prokletije, dans les Balkans.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-016.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-016.jpg",
+    ordrePortfolio: 16,
+    alt: "Itinérance à ski dans les Prokletije, entre forêts, cols et villages isolés.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-017.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-017.jpg",
+    ordrePortfolio: 17,
+    alt: "Traversée à ski des Prokletije, entre Albanie, Monténégro et Kosovo.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-018.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-018.jpg",
+    ordrePortfolio: 18,
+    alt: "Ski de randonnée dans les Prokletije, sur la ligne de crête entre Albanie, Monténégro et Kosovo.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-019.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-019.jpg",
+    ordrePortfolio: 19,
+    alt: "Scène de voyage pendant la traversée à ski des Prokletije, dans les Balkans.",
+    altSpecifique: false,
+    width: 1080,
+    height: 1616,
+  },
+  "prokletije-montenegro-ski-randonnee-020.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-020.jpg",
+    ordrePortfolio: 20,
+    alt: "Itinérance à ski dans les Prokletije, entre forêts, cols et villages isolés.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-021.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-021.jpg",
+    ordrePortfolio: 21,
+    alt: "Traversée à ski des Prokletije, entre Albanie, Monténégro et Kosovo.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-022.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-022.jpg",
+    ordrePortfolio: 22,
+    alt: "Ski de randonnée dans les Prokletije, sur la ligne de crête entre Albanie, Monténégro et Kosovo.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-023.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-023.jpg",
+    ordrePortfolio: 23,
+    alt: "Scène de voyage pendant la traversée à ski des Prokletije, dans les Balkans.",
+    altSpecifique: false,
+    width: 1080,
+    height: 1616,
+  },
+  "prokletije-montenegro-ski-randonnee-024.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-024.jpg",
+    ordrePortfolio: 24,
+    alt: "Itinérance à ski dans les Prokletije, entre forêts, cols et villages isolés.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-025.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-025.jpg",
+    ordrePortfolio: 25,
+    alt: "Traversée à ski des Prokletije, entre Albanie, Monténégro et Kosovo.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-026.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-026.jpg",
+    ordrePortfolio: 26,
+    alt: "Ski de randonnée dans les Prokletije, sur la ligne de crête entre Albanie, Monténégro et Kosovo.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-rencontre-habitant-valbone-027.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-rencontre-habitant-valbone-027.jpg",
+    ordrePortfolio: 27,
+    alt: "Rencontre avec un habitant à Valbonë lors d’une traversée à ski des Prokletije",
+    altSpecifique: true,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-028.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-028.jpg",
+    ordrePortfolio: 28,
+    alt: "Itinérance à ski dans les Prokletije, entre forêts, cols et villages isolés.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-029.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-029.jpg",
+    ordrePortfolio: 29,
+    alt: "Traversée à ski des Prokletije, entre Albanie, Monténégro et Kosovo.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-030.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-030.jpg",
+    ordrePortfolio: 30,
+    alt: "Ski de randonnée dans les Prokletije, sur la ligne de crête entre Albanie, Monténégro et Kosovo.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-031.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-031.jpg",
+    ordrePortfolio: 31,
+    alt: "Scène de voyage pendant la traversée à ski des Prokletije, dans les Balkans.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-032.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-032.jpg",
+    ordrePortfolio: 32,
+    alt: "Itinérance à ski dans les Prokletije, entre forêts, cols et villages isolés.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-033.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-033.jpg",
+    ordrePortfolio: 33,
+    alt: "Traversée à ski des Prokletije, entre Albanie, Monténégro et Kosovo.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-034.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-034.jpg",
+    ordrePortfolio: 34,
+    alt: "Ski de randonnée dans les Prokletije, sur la ligne de crête entre Albanie, Monténégro et Kosovo.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-035.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-035.jpg",
+    ordrePortfolio: 35,
+    alt: "Scène de voyage pendant la traversée à ski des Prokletije, dans les Balkans.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-036.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-036.jpg",
+    ordrePortfolio: 36,
+    alt: "Itinérance à ski dans les Prokletije, entre forêts, cols et villages isolés.",
+    altSpecifique: false,
+    width: 1080,
+    height: 1616,
+  },
+  "prokletije-montenegro-ski-randonnee-037.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-037.jpg",
+    ordrePortfolio: 37,
+    alt: "Traversée à ski des Prokletije, entre Albanie, Monténégro et Kosovo.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-038.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-038.jpg",
+    ordrePortfolio: 38,
+    alt: "Ski de randonnée dans les Prokletije, sur la ligne de crête entre Albanie, Monténégro et Kosovo.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-039.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-039.jpg",
+    ordrePortfolio: 39,
+    alt: "Scène de voyage pendant la traversée à ski des Prokletije, dans les Balkans.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-040.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-040.jpg",
+    ordrePortfolio: 40,
+    alt: "Itinérance à ski dans les Prokletije, entre forêts, cols et villages isolés.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-041.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-041.jpg",
+    ordrePortfolio: 41,
+    alt: "Traversée à ski des Prokletije, entre Albanie, Monténégro et Kosovo.",
+    altSpecifique: false,
+    width: 1080,
+    height: 1616,
+  },
+  "prokletije-montenegro-ski-randonnee-au-dessus-de-skala-042.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-au-dessus-de-skala-042.jpg",
+    ordrePortfolio: 42,
+    alt: "Ski de randonnée au-dessus de Škala dans les Prokletije entre Lepushë et le Monténégro",
+    altSpecifique: true,
+    width: 1616,
+    height: 1080,
+  },
+  "prokletije-montenegro-ski-randonnee-cuisson-pain-babino-polje-043.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-cuisson-pain-babino-polje-043.jpg",
+    ordrePortfolio: 43,
+    alt: "Cuisson traditionnelle du pain à Babino Polje dans les Prokletije",
+    altSpecifique: true,
+    width: 1080,
+    height: 1616,
+  },
+  "prokletije-montenegro-ski-randonnee-044.jpg": {
+    fichierWeb: "prokletije-montenegro-ski-randonnee-044.jpg",
+    ordrePortfolio: 44,
+    alt: "Itinérance à ski dans les Prokletije, entre forêts, cols et villages isolés.",
+    altSpecifique: false,
+    width: 1616,
+    height: 1080,
+  },
+};
