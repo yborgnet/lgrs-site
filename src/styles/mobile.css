@@ -77,8 +77,21 @@
     font-size: 18px;
   }
 
+  .site-nav-mobile[open] summary span:first-child {
+    transform: translateY(4px) rotate(45deg);
+  }
+
+  .site-nav-mobile[open] summary span:last-child {
+    width: 30px;
+    transform: translateY(-4px) rotate(-45deg);
+  }
+
 
   /* HERO */
+
+  .hero__image {
+    object-position: 86% 50%;
+  }
 
   .hero__content {
     padding-bottom: 10vh;
@@ -90,8 +103,16 @@
   }
 
   .hero h1 {
-    font-size: clamp(54px, 16vw, 76px);
+    font-size: clamp(60px, 18vw, 74px);
     line-height: .84;
+  }
+
+  .hero-break--desktop {
+    display: none;
+  }
+
+  .hero-break--mobile {
+    display: inline;
   }
 
   .hero h1 em {
@@ -176,6 +197,7 @@
     min-height: 0;
     height: 100%;
     object-fit: cover;
+    object-position: 100% 50%;
   }
 
   .voyages-photo__caption span {

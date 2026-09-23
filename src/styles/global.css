@@ -154,6 +154,14 @@ a {
   font-weight: 300;
 }
 
+/* Titre du hero : le point de saut de ligne diffère entre desktop
+   ("LES GRANDS" / "RAIDS À SKI") et mobile ("LES GRANDS RAIDS" / "À SKI"),
+   pour que chaque ligne occupe mieux la largeur disponible. Les deux <br>
+   coexistent dans le markup ; mobile.css bascule lequel est actif. */
+.hero-break--mobile {
+  display: none;
+}
+
 .hero__tagline {
   margin: 26px 0 0;
   font-family: var(--font-serif);

@@ -189,6 +189,22 @@
   background-repeat: no-repeat;
 }
 
+/* MOBILE — jamais de texte+photo côte à côte : intro toujours empilée, texte
+   puis photo pleine largeur (le sticky/bleed n'a de sens qu'en 2 colonnes). */
+@media (max-width: 700px) {
+  .carnet-intro__grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .carnet-intro__photo {
+    position: static;
+    min-height: 0;
+    aspect-ratio: 4 / 5;
+    margin-right: 0;
+  }
+}
+
 /* Placeholder "photo à venir" (carnets préparés avant la passe photo) — même
    gabarit que la vraie photo, pas d'image générée, juste un repère sobre. */
 .carnet-intro__photo--placeholder,
@@ -434,6 +450,15 @@
 
 .carnet-story__text {
   min-width: 0;
+}
+
+/* MOBILE — jamais de texte+photo côte à côte : texte du récit puis journées
+   photographiées, toujours empilés. */
+@media (max-width: 700px) {
+  .carnet-story__grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
 }
 
 .carnet-story__section + .carnet-story__section {

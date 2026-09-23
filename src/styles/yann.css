@@ -212,3 +212,17 @@
   border-bottom: 1px solid currentColor;
   padding-bottom: 4px;
 }
+
+/* MOBILE — jamais de texte+photo côte à côte : hero toujours empilé. */
+
+@media (max-width: 700px) {
+  .yann-hero__grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .yann-hero__lead {
+    max-width: none;
+  }
+}
