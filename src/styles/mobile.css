@@ -3,7 +3,7 @@
   display: none;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 820px) {
 
   :root {
     --shell: calc(100vw - 32px);
@@ -16,17 +16,18 @@
   /* HEADER */
 
   .site-header__inner {
-    min-height: 76px;
+    min-height: 84px;
   }
 
   .site-brand {
-    font-size: 16px;
+    font-size: 20px;
+    letter-spacing: .085em;
     line-height: 1;
   }
 
   .site-brand small {
-    margin-top: 6px;
-    font-size: 11px;
+    margin-top: 7px;
+    font-size: 12px;
   }
 
   .site-nav {
@@ -74,7 +75,7 @@
     gap: 18px;
     background: var(--ink);
     color: white;
-    font-size: 18px;
+    font-size: 20px;
   }
 
   .site-nav-mobile[open] summary span:first-child {
