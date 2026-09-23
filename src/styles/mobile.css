@@ -89,14 +89,6 @@
 
   /* HERO */
 
-  .hero__image {
-    object-position: 86% 50%;
-  }
-
-  .hero__content {
-    padding-bottom: 10vh;
-  }
-
   .hero__kicker {
     margin-bottom: 16px;
     font-size: 12px;
