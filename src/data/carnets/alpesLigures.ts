@@ -252,7 +252,7 @@ export const alpesLigures: Carnet = {
   masthead: {
     eyebrow: "Carnet de voyage",
     title: "GRANDE TRAVERSÉE DES ALPES À SKI",
-    subtitle: "Segment #1 (Alpes Ligures)",
+    subtitle: "Segment #1 : Alpes Ligures",
     meta: [
       PERIOD_LABEL,
       formatDaysLabel(totals.days),
@@ -372,7 +372,7 @@ export const alpesLigures: Carnet = {
   portfolio: {
     eyebrow: "Portfolio",
     title: "GRANDE TRAVERSÉE DES ALPES À SKI",
-    subtitle: "Segment #1 (Alpes Ligures)",
+    subtitle: "Segment #1 : Alpes Ligures",
     meta: "Du 12 au 16 mars 2024 · 5 jours de traversée à ski, de Limone Piemonte à Garessio 2000 · Photos : Yann Borgnet",
     // 59 photos disponibles au total (aucune exclue) : 17 visibles au
     // chargement (mosaïque qui se termine proprement), le reste derrière
