@@ -51,6 +51,13 @@ const { itinerary } = Astro.props;
               <div class="voyage-day__copy">
                 {item.highlightLabel && <span class="voyage-day__highlight-label">{item.highlightLabel}</span>}
                 <h3>{item.title}</h3>
+                {(item.distanceKm != null || item.ascentM != null || item.descentM != null) && (
+                  <p class="voyage-day__stats">
+                    {item.distanceKm != null && <span>{item.distanceKm.toFixed(1).replace(".", ",")} km</span>}
+                    {item.ascentM != null && <span>+{item.ascentM} m</span>}
+                    {item.descentM != null && <span>−{item.descentM} m</span>}
+                  </p>
+                )}
                 <p set:html={item.text} />
               </div>
             </article>
