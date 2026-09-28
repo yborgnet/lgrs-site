@@ -18,22 +18,6 @@ const { itinerary } = Astro.props;
       {itinerary.intro && <p class="voyage-itinerary__intro">{itinerary.intro}</p>}
     </header>
 
-    {
-      itinerary.gpx ? (
-        <GpxMap
-          gpx={itinerary.gpx}
-          title={itinerary.mapTitle ?? `Carte de l'itinéraire — ${itinerary.title}`}
-          fallback={itinerary.map}
-        />
-      ) : (
-        itinerary.map && (
-          <figure class="voyage-itinerary__map">
-            <img src={withBase(itinerary.map.src)} alt={itinerary.map.alt} loading="lazy" decoding="async" />
-          </figure>
-        )
-      )
-    }
-
     <div class="voyage-itinerary__timeline">
       {
         itinerary.items.map((item) =>
@@ -51,6 +35,13 @@ const { itinerary } = Astro.props;
               <div class="voyage-day__copy">
                 {item.highlightLabel && <span class="voyage-day__highlight-label">{item.highlightLabel}</span>}
                 <h3>{item.title}</h3>
+                {(item.distanceKm != null || item.ascentM != null || item.descentM != null) && (
+                  <p class="voyage-day__stats">
+                    {item.distanceKm != null && <span>{item.distanceKm.toFixed(1).replace(".", ",")} km</span>}
+                    {item.ascentM != null && <span>+{item.ascentM} m</span>}
+                    {item.descentM != null && <span>−{item.descentM} m</span>}
+                  </p>
+                )}
                 <p set:html={item.text} />
               </div>
             </article>
@@ -60,5 +51,21 @@ const { itinerary } = Astro.props;
     </div>
 
     {itinerary.note && <p class="voyage-itinerary__note">{itinerary.note}</p>}
+
+    {
+      itinerary.gpx ? (
+        <GpxMap
+          gpx={itinerary.gpx}
+          title={itinerary.mapTitle ?? `Carte de l'itinéraire — ${itinerary.title}`}
+          fallback={itinerary.map}
+        />
+      ) : (
+        itinerary.map && (
+          <figure class="voyage-itinerary__map">
+            <img src={withBase(itinerary.map.src)} alt={itinerary.map.alt} loading="lazy" decoding="async" />
+          </figure>
+        )
+      )
+    }
   </div>
 </section>

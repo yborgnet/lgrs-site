@@ -60,6 +60,21 @@ export const armenie: Voyage = {
     title: "10 jours. Du lac Sevan à l’Aragats.",
     intro:
       "Une traversée à ski de village en village, depuis les forêts du nord et les rives du lac Sevan jusqu’aux reliefs volcaniques du mont Ara et de l’Aragats.",
+    gpx: "/gpx/armenie-sevan-aragats-2027.gpx",
+    mapTitle: "Carte de l’itinéraire du voyage à ski en Arménie – du lac Sevan à l’Aragats",
+    /* Stats par jour calculées depuis les 7 <trkseg> natifs de public/gpx/
+       armenie-sevan-aragats-2027.gpx (trace planifiée AlpineQuest, non modifiée) —
+       reproductible via `node scripts/gpx-report-armenie.ts`. Confirmé avec Yann :
+       chaque <trkseg> est une portion réellement skiée ; les écarts entre segments
+       (6,48 / 0 / 0,04 / 3,06 / 8,76 / 0,15 km) sont des transferts taxi/véhicule,
+       jamais comblés par une trace ski reconstruite (voir docs/gpx-methodology.md
+       et le rendu carte, qui les matérialise par un trait pointillé distinct).
+       Élévation : trace planifiée échantillonnée sur MNT (espacement moyen ~130 m,
+       pas un enregistrement GPS/baro dense) — le lissage par défaut (fenêtre 9 pts
+       ≈ 1 km) gommerait du vrai relief plutôt que du bruit capteur, donc hystérésis
+       légère (3 m, sans moyenne glissante) plutôt que les réglages par défaut.
+       J8 (Pentes de l'Aragats) est une journée de réserve sans trace GPX dédiée :
+       aucune stat n'est inventée pour ce jour. */
     items: [
       { type: "chapter", label: "Nord", title: "Sevan · Dilijan · hauts plateaux" },
       {
@@ -76,6 +91,9 @@ export const armenie: Voyage = {
         dateLabel: "21 FÉV",
         title: "Lac Sevan → Dilijan",
         text: "Transfert matinal vers les rives du lac Sevan, puis première traversée à ski vers Dilijan et les forêts du nord du pays.",
+        distanceKm: 16.9,
+        ascentM: 1280,
+        descentM: 1860,
       },
       {
         type: "day",
@@ -83,6 +101,9 @@ export const armenie: Voyage = {
         dateLabel: "22 FÉV",
         title: "Dilijan → Margahovit",
         text: "Traversée à ski entre forêts et clairières jusqu’à Margahovit. Nuit en guest house.",
+        distanceKm: 11.6,
+        ascentM: 1150,
+        descentM: 840,
       },
       {
         type: "day",
@@ -90,6 +111,9 @@ export const armenie: Voyage = {
         dateLabel: "23 FÉV",
         title: "Margahovit → Meghradzor",
         text: "Une nouvelle étape d’itinérance à travers les hauts plateaux arméniens, de village en village.",
+        distanceKm: 24.2,
+        ascentM: 1870,
+        descentM: 1840,
       },
       {
         type: "day",
@@ -97,6 +121,9 @@ export const armenie: Voyage = {
         dateLabel: "24 FÉV",
         title: "Meghradzor → Aghveran",
         text: "Traversée à ski vers Aghveran, avec un nouvel accueil local à l’arrivée.",
+        distanceKm: 26.5,
+        ascentM: 1330,
+        descentM: 1290,
       },
       { type: "chapter", label: "Ouest", title: "Mont Ara · massif de l’Aragats" },
       {
@@ -105,6 +132,9 @@ export const armenie: Voyage = {
         dateLabel: "25 FÉV",
         title: "Aghveran → Taghenik / Karashamb",
         text: "Progression vers les reliefs du mont Ara et les villages de Taghenik ou Karashamb, selon les conditions.",
+        distanceKm: 9.6,
+        ascentM: 830,
+        descentM: 780,
       },
       {
         type: "day",
@@ -112,6 +142,9 @@ export const armenie: Voyage = {
         dateLabel: "26 FÉV",
         title: "Taghenik / Karashamb → Aragats",
         text: "Traversée à ski vers le massif de l’Aragats et changement d’échelle à l’approche du point culminant du pays.",
+        distanceKm: 16.6,
+        ascentM: 1580,
+        descentM: 340,
       },
       {
         type: "day",
@@ -128,6 +161,9 @@ export const armenie: Voyage = {
         title: "Aragats · 4 090 m → Erevan",
         text: "Tentative du sommet de l’Aragats selon les conditions, puis retour vers Erevan pour la dernière nuit.",
         variant: "highlight",
+        distanceKm: 21.2,
+        ascentM: 1110,
+        descentM: 2100,
       },
       {
         type: "day",

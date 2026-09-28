@@ -9,7 +9,7 @@
 .gpx-map__canvas {
   position: relative;
   width: 100%;
-  height: 340px;
+  height: 430px;
   overflow: hidden;
 }
 
@@ -39,7 +39,6 @@
   }
 
   .gpx-map__canvas {
-    height: auto;
-    aspect-ratio: 2.4 / 1;
+    height: 560px;
   }
 }

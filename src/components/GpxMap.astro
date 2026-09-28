@@ -24,19 +24,43 @@ const gpxList = (Array.isArray(gpx) ? gpx : [gpx]).map(withBase);
 <script>
   // Carte Leaflet + trace(s) GPX — chargée uniquement quand la carte approche du viewport,
   // et seulement si la page contient effectivement une carte (import dynamique de Leaflet).
-  const MAX_ZOOM = 15; // plafond global : au-delà, la carte n'aide plus à comprendre le voyage
-  const FIT_ZOOM = 12; // plafond au cadrage initial, même pour une trace très courte
+  const MAX_ZOOM = 11; // plafond volontairement serré : la carte situe l'itinéraire, elle ne remplace pas une carte topo détaillée
+  const FIT_PADDING: [number, number] = [32, 32];
+  const BOUNDS_PAD = 0.22; // marge de déplacement autorisée autour de la trace (fraction de la taille des bounds)
+  // Écart (m) entre la fin d'un <trkseg> et le début du suivant au-delà duquel on trace
+  // un transfert (portion non skiée, ex. taxi/véhicule) plutôt qu'un simple raccord visuel.
+  const TRANSFER_GAP_METERS = 250;
 
-  function parseGpxLatLngs(xmlText: string): [number, number][] {
+  function haversineMeters(a: [number, number], b: [number, number]): number {
+    const R = 6371000;
+    const toRad = (d: number) => (d * Math.PI) / 180;
+    const dLat = toRad(b[0] - a[0]);
+    const dLon = toRad(b[1] - a[1]);
+    const lat1 = toRad(a[0]);
+    const lat2 = toRad(b[0]);
+    const h = Math.sin(dLat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) ** 2;
+    return 2 * R * Math.asin(Math.sqrt(h));
+  }
+
+  /** Un tableau de segments (un par <trkseg> natif du GPX) — jamais aplati : la
+   *  segmentation d'origine porte l'info "portion réellement skiée" (voir
+   *  docs/gpx-methodology.md). Rien n'est reconstruit entre deux segments : un écart
+   *  réel entre la fin de l'un et le début du suivant reste un écart (transfert),
+   *  jamais une portion de trace inventée. */
+  function parseGpxSegments(xmlText: string): [number, number][][] {
     const doc = new DOMParser().parseFromString(xmlText, "application/xml");
     if (doc.querySelector("parsererror")) return [];
-    return [...doc.querySelectorAll("trkpt")]
-      .map((pt) => {
-        const lat = parseFloat(pt.getAttribute("lat") ?? "");
-        const lon = parseFloat(pt.getAttribute("lon") ?? "");
-        return Number.isFinite(lat) && Number.isFinite(lon) ? ([lat, lon] as [number, number]) : null;
-      })
-      .filter((p): p is [number, number] => p !== null);
+    return [...doc.querySelectorAll("trkseg")]
+      .map((seg) =>
+        [...seg.querySelectorAll("trkpt")]
+          .map((pt) => {
+            const lat = parseFloat(pt.getAttribute("lat") ?? "");
+            const lon = parseFloat(pt.getAttribute("lon") ?? "");
+            return Number.isFinite(lat) && Number.isFinite(lon) ? ([lat, lon] as [number, number]) : null;
+          })
+          .filter((p): p is [number, number] => p !== null)
+      )
+      .filter((seg) => seg.length > 1);
   }
 
   async function initMap(container: HTMLElement) {
@@ -51,20 +75,22 @@ const gpxList = (Array.isArray(gpx) ? gpx : [gpx]).map(withBase);
     }
     if (!files.length) return;
 
-    const traces = await Promise.all(
+    const perFile = await Promise.all(
       files.map(async (url) => {
         try {
           const res = await fetch(url);
           if (!res.ok) return [];
-          return parseGpxLatLngs(await res.text());
+          return parseGpxSegments(await res.text());
         } catch {
           return [];
         }
       })
     );
 
-    const validTraces = traces.filter((t) => t.length > 1);
-    if (!validTraces.length) {
+    // Tous les segments de tous les fichiers, mis bout à bout dans l'ordre — la
+    // continuité (ou non) entre deux segments consécutifs est évaluée plus bas.
+    const segments = perFile.flat();
+    if (!segments.length) {
       // Pas de trace exploitable : on garde l'image de secours déjà affichée, sans erreur visible.
       return;
     }
@@ -87,24 +113,41 @@ const gpxList = (Array.isArray(gpx) ? gpx : [gpx]).map(withBase);
     }).addTo(map);
 
     const bounds = L.latLngBounds([]);
-    for (const latlngs of validTraces) {
-      // Halo blanc sous la trace : garde la ligne lisible sur les reliefs foncés du fond topo.
+
+    segments.forEach((latlngs, i) => {
       L.polyline(latlngs, {
-        color: "#ffffff",
-        weight: 6,
-        opacity: 0.9,
-        lineJoin: "round",
-      }).addTo(map);
-      L.polyline(latlngs, {
-        color: "#ff0000",
-        weight: 3,
-        opacity: 0.9,
+        color: "#ff2d00",
+        weight: 3.6,
+        opacity: 1,
         lineJoin: "round",
       }).addTo(map);
       bounds.extend(latlngs);
-    }
 
-    map.fitBounds(bounds, { padding: [24, 24], maxZoom: FIT_ZOOM });
+      // Écart avec le segment précédent : au-delà du seuil, c'est un transfert
+      // (taxi/véhicule) — matérialisé par un trait discret, jamais par une trace ski.
+      if (i > 0) {
+        const prevEnd = segments[i - 1][segments[i - 1].length - 1];
+        const start = latlngs[0];
+        if (haversineMeters(prevEnd, start) > TRANSFER_GAP_METERS) {
+          L.polyline([prevEnd, start], {
+            color: "#111111",
+            weight: 2.5,
+            opacity: 0.9,
+            dashArray: "7 7",
+            lineCap: "round",
+          }).addTo(map);
+        }
+      }
+    });
+
+    const start = segments[0][0];
+    const end = segments[segments.length - 1][segments[segments.length - 1].length - 1];
+    const markerStyle = { radius: 6, color: "#111111", weight: 2, fillColor: "#ffffff", fillOpacity: 1 };
+    L.circleMarker(start, markerStyle).addTo(map);
+    L.circleMarker(end, markerStyle).addTo(map);
+
+    map.fitBounds(bounds, { padding: FIT_PADDING, maxZoom: MAX_ZOOM });
+    map.setMaxBounds(bounds.pad(BOUNDS_PAD));
 
     let resizeTimer: number | undefined;
     window.addEventListener("resize", () => {
