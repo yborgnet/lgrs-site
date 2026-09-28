@@ -251,8 +251,8 @@ export const alpesLigures: Carnet = {
   },
   masthead: {
     eyebrow: "Carnet de voyage",
-    title: "ALPES LIGURES",
-    subtitle: "Des Alpes à la Méditerranée",
+    title: "GRANDE TRAVERSÉE DES ALPES À SKI",
+    subtitle: "Segment #1 (Alpes Ligures)",
     meta: [
       PERIOD_LABEL,
       formatDaysLabel(totals.days),
@@ -360,13 +360,19 @@ export const alpesLigures: Carnet = {
     ],
     closingLinks: [
       { label: "Le manuscrit de thèse", href: null },
-      { label: "Étape 2 de la traversée des Alpes en segments : l'Argentera, de Limone Piemonte à Vinadio →", href: "/traversee-ski-argentera-mercantour/" },
+      // Corrigé le 28/09/2026 : ce lien pointait vers argentera.ts (voyage
+      // 2026, Entracque → Sant'Anna di Valdieri), un massif voisin mais un
+      // itinéraire et une année différents. Le vrai segment 2 ("Limone
+      // Piemonte à Vinadio", texte déjà présent ici) est confirmé par
+      // recoupement GPX comme étant le carnet argentera-2024.ts — voir sa
+      // note de tête de fichier pour le détail de cette correction.
+      { label: "Étape 2 de la traversée des Alpes en segments : l'Argentera, de Limone Piemonte à Vinadio →", href: "/argentera-2024-traversee-ski-randonnee/" },
     ],
   },
   portfolio: {
     eyebrow: "Portfolio",
-    title: "ALPES LIGURES",
-    subtitle: "Des Alpes à la Méditerranée",
+    title: "GRANDE TRAVERSÉE DES ALPES À SKI",
+    subtitle: "Segment #1 (Alpes Ligures)",
     meta: "Du 12 au 16 mars 2024 · 5 jours de traversée à ski, de Limone Piemonte à Garessio 2000 · Photos : Yann Borgnet",
     // 59 photos disponibles au total (aucune exclue) : 17 visibles au
     // chargement (mosaïque qui se termine proprement), le reste derrière

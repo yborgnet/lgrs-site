@@ -182,8 +182,8 @@ export const argentera2024: Carnet = {
   },
   masthead: {
     eyebrow: "Carnet de voyage",
-    title: "ARGENTERA",
-    subtitle: "Limone Piemonte → Vinadio",
+    title: "GRANDE TRAVERSÉE DES ALPES À SKI",
+    subtitle: "Segment #2 (Argentera)",
     meta: [
       PERIOD_LABEL,
       formatDaysLabel(totals.days),
@@ -260,8 +260,8 @@ export const argentera2024: Carnet = {
   },
   portfolio: {
     eyebrow: "Portfolio",
-    title: "ARGENTERA",
-    subtitle: "Limone Piemonte → Vinadio",
+    title: "GRANDE TRAVERSÉE DES ALPES À SKI",
+    subtitle: "Segment #2 (Argentera)",
     meta: "Du 18 au 22 mars 2024 · 5 jours de traversée à ski, de Limone Piemonte à Vinadio · Photos : Yann Borgnet",
     photos: [
       // --- visibles au chargement ---

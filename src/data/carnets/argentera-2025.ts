@@ -165,8 +165,8 @@ export const argentera2025: Carnet = {
   },
   masthead: {
     eyebrow: "Carnet de voyage",
-    title: "ARGENTERA",
-    subtitle: "Vinadio → Pontechianale",
+    title: "GRANDE TRAVERSÉE DES ALPES À SKI",
+    subtitle: "Segment #3 (Argentera & Ubaye)",
     meta: [
       PERIOD_LABEL,
       formatDaysLabel(totals.days),
@@ -229,8 +229,8 @@ export const argentera2025: Carnet = {
   },
   portfolio: {
     eyebrow: "Portfolio",
-    title: "ARGENTERA",
-    subtitle: "Vinadio → Pontechianale",
+    title: "GRANDE TRAVERSÉE DES ALPES À SKI",
+    subtitle: "Segment #3 (Argentera & Ubaye)",
     meta: "Du 7 au 11 avril 2025 · 5 jours de traversée à ski, de Vinadio à Pontechianale · Photos : Yann Borgnet",
     photos: [
       // --- visibles au chargement ---
