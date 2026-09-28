@@ -62,6 +62,14 @@ export const tadjikistan: Voyage = {
       "Une première exploration autonome autour du Pereval Angisht, avec deux nuits sous tente, puis une traversée entre les villages d’hiver du Haut-Zeravshan.",
     gpx: "/gpx/tadjikistan-zeravshan-2027.gpx",
     mapTitle: "Carte de l’itinéraire du voyage à ski au Tadjikistan – vallées du Zeravshan",
+    /* Stats par jour calculées depuis les 7 <trkseg> natifs de public/gpx/
+       tadjikistan-zeravshan-2027.gpx (trace planifiée, non modifiée) — reproductible via
+       `node scripts/gpx-report-voyages.ts public/gpx/tadjikistan-zeravshan-2027.gpx`.
+       Correspondance 1 segment = 1 jour de ski (J2→J8), confirmée par l'écart de
+       21,5 km entre le 4e et le 5e segment, qui correspond exactement au transfert par
+       la route du tunnel d'Anzob décrit en fin de J5. Hystérésis légère (3 m, sans
+       moyenne glissante) plutôt que le lissage par défaut — mêmes raisons que
+       l'Arménie (trace échantillonnée sur MNT, pas un enregistrement GPS/baro dense). */
     items: [
       {
         type: "day",
@@ -77,6 +85,9 @@ export const tadjikistan: Voyage = {
         dateLabel: "22 MAR",
         title: "Sarytag · mise en jambes",
         text: "Après un transfert matinal depuis Douchanbé, arrivée à Sarytag. Selon l’heure et les conditions, première sortie à ski sur les pentes dominant le village.",
+        distanceKm: 13.9,
+        ascentM: 1040,
+        descentM: 1090,
       },
       { type: "chapter", label: "Exploration", title: "Pereval Angisht · 3 jours en autonomie" },
       {
@@ -85,6 +96,9 @@ export const tadjikistan: Voyage = {
         dateLabel: "23 MAR",
         title: "Vers le Pereval Angisht",
         text: "Entrée dans le secteur sauvage du Pereval Angisht et installation du premier bivouac sous tente.",
+        distanceKm: 9.3,
+        ascentM: 920,
+        descentM: 360,
       },
       {
         type: "day",
@@ -92,6 +106,9 @@ export const tadjikistan: Voyage = {
         dateLabel: "24 MAR",
         title: "Vallées du Pereval Angisht",
         text: "Exploration à ski entre vallées suspendues, cols d’altitude et vastes combes enneigées. Deuxième nuit sous tente.",
+        distanceKm: 18.1,
+        ascentM: 1130,
+        descentM: 1100,
       },
       {
         type: "day",
@@ -99,6 +116,9 @@ export const tadjikistan: Voyage = {
         dateLabel: "25 MAR",
         title: "Pereval Angisht → route du tunnel d’Anzob",
         text: "Dernière traversée dans le secteur, sortie vers la route du tunnel d’Anzob puis transfert vers le Haut-Zeravshan.",
+        distanceKm: 29.2,
+        ascentM: 2220,
+        descentM: 2550,
       },
       { type: "chapter", label: "Traversée", title: "Haut-Zeravshan · Margib, Marzich et Anzob" },
       {
@@ -107,6 +127,9 @@ export const tadjikistan: Voyage = {
         dateLabel: "26 MAR",
         title: "Margib",
         text: "Départ de la traversée du Haut-Zeravshan depuis Margib, entre cols et vallées d’altitude. Nuit au village.",
+        distanceKm: 15.1,
+        ascentM: 1150,
+        descentM: 1510,
       },
       {
         type: "day",
@@ -114,6 +137,9 @@ export const tadjikistan: Voyage = {
         dateLabel: "27 MAR",
         title: "Margib → Marzich",
         text: "Traversée à ski vers Marzich par une succession de cols et de vallées d’altitude.",
+        distanceKm: 9.8,
+        ascentM: 1610,
+        descentM: 1460,
       },
       {
         type: "day",
@@ -123,6 +149,9 @@ export const tadjikistan: Voyage = {
         title: "Marzich → Anzob → Douchanbé",
         text: "Dernière étape de la traversée vers Anzob, puis transfert de retour à Douchanbé en fin de journée.",
         variant: "highlight",
+        distanceKm: 8.7,
+        ascentM: 1270,
+        descentM: 1170,
       },
       {
         type: "day",
