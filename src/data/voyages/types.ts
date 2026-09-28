@@ -12,12 +12,6 @@ export type VoyageDayItem = {
   /** Trusted HTML fragment (from source content, not user input). */
   text: string;
   variant?: "travel" | "highlight";
-  /** Stats exactes calculées depuis le GPX (segment réellement skié), jamais estimées —
-   *  voir docs/gpx-methodology.md. Absentes quand la journée n'a pas de segment GPX propre
-   *  (ex. journée de réserve) : ne jamais en inventer pour combler l'absence. */
-  distanceKm?: number;
-  ascentM?: number;
-  descentM?: number;
 };
 
 export type VoyageChapterItem = {

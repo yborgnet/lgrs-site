@@ -329,19 +329,6 @@
   color: rgba(11, 11, 10, .68);
 }
 
-/* Stats GPX (distance/D+/D−) — même traitement discret que .carnet-day__stats :
-   sous le titre, avant le texte, jamais mises en avant comme le titre lui-même. */
-.voyage-day__stats {
-  margin: 6px 0 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 4px 14px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: .02em;
-  color: rgba(11, 11, 10, .55);
-}
-
 .voyage-day--travel {
   padding-top: 13px;
   padding-bottom: 15px;
