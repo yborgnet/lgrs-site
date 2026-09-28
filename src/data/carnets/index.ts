@@ -8,6 +8,8 @@ import { maroc, indexCover as marocCover } from "./maroc";
 import { kazakhstan, indexCover as kazakhstanCover } from "./kazakhstan";
 import { kosovo, indexCover as kosovoCover } from "./kosovo";
 import { alpesLigures, indexCover as alpesLiguresCover } from "./alpesLigures";
+import { argentera2024, indexCover as argentera2024Cover } from "./argentera-2024";
+import { argentera2025, indexCover as argentera2025Cover } from "./argentera-2025";
 import { otztal, indexCover as otztalCover } from "./otztal";
 import { dammastockTitlis, indexCover as titlisCover } from "./dammastock-titlis-traversee-ski-randonnee";
 import { verwall, indexCover as verwallCover } from "./verwall";
@@ -129,6 +131,16 @@ export const carnets: CarnetSummary[] = [
   toSummary(alpesLigures, {
     excerpt: "Cinq jours de traversée aux confins des Alpes, de la plaine du Pô à la Méditerranée, entre cabanes non gardées et solitude retrouvée.",
     cover: { ...alpesLiguresCover, position: "center 45%" },
+    zones: ["alpes"],
+  }),
+  toSummary(argentera2024, {
+    excerpt: "Deuxième segment de la traversée des Alpes : cinq jours à ski dans l'Argentera, de Limone Piemonte à Vinadio.",
+    cover: { ...argentera2024Cover, position: "center 45%" },
+    zones: ["alpes"],
+  }),
+  toSummary(argentera2025, {
+    excerpt: "Troisième segment de la traversée des Alpes : cinq jours à ski de Vinadio au Val Varaita, entre Argentera et Ubaye.",
+    cover: { ...argentera2025Cover, position: "center 45%" },
     zones: ["alpes"],
   }),
   toSummary(otztal, {
