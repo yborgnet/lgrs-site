@@ -68,6 +68,23 @@ export const georgie: Voyage = {
     },
     gpx: "/gpx/georgie-petit-caucase-2027.gpx",
     mapTitle: "Carte de l’itinéraire du voyage à ski en Géorgie – Petit Caucase",
+    /* Stats par jour : ce GPX n'est pas découpé par <trkseg> par jour (contrairement à
+       l'Arménie/l'Ouzbékistan/le Tadjikistan) — il contient même des <trkseg> imbriqués
+       par erreur (fermetures manquantes, regroupées en fin de fichier). Les jours sont
+       donc découpés sur la trace continue (2636 points, tous <trkpt> du fichier dans
+       l'ordre) aux points d'étape déjà nommés dans ce fichier, retrouvés par point le
+       plus proche (coordonnées Wikipedia/OSM) : Tsikhisjvari (départ, 0,07 km),
+       Bakuriani (~6 km, seul repère disponible pour cette coupure), Tabatskuri
+       (0,43 km), Samsari (0,05 km), Olaverdi (0,32 km), Danisparauli (0,05 km),
+       Ghorjomi (0,22 km), Bakhmaro (arrivée, 0,56 km). Le grand écart de 82,8 km entre
+       Olaverdi et le début de J6 est la traversée routière Javakheti → Adjarie décrite
+       dans le texte, jamais reliée par une trace ski. Didi Abuli (0,16 km) est traversé
+       PENDANT J5 (l'option sommet "selon les conditions" du texte) : J4 et J5 se
+       partagent la zone Samsari/Abuli dans le programme, donc la coupure est placée à
+       la première arrivée dans la zone (Samsari) plutôt que devinée arbitrairement.
+       J9 (retour Tbilissi + domaine viticole) est explicitement hors ski : pas de stat.
+       Distance/D+/D- calculés directement sur la trace réelle, hystérésis légère
+       (3 m, sans moyenne glissante, mêmes raisons que l'Arménie). */
     items: [
       {
         type: "day",
@@ -84,6 +101,9 @@ export const georgie: Voyage = {
         dateLabel: "18 JAN",
         title: "Tsikhisjvari",
         text: "Première sortie à ski en étoile au-dessus de Tsikhisjvari, pour entrer progressivement dans le voyage.",
+        distanceKm: 28.1,
+        ascentM: 1660,
+        descentM: 1440,
       },
       {
         type: "day",
@@ -91,6 +111,9 @@ export const georgie: Voyage = {
         dateLabel: "19 JAN",
         title: "Bakuriani → Tabatskouri",
         text: "Première vraie traversée à ski vers Tabatskouri, village d’altitude posé au bord de son lac.",
+        distanceKm: 20.2,
+        ascentM: 1340,
+        descentM: 1210,
       },
       {
         type: "day",
@@ -98,6 +121,9 @@ export const georgie: Voyage = {
         dateLabel: "20 JAN",
         title: "Tabatskouri → Samsari / Abuli",
         text: "Progression sur le plateau volcanique. Selon les conditions, une courte dépose en motoneige pourra raccourcir l’approche. Nuit dans la cabane de Rafael.",
+        distanceKm: 14.6,
+        ascentM: 1280,
+        descentM: 120,
       },
       {
         type: "day",
@@ -105,6 +131,9 @@ export const georgie: Voyage = {
         dateLabel: "21 JAN",
         title: "Samsari / Abuli → Olaverdi",
         text: "Sommet ou traversée selon la neige et la météo, puis sortie du massif vers Olaverdi.",
+        distanceKm: 22.7,
+        ascentM: 1030,
+        descentM: 2240,
       },
       { type: "chapter", label: "Ouest", title: "Adjarie & Gourie · 3 jours à ski" },
       {
@@ -113,6 +142,9 @@ export const georgie: Voyage = {
         dateLabel: "22 JAN",
         title: "Utkhisubani → Danisparauli",
         text: "Après la traversée routière du pays, départ à ski depuis Utkhisubani. Changement radical de décor : reliefs plus boisés, neige plus abondante et premières lignes autour de Goderdzi en direction de Danisparauli.",
+        distanceKm: 13.6,
+        ascentM: 980,
+        descentM: 920,
       },
       {
         type: "day",
@@ -120,6 +152,9 @@ export const georgie: Voyage = {
         dateLabel: "23 JAN",
         title: "Danisparauli → Ghorjomi",
         text: "Une étape pensée pour quitter les axes les plus fréquentés et chercher une ligne plus personnelle, à travers forêts, clairières et reliefs de l’Adjarie.",
+        distanceKm: 24.6,
+        ascentM: 1190,
+        descentM: 1420,
       },
       {
         type: "day",
@@ -127,6 +162,9 @@ export const georgie: Voyage = {
         dateLabel: "24 JAN",
         title: "Ghorjomi → Bakhmaro",
         text: "Traversée jusqu’à Bakhmaro, en Gourie. L’idée n’est pas de consommer un spot connu, mais d’y arriver autrement : par les marges, les interstices et une vraie ligne d’itinérance.",
+        distanceKm: 21.5,
+        ascentM: 1730,
+        descentM: 1200,
       },
       {
         type: "day",

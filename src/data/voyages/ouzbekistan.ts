@@ -65,12 +65,11 @@ export const ouzbekistan: Voyage = {
     /* Stats par jour calculées depuis les 7 <trkseg> natifs de public/gpx/
        ouzbekistan-hissar-2027.gpx (trace planifiée, non modifiée) — reproductible via
        `node scripts/gpx-report-voyages.ts public/gpx/ouzbekistan-hissar-2027.gpx`.
-       Les 7 segments correspondent à J3–J9 : le transfert d'environ une heure décrit en
-       fin de J5 ("Suvlisay/Ammagan → Tamshush") correspond exactement à l'écart de
-       16,4 km entre le 3e et le 4e segment, ce qui confirme ce calage. J2 (sortie en
-       étoile à l'arrivée, itinéraire non fixé à l'avance) n'a pas de segment GPX dédié :
-       aucune stat n'est inventée pour ce jour. Hystérésis légère (3 m, sans moyenne
-       glissante) plutôt que le lissage par défaut — mêmes raisons que l'Arménie (trace
+       Confirmé avec Yann : tous les jours d'itinérance ont leur propre segment GPX,
+       correspondance 1:1 J2→J8 (les 7 segments, dans l'ordre). J9 ("dernier ski ou
+       Samarcande", journée de battement à choix) n'a pas de segment dédié : aucune stat
+       n'est inventée pour ce jour. Hystérésis légère (3 m, sans moyenne glissante)
+       plutôt que le lissage par défaut — mêmes raisons que l'Arménie (trace
        échantillonnée sur MNT, pas un enregistrement GPS/baro dense). */
     items: [
       {
@@ -88,6 +87,9 @@ export const ouzbekistan: Voyage = {
         dateLabel: "05 FÉV",
         title: "Samarcande → Hissar",
         text: "Arrivée matinale à Samarcande puis transfert vers le massif du Hissar. Première randonnée à ski en étoile afin de découvrir la région. Nuit chez l’habitant.",
+        distanceKm: 23.8,
+        ascentM: 1640,
+        descentM: 1350,
       },
       {
         type: "day",
@@ -95,9 +97,9 @@ export const ouzbekistan: Voyage = {
         dateLabel: "06 FÉV",
         title: "Lyaylik → Kosh-Kul",
         text: "Départ de Lyaylik, montée vers l’observatoire de Maidanak puis traversée jusqu’au village de Kosh-Kul. Nuit chez l’habitant.",
-        distanceKm: 23.8,
-        ascentM: 1640,
-        descentM: 1350,
+        distanceKm: 19.7,
+        ascentM: 1460,
+        descentM: 1290,
       },
       {
         type: "day",
@@ -105,9 +107,9 @@ export const ouzbekistan: Voyage = {
         dateLabel: "07 FÉV",
         title: "Kosh-Kul → Zarmas",
         text: "Traversée des hautes vallées sauvages du Hissar jusqu’au campement de Zarmas. Nuit sous tente.",
-        distanceKm: 19.7,
-        ascentM: 1460,
-        descentM: 1290,
+        distanceKm: 15.8,
+        ascentM: 1360,
+        descentM: 2120,
       },
       {
         type: "day",
@@ -115,9 +117,9 @@ export const ouzbekistan: Voyage = {
         dateLabel: "08 FÉV",
         title: "Zarmas → Suvlisay ou Ammagan → Tamshush",
         text: "Ascension du Chorti Tog’i puis longue descente vers Suvlisay ou Ammagan selon les conditions. En fin de journée, court transfert d’environ une heure jusqu’à Tamshush. Nuit chez l’habitant.",
-        distanceKm: 15.8,
-        ascentM: 1360,
-        descentM: 2120,
+        distanceKm: 14.7,
+        ascentM: 1500,
+        descentM: 1470,
       },
       { type: "chapter", label: "Itinérance", title: "De village en village · 3 jours à ski" },
       {
@@ -126,9 +128,9 @@ export const ouzbekistan: Voyage = {
         dateLabel: "09 FÉV",
         title: "Tamshush → Sarahashma",
         text: "Traversée à ski jusqu’au village de Sarahashma. Nuit chez l’habitant.",
-        distanceKm: 14.7,
-        ascentM: 1500,
-        descentM: 1470,
+        distanceKm: 8.0,
+        ascentM: 1270,
+        descentM: 1000,
       },
       {
         type: "day",
@@ -136,9 +138,9 @@ export const ouzbekistan: Voyage = {
         dateLabel: "10 FÉV",
         title: "Sarahashma → Gelon",
         text: "Belle étape de ski reliant les villages de Sarahashma et Gelon. Nuit chez l’habitant.",
-        distanceKm: 8.0,
-        ascentM: 1270,
-        descentM: 1000,
+        distanceKm: 10.0,
+        ascentM: 1040,
+        descentM: 1020,
       },
       {
         type: "day",
@@ -146,9 +148,9 @@ export const ouzbekistan: Voyage = {
         dateLabel: "11 FÉV",
         title: "Gelon → Kul’",
         text: "Dernière traversée de village en village jusqu’à Kul’. Nuit chez l’habitant.",
-        distanceKm: 10.0,
-        ascentM: 1040,
-        descentM: 1020,
+        distanceKm: 8.2,
+        ascentM: 1110,
+        descentM: 1050,
       },
       {
         type: "day",
@@ -158,9 +160,6 @@ export const ouzbekistan: Voyage = {
         title: "Dernier ski ou Samarcande",
         text: "Dernière journée de ski ou retour à Samarcande pour découvrir la mythique cité de la Route de la Soie. Nuit à l’hôtel.",
         variant: "highlight",
-        distanceKm: 8.2,
-        ascentM: 1110,
-        descentM: 1050,
       },
       {
         type: "day",
