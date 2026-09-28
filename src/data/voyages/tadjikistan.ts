@@ -1,9 +1,8 @@
 import type { Voyage } from "./types";
 
-// TODO(contenu manquant sur la source WordPress) :
-// - aucune photo n'est encore configurée pour ce voyage (ni intro, ni info, ni photo pleine largeur).
-// - l'image OpenGraph du site source pointe vers "ARVA-R32-test.jpg" (photo de test de matériel),
-//   manifestement un placeholder : elle n'a pas été reprise ici. À fournir par Yann.
+// Aucune photo du Tadjikistan lui-même : photoIntro/photoInfo utilisent des
+// clichés pris au Kazakhstan (massif de l'Ile-Alatau), pour illustrer le
+// terrain glaciaire attendu, en attendant des photos prises sur place.
 export const tadjikistan: Voyage = {
   slug: "ski-randonnee-tadjikistan-zeravshan-2027",
   seo: {
@@ -28,6 +27,10 @@ export const tadjikistan: Voyage = {
       "Vallées suspendues, hauts plateaux, cols et maisons habitées en hiver : ici plus qu’ailleurs, neige, météo et accès décideront de la ligne exacte du voyage.",
     ],
   },
+  photoIntro: {
+    src: "/photos/Kazakhstan/kazakhstan-ile-alatau-ski-randonnee-dsc01724-030.jpg",
+    alt: "Skieur de randonnée dans un vaste cirque glaciaire, massif de l'Ile-Alatau, Kazakhstan",
+  },
   info: {
     label: "Informations",
     fields: [
@@ -47,6 +50,10 @@ export const tadjikistan: Voyage = {
       { label: "Encadrant", value: "Yann Borgnet, guide de haute montagne UIAGM" },
     ],
     note: "Le séjour s’adresse à des skieurs de randonnée autonomes, en excellente condition physique, capables d’enchaîner plusieurs journées complètes avec un sac plus lourd pendant la partie bivouac. L’altitude, l’isolement, les deux nuits sous tente et l’absence de solutions de repli immédiates constituent l’essentiel de l’engagement.",
+  },
+  photoInfo: {
+    src: "/photos/Kazakhstan/kazakhstan-ile-alatau-ski-randonnee-20250422-093322-1-001.jpg",
+    alt: "Glacier crevassé du massif de l'Ile-Alatau, Kazakhstan",
   },
   itinerary: {
     eyebrow: "Itinéraire",

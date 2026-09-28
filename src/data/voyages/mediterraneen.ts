@@ -1,9 +1,8 @@
 import type { Voyage } from "./types";
 
-// TODO(contenu manquant sur la source WordPress) :
-// - aucune photo n'est encore configurée pour ce voyage (ni intro, ni info, ni photo pleine largeur).
-// - l'image OpenGraph du site source pointe vers "ARVA-R32-test.jpg" (photo de test de matériel),
-//   manifestement un placeholder : elle n'a pas été reprise ici. À fournir par Yann.
+// Aucune photo du massif définitif (choisi tardivement selon l'enneigement) :
+// photoIntro/photoInfo utilisent des clichés pris dans les Alpes ligures,
+// pour illustrer l'esprit "ski face à la mer" du voyage.
 export const mediterraneen: Voyage = {
   slug: "raid-ski-mediterraneen-2027",
   seo: {
@@ -28,6 +27,10 @@ export const mediterraneen: Voyage = {
       "Le projet, lui, ne change pas : une vraie itinérance, un territoire à traverser et des habitants à rencontrer.",
     ],
   },
+  photoIntro: {
+    src: "/photos/Alpes Ligures/italie-alpes-ligures-ski-randonnee-dsc07657-047.jpg",
+    alt: "Skieurs de randonnée au-dessus d'une mer de nuages, Alpes ligures, Italie",
+  },
   info: {
     label: "Informations",
     fields: [
@@ -45,6 +48,10 @@ export const mediterraneen: Voyage = {
       { label: "Encadrant", value: "Yann Borgnet, guide de haute montagne UIAGM" },
     ],
     note: "Ce voyage s’adresse à des skieurs de randonnée très expérimentés, en excellente condition physique, capables de s’adapter à un itinéraire, un climat et une logistique arrêtés tardivement. Le niveau réel sera précisé dès que la destination aura été choisie.",
+  },
+  photoInfo: {
+    src: "/photos/Alpes Ligures/italie-alpes-ligures-ski-randonnee-20240315-114106-006.jpg",
+    alt: "Vaste panorama au-dessus d'une mer de nuages, Alpes ligures, Italie",
   },
   itinerary: {
     eyebrow: "Destinations possibles",
