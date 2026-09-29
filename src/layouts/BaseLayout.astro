@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import "../styles/mobile.css";
+import { withBase } from "../lib/url";
 
 const {
   title = "Les Grands Raids à Ski",
@@ -24,6 +25,10 @@ const ogImageURL = ogImage ? new URL(ogImage, Astro.site ?? Astro.url.origin) : 
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+
+    <link rel="icon" href={withBase("/favicon.svg")} type="image/svg+xml" />
+    <link rel="icon" href={withBase("/favicon.ico")} sizes="48x48" />
+    <link rel="apple-touch-icon" href={withBase("/apple-touch-icon.png")} />
 
     <title>{title}</title>
     <meta name="description" content={description} />
