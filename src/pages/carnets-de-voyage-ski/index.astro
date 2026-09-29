@@ -156,7 +156,7 @@ const canonical = "https://lesgrandsraidsaski.com/carnets-de-voyage-ski/";
                 <p class="carnets-list__excerpt">{carnet.excerpt}</p>
 
                 <a class="carnets-list__link" href={withBase(`/${carnet.slug}/`)}>
-                  Lire le carnet →
+                  {carnet.linkLabel ?? "Lire le carnet →"}
                 </a>
               </div>
             </article>

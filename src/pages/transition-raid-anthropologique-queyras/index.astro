@@ -1,0 +1,222 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import PhotoSlot from "../../components/editorial/PhotoSlot.astro";
+import "../../styles/editorial.css";
+
+const canonical = "https://lesgrandsraidsaski.com/transition-raid-anthropologique-queyras/";
+
+/**
+ * Textes repris du brief de Yann (contenu extrait du dump WordPress).
+ * Photos : emplacements neutres (PhotoSlot), fichiers WordPress à retrouver :
+ * Raid-anthropologique-Queyras-—-DSC7394.jpg / DSC7568.jpg / DSC7753.jpg.
+ * Titre SEO : titre de la page WordPress (inventaire de migration). Meta
+ * description : aucune dans le brief ni dans WordPress → valeur par défaut du
+ * site, à valider par Yann.
+ */
+
+const principes = [
+  {
+    title: "L’itinéraire comme méthode",
+    text: "Les étapes sont choisies autant pour la qualité de la ligne à skis que pour la pertinence des rencontres.",
+  },
+  {
+    title: "La rencontre comme matière",
+    text: "Les habitants ne sont pas un décor : leurs expériences, leurs doutes et leurs projets deviennent le cœur du voyage.",
+  },
+  {
+    title: "La montagne comme espace de discussion",
+    text: "Le raid rend possible une médiation scientifique hors des formats académiques classiques, dans le temps long d’une itinérance.",
+  },
+];
+
+const credits = [
+  "France · 2023 · 32 min",
+  "Réalisation : Yann Borgnet et Mikaël Chambru.",
+  "Production : Alpine Lines et Labex ITTEM, avec la participation de CNRS Images, MSH-Alpes et Université Grenoble Alpes.",
+  "Image & son : Anthony Fouchard · Montage et étalonnage : Violaine Garsault — Art’nGrade · Mixage : Julien Chabert.",
+];
+---
+
+<BaseLayout
+  title="TRANSITION — Un raid anthropologique dans le Queyras"
+  canonical={canonical}
+>
+  <Header solid />
+
+  <main>
+    <section class="ed-hero">
+      <div class="ed-hero__media">
+        <PhotoSlot fill tone="dark" file="Raid-anthropologique-Queyras-—-DSC7394.jpg" />
+      </div>
+      <div class="site-shell ed-hero__inner">
+        <p class="ed-hero__eyebrow">Queyras · 2022</p>
+        <h1>
+          <span>TRANSITION.</span>
+          <span class="ed-hero__sub">Un raid anthropologique.</span>
+        </h1>
+        <p class="ed-hero__lead">
+          Cinq jours à skis pour mettre en dialogue un territoire, ses habitants et les sciences
+          sociales — à la croisée du métier de guide et d’un travail de recherche en géographie.
+        </p>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--white" id="projet">
+      <div class="site-shell">
+        <div class="ed-split">
+          <div class="ed-split__head">
+            <p class="ed-eyebrow">Le projet</p>
+            <h2 class="ed-h2">Traverser un massif pour mieux comprendre ce qui le transforme.</h2>
+            <ul class="ed-facts">
+              <li><strong>5 jours</strong> d’itinérance</li>
+              <li><strong>31 janvier → 4 février 2022</strong></li>
+              <li><strong>Arvieux → Abriès</strong>, via Souliers et Aiguilles</li>
+              <li>Altitudes parcourues : <strong>1 500–2 600 m</strong></li>
+            </ul>
+          </div>
+          <div class="ed-prose">
+            <p class="ed-prose__lead">
+              L’idée était simple : faire du raid à ski un dispositif d’enquête et de médiation
+              scientifique.
+            </p>
+            <p>
+              Du 31 janvier au 4 février 2022, le groupe a parcouru le Queyras d’Arvieux à Abriès, en
+              passant par Aiguilles. Chaque journée associait itinérance à ski et rencontres avec des
+              habitants et acteurs du territoire : agriculteurs, moniteurs de ski, hôteliers, élus et
+              anciens élus, techniciens du Parc naturel régional ou responsables du tourisme.
+            </p>
+            <p>
+              Le fil conducteur portait sur la transition du tourisme en montagne et, plus
+              particulièrement, sur les liens historiques et contemporains entre agriculture et tourisme.
+              Dans le Queyras, ces deux mondes se sont longtemps construits ensemble, avant que le
+              tourisme ne devienne l’activité dominante. Le raid cherchait à comprendre les tensions, les
+              complémentarités et les nouvelles trajectoires qui apparaissent aujourd’hui face au
+              changement climatique.
+            </p>
+            <p class="ed-prose__note">
+              Le parcours documenté : départ d’Arvieux, itinérance vers Souliers puis Aiguilles, avant de
+              poursuivre vers Abriès. Les sources du projet documentent précisément cette traversée
+              d’Arvieux à Abriès via Aiguilles, avec une étape et une rencontre à Souliers ; le tracé ski
+              détaillé col par col n’étant pas publié, je préfère ne pas inventer les passages
+              intermédiaires.
+            </p>
+          </div>
+        </div>
+        <div class="ed-photo">
+          <PhotoSlot ratio="21 / 9" file="Raid-anthropologique-Queyras-—-DSC7568.jpg" />
+        </div>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--paper" id="forme-hybride">
+      <div class="site-shell">
+        <p class="ed-eyebrow">Une forme hybride</p>
+        <h2 class="ed-h2">Guide, chercheur, médiateur.</h2>
+        <div class="ed-prose" style="margin-top: 32px">
+          <p>
+            Ce projet est né précisément de cette double position. Le terrain du guide permet de
+            construire une ligne, un rythme et une expérience collective. Le terrain du chercheur apporte
+            les questions, les enquêtes, les controverses et les trajectoires historiques du massif.
+          </p>
+        </div>
+        <ul class="ed-principles">
+          {
+            principes.map((p, i) => (
+              <li>
+                <p class="ed-principles__num">{String(i + 1).padStart(2, "0")}</p>
+                <h3>{p.title}</h3>
+                <p>{p.text}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--dark" id="film">
+      <div class="site-shell">
+        <p class="ed-eyebrow">Le documentaire · 2023</p>
+        <h2 class="ed-h2">TRANSITION — Un raid anthropologique dans le Queyras.</h2>
+        <div class="ed-prose" style="margin-top: 32px">
+          <p>
+            Le film prolonge l’expérience du raid : il met en regard les paysages parcourus, les
+            rencontres et les questions de fond sur l’avenir des territoires de montagne. Il a ensuite été
+            diffusé dans de nombreuses projections-débats et festivals.
+          </p>
+        </div>
+        <div class="ed-video">
+          <iframe
+            src="https://www.youtube.com/embed/RJzJYf6o3_4"
+            title="TRANSITION — Un raid anthropologique dans le Queyras (documentaire, 2023)"
+            loading="lazy"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <ul class="ed-credits">
+          {credits.map((c) => <li>{c}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--white" id="recherche-mediation">
+      <div class="site-shell">
+        <div class="ed-split">
+          <div class="ed-split__head">
+            <p class="ed-eyebrow">Recherche &amp; médiation</p>
+            <h2 class="ed-h2">Un projet à la frontière entre pratique professionnelle et recherche.</h2>
+          </div>
+          <div class="ed-prose">
+            <p>
+              Le raid a été conçu par Yann Borgnet et Mikaël Chambru dans le cadre de travaux en sciences
+              humaines et sociales sur les transformations des territoires de montagne. Le Labex ITTEM le
+              présente comme une expérimentation de tourisme scientifique et de médiation scientifique en
+              montagne : une manière de partager les résultats de recherche en les mettant directement en
+              discussion avec un territoire et ses habitants.
+            </p>
+            <p>
+              Cette première édition a constitué un terrain particulièrement cohérent avec les recherches
+              menées dans le Queyras sur les transitions touristiques, les politiques d’aménagement, les
+              relations entre agriculture et tourisme et les effets du changement climatique.
+            </p>
+            <p>
+              <a
+                class="ed-link"
+                href="https://labexittem.fr/science-et-societe/transition-un-raid-anthropologique-dans-le-queyras/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Labex ITTEM — présentation du projet →<span class="ed-sr"> (nouvel onglet)</span>
+              </a>
+            </p>
+          </div>
+        </div>
+        <div class="ed-photo">
+          <PhotoSlot ratio="21 / 9" file="Raid-anthropologique-Queyras-—-DSC7753.jpg" />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-shell site-footer__grid">
+      <div>
+        <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+        <p class="site-footer__statement">Explorer · improviser · rencontrer · skier.</p>
+      </div>
+
+      <div class="site-footer__links">
+        <a href="https://wa.me/33689295826">WhatsApp · +33 6 89 29 58 26</a>
+        <a href="https://www.instagram.com/yannborgnet/">Instagram</a>
+        <a href="https://www.facebook.com/yannborgnet/">Facebook</a>
+      </div>
+    </div>
+
+    <div class="site-shell site-footer__bottom">
+      <span>Yann Borgnet · Guide de haute montagne UIAGM</span>
+      <span>© 2026</span>
+    </div>
+  </footer>
+</BaseLayout>

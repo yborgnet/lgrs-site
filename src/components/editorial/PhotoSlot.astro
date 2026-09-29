@@ -1,0 +1,102 @@
+---
+import { withBase } from "../../lib/url";
+
+/**
+ * Emplacement photo des pages éditoriales (profil, Transition, Alpine Line).
+ * Sans `src` : bloc neutre au bon ratio (aucune image, aucune URL externe).
+ * Avec `src` (chemin local sous public/, ex. "/photos/alpine-line/P1070234.jpg") :
+ * la photo remplace le bloc sans toucher au layout. `file` ne sert qu'à
+ * retrouver la photo WordPress d'origine (attribut data-, non affiché).
+ */
+type Props = {
+  ratio?: string;
+  tone?: "light" | "dark";
+  /** Remplit son parent positionné (hero) au lieu de suivre un ratio. */
+  fill?: boolean;
+  src?: string;
+  alt?: string;
+  position?: string;
+  file?: string;
+  label?: string;
+  loading?: "eager" | "lazy";
+};
+
+const {
+  ratio = "3 / 2",
+  tone = "light",
+  fill = false,
+  src,
+  alt = "",
+  position,
+  file,
+  label = "Photo à venir",
+  loading = "lazy",
+} = Astro.props;
+---
+
+<div
+  class:list={["photo-slot", `photo-slot--${tone}`, { "photo-slot--fill": fill }]}
+  style={fill ? undefined : `aspect-ratio: ${ratio}`}
+  data-wp-file={file}
+>
+  {
+    src ? (
+      <img
+        src={withBase(src)}
+        alt={alt}
+        loading={loading}
+        decoding="async"
+        style={position ? `object-position: ${position}` : undefined}
+      />
+    ) : (
+      <span class="photo-slot__label" aria-hidden="true">{label}</span>
+    )
+  }
+</div>
+
+<style>
+  .photo-slot {
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    background: linear-gradient(135deg, rgba(11, 11, 10, 0.05), rgba(11, 11, 10, 0.1));
+  }
+
+  .photo-slot--dark {
+    border-color: rgba(243, 241, 236, 0.14);
+    background: linear-gradient(135deg, #1b1b19, #2a2926);
+  }
+
+  .photo-slot--fill {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    border: 0;
+  }
+
+  .photo-slot img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .photo-slot__label {
+    position: absolute;
+    right: 16px;
+    bottom: 14px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    opacity: 0.4;
+  }
+
+  .photo-slot--dark .photo-slot__label {
+    color: var(--paper);
+    opacity: 0.32;
+  }
+</style>

@@ -96,6 +96,9 @@ export type CarnetSummary = {
   /** Seuls les carnets `published: true` apparaissent sur la page listing —
    *  évite les faux liens vers une page qui n'existe pas encore. */
   published: boolean;
+  /** Libellé du lien de la carte (défaut : "Lire le carnet →") — pour une
+   *  entrée qui pointe vers autre chose qu'un carnet, ex. le film Alpine Line. */
+  linkLabel?: string;
 };
 
 export type Carnet = {

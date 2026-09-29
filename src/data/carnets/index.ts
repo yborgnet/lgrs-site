@@ -184,6 +184,28 @@ export const carnets: CarnetSummary[] = [
     // Publié quand même sans récit complet (même décision que le
     // Dammastock-Titlis, 18/09/2026).
   }),
+  // Alpine Line (2015) : projet fondateur, antérieur aux carnets ci-dessus. Pas
+  // de `Carnet` complet : la page /le-film/ est une page éditoriale (film +
+  // récit de la traversée), donc résumé déclaré à la main. Couverture en
+  // placeholder tant que la photo locale (P1070234.jpg côté WordPress) n'est
+  // pas fournie.
+  {
+    slug: "le-film",
+    title: "ALPINE LINE",
+    subtitle: "2015 · Corse → Slovénie",
+    meta: ["2015", "161 jours"],
+    excerpt:
+      "Une traversée non motorisée de l'arc alpin, du Monte Cinto au Triglav, menée pendant près de six mois avec Yoann Joly.",
+    cover: {
+      src: "/photos/alpine-line/P1070234.jpg",
+      alt: "Alpine Line, traversée des Alpes de la Corse à la Slovénie",
+      placeholder: true,
+    },
+    zones: buildZones(["alpes"]),
+    year: 2015,
+    published: true,
+    linkLabel: "Voir le film et la traversée →",
+  },
 ].filter((c) => c.published);
 
 /** Années réellement représentées parmi les carnets publiés, triées
