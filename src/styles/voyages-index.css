@@ -97,7 +97,7 @@
   position: absolute;
   z-index: 1;
   left: var(--shell-inset, 24px);
-  top: 28px;
+  top: 44px;
   margin: 0;
   font-family: var(--font-serif);
   font-weight: 300;
