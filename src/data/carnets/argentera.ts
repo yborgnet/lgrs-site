@@ -249,15 +249,6 @@ const itinerary: Carnet["itinerary"] = {
 // — distincte de openingPhoto et de traverseePanorama (déjà utilisées sur la
 // homepage) pour ne pas répéter deux fois la même image entre les deux pages.
 export const indexCover = photos.traverseeArgentera;
-// Grande photo d'ouverture de la page listing elle-même (hero éditorial) —
-// encore une image différente, pour que les trois apparitions du carnet
-// (homepage, listing, page carnet) montrent trois photos distinctes.
-// vueMediterranee : les trois skieurs (premier plan bien visible, ligne de
-// crête en haut de cadre) tiennent dans une bande panoramique sans être
-// coupés ni collés au bord bas — object-position calé sur le bas du cadre
-// (ski tips du skieur de tête, marge de neige sous eux) et légèrement à
-// droite du centre (skieur de tête décalé côté droit de la photo).
-export const indexHeroPhoto = { ...photos.vueMediterranee, position: "55% 96%" };
 
 // Totaux calculés depuis l'itinéraire structuré ci-dessus — jamais de valeur
 // en dur : si un jour est corrigé, le hero se met à jour automatiquement.

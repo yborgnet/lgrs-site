@@ -409,3 +409,9 @@ export const georgie: Carnet = {
  *  src/data/carnets/index.ts) — même mécanisme que Bernina/Argentera, jamais
  *  une photo retapée séparément. */
 export const indexCover = photos.heroAlpenglow;
+
+// Grande photo d'ouverture de la page listing des carnets (/carnets-de-voyage-ski/).
+// Sommet en alpenglow avec ligne d'horizon nette ; différente de indexCover
+// (heroAlpenglow, carte Géorgie) pour ne pas afficher deux fois la même image
+// sur la page. Cadrage vérifié en bandeau desktop (2,35:1) et mobile (portrait).
+export const indexHeroPhoto = { ...photos.alpenglowSommets, position: "50% 40%" };
