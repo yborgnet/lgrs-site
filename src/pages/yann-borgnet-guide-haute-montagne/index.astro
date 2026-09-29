@@ -7,38 +7,253 @@ import { withBase } from "../../lib/url";
 const canonical = "https://lesgrandsraidsaski.com/yann-borgnet-guide-haute-montagne/";
 
 /**
- * Textes repris tel quels de la page WordPress live :
- * https://lesgrandsraidsaski.com/yann-borgnet-guide-haute-montagne/
- * (sections "Parcours", "Le métier", "Recherche & transmission"), et du
- * hero "Yann Borgnet" déjà validé sur la homepage (eyebrow/titre/lead —
- * voir src/pages/index.astro, .about-section) pour rester cohérent plutôt
- * que retaper un texte différent au même endroit.
+ * Page profil refaite à partir du brief de Yann (textes fournis, repris tels
+ * quels). L'ancienne page WordPress de ce profil n'est pas archivée
+ * (Wayback : aucun instantané) : la liste RECHERCHE & PUBLICATIONS a donc été
+ * reconstituée à partir des sources du projet (Alpine Mag cité dans les
+ * carnets), de HAL, Crossref, OpenEdition, Cimalpes/Fodacim, Vimeo (page
+ * « Le film » de l'ancien site) et de la presse.
  *
- * Volontairement absents (voir brief) : liste de diplômes façon CV, détail
- * du cursus administratif ENSA, liste des publications académiques —
- * cette page reste éditoriale, pas un CV. La philosophie des raids n'est
- * pas recopiée ici : seule la section "Une manière de guider" en reprend
- * la substance en une ou deux phrases, avec un lien vers /philosophie/.
+ * Règle : aucun titre sans lien réel. Chaque entrée ci-dessous a été ouverte
+ * ou recoupée (statut HTTP, titre, date, mention de Yann) le 29/09/2026.
+ * Ne jamais ajouter d'entrée dont l'URL n'a pas été vérifiée.
  */
+
+type Entry = {
+  year: string;
+  source: string;
+  title: string;
+  note?: string;
+  href: string;
+  cta: string;
+};
 
 const portrait = {
   src: "/images/fba56613-bfe2-4d63-ab54-90bd71f10e09-1-819x1024.png",
   alt: "Yann Borgnet écrivant dans son carnet de voyage, bivouac de haute montagne",
 };
 
-// Deux skieurs en portage, panorama alpin — photo de groupe/traversée entre
-// les chapitres, distincte du portrait (voir brief : "photo de groupe /
-// traversée").
 const groupPhoto = {
   src: "/photos/Argentera/portage-skis-panorama-argentera.jpg",
   alt: "Deux skieurs de randonnée en portage, panorama sur les Alpes",
   position: "50% 100%",
 };
+
+const alpineLineFilm = "https://vimeo.com/376885727";
+const alpineLineRecit = "https://alpinemag.fr/alpine-line-voyage-dans-les-alpes/";
+
+const thesis = {
+  label: "Thèse de doctorat — 2024",
+  title:
+    "Réorienter le tourisme alpin ? Improviser ou s’immuniser pour composer avec la neige incertaine. Hautes vallées alpines et guides de haute montagne",
+  meta: "Université Grenoble Alpes · direction Philippe Bourdeau et Yohann Rech · soutenue le 24 mai 2024",
+  href: "https://theses.fr/2024GRALH013",
+  cta: "Lire la fiche officielle de la thèse →",
+  fullTextHref: "https://theses.hal.science/tel-04741315v1",
+  fullTextCta: "Texte intégral sur HAL →",
+};
+
+const groups: { id: string; heading: string; entries: Entry[] }[] = [
+  {
+    id: "recherche",
+    heading: "Publications de recherche",
+    entries: [
+      {
+        year: "2024",
+        source: "Ouvrage collectif · HAL",
+        title: "Glacier de la Girose, versant sensible",
+        note: "Contribution à un ouvrage collectif.",
+        href: "https://hal.science/hal-04774149v1",
+        cta: "Consulter la publication →",
+      },
+      {
+        year: "2022",
+        source: "Revue Espaces",
+        title: "Éloge de l’improvisation ou comment renouveler notre rapport à la montagne",
+        note: "Dans le hors-série « La transition au cœur des territoires de montagne ».",
+        href: "https://www.tourisme-espaces.com/doc/10911.transition-coeur-territoires-montagne.html",
+        cta: "Consulter la publication →",
+      },
+      {
+        year: "2021",
+        source: "Géocarrefour",
+        title:
+          "Transition du tourisme et improvisation. (Anti)-innovations sociales dans les vallées de la Valpelline et d’Ollomont (Vallée d’Aoste)",
+        note: "Avec Mathieu Le Touzé.",
+        href: "https://journals.openedition.org/geocarrefour/19523",
+        cta: "Lire l’article →",
+      },
+      {
+        year: "2019",
+        source: "Revue de géographie alpine",
+        title:
+          "De l’espace incertain : trajectoire spatiale d’une innovation sociale « par retrait ». Étude de la composition de l’association des gîtes et refuges du Queyras (Hautes-Alpes, France)",
+        href: "https://journals.openedition.org/rga/6049",
+        cta: "Lire l’article →",
+      },
+      {
+        year: "2018",
+        source: "Vacarme",
+        title: "Guider ceux qui arrivent",
+        href: "https://doi.org/10.3917/vaca.083.0043",
+        cta: "Lire l’article →",
+      },
+    ],
+  },
+  {
+    id: "articles",
+    heading: "Articles et récits",
+    entries: [
+      {
+        year: "2026",
+        source: "Alpine Mag",
+        title: "Ski de rando au Maroc, l’aventure en pays Berbère",
+        href: "https://alpinemag.fr/raid-ski-de-rando-maroc-aventure-pays-berbere/",
+        cta: "Lire l’article →",
+      },
+      {
+        year: "2025",
+        source: "Alpine Mag",
+        title: "Itinérance à ski dans les montagnes sauvages du Kazakhstan",
+        href: "https://alpinemag.fr/ski-rando-yann-borgnet-kazakhstan-traversee-monts-ile-alatau/",
+        cta: "Lire l’article →",
+      },
+      {
+        year: "2025",
+        source: "Alpine Mag",
+        title: "Entre Kosovo, Albanie et Macédoine du nord, la traversée à ski des montagnes de Šar",
+        href: "https://alpinemag.fr/ski-kosovo-albanie-macedoine-nord-traversee-montagnes-sar/",
+        cta: "Lire l’article →",
+      },
+      {
+        year: "2024",
+        source: "Alpine Mag",
+        title: "Ski de rando. La Haute Route de la Haute-Svanétie en Géorgie",
+        href: "https://alpinemag.fr/georgie-haute-route-haute-svanetie-ski-randonnee-yann-borgnet/",
+        cta: "Lire l’article →",
+      },
+      {
+        year: "2024",
+        source: "Alpine Mag",
+        title: "Last chance tourism : alpinisme opportuniste et tourisme de masse à la Mer de Glace",
+        href: "https://alpinemag.fr/nouvelle-goulotte-reflexion-alpinisme-derniere-chance-montenvers-yann-borgnet/",
+        cta: "Lire l’article →",
+      },
+      {
+        year: "2020",
+        source: "Alpine Mag",
+        title: "Alpine Line, un voyage dans les Alpes",
+        href: "https://alpinemag.fr/alpine-line-voyage-dans-les-alpes/",
+        cta: "Lire l’article →",
+      },
+    ],
+  },
+  {
+    id: "presse",
+    heading: "Presse et entretiens",
+    entries: [
+      {
+        year: "2024",
+        source: "Alpine Mag",
+        title: "Comment réorienter le tourisme alpin, selon le chercheur Yann Borgnet",
+        href: "https://alpinemag.fr/reorienter-tourisme-alpin-selon-guide-docteur-yann-borgnet/",
+        cta: "Lire l’article →",
+      },
+      {
+        year: "2024",
+        source: "Mon séjour en montagne",
+        title: "Cette nouvelle voie d’alpinisme aux allures de tourisme de la dernière chance",
+        href: "https://www.mon-sejour-en-montagne.com/histoires-et-anecdotes/cette-nouvelle-voie-d-alpinisme-aux-allures-de-tourisme-de-la-derniere-chance/",
+        cta: "Lire l’article →",
+      },
+      {
+        year: "2023",
+        source: "Alpine Mag",
+        title: "Dolomites : nouvelle voie majeure au Sass Maor pour Yann Borgnet et Antoine Bouqueret",
+        href: "https://alpinemag.fr/dolomites-nouvelle-voie-sass-maor-yann-borgnet-antoine-bouqueret/",
+        cta: "Lire l’article →",
+      },
+      {
+        year: "2022",
+        source: "Alpine Mag",
+        title: "Grand ski sur le glacier d’Arolla et cabane des Bouquetins",
+        href: "https://alpinemag.fr/ski-scott-proguide-skirando-arolla-valais-borgnet/",
+        cta: "Lire l’article →",
+      },
+      {
+        year: "2021",
+        source: "Labex ITTEM",
+        title: "Un raid à skis autour des transitions dans le Queyras",
+        href: "https://labexittem.fr/un-raid-a-skis-autour-des-transitions-dans-le-queyras/",
+        cta: "Lire l’article →",
+      },
+      {
+        year: "2021",
+        source: "Alpine Mag",
+        title: "Quel futur pour le métier de guide de haute montagne ?",
+        href: "https://alpinemag.fr/quel-futur-pour-le-metier-de-guide-de-haute-montagne-borgnet/",
+        cta: "Lire l’article →",
+      },
+      {
+        year: "2020",
+        source: "PlanetMountain",
+        title: "Yann Borgnet completes masterpiece on the Grandes Jorasses",
+        href: "https://www.planetmountain.com/en/companies-news/yann-borgnet-completes-masterpiece-the-grandes-jorasses.html",
+        cta: "Lire l’article →",
+      },
+      {
+        year: "2015",
+        source: "ENS Rennes · Département 2SEP",
+        title: "Yann Borgnet, élève du département 2SEP, participe au projet Alpine Line",
+        href: "https://sciencesport.ens-rennes.fr/actualites/yann-borgnet-eleve-du-departement-2sep-participe-au-projet-alpine-line",
+        cta: "Lire l’article →",
+      },
+    ],
+  },
+  {
+    id: "films",
+    heading: "Films",
+    entries: [
+      {
+        year: "2019",
+        source: "Vimeo · Alpine Lines",
+        title: "Alpine Line, La grande traversée",
+        note: "Mise en ligne en décembre 2019, 47 minutes.",
+        href: alpineLineFilm,
+        cta: "Voir le film →",
+      },
+      {
+        year: "2019",
+        source: "Alpine Mag",
+        title: "Alpine Line",
+        note: "Présentation du film, avec le FODACIM.",
+        href: "https://alpinemag.fr/alpine-line/",
+        cta: "Lire l’article →",
+      },
+      {
+        year: "2016",
+        source: "FODACIM",
+        title: "Alpine Line",
+        note: "Réalisation Yann Borgnet et Yoann Joly, 47 minutes.",
+        href: "https://www.fodacim.fr/film/alpine-line/",
+        cta: "Voir le film →",
+      },
+      {
+        year: "2016",
+        source: "Cimalpes",
+        title: "Alpine Line",
+        note: "Traversée des Alpes de la Corse à la Slovénie, sans moyen motorisé.",
+        href: "https://www.cimalpes.fr/films-de-montagne-752-2978-0-0.html",
+        cta: "Voir le film →",
+      },
+    ],
+  },
+];
 ---
 
 <BaseLayout
-  title="Yann Borgnet | Guide de haute montagne et géographe"
-  description="Yann Borgnet, guide de haute montagne UIAGM, professeur à l'ENSA et docteur en géographie. Une pratique du métier tournée vers l'itinérance, l'exploration et les voyages à ski au long cours."
+  title="Yann Borgnet | Guide de haute montagne, enseignant et géographe"
+  description="Yann Borgnet, guide de haute montagne UIAGM, professeur à l'École nationale de ski et d'alpinisme et docteur en géographie. Raids et traversées à ski, recherche sur le tourisme alpin, publications et films."
   canonical={canonical}
   ogImage={portrait.src}
 >
@@ -47,11 +262,13 @@ const groupPhoto = {
   <main>
     <section class="yann-hero">
       <div class="site-shell yann-hero__grid">
-        <div>
-          <p class="yann-hero__eyebrow">Guide de haute montagne · Géographe</p>
-          <h1>Yann<br />Borgnet.</h1>
+        <div class="yann-hero__text">
+          <p class="yann-hero__eyebrow">Guide de haute montagne · Enseignant · Géographe</p>
+          <h1>Yann Borgnet</h1>
           <p class="yann-hero__lead">
-            Originaire d'Annecy, guide UIAGM, professeur à l'ENSA et docteur en géographie.
+            Guide de haute montagne UIAGM, professeur à l’École nationale de ski et
+            d’alpinisme et docteur en géographie, je construis des voyages à ski où
+            l’itinérance devient une manière de lire et de rencontrer les montagnes.
           </p>
         </div>
 
@@ -61,22 +278,37 @@ const groupPhoto = {
       </div>
     </section>
 
-    <section class="yann-chapter yann-chapter--white">
-      <div class="site-shell">
-        <div class="yann-chapter__inner">
-          <p class="yann-chapter__eyebrow">Guide de haute montagne</p>
+    <section class="yann-chapter yann-chapter--white" id="guider">
+      <div class="site-shell yann-chapter__grid">
+        <div class="yann-chapter__head">
+          <p class="yann-chapter__eyebrow">Guider</p>
           <h2>Tracer des lignes plutôt que collectionner des sommets.</h2>
+        </div>
+        <div class="yann-chapter__body">
           <p>
-            Guide de haute montagne UIAGM depuis 2019, je consacre aujourd'hui une grande partie
-            de mes hivers aux raids et traversées à ski, dans les Alpes comme dans les montagnes
-            du monde. Les voyages sont construits autour d'une ligne : relier des vallées, des
-            villages, des refuges ou des bivouacs, et comprendre un territoire en le traversant.
+            Guide de haute montagne UIAGM depuis 2019, je consacre une grande partie de mes
+            hivers aux raids et aux traversées à ski, dans les Alpes comme dans les montagnes
+            du monde.
           </p>
           <p>
-            En 2015, une traversée des Alpes de la Corse à la Slovénie, réalisée sans moyens
-            motorisés et en mêlant plusieurs pratiques alpines, a profondément orienté ma manière
-            d'envisager le métier de guide. Depuis, l'itinérance est devenue le fil conducteur de
-            ma pratique.
+            Les voyages que j’imagine se construisent autour d’une ligne : relier des vallées,
+            des villages, des refuges ou des bivouacs. Il ne s’agit pas seulement d’atteindre
+            un sommet, mais de comprendre un territoire en le traversant, de laisser une place
+            réelle aux rencontres, à la neige, à la météo et au groupe.
+          </p>
+          <p>
+            En 2015, j’ai traversé les Alpes de la Corse à la Slovénie pendant six mois, sans
+            moyen motorisé, en mêlant ski, alpinisme, parapente et kayak. Cette expérience a
+            profondément orienté ma manière d’envisager le métier de guide. Depuis, l’itinérance
+            est devenue le fil conducteur de ma pratique.
+          </p>
+          <p class="yann-chapter__links">
+            <a href={alpineLineFilm} target="_blank" rel="noopener noreferrer">
+              Voir le film Alpine Line →<span class="yann-sr"> (nouvel onglet)</span>
+            </a>
+            <a href={alpineLineRecit} target="_blank" rel="noopener noreferrer">
+              Lire le récit dans Alpine Mag →<span class="yann-sr"> (nouvel onglet)</span>
+            </a>
           </p>
         </div>
       </div>
@@ -91,39 +323,117 @@ const groupPhoto = {
       style={`object-position: ${groupPhoto.position}`}
     />
 
-    <section class="yann-chapter yann-chapter--paper">
-      <div class="site-shell">
-        <div class="yann-chapter__inner">
-          <p class="yann-chapter__eyebrow">Enseigner</p>
-          <h2>Transmettre la lecture du terrain et l'autonomie.</h2>
+    <section class="yann-chapter yann-chapter--paper" id="parcours-alpin">
+      <div class="site-shell yann-chapter__grid">
+        <div class="yann-chapter__head">
+          <p class="yann-chapter__eyebrow">Parcours alpin</p>
+          <h2>Une pratique alpine engagée.</h2>
+        </div>
+        <div class="yann-chapter__body">
           <p>
-            Professeur à l'École nationale de ski et d'alpinisme (ENSA) à Chamonix depuis 2022,
-            j'interviens dans la formation des professionnels de la montagne. J'écris également
-            sur le métier de guide, la gestion du risque et les transformations du tourisme en
-            montagne.
+            Avant d’être guide, j’ai été membre du Groupe Excellence Alpinisme national de la
+            FFCAM entre 2011 et 2013. Ces années ont compté dans ma formation : elles ont
+            nourri une pratique tournée vers les grandes courses, les projets autonomes et les
+            montagnes parcourues dans leur ensemble plutôt que consommées par objectifs isolés.
+          </p>
+          <p>
+            Aujourd’hui encore, cette culture alpine irrigue les voyages que je propose :
+            préparation sérieuse, attention aux conditions, goût du terrain et capacité à
+            ajuster un projet à ce qui se présente réellement.
           </p>
         </div>
       </div>
     </section>
 
-    <section class="yann-chapter yann-chapter--white">
-      <div class="site-shell">
-        <div class="yann-chapter__inner">
-          <p class="yann-chapter__eyebrow">Géographe</p>
-          <h2>Penser les transformations de la montagne.</h2>
+    <section class="yann-chapter yann-chapter--white" id="enseigner">
+      <div class="site-shell yann-chapter__grid">
+        <div class="yann-chapter__head">
+          <p class="yann-chapter__eyebrow">Enseigner</p>
+          <h2>Transmettre la lecture du terrain et l’autonomie.</h2>
+        </div>
+        <div class="yann-chapter__body">
           <p>
-            Docteur en géographie (Université Grenoble Alpes, thèse soutenue en mai 2024), mes
-            recherches portent sur les transformations du tourisme alpin, les effets du
-            changement climatique et les recompositions des pratiques et des territoires de
-            montagne.
+            Professeur à l’École nationale de ski et d’alpinisme depuis 2022, j’interviens dans
+            la formation des professionnels de la montagne.
           </p>
           <p>
-            Mes recherches sur l'avenir du tourisme alpin ont nourri un intérêt pour la montagne
-            habitée : celle que l'on traverse autant qu'on la rencontre. Cette réflexion nourrit
-            aussi ma manière d'enseigner et de guider — et explique pourquoi les voyages que je
-            propose ne sont pas seulement des lignes à ski.
+            L’enseignement prolonge naturellement mon activité de guide. Il s’agit de
+            transmettre des techniques, bien sûr, mais aussi une lecture du terrain, une culture
+            du risque et une capacité à faire des choix plutôt qu’à appliquer des recettes.
           </p>
         </div>
+      </div>
+    </section>
+
+    <section class="yann-chapter yann-chapter--paper" id="recherche">
+      <div class="site-shell yann-chapter__grid">
+        <div class="yann-chapter__head">
+          <p class="yann-chapter__eyebrow">Recherche</p>
+          <h2>Penser les transformations de la montagne.</h2>
+        </div>
+        <div class="yann-chapter__body">
+          <p>
+            Docteur en géographie de l’Université Grenoble Alpes, j’ai soutenu en mai 2024 une
+            thèse consacrée à l’avenir du tourisme dans les Alpes.
+          </p>
+          <p>
+            Mes recherches portent sur les transformations du tourisme alpin, les effets du
+            changement climatique et les recompositions des pratiques et des territoires de
+            montagne. Elles ont nourri mon intérêt pour la montagne habitée : celle que l’on
+            traverse autant qu’on la rencontre.
+          </p>
+          <p>
+            Cette réflexion nourrit aussi ma manière d’enseigner et de guider. Elle explique
+            pourquoi les voyages proposés ici ne sont pas seulement des lignes à ski.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="yann-pubs" id="publications">
+      <div class="site-shell">
+        <header class="yann-pubs__header">
+          <h2>Recherche &amp; publications</h2>
+        </header>
+
+        <article class="yann-featured">
+          <p class="yann-featured__label">{thesis.label}</p>
+          <h3 class="yann-featured__title">{thesis.title}</h3>
+          <p class="yann-featured__meta">{thesis.meta}</p>
+          <p class="yann-featured__links">
+            <a href={thesis.href} target="_blank" rel="noopener noreferrer">
+              {thesis.cta}<span class="yann-sr"> (nouvel onglet)</span>
+            </a>
+            <a href={thesis.fullTextHref} target="_blank" rel="noopener noreferrer">
+              {thesis.fullTextCta}<span class="yann-sr"> (nouvel onglet)</span>
+            </a>
+          </p>
+        </article>
+
+        {
+          groups.map((group) => (
+            <div class="yann-group" id={`publications-${group.id}`}>
+              <h3 class="yann-group__title">{group.heading}</h3>
+              <ul class="yann-list">
+                {group.entries.map((entry) => (
+                  <li class="yann-card">
+                    <p class="yann-card__meta">
+                      <span class="yann-card__year">{entry.year}</span>
+                      <span aria-hidden="true"> · </span>
+                      <span class="yann-card__source">{entry.source}</span>
+                    </p>
+                    <h4 class="yann-card__title">{entry.title}</h4>
+                    {entry.note && <p class="yann-card__note">{entry.note}</p>}
+                    <a class="yann-card__link" href={entry.href} target="_blank" rel="noopener noreferrer">
+                      {entry.cta}
+                      <span class="yann-sr"> (nouvel onglet)</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
       </div>
     </section>
 
@@ -132,16 +442,20 @@ const groupPhoto = {
         <p class="yann-synthesis__eyebrow">Une manière de guider</p>
         <h2>Préparer minutieusement pour pouvoir ensuite improviser.</h2>
         <p>
-          Guide, enseignant, géographe : trois pratiques qui se rejoignent dans une même façon de
-          concevoir un raid à ski — privilégier l'itinérance, relier les vallées et les lieux
-          habités, et construire le voyage avec le groupe plutôt que pour lui.
+          Guide, enseignant et géographe : ces trois pratiques se rejoignent dans une même
+          manière de concevoir le raid à ski.
+        </p>
+        <p>
+          Préparer les itinéraires avec précision, puis accepter que le terrain, la météo, la
+          neige et les personnes composent une partie du voyage. Relier les vallées, les
+          villages, les refuges et les bivouacs. Construire le voyage avec le groupe, plutôt
+          que pour lui.
         </p>
 
         <div class="yann-synthesis__links">
-          <a href={withBase("/philosophie/")}>Découvrir la philosophie →</a>
-          <a href={withBase("/raid-a-ski/")}>Comprendre le raid à ski →</a>
-          <a href={withBase("/prochains-voyages/")}>Voir les prochains voyages →</a>
+          <a href={withBase("/prochains-voyages/")}>Découvrir les voyages →</a>
           <a href={withBase("/carnets-de-voyage-ski/")}>Lire les carnets →</a>
+          <a href={withBase("/contact/")}>Prendre contact →</a>
         </div>
       </div>
     </section>

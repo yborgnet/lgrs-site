@@ -1,8 +1,10 @@
 /* === PAGE PROFIL — YANN BORGNET (/yann-borgnet-guide-haute-montagne/) === */
 /* Même vocabulaire graphique que Philosophie/Voyages/Carnets (tokens de
-   global.css), classes propres (.yann-*). Page éditoriale, pas une page CV :
-   pas de grille de diplômes, pas de portrait corporate.
-   DESKTOP UNIQUEMENT pour cette passe — pas de media query mobile ici. */
+   global.css), classes propres (.yann-*). Page personnelle et éditoriale :
+   chapitres en deux colonnes (titre à gauche, texte à droite) puis une
+   section RECHERCHE & PUBLICATIONS en cartes.
+   Règle de largeur : tout enfant de grille/flex qui porte du texte a
+   min-width: 0 et casse les mots longs (URL, titres de revues). */
 
 /* HERO — texte gauche / portrait droite. */
 
@@ -13,9 +15,13 @@
 
 .yann-hero__grid {
   display: grid;
-  grid-template-columns: 1.1fr .9fr;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
   gap: 96px;
   align-items: center;
+}
+
+.yann-hero__text {
+  min-width: 0;
 }
 
 .yann-hero__eyebrow {
@@ -24,6 +30,7 @@
   font-weight: 500;
   letter-spacing: .18em;
   text-transform: uppercase;
+  line-height: 1.6;
   opacity: .56;
 }
 
@@ -31,13 +38,14 @@
   margin: 0 0 32px;
   font-family: var(--font-serif);
   font-weight: 300;
-  font-size: clamp(48px, 6vw, 78px);
+  font-size: clamp(54px, 7vw, 96px);
   line-height: .98;
   letter-spacing: -.03em;
+  overflow-wrap: break-word;
 }
 
 .yann-hero__lead {
-  max-width: 480px;
+  max-width: 560px;
   margin: 0;
   font-family: var(--font-serif);
   font-size: clamp(20px, 1.8vw, 25px);
@@ -49,6 +57,7 @@
 .yann-hero__photo {
   display: block;
   width: 100%;
+  max-width: 100%;
   aspect-ratio: 4 / 5;
   overflow: hidden;
 }
@@ -60,12 +69,10 @@
   object-fit: cover;
 }
 
-/* CHAPITRES — Guide / Enseigner / Géographe. Composition éditoriale simple :
-   petit surtitre, grand titre, texte en colonne contenue (pas pleine
-   largeur, pour rester lisible). */
+/* CHAPITRES — surtitre + titre à gauche, texte en colonne lisible à droite. */
 
 .yann-chapter {
-  padding: 96px 0;
+  padding: 104px 0;
 }
 
 .yann-chapter--white {
@@ -76,15 +83,26 @@
   background: var(--paper);
 }
 
-.yann-chapter__inner {
-  max-width: 720px;
+.yann-chapter__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 88px;
+  align-items: start;
 }
 
-/* Spécificité ".yann-chapter__inner .xxx" volontaire — sinon ".yann-chapter p"
-   plus bas (même spécificité de base, déclarée après) l'emporte et l'eyebrow
-   hérite par erreur de la taille/opacité du corps de texte (même bug que
-   philosophie.css : .philo-origin__eyebrow / .philo-split__eyebrow). */
-.yann-chapter__inner .yann-chapter__eyebrow {
+.yann-chapter__head,
+.yann-chapter__body {
+  min-width: 0;
+}
+
+.yann-chapter__head {
+  position: sticky;
+  top: 112px;
+}
+
+/* Spécificité ".yann-chapter__head .xxx" volontaire — sinon ".yann-chapter p"
+   (même spécificité de base, déclaré après) l'emporte sur l'eyebrow. */
+.yann-chapter__head .yann-chapter__eyebrow {
   margin: 0 0 16px;
   font-size: 13px;
   font-weight: 500;
@@ -94,31 +112,89 @@
 }
 
 .yann-chapter h2 {
-  margin: 0 0 28px;
+  margin: 0;
   font-family: var(--font-serif);
   font-weight: 300;
-  font-size: clamp(30px, 3.2vw, 42px);
+  font-size: clamp(30px, 3.2vw, 44px);
   line-height: 1.12;
   letter-spacing: -.01em;
+  text-wrap: balance;
+  overflow-wrap: break-word;
 }
 
-.yann-chapter p {
+.yann-chapter__body {
+  max-width: 660px;
+}
+
+.yann-chapter__body p {
   margin: 0 0 20px;
   font-size: 16px;
   line-height: 1.75;
   opacity: .82;
 }
 
-.yann-chapter p:last-child {
+.yann-chapter__body p:last-child {
   margin-bottom: 0;
 }
 
-/* PHOTO PLEINE LARGEUR — respiration entre les chapitres, même mécanique que
-   les autres pages (object-fit directement sur le <img>). */
+.yann-chapter__body .yann-chapter__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 32px;
+  margin-top: 32px;
+  opacity: 1;
+}
+
+/* LIENS TEXTE — même soulignement que les CTA du reste du site. */
+
+.yann-chapter__links a,
+.yann-featured__links a,
+.yann-card__link {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 3px;
+  overflow-wrap: anywhere;
+}
+
+.yann-chapter__links a:hover,
+.yann-featured__links a:hover,
+.yann-card__link:hover,
+.yann-synthesis__links a:hover,
+.yann-contact__links a:hover {
+  opacity: .62;
+}
+
+.yann-chapter__links a:focus-visible,
+.yann-featured__links a:focus-visible,
+.yann-card__link:focus-visible,
+.yann-synthesis__links a:focus-visible,
+.yann-contact__links a:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+/* Texte réservé aux lecteurs d'écran (« nouvel onglet »). */
+.yann-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* PHOTO PLEINE LARGEUR — respiration entre les chapitres. */
 
 .yann-photo-full {
   display: block;
   width: 100%;
+  max-width: 100%;
   height: 48vh;
   min-height: 400px;
   max-height: 620px;
@@ -127,11 +203,145 @@
   object-fit: cover;
 }
 
-/* UNE MANIÈRE DE GUIDER — synthèse courte + liens internes sobres. */
+/* RECHERCHE & PUBLICATIONS — bloc mis en avant puis groupes de cartes. */
+
+.yann-pubs {
+  background: var(--white);
+  padding: 104px 0;
+}
+
+.yann-pubs__header h2 {
+  margin: 0 0 56px;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(34px, 4vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  overflow-wrap: break-word;
+}
+
+.yann-featured {
+  min-width: 0;
+  max-width: 980px;
+  margin: 0 0 88px;
+  padding: 48px 0;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--line);
+}
+
+.yann-featured__label {
+  margin: 0 0 20px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  opacity: .56;
+}
+
+.yann-featured__title {
+  margin: 0 0 20px;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(26px, 3vw, 40px);
+  line-height: 1.18;
+  letter-spacing: -.01em;
+  text-wrap: balance;
+  overflow-wrap: break-word;
+}
+
+.yann-featured__meta {
+  margin: 0 0 32px;
+  font-size: 15px;
+  line-height: 1.7;
+  opacity: .72;
+}
+
+.yann-featured__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 32px;
+  margin: 0;
+}
+
+.yann-group {
+  margin: 0 0 72px;
+}
+
+.yann-group:last-child {
+  margin-bottom: 0;
+}
+
+.yann-group__title {
+  margin: 0 0 8px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--ink);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.yann-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 72px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.yann-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  min-width: 0;
+  max-width: 100%;
+  padding: 28px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.yann-card__meta {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  line-height: 1.6;
+  opacity: .56;
+  overflow-wrap: anywhere;
+}
+
+.yann-card__title {
+  margin: 0;
+  max-width: 100%;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(19px, 1.7vw, 22px);
+  line-height: 1.3;
+  overflow-wrap: break-word;
+}
+
+.yann-card__note {
+  margin: 0;
+  max-width: 100%;
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: .68;
+}
+
+.yann-card__link {
+  margin-top: auto;
+  padding-top: 4px;
+  max-width: 100%;
+}
+
+/* UNE MANIÈRE DE GUIDER — conclusion + trois liens de fin. */
 
 .yann-synthesis {
   background: var(--paper);
-  padding: 96px 0;
+  padding: 104px 0;
   text-align: center;
 }
 
@@ -145,18 +355,20 @@
 }
 
 .yann-synthesis h2 {
-  margin: 0 auto 24px;
-  max-width: 760px;
+  margin: 0 auto 28px;
+  max-width: 800px;
   font-family: var(--font-serif);
   font-weight: 300;
-  font-size: clamp(28px, 3vw, 38px);
-  line-height: 1.2;
+  font-size: clamp(30px, 3.4vw, 46px);
+  line-height: 1.15;
   letter-spacing: -.01em;
+  text-wrap: balance;
+  overflow-wrap: break-word;
 }
 
 .yann-synthesis p {
-  max-width: 640px;
-  margin: 0 auto 48px;
+  max-width: 660px;
+  margin: 0 auto 20px;
   font-size: 16px;
   line-height: 1.75;
   opacity: .82;
@@ -165,8 +377,9 @@
 .yann-synthesis__links {
   display: flex;
   justify-content: center;
-  gap: 48px;
+  gap: 20px 48px;
   flex-wrap: wrap;
+  margin-top: 48px;
 }
 
 .yann-synthesis__links a {
@@ -200,7 +413,7 @@
 .yann-contact__links {
   display: flex;
   justify-content: center;
-  gap: 40px;
+  gap: 20px 40px;
   flex-wrap: wrap;
 }
 
@@ -211,18 +424,66 @@
   text-decoration: none;
   border-bottom: 1px solid currentColor;
   padding-bottom: 4px;
+  overflow-wrap: anywhere;
+}
+
+/* TABLETTE — chapitres empilés, cartes sur une colonne. */
+
+@media (max-width: 960px) {
+  .yann-chapter__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .yann-chapter__head {
+    position: static;
+  }
+
+  .yann-chapter__body {
+    max-width: none;
+  }
+
+  .yann-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 /* MOBILE — jamais de texte+photo côte à côte : hero toujours empilé. */
 
 @media (max-width: 700px) {
+  .yann-hero,
+  .yann-chapter,
+  .yann-pubs,
+  .yann-synthesis {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+
   .yann-hero__grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 32px;
     align-items: start;
   }
 
   .yann-hero__lead {
     max-width: none;
+  }
+
+  .yann-pubs__header h2 {
+    margin-bottom: 40px;
+  }
+
+  .yann-featured {
+    margin-bottom: 64px;
+    padding: 32px 0;
+  }
+
+  .yann-group {
+    margin-bottom: 56px;
+  }
+
+  .yann-photo-full {
+    height: 40vh;
+    min-height: 260px;
   }
 }
