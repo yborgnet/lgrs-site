@@ -1,8 +1,8 @@
 import type { Voyage } from "./types";
 
 // Aucune photo du massif définitif (choisi tardivement selon l'enneigement) :
-// photoIntro/photoInfo utilisent des clichés pris dans les Alpes ligures,
-// pour illustrer l'esprit "ski face à la mer" du voyage.
+// photoIntro : Alpes ligures ("ski face à la mer") ; photoInfo : Haut Atlas
+// (crêtes enneigées dominant la plaine, aucune mer visible sur la photo).
 export const mediterraneen: Voyage = {
   slug: "raid-ski-mediterraneen-2027",
   seo: {
@@ -13,10 +13,10 @@ export const mediterraneen: Voyage = {
   masthead: {
     eyebrow: "Voyage à ski de randonnée",
     title: {
-      desktop: "RAID À SKI MÉDITERRANÉEN",
-      mobileLines: ["RAID À SKI", "MÉDITERR-", "ANÉEN"],
+      desktop: "SKI MED",
+      mobileLines: ["SKI MED"],
     },
-    meta: ["2027"],
+    meta: ["RAID À SKI MÉDITERRANÉEN", "2027"],
   },
   description: {
     label: "Description du voyage",
@@ -50,8 +50,8 @@ export const mediterraneen: Voyage = {
     note: "Ce voyage s’adresse à des skieurs de randonnée très expérimentés, en excellente condition physique, capables de s’adapter à un itinéraire, un climat et une logistique arrêtés tardivement. Le niveau réel sera précisé dès que la destination aura été choisie.",
   },
   photoInfo: {
-    src: "/photos/Alpes Ligures/italie-alpes-ligures-ski-randonnee-20240315-114106-006.jpg",
-    alt: "Vaste panorama au-dessus d'une mer de nuages, Alpes ligures, Italie",
+    src: "/photos/Maroc/maroc-haut-atlas-toubkal-ski-de-randonnee-et-paysage-d-altitude-06386.jpg",
+    alt: "Crêtes enneigées du Haut Atlas dominant la plaine au loin, Maroc",
   },
   itinerary: {
     eyebrow: "Destinations possibles",
