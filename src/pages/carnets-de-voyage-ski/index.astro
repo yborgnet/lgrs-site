@@ -53,35 +53,6 @@ const canonical = "https://lesgrandsraidsaski.com/carnets-de-voyage-ski/";
       style={indexHeroPhoto.position ? `object-position: ${indexHeroPhoto.position}` : undefined}
     />
 
-    <section class="carnets-traversee">
-      <div class="carnets-traversee__grid">
-        <div class="carnets-traversee__photo">
-          <img
-            src={withBase(traverseeBannerPhoto.src)}
-            alt={traverseeBannerPhoto.alt}
-            loading="lazy"
-            decoding="async"
-            style={traverseeBannerPhoto.position ? `object-position: ${traverseeBannerPhoto.position}` : undefined}
-          />
-        </div>
-        <div class="carnets-traversee__body">
-          <p class="carnets-traversee__eyebrow">Projet au long cours</p>
-          <h2 class="carnets-traversee__title">Traversée des Alpes</h2>
-          <p class="carnets-traversee__text">
-            De la Méditerranée à l'arc alpin, cette traversée se construit par
-            étapes, skis aux pieds et sans logique d'itinéraire préfabriqué.
-            Chaque segment raconte une portion de cette ligne continue : des
-            Alpes ligures au Piémont, du Viso aux grands cols, puis plus loin
-            vers le Valais. Des carnets indépendants, reliés par un même
-            projet de voyage.
-          </p>
-          <a class="carnets-traversee__cta" href="#carnets-list" data-traversee-cta>
-            Découvrir les segments de la Traversée des Alpes →
-          </a>
-        </div>
-      </div>
-    </section>
-
     {
       (carnetZones.length > 0 || carnetYears.length > 0) && (
         <section class="carnets-filters">
@@ -113,6 +84,35 @@ const canonical = "https://lesgrandsraidsaski.com/carnets-de-voyage-ski/";
         </section>
       )
     }
+
+    <section class="carnets-traversee">
+      <div class="carnets-traversee__grid">
+        <div class="carnets-traversee__photo">
+          <img
+            src={withBase(traverseeBannerPhoto.src)}
+            alt={traverseeBannerPhoto.alt}
+            loading="lazy"
+            decoding="async"
+            style={traverseeBannerPhoto.position ? `object-position: ${traverseeBannerPhoto.position}` : undefined}
+          />
+        </div>
+        <div class="carnets-traversee__body">
+          <p class="carnets-traversee__eyebrow">Projet au long cours</p>
+          <h2 class="carnets-traversee__title">Traversée des Alpes</h2>
+          <p class="carnets-traversee__text">
+            De la Méditerranée à l'arc alpin, cette traversée se construit par
+            étapes, skis aux pieds et sans logique d'itinéraire préfabriqué.
+            Chaque segment raconte une portion de cette ligne continue : des
+            Alpes ligures au Piémont, du Viso aux grands cols, puis plus loin
+            vers le Valais. Des carnets indépendants, reliés par un même
+            projet de voyage.
+          </p>
+          <a class="carnets-traversee__cta" href="#carnets-list" data-traversee-cta>
+            Découvrir les segments de la Traversée des Alpes →
+          </a>
+        </div>
+      </div>
+    </section>
 
     <section class="carnets-list" id="carnets-list">
       <div class="site-shell">
