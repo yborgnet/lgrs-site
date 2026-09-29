@@ -177,11 +177,9 @@ export const voyages: VoyageSummary[] = [
   toSummary(tadjikistan, {
     order: 5,
     excerpt: "Villages reculés, hauts cols et terrain d'altitude pour la traversée la plus engagée de la saison.",
-    // Aucune photo associée côté source (voir TODO en tête de tadjikistan.ts).
     cover: {
-      src: "",
-      alt: "Traversée à ski des vallées du Zeravshan, Tadjikistan",
-      placeholder: true,
+      src: "/photos/Tadjikistan/illustration-tadjikistan-montagnes-enneigees.jpg",
+      alt: "Montagnes enneigées et grandes vallées du Tadjikistan",
     },
   }),
 ]
