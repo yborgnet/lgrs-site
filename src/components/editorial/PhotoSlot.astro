@@ -49,7 +49,7 @@ const {
         style={position ? `object-position: ${position}` : undefined}
       />
     ) : (
-      <span class="photo-slot__label" aria-hidden="true">{label}</span>
+      label && <span class="photo-slot__label" aria-hidden="true">{label}</span>
     )
   }
 </div>

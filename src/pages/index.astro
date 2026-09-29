@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
+import PhotoSlot from "../components/editorial/PhotoSlot.astro";
+import "../styles/home-projets.css";
 import { withBase } from "../lib/url";
 
 const canonical = "https://lesgrandsraidsaski.com/";
@@ -292,6 +294,65 @@ const canonical = "https://lesgrandsraidsaski.com/";
 
     </section>
 
+
+    <section class="projets-section" id="projets">
+      <div class="site-shell">
+
+        <div class="projets-head">
+          <p class="eyebrow">PROJETS</p>
+          <h2>Traverser, enquêter, <em>raconter.</em></h2>
+          <p class="projets-head__intro">
+            Des projets où l’itinérance devient aussi une manière d’explorer, de documenter et de mettre
+            en récit les territoires de montagne.
+          </p>
+        </div>
+
+        {/* Photos : aucune photo locale Queyras / Alpine Line pour l'instant → emplacement neutre.
+            Pour poser une photo, passer src="/photos/…" (et alt) au PhotoSlot concerné. */}
+        <article class="projet">
+          <div class="projet__media">
+            <PhotoSlot ratio="3 / 2" tone="dark" label="" file="Raid-anthropologique-Queyras-—-DSC7394.jpg" />
+          </div>
+          <div class="projet__body">
+            <p class="eyebrow">QUEYRAS · 2022</p>
+            <h3>
+              <a class="projet__link" href={withBase("/transition-raid-anthropologique-queyras/")}>
+                TRANSITION — UN RAID ANTHROPOLOGIQUE
+              </a>
+            </h3>
+            <p class="projet__text">
+              Cinq jours à skis pour mettre en dialogue un territoire, ses habitants et les sciences
+              sociales, à la croisée du métier de guide et d’un travail de recherche en géographie.
+            </p>
+            <span class="projet__cta">Découvrir le projet →</span>
+          </div>
+        </article>
+
+        <article class="projet projet--reverse">
+          <div class="projet__media">
+            <PhotoSlot ratio="3 / 2" tone="dark" label="" file="P1070234.jpg" />
+          </div>
+          <div class="projet__body">
+            <p class="eyebrow">CORSE → SLOVÉNIE · 2015</p>
+            <h3>
+              <a class="projet__link" href={withBase("/le-film/")}>ALPINE LINE — TRAVERSÉE DES ALPES</a>
+            </h3>
+            <p class="projet__text">
+              Une traversée non motorisée de l’arc alpin, du Monte Cinto au Triglav, menée pendant près de
+              six mois avec Yoann Joly.
+            </p>
+            <span class="projet__cta">Découvrir la traversée →</span>
+
+            <div class="projet__film">
+              <p class="eyebrow">FILM · 161 JOURS</p>
+              <p class="projet__text">Une histoire de cordée, de durée et de créativité à travers les Alpes.</p>
+              <a class="projet__cta projet__cta--film" href={withBase("/le-film/#film")}>Voir le film →</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
 
     <section class="about-section home-screen">
 
