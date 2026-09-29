@@ -169,12 +169,9 @@ export const voyages: VoyageSummary[] = [
   toSummary(mediterraneen, {
     order: 4,
     excerpt: "Un voyage volontairement ouvert : choisir le massif au dernier moment, là où l'hiver aura le mieux travaillé.",
-    // Aucune photo associée côté source (voir TODO en tête de mediterraneen.ts) —
-    // cohérent avec la destination elle-même, pas encore fixée.
     cover: {
-      src: "",
-      alt: "Raid à ski méditerranéen — destination choisie selon l'enneigement",
-      placeholder: true,
+      src: "/photos/Alpes Ligures/italie-alpes-ligures-ski-randonnee-dsc07657-047.jpg",
+      alt: "Skieurs de randonnée au-dessus d'une mer de nuages, Alpes ligures, Italie",
     },
   }),
   toSummary(tadjikistan, {
