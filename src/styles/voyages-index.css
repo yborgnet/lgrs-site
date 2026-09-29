@@ -354,6 +354,12 @@
     gap: 24px;
   }
 
+  /* En colonne, "flex: 1.15 1 0" donne une hauteur de base nulle : la photo
+     s'écrasait à 0 px. On laisse l'aspect-ratio 4/3 fixer la hauteur. */
+  .voyages-index-item__photo {
+    flex: none;
+  }
+
   .voyages-index-item__body {
     max-width: none;
   }
