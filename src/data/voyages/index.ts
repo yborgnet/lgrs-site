@@ -170,8 +170,8 @@ export const voyages: VoyageSummary[] = [
     order: 4,
     excerpt: "Un voyage volontairement ouvert : choisir le massif au dernier moment, là où l'hiver aura le mieux travaillé.",
     cover: {
-      src: "/photos/Alpes Ligures/italie-alpes-ligures-ski-randonnee-dsc07657-047.jpg",
-      alt: "Skieurs de randonnée au-dessus d'une mer de nuages, Alpes ligures, Italie",
+      src: "/photos/Maroc/maroc-haut-atlas-toubkal-villages-berberes-et-rencontres-06873.jpg",
+      alt: "Village berbère de pierre sous la neige, avec un sommet du Haut Atlas en arrière-plan, Maroc",
     },
   }),
   toSummary(tadjikistan, {
