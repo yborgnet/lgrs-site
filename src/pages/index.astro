@@ -8,18 +8,12 @@ import { carnets } from "../data/carnets/index";
 
 const canonical = "https://lesgrandsraidsaski.com/";
 
-// Segments alpins : uniquement les carnets réellement publiés (données de
-// src/data/carnets), zone "alpes", hors entrée Alpine Line (projet personnel
-// de 2015, non guidé, absent de ce bloc). Intitulés et URLs viennent des données, jamais retapés.
+// Segments de la traversée des Alpes : uniquement les carnets publiés de la zone
+// "traversee-des-alpes" (src/data/carnets), intitulés et URLs issus des données.
 const segmentsAlpins = carnets
-  .filter((c) => c.zones.includes("alpes") && c.slug !== "le-film")
-  .map((c, i) => ({
-    slug: c.slug,
-    year: c.year,
-    i,
-    name: c.title.startsWith("GRANDE TRAVERSÉE") ? (c.subtitle ?? c.title) : [c.title, c.subtitle].filter(Boolean).join(" — "),
-  }))
-  .sort((a, b) => (a.year ?? 0) - (b.year ?? 0) || a.i - b.i);
+  .filter((c) => c.zones.includes("traversee-des-alpes"))
+  .map((c, i) => ({ slug: c.slug, i, name: c.subtitle ?? c.title }))
+  .sort((a, b) => a.name.localeCompare(b.name, "fr", { numeric: true }) || a.i - b.i);
 ---
 
 <BaseLayout
@@ -347,7 +341,7 @@ const segmentsAlpins = carnets
 
           <div class="traversees__guidees">
             <div class="traversees__intro">
-              <p class="eyebrow">TRAVERSÉES GUIDÉES</p>
+              <p class="eyebrow">DEPUIS 2024</p>
               <h4>TRAVERSER LES ALPES À SKI</h4>
               <p class="projet__text">
                 Depuis 2024, j’ai recommencé une seconde traversée des Alpes, comme guide et uniquement à ski de
