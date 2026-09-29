@@ -1,0 +1,35 @@
+---
+import type { Voyage } from "../../data/voyages/types";
+import { withBase } from "../../lib/url";
+
+type Props = {
+  birth?: Voyage["birth"];
+};
+
+const { birth } = Astro.props;
+---
+
+{
+  birth && (
+    <section class="voyage-birth">
+      <div class="site-shell voyage-birth__inner">
+        <header class="voyage-birth__head">
+          <p class="voyage-birth__eyebrow">Naissance d’un voyage</p>
+          <h2 class="voyage-birth__title">{birth.title}</h2>
+        </header>
+
+        <div class="voyage-birth__body">
+          {birth.paragraphs.map((p) =>
+            typeof p === "string" ? <p set:html={p} /> : <blockquote set:html={p.quote} />,
+          )}
+        </div>
+
+        {birth.photo && (
+          <figure class="voyage-birth__photo">
+            <img src={withBase(birth.photo.src)} alt={birth.photo.alt} loading="lazy" decoding="async" />
+          </figure>
+        )}
+      </div>
+    </section>
+  )
+}

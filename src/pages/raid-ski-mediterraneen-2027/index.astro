@@ -3,6 +3,7 @@ import VoyageLayout from "../../layouts/VoyageLayout.astro";
 import VoyageDescription from "../../components/voyage/VoyageDescription.astro";
 import VoyageInfo from "../../components/voyage/VoyageInfo.astro";
 import MediterraneenRaids from "../../components/voyage/MediterraneenRaids.astro";
+import VoyageBirth from "../../components/voyage/VoyageBirth.astro";
 import VoyageTechCta from "../../components/voyage/VoyageTechCta.astro";
 import { mediterraneen as voyage } from "../../data/voyages/mediterraneen";
 ---
@@ -11,5 +12,6 @@ import { mediterraneen as voyage } from "../../data/voyages/mediterraneen";
   <VoyageDescription description={voyage.description} photo={voyage.photoIntro} />
   <VoyageInfo info={voyage.info} photo={voyage.photoInfo} />
   <MediterraneenRaids />
+  <VoyageBirth birth={voyage.birth} />
   <VoyageTechCta techCta={voyage.techCta} />
 </VoyageLayout>

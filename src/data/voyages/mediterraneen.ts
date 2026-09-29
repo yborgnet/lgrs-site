@@ -132,6 +132,21 @@ export const mediterraneen: Voyage = {
     ],
     note: "La destination définitive, le parcours, les hébergements et le prix précis seront communiqués dès que les conditions permettront d’arrêter le voyage.",
   },
+  birth: {
+    title: "Ski méditerranéen",
+    paragraphs: [
+      "J’aime la neige, parce qu’elle est incertaine et peut nous surprendre. J’aime la neige lorsqu’elle se met à tomber là où on ne l’attend pas, ou lorsque l’on ne l’attend pas.",
+      "C’est ainsi que j’avais imaginé il y a quelque temps organiser un voyage à la mi-décembre, incertain dans sa destination jusqu’au dernier moment, pour aller profiter des premières neiges. Un jour peut-être, ce sera « la surprise du Père Neige ».",
+      "En ce début d’hiver 2026, les pays méditerranéens ont subi cette double alchimie de froid et de dépressions successives. En dernière minute, j’ai réorganisé mon emploi du temps et proposé un voyage au Maroc.",
+      "Départ de Genève au milieu de la nuit, et à midi, nous mangions un tajine dans les rues d’Imlil, ville porte du Toubkal. Il a neigé pendant deux jours, et ce matin, l’ambiance est irréelle. Comme le sera tout le voyage dans ce pays où la neige est rare !",
+      "Je veux skier à nouveau dans ces pays, mais impossible d’y planifier des voyages classiques : une date, un itinéraire.",
+      "Alors, à défaut d’organiser la surprise du Père Neige cette année, je tente la surprise du Ski Med.",
+      "Une date, mais 10 destinations possibles, et un choix une ou deux semaines avant le départ.",
+      "Corse, Pyrénées-Orientales, Asturies en Espagne, Maroc, Abruzzes en Italie, Crète en Grèce, Bulgarie et Turquie. Sans oublier l’Algérie si un jour la diplomatie se détend et que les visas disparaissent, et le Liban si la guerre cesse pour de bon.",
+      "Pour cette année :",
+      "Plan A : Corse<br>Plan A’ : Maroc<br>Plan B : Abruzzes<br>Plan B’ : Pyrénées<br>Plan C (C comme sécurité neige !) : Bulgarie<br>Plan C’ : Turquie",
+    ],
+  },
   techCta: {
     span: "RAID À SKI MÉDITERRANÉEN · 2027",
     title: "Recevoir les informations",

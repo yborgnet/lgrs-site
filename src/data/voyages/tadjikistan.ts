@@ -164,6 +164,8 @@ export const tadjikistan: Voyage = {
     ],
     note: "Ce programme est donné à titre indicatif. Nous devrons nous adapter à la météo, aux conditions de la montagne et au niveau des participants.",
   },
+  // « Naissance d’un voyage » : texte pas encore fourni — ne rien inventer. Tant que `birth` est
+  // absent, la section n’est pas rendue ; ajouter `birth: { title, paragraphs }` pour l’activer.
   techCta: {
     span: "TADJIKISTAN · ZERAVSHAN · 2027",
     title: "Recevoir la fiche technique",

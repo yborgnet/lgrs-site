@@ -35,6 +35,11 @@ export type VoyageTitle =
       mobileLines: string[];
     };
 
+export type VoyageBirthParagraph =
+  | string
+  /** Citation reprise telle quelle (rendue en blockquote). */
+  | { quote: string };
+
 export type Voyage = {
   slug: string;
   seo: {
@@ -75,6 +80,16 @@ export type Voyage = {
     mapTitle?: string;
     items: VoyageItineraryItem[];
     note?: string;
+  };
+  /** « Naissance d'un voyage » : récit éditorial, texte fourni et validé par Yann — ne jamais
+   *  le générer ni le réécrire. Absent = section non rendue (ex. Tadjikistan, texte pas encore validé). */
+  birth?: {
+    /** Titre du récit (voyage / pays), sous le surtitre « Naissance d'un voyage ». */
+    title: string;
+    /** Fragments HTML de confiance (liens éventuels). Une chaîne = un paragraphe. */
+    paragraphs: VoyageBirthParagraph[];
+    /** Une seule photo forte, optionnelle. */
+    photo?: VoyagePhoto;
   };
   techCta: {
     span: string;
