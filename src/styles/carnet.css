@@ -44,6 +44,18 @@
   letter-spacing: -.03em;
 }
 
+/* Le plancher de 64px du clamp ci-dessus déborde du site-shell sur les très
+   petits mobiles (<400px) dès qu'un titre dépasse ~8 caractères (ex.
+   "ARGENTERA") — bug préexistant, retrouvé sur la page Argentera déjà
+   publiée en vérifiant le rendu à 360px pour les nouveaux carnets
+   Argentera 2024/2025. Corrigé ici avec un plancher plus bas, propre à ce
+   palier étroit, sans toucher au rendu 400px et plus (déjà correct). */
+@media (max-width: 400px) {
+  .carnet-hero h1 {
+    font-size: clamp(40px, 14vw, 64px);
+  }
+}
+
 .carnet-hero__subtitle {
   margin: 16px 0 0;
   font-family: var(--font-serif);

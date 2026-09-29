@@ -57,12 +57,20 @@ function toSummary(
      *  reste à faire (voir CarnetPhoto["placeholder"]). Défaut : true, pour
      *  ne rien changer aux carnets déjà validés (Bernina, Argentera). */
     published?: boolean;
+    /** Surcharge titre/sous-titre affichés sur LA CARTE de la grille listing
+     *  uniquement — ne touche jamais carnet.masthead (donc pas la page
+     *  carnet elle-même). Sert à uniformiser le titrage des segments d'un
+     *  projet au long cours (ex. "Traversée des Alpes") sans dupliquer le
+     *  masthead. `subtitle: null` retire la ligne de sous-titre (évite de
+     *  répéter le numéro de segment déjà présent dans `title`). */
+    title?: string;
+    subtitle?: string | null;
   }
 ): CarnetSummary {
   return {
     slug: carnet.slug,
-    title: carnet.masthead.title,
-    subtitle: carnet.masthead.subtitle,
+    title: opts.title ?? carnet.masthead.title,
+    subtitle: opts.subtitle === null ? undefined : opts.subtitle ?? carnet.masthead.subtitle,
     meta: carnet.masthead.meta ?? [],
     excerpt: opts.excerpt,
     cover: opts.cover,
@@ -128,20 +136,25 @@ export const carnets: CarnetSummary[] = [
     cover: kosovoCover,
     zones: ["balkans"],
   }),
+  // Les 3 segments publiés du projet "Traversée des Alpes" (voir le bandeau
+  // éditorial de la page listing) : zone "traversee-des-alpes" ajoutée en plus
+  // de "alpes", pour que le filtre activé par le bandeau les rassemble tous
+  // les trois. Titre et sous-titre de carte = ceux du masthead ("Grande
+  // traversée des Alpes à ski" / "Segment #N : Lieu"), sans surcharge.
   toSummary(alpesLigures, {
     excerpt: "Cinq jours de traversée aux confins des Alpes, de la plaine du Pô à la Méditerranée, entre cabanes non gardées et solitude retrouvée.",
     cover: { ...alpesLiguresCover, position: "center 45%" },
-    zones: ["alpes"],
+    zones: ["alpes", "traversee-des-alpes"],
   }),
   toSummary(argentera2024, {
     excerpt: "Deuxième segment de la traversée des Alpes : cinq jours à ski dans l'Argentera, de Limone Piemonte à Vinadio.",
     cover: { ...argentera2024Cover, position: "center 45%" },
-    zones: ["alpes"],
+    zones: ["alpes", "traversee-des-alpes"],
   }),
   toSummary(argentera2025, {
     excerpt: "Troisième segment de la traversée des Alpes : cinq jours à ski de Vinadio au Val Varaita, entre Argentera et Ubaye.",
     cover: { ...argentera2025Cover, position: "center 45%" },
-    zones: ["alpes"],
+    zones: ["alpes", "traversee-des-alpes"],
   }),
   toSummary(otztal, {
     excerpt: "Cinq jours de traversée à ski de refuge en refuge dans l'Ötztal, en Autriche, entre glaciers et sommets tyroliens de plus de 3 300 m.",
@@ -190,6 +203,11 @@ const ZONE_LABELS: Record<string, string> = {
   caucase: "Caucase",
   mediterranee: "Méditerranée",
   "asie-centrale": "Asie centrale",
+  // Pas une zone géographique comme les autres : regroupe les segments du
+  // projet "Traversée des Alpes" (voir le bandeau éditorial de la page
+  // listing, qui active ce filtre via son CTA). En dernier dans l'ordre
+  // d'affichage pour ne pas perturber les filtres géographiques existants.
+  "traversee-des-alpes": "Traversée des Alpes",
 };
 
 // Ordre fixe (celui du site historique), filtré aux zones réellement présentes.

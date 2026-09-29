@@ -79,6 +79,86 @@
   object-fit: cover;
 }
 
+/* BANDEAU ÉDITORIAL "TRAVERSÉE DES ALPES" — parenthèse distincte de la
+   grille des carnets individuels : annonce le projet au long cours avant de
+   renvoyer, via son CTA, vers les 3 segments filtrés dans la grille (filtre
+   de zone "traversee-des-alpes", voir le <script> de la page et
+   data/carnets/index.ts). Sobre à dessein : image + texte, aucune carte, pas
+   de bouton surdimensionné — mêmes tokens que .carnets-index-hero. */
+
+.carnets-traversee {
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.carnets-traversee__grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  align-items: stretch;
+  min-height: 480px;
+}
+
+.carnets-traversee__photo {
+  position: relative;
+  overflow: hidden;
+  min-height: 320px;
+}
+
+.carnets-traversee__photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carnets-traversee__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding: 64px min(72px, 6vw);
+}
+
+.carnets-traversee__eyebrow {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  opacity: .56;
+}
+
+.carnets-traversee__title {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(34px, 3.4vw, 50px);
+  line-height: 1;
+  letter-spacing: -.02em;
+}
+
+.carnets-traversee__text {
+  max-width: 480px;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.7;
+  opacity: .85;
+}
+
+.carnets-traversee__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  padding-bottom: 5px;
+  border-bottom: 1px solid currentColor;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  text-decoration: none;
+}
+
 /* FILTRES — logique reprise du site WordPress historique (filtres "PAR
    GRANDE ZONE" / "PAR ANNÉE" de /carnets-de-voyage-ski/), portée dans le
    nouveau langage éditorial : texte sobre, séparateurs fins, pas de bouton. */
@@ -295,6 +375,19 @@
     grid-template-columns: 1fr;
     gap: 28px;
     align-items: start;
+  }
+
+  .carnets-traversee__grid {
+    grid-template-columns: 1fr;
+    min-height: 0;
+  }
+
+  .carnets-traversee__photo {
+    min-height: 260px;
+  }
+
+  .carnets-traversee__body {
+    padding: 40px 24px;
   }
 
   .carnets-list__item,

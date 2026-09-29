@@ -282,3 +282,8 @@ export const argentera2025: Carnet = {
 };
 
 export const indexCover = photos.skisLevesAuSommet;
+
+// Photo utilisée par le bandeau éditorial "Traversée des Alpes" de la page
+// listing (/carnets-de-voyage-ski/) — panorama côté Val Varaita, au pied du
+// Viso, cohérent avec le texte du bandeau ("du Viso aux grands cols").
+export const traverseeBannerPhoto = photos.panoramaValVaraita;

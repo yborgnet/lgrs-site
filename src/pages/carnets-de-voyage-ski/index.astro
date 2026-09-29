@@ -4,6 +4,7 @@ import Header from "../../components/Header.astro";
 import "../../styles/carnets-index.css";
 import { carnets, carnetZones, carnetYears } from "../../data/carnets/index";
 import { indexHeroPhoto } from "../../data/carnets/argentera";
+import { traverseeBannerPhoto } from "../../data/carnets/argentera-2025";
 import { withBase } from "../../lib/url";
 
 const canonical = "https://lesgrandsraidsaski.com/carnets-de-voyage-ski/";
@@ -52,6 +53,35 @@ const canonical = "https://lesgrandsraidsaski.com/carnets-de-voyage-ski/";
       style={indexHeroPhoto.position ? `object-position: ${indexHeroPhoto.position}` : undefined}
     />
 
+    <section class="carnets-traversee">
+      <div class="carnets-traversee__grid">
+        <div class="carnets-traversee__photo">
+          <img
+            src={withBase(traverseeBannerPhoto.src)}
+            alt={traverseeBannerPhoto.alt}
+            loading="lazy"
+            decoding="async"
+            style={traverseeBannerPhoto.position ? `object-position: ${traverseeBannerPhoto.position}` : undefined}
+          />
+        </div>
+        <div class="carnets-traversee__body">
+          <p class="carnets-traversee__eyebrow">Projet au long cours</p>
+          <h2 class="carnets-traversee__title">Traversée des Alpes</h2>
+          <p class="carnets-traversee__text">
+            De la Méditerranée à l'arc alpin, cette traversée se construit par
+            étapes, skis aux pieds et sans logique d'itinéraire préfabriqué.
+            Chaque segment raconte une portion de cette ligne continue : des
+            Alpes ligures au Piémont, du Viso aux grands cols, puis plus loin
+            vers le Valais. Des carnets indépendants, reliés par un même
+            projet de voyage.
+          </p>
+          <a class="carnets-traversee__cta" href="#carnets-list" data-traversee-cta>
+            Découvrir les segments de la Traversée des Alpes →
+          </a>
+        </div>
+      </div>
+    </section>
+
     {
       (carnetZones.length > 0 || carnetYears.length > 0) && (
         <section class="carnets-filters">
@@ -84,7 +114,7 @@ const canonical = "https://lesgrandsraidsaski.com/carnets-de-voyage-ski/";
       )
     }
 
-    <section class="carnets-list">
+    <section class="carnets-list" id="carnets-list">
       <div class="site-shell">
         <div class="carnets-list__grid">
         {
@@ -202,5 +232,18 @@ const canonical = "https://lesgrandsraidsaski.com/carnets-de-voyage-ski/";
       yearButtons.forEach((b) => b.classList.toggle("is-active", b === button));
       applyFilters();
     });
+  });
+
+  // CTA du bandeau éditorial "Traversée des Alpes" : réutilise le filtre de
+  // zone existant (pas de logique de filtrage dupliquée) — un clic sur le
+  // bouton de zone correspondant déclenche ses propres listeners ci-dessus.
+  // Le href="#carnets-list" reste un repli fonctionnel sans JS.
+  const traverseeCta = document.querySelector<HTMLAnchorElement>("[data-traversee-cta]");
+  const traverseeZoneButton = document.querySelector<HTMLButtonElement>('[data-zone="traversee-des-alpes"]');
+  traverseeCta?.addEventListener("click", (event) => {
+    if (!traverseeZoneButton) return;
+    event.preventDefault();
+    traverseeZoneButton.click();
+    document.querySelector("#carnets-list")?.scrollIntoView({ behavior: "smooth", block: "start" });
   });
 </script>
