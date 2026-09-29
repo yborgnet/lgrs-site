@@ -4,8 +4,22 @@ import Header from "../components/Header.astro";
 import PhotoSlot from "../components/editorial/PhotoSlot.astro";
 import "../styles/home-projets.css";
 import { withBase } from "../lib/url";
+import { carnets } from "../data/carnets/index";
 
 const canonical = "https://lesgrandsraidsaski.com/";
+
+// Segments alpins : uniquement les carnets réellement publiés (données de
+// src/data/carnets), zone "alpes", hors entrée Alpine Line (projet personnel
+// de 2015, non guidé). Intitulés et URLs viennent des données, jamais retapés.
+const segmentsAlpins = carnets
+  .filter((c) => c.zones.includes("alpes") && c.slug !== "le-film")
+  .map((c, i) => ({
+    slug: c.slug,
+    year: c.year,
+    i,
+    name: c.title.startsWith("GRANDE TRAVERSÉE") ? (c.subtitle ?? c.title) : [c.title, c.subtitle].filter(Boolean).join(" — "),
+  }))
+  .sort((a, b) => (a.year ?? 0) - (b.year ?? 0) || a.i - b.i);
 ---
 
 <BaseLayout
@@ -328,28 +342,59 @@ const canonical = "https://lesgrandsraidsaski.com/";
           </div>
         </article>
 
-        <article class="projet projet--reverse">
-          <div class="projet__media">
-            <PhotoSlot ratio="3 / 2" tone="dark" label="" file="P1070234.jpg" />
-          </div>
-          <div class="projet__body">
-            <p class="eyebrow">CORSE → SLOVÉNIE · 2015</p>
-            <h3>
-              <a class="projet__link" href={withBase("/le-film/")}>ALPINE LINE — TRAVERSÉE DES ALPES</a>
-            </h3>
-            <p class="projet__text">
-              Une traversée non motorisée de l’arc alpin, du Monte Cinto au Triglav, menée pendant près de
-              six mois avec Yoann Joly.
-            </p>
-            <span class="projet__cta">Découvrir la traversée →</span>
+        <div class="traversees">
+          <h3 class="traversees__title">TRAVERSÉES DES ALPES</h3>
 
-            <div class="projet__film">
-              <p class="eyebrow">FILM · 161 JOURS</p>
-              <p class="projet__text">Une histoire de cordée, de durée et de créativité à travers les Alpes.</p>
-              <a class="projet__cta projet__cta--film" href={withBase("/le-film/#film")}>Voir le film →</a>
+          <article class="projet projet--reverse traversees__part">
+            <div class="projet__media">
+              <PhotoSlot ratio="3 / 2" tone="dark" label="" file="P1070234.jpg" />
+            </div>
+            <div class="projet__body">
+              <p class="eyebrow">CORSE → SLOVÉNIE · 2015</p>
+              <h4>
+                <a class="projet__link" href={withBase("/le-film/#film")}>ALPINE LINE</a>
+              </h4>
+              <p class="projet__text">
+                Une première traversée non motorisée des Alpes, du Monte Cinto au Triglav, réalisée avec
+                Yoann Joly pendant 161 jours.
+              </p>
+              <p class="projet__text projet__text--small">
+                À pied, à VTT, à ski de randonnée, en ski nordique, parapente, voilier et kayak.
+              </p>
+              <p class="projet__note">Projet personnel · traversée multisport, non guidée</p>
+              <span class="projet__cta">Voir le film →</span>
+            </div>
+          </article>
+
+          <div class="traversees__guidees">
+            <div class="traversees__intro">
+              <p class="eyebrow">AUJOURD’HUI</p>
+              <h4>TRAVERSER LES ALPES À SKI</h4>
+              <p class="projet__text">
+                Depuis 2024, je propose également des traversées guidées à ski de randonnée avec de petits
+                groupes, par segments, à travers les différents massifs de l’arc alpin.
+              </p>
+            </div>
+
+            <div class="traversees__liste">
+              <ul>
+                {
+                  segmentsAlpins.map((seg) => (
+                    <li>
+                      <a href={withBase(`/${seg.slug}/`)}>
+                        <span class="traversees__nom">{seg.name}</span>
+                        <span class="traversees__lire">Lire le carnet →</span>
+                      </a>
+                    </li>
+                  ))
+                }
+              </ul>
+              <a class="projet__cta" href={withBase("/carnets-de-voyage-ski/")}>
+                Voir tous les carnets de traversée →
+              </a>
             </div>
           </div>
-        </article>
+        </div>
 
       </div>
     </section>
