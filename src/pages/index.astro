@@ -12,7 +12,7 @@ const canonical = "https://lesgrandsraidsaski.com/";
 // "traversee-des-alpes" (src/data/carnets), intitulés et URLs issus des données.
 const segmentsAlpins = carnets
   .filter((c) => c.zones.includes("traversee-des-alpes"))
-  .map((c, i) => ({ slug: c.slug, i, name: c.subtitle ?? c.title }))
+  .map((c, i) => ({ slug: c.slug, i, name: (c.subtitle ?? c.title).replace(" : ", " · ") }))
   .sort((a, b) => a.name.localeCompare(b.name, "fr", { numeric: true }) || a.i - b.i);
 ---
 
@@ -315,11 +315,9 @@ const segmentsAlpins = carnets
           </p>
         </div>
 
-        {/* Photos : aucune photo locale Queyras / Alpine Line pour l'instant → emplacement neutre.
-            Pour poser une photo, passer src="/photos/…" (et alt) au PhotoSlot concerné. */}
         <article class="projet">
           <div class="projet__media">
-            <PhotoSlot ratio="3 / 2" tone="dark" label="" file="Raid-anthropologique-Queyras-—-DSC7394.jpg" />
+            <PhotoSlot ratio="3 / 2" tone="dark" label="" src="/photos/Raid anthropologique Queyras/raid-anthropologique-queyras-ski-randonnee-cretes.jpg" alt="Skieur de randonnée sur une pente face aux crêtes rocheuses du Queyras" />
           </div>
           <div class="projet__body">
             <p class="eyebrow">QUEYRAS · 2022</p>
@@ -339,10 +337,28 @@ const segmentsAlpins = carnets
         <div class="traversees">
           <h3 class="traversees__title">TRAVERSÉES DES ALPES</h3>
 
+          <article class="projet projet--reverse traversees__part">
+            <div class="projet__media">
+              <PhotoSlot ratio="3 / 2" tone="dark" label="" src="/photos/Alpine Line/alpine-line-alpinisme-arete-neige.jpg" alt="Alpiniste encordé sur une arête de neige au-dessus d’une mer de nuages" />
+            </div>
+            <div class="projet__body">
+              <p class="eyebrow">2015</p>
+              <h4>ALPINE LINE</h4>
+              <p class="projet__text">
+                Une grande traversée des Alpes sans moyens motorisés, du Monte Cinto en Corse au Triglav en
+                Slovénie, réalisée avec Yoann Joly pendant 161 jours.
+              </p>
+              <p class="projet__text projet__text--small">
+                À pied, à VTT, à ski de randonnée, en ski nordique, parapente, voilier et kayak.
+              </p>
+              <a class="projet__cta" href={withBase("/le-film/")}>Voir le film →</a>
+            </div>
+          </article>
+
           <div class="traversees__guidees">
             <div class="traversees__intro">
               <p class="eyebrow">DEPUIS 2024</p>
-              <h4>TRAVERSER LES ALPES À SKI</h4>
+              <h4>UNE GRANDE TRAVERSÉE DES ALPES GUIDÉE</h4>
               <p class="projet__text">
                 Depuis 2024, j’ai recommencé une seconde traversée des Alpes, comme guide et uniquement à ski de
                 randonnée. Chaque année, nous progressons d’une centaine de kilomètres, en cheminant dans les
@@ -362,6 +378,11 @@ const segmentsAlpins = carnets
                     </li>
                   ))
                 }
+                {/* Segment #4 : pas encore de carnet publié → pas de lien. À lier quand la page existera. */}
+                <li class="traversees__a-venir">
+                  <span class="traversees__nom">Segment #4 · Queyras</span>
+                  <span class="traversees__lire">Bientôt</span>
+                </li>
               </ul>
               <a class="projet__cta" href={withBase("/carnets-de-voyage-ski/")}>
                 Voir tous les carnets de traversée →
