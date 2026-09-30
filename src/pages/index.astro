@@ -345,13 +345,12 @@ const segmentsAlpins = carnets
               <p class="eyebrow">2015</p>
               <h4>ALPINE LINE</h4>
               <p class="projet__text">
-                Une grande traversée des Alpes sans moyens motorisés, du Monte Cinto en Corse au Triglav en
-                Slovénie, réalisée avec Yoann Joly pendant 161 jours.
+                Une grande traversée des Alpes sans moyens motorisés, réalisée avec Yoann Joly : du Monte
+                Cinto, en Corse, au Triglav, en Slovénie. Pendant 161 jours, nous avons relié les massifs à
+                pied, à vélo, à ski de randonnée, en ski nordique, en parapente, à la voile et en kayak. Une
+                traversée amateur, longue et ouverte, faite d’itinérance, d’alpinisme et d’imprévus.
               </p>
-              <p class="projet__text projet__text--small">
-                À pied, à VTT, à ski de randonnée, en ski nordique, parapente, voilier et kayak.
-              </p>
-              <a class="projet__cta" href={withBase("/le-film/")}>Voir le film →</a>
+              <a class="projet__cta" href={withBase("/le-film/")}>Voir le film Alpine Line →</a>
             </div>
           </article>
 
@@ -360,7 +359,7 @@ const segmentsAlpins = carnets
               <p class="eyebrow">DEPUIS 2024</p>
               <h4>UNE GRANDE TRAVERSÉE DES ALPES GUIDÉE</h4>
               <p class="projet__text">
-                Depuis 2024, j’ai recommencé une seconde traversée des Alpes, comme guide et uniquement à ski de
+                Depuis 2024, j’ai recommencé une seconde traversée des Alpes, cette fois comme guide et uniquement à ski de
                 randonnée. Chaque année, nous progressons d’une centaine de kilomètres, en cheminant dans les
                 massifs au gré des envies et des conditions.
               </p>
@@ -378,11 +377,7 @@ const segmentsAlpins = carnets
                     </li>
                   ))
                 }
-                {/* Segment #4 : pas encore de carnet publié → pas de lien. À lier quand la page existera. */}
-                <li class="traversees__a-venir">
-                  <span class="traversees__nom">Segment #4 · Queyras</span>
-                  <span class="traversees__lire">Bientôt</span>
-                </li>
+                {/* Segment #4 (Queyras) : pas encore de page carnet → non affiché. À ajouter quand elle existera. */}
               </ul>
               <a class="projet__cta" href={withBase("/carnets-de-voyage-ski/")}>
                 Voir tous les carnets de traversée →
@@ -390,6 +385,27 @@ const segmentsAlpins = carnets
             </div>
           </div>
         </div>
+
+        <article class="projet projet--skimed">
+          <div class="projet__media">
+            <PhotoSlot ratio="3 / 2" tone="dark" label="" src="/photos/Argentera/ski-randonnee-argentera-vue-mediterranee.jpg" alt="Skieurs de randonnée dans les Alpes maritimes, avec la Méditerranée à l’horizon" />
+          </div>
+          <div class="projet__body">
+            <p class="eyebrow">SKI MED</p>
+            <h3>
+              <a class="projet__link" href={withBase("/ski-mediterraneen/")}>
+                DES MONTAGNES FACE À LA MER
+              </a>
+            </h3>
+            <p class="projet__text">
+              Du Haut Atlas marocain aux montagnes grecques du Pinde, des Alpes ligures italiennes aux
+              massifs du sud de la Turquie, des itinérances à ski au cœur des montagnes méditerranéennes.
+              Une autre manière de vivre l’hiver, là où la neige est rare et contraste avec l’horizon qui
+              semble infini.
+            </p>
+            <span class="projet__cta">Découvrir les raids méditerranéens →</span>
+          </div>
+        </article>
 
       </div>
     </section>
