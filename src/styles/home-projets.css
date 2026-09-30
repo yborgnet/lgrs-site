@@ -126,6 +126,13 @@
   border-top: 1px solid rgba(243, 241, 236, .2);
 }
 
+.projet--skimed h3 {
+  font-size: clamp(48px, 6vw, 96px);
+  line-height: .95;
+  letter-spacing: -.05em;
+  text-transform: uppercase;
+}
+
 .traversees__title {
   margin: 0 0 72px;
   font-size: clamp(34px, 4.4vw, 68px);
