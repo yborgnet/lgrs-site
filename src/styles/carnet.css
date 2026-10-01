@@ -937,3 +937,10 @@
   outline: 2px solid var(--warm);
   outline-offset: 3px;
 }
+
+/* Opt-in (masthead.compactTitle) : « DAMMASTOCK » (14vw) déborde de ~27px à 390px. */
+@media (max-width: 400px) {
+  .carnet-hero.carnet-hero--compact-title h1 {
+    font-size: clamp(36px, 12.5vw, 56px);
+  }
+}

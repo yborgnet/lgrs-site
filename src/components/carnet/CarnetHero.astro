@@ -4,12 +4,14 @@ type Props = {
   title: string;
   subtitle?: string;
   meta?: string[];
+  /** Titre large (lettres larges type « DAMMASTOCK ») : taille réduite sous 400px. */
+  compactTitle?: boolean;
 };
 
-const { eyebrow, title, subtitle, meta = [] } = Astro.props;
+const { eyebrow, title, subtitle, meta = [], compactTitle = false } = Astro.props;
 ---
 
-<section class="carnet-hero" aria-labelledby="carnet-title">
+<section class:list={["carnet-hero", { "carnet-hero--compact-title": compactTitle }]} aria-labelledby="carnet-title">
   <div class="site-shell">
     <p class="carnet-hero__eyebrow">{eyebrow}</p>
     <h1 id="carnet-title">{title}</h1>

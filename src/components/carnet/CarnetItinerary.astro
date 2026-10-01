@@ -24,7 +24,7 @@ const { map, itinerary } = Astro.props;
 
         {map && (
           <>
-            <GpxMap gpx={map.gpx} title={map.title} />
+            <GpxMap gpx={map.gpx} title={map.title} markers={map.markers} />
             {map.note && <p class="carnet-itinerary__note">{map.note}</p>}
           </>
         )}

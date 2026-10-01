@@ -119,6 +119,8 @@ export type Carnet = {
      *  Passer les valeurs déjà calculées (voir src/lib/carnet/itinerary-totals)
      *  plutôt que des nombres en dur quand elles existent dans l'itinéraire. */
     meta?: string[];
+    /** Réduit le titre du hero sous 400px (titre aux lettres larges qui déborde). */
+    compactTitle?: boolean;
   };
   openingPhoto: CarnetPhoto;
   intro: {
@@ -136,6 +138,8 @@ export type Carnet = {
     title: string;
     note?: string;
     gpx: string;
+    /** Repères nommés affichés sur la carte (refuges, sommets), positions lues sur la trace GPX. */
+    markers?: { name: string; lat: number; lon: number }[];
   };
   itinerary?: {
     eyebrow: string;

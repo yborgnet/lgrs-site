@@ -12,6 +12,7 @@ import { argentera2024, indexCover as argentera2024Cover } from "./argentera-202
 import { argentera2025, indexCover as argentera2025Cover } from "./argentera-2025";
 import { otztal, indexCover as otztalCover } from "./otztal";
 import { dammastockTitlis, indexCover as titlisCover } from "./dammastock-titlis-traversee-ski-randonnee";
+import { traverseeDammastock2023, indexCover as dammastock2023Cover } from "./traversee-dammastock-2023";
 import { verwall, indexCover as verwallCover } from "./verwall";
 
 /**
@@ -135,6 +136,11 @@ export const carnets: CarnetSummary[] = [
     excerpt: "Du Korab aux montagnes de Šar, une traversée au long cours entre Albanie, Macédoine du Nord et Kosovo.",
     cover: kosovoCover,
     zones: ["balkans"],
+  }),
+  toSummary(traverseeDammastock2023, {
+    excerpt: "Faute de neige en Bernina, un plan B au Dammastock : cinq jours de traversée d'Abfrutt à Farnigen, recomposée au dernier moment par la Salbithütte, avec de la poudre et trois jours de soleil.",
+    cover: { ...dammastock2023Cover, position: "center 40%" },
+    zones: ["alpes"],
   }),
   // Les 3 segments publiés du projet "Traversée des Alpes" (voir le bandeau
   // éditorial de la page listing) : zone "traversee-des-alpes" ajoutée en plus
