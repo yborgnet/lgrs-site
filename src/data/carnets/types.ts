@@ -139,7 +139,8 @@ export type Carnet = {
     note?: string;
     gpx: string;
     /** Repères nommés affichés sur la carte (refuges, sommets), positions lues sur la trace GPX. */
-    markers?: { name: string; lat: number; lon: number }[];
+    /** `direction` : côté du libellé (défaut "right"), à régler quand deux repères proches se recouvrent. */
+    markers?: { name: string; lat: number; lon: number; direction?: "left" | "right" | "top" | "bottom" }[];
   };
   itinerary?: {
     eyebrow: string;
@@ -199,3 +200,8 @@ export type Carnet = {
     ctaHref: string;
   };
 };
+
+/** Carnet sans rubrique « Le récit » (ni bouton « Le récit complet ») : la page
+ *  n'affiche pas CarnetStory. Tous les autres champs sont identiques. */
+export type CarnetSansRecit = Omit<Carnet, "story">;
+

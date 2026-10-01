@@ -4,11 +4,11 @@ import Header from "../components/Header.astro";
 import CarnetHero from "../components/carnet/CarnetHero.astro";
 import "../styles/info-grid.css";
 import "../styles/carnet.css";
-import type { Carnet } from "../data/carnets/types";
+import type { CarnetSansRecit } from "../data/carnets/types";
 import { withBase } from "../lib/url";
 
 type Props = {
-  carnet: Carnet;
+  carnet: CarnetSansRecit;
 };
 
 const { carnet } = Astro.props;

@@ -10,7 +10,7 @@ type Props = {
   /** Image statique affichée tant que la carte interactive n'est pas chargée (et si le GPX est introuvable). */
   fallback?: { src: string; alt: string };
   /** Repères nommés optionnels (refuges, sommets) — absent = rendu inchangé. */
-  markers?: { name: string; lat: number; lon: number }[];
+  markers?: { name: string; lat: number; lon: number; direction?: "left" | "right" | "top" | "bottom" }[];
 };
 
 const { gpx, title, fallback, markers } = Astro.props;
@@ -152,7 +152,7 @@ const gpxList = (Array.isArray(gpx) ? gpx : [gpx]).map(withBase);
     L.circleMarker(start, markerStyle).addTo(map);
     L.circleMarker(end, markerStyle).addTo(map);
 
-    let namedMarkers: { name: string; lat: number; lon: number }[] = [];
+    let namedMarkers: { name: string; lat: number; lon: number; direction?: "left" | "right" | "top" | "bottom" }[] = [];
     try {
       namedMarkers = JSON.parse(container.dataset.markers ?? "[]");
     } catch {
@@ -160,7 +160,12 @@ const gpxList = (Array.isArray(gpx) ? gpx : [gpx]).map(withBase);
     }
     namedMarkers.forEach((m) => {
       L.circleMarker([m.lat, m.lon], { ...markerStyle, radius: 4.5 })
-        .bindTooltip(m.name, { permanent: true, direction: "right", offset: [6, 0], className: "gpx-map__label" })
+        .bindTooltip(m.name, {
+          permanent: true,
+          direction: m.direction ?? "right",
+          offset: ({ right: [6, 0], left: [-6, 0], top: [0, -6], bottom: [0, 6] } as const)[m.direction ?? "right"],
+          className: "gpx-map__label",
+        })
         .addTo(map);
     });
 

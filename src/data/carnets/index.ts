@@ -1,4 +1,4 @@
-import type { Carnet, CarnetSummary } from "./types";
+import type { CarnetSansRecit, CarnetSummary } from "./types";
 import { bernina, indexCover as berninaCover } from "./bernina";
 import { argentera, indexCover as argenteraCover } from "./argentera";
 import { georgie, indexCover as georgieCover } from "./georgie";
@@ -13,6 +13,7 @@ import { argentera2025, indexCover as argentera2025Cover } from "./argentera-202
 import { otztal, indexCover as otztalCover } from "./otztal";
 import { dammastockTitlis, indexCover as titlisCover } from "./dammastock-titlis-traversee-ski-randonnee";
 import { traverseeDammastock2023, indexCover as dammastock2023Cover } from "./traversee-dammastock-2023";
+import { ecrinsTourDesAgneaux2025, indexCover as agneaux2025Cover } from "./ecrins-tour-des-agneaux-2025";
 import { verwall, indexCover as verwallCover } from "./verwall";
 
 /**
@@ -48,7 +49,7 @@ function extractYear(periodLabel: string | undefined): number | null {
 }
 
 function toSummary(
-  carnet: Carnet,
+  carnet: CarnetSansRecit,
   opts: {
     excerpt: string;
     cover: CarnetSummary["cover"];
@@ -136,6 +137,11 @@ export const carnets: CarnetSummary[] = [
     excerpt: "Du Korab aux montagnes de Šar, une traversée au long cours entre Albanie, Macédoine du Nord et Kosovo.",
     cover: kosovoCover,
     zones: ["balkans"],
+  }),
+  toSummary(ecrinsTourDesAgneaux2025, {
+    excerpt: "Faute de neige sur la frontière, un raid à ski de trois jours dans les Écrins : le Tour des Agneaux, de la traversée des Dômes de Monêtier au couloir Davin.",
+    cover: { ...agneaux2025Cover, position: "center 45%" },
+    zones: ["alpes"],
   }),
   toSummary(traverseeDammastock2023, {
     excerpt: "Faute de neige en Bernina, un plan B au Dammastock : cinq jours de traversée d'Abfrutt à Farnigen, recomposée au dernier moment par la Salbithütte, avec de la poudre et trois jours de soleil.",

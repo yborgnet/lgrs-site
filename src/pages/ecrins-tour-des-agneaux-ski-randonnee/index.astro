@@ -1,0 +1,17 @@
+---
+import CarnetLayout from "../../layouts/CarnetLayout.astro";
+import CarnetPhoto from "../../components/carnet/CarnetPhoto.astro";
+import CarnetIntro from "../../components/carnet/CarnetIntro.astro";
+import CarnetItinerary from "../../components/carnet/CarnetItinerary.astro";
+import CarnetGallery from "../../components/carnet/CarnetGallery.astro";
+import CarnetClosing from "../../components/carnet/CarnetClosing.astro";
+import { ecrinsTourDesAgneaux2025 as carnet } from "../../data/carnets/ecrins-tour-des-agneaux-2025";
+---
+
+<CarnetLayout carnet={carnet}>
+  <CarnetPhoto photo={carnet.openingPhoto} variant="hero" />
+  <CarnetIntro intro={carnet.intro} info={carnet.info} />
+  <CarnetItinerary map={carnet.map} itinerary={carnet.itinerary} />
+  <CarnetGallery portfolio={carnet.portfolio} />
+  <CarnetClosing closing={carnet.closing} />
+</CarnetLayout>
