@@ -235,6 +235,16 @@ export const kazakhstan: Carnet = {
     title: "Chimbulak → Koklaisay",
     note: "Carte interactive — zoom volontairement limité.",
     gpx: "/gpx/kazakhstan-ile-alatau-2025.gpx",
+    // Positions = premier/dernier point de chaque segment du GPX (fins d'étape), noms repris des titres de journée.
+    markers: [
+      { name: "Chimbulak", lat: 43.112938, lon: 77.111280 },
+      { name: "Tuyuk-Su", lat: 43.061127, lon: 77.082849 },
+      { name: "Gorge gauche du Talgar", lat: 43.040695, lon: 77.156303 },
+      { name: "Kuzylsau", lat: 43.002158, lon: 77.018237 },
+      { name: "Cosmo Tian-Shan", lat: 43.041855, lon: 76.944225 },
+      { name: "Gorges de Kargaly", lat: 43.017981, lon: 76.848644, direction: "left" },
+      { name: "Koklaisay", lat: 43.095039, lon: 76.784693 },
+    ],
   },
   itinerary,
   story: {

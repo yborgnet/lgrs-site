@@ -317,6 +317,15 @@ export const dammastockTitlis: Carnet = {
     title: "Guttannen → Innertkirchen (boucle)",
     note: "Carte interactive — zoom volontairement limité.",
     gpx: "/gpx/dammastock-titlis-traversee-ski-randonnee.gpx",
+    // Positions des nuits = points de coupure temporelle de la trace (voir note en tête de fichier) ; départ/arrivée = premier/dernier point.
+    markers: [
+      { name: "Guttannen", lat: 46.662750, lon: 8.288232 },
+      { name: "Windegghütte", lat: 46.694836, lon: 8.347991, direction: "left" },
+      { name: "Steingletscher", lat: 46.730575, lon: 8.427358 },
+      { name: "Grassenbiwak", lat: 46.770173, lon: 8.446689, direction: "left" },
+      { name: "Spannorthütte", lat: 46.799794, lon: 8.509771 },
+      { name: "Innertkirchen", lat: 46.724000, lon: 8.269210 },
+    ],
   },
   itinerary,
   story: {

@@ -249,6 +249,17 @@ export const georgie: Carnet = {
     title: "Oushgouli → Iskari",
     note: "Carte interactive — zoom volontairement limité.",
     gpx: "/gpx/georgie-raid-ski-rando-traversee.gpx",
+    // Positions de fin d'étape placées par distance cumulée (distances par jour publiées) sur la trace WordPress simplifiée, sans horodatage : à ±1 km. Mestia recoupe les coordonnées réelles du village.
+    markers: [
+      { name: "Oushgouli", lat: 42.915706, lon: 43.013326, direction: "left" },
+      { name: "Cabanes du Chkhara", lat: 42.949595, lon: 43.076678 },
+      { name: "Khalde", lat: 42.969000, lon: 42.991980 },
+      { name: "Adishi", lat: 42.997862, lon: 42.914626, direction: "left" },
+      { name: "Mestia", lat: 43.045526, lon: 42.733086, direction: "left" },
+      { name: "Cloud Base Hut", lat: 43.066303, lon: 42.723958, direction: "left" },
+      { name: "Mazeri", lat: 43.078677, lon: 42.598305, direction: "top" },
+      { name: "Iskari", lat: 43.051871, lon: 42.526544 },
+    ],
   },
   itinerary,
   story: {

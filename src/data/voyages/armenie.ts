@@ -61,6 +61,16 @@ export const armenie: Voyage = {
     intro:
       "Une traversée à ski de village en village, depuis les forêts du nord et les rives du lac Sevan jusqu’aux reliefs volcaniques du mont Ara et de l’Aragats.",
     gpx: "/gpx/armenie-sevan-aragats-2027.gpx",
+    // Positions = premier/dernier point de chaque segment du GPX (fins d'étape), noms repris des titres de journée.
+    markers: [
+      { name: "Lac Sevan", lat: 40.631054, lon: 44.979749 },
+      { name: "Dilijan", lat: 40.742267, lon: 44.875989 },
+      { name: "Margahovit", lat: 40.735136, lon: 44.690367, direction: "top" },
+      { name: "Meghradzor", lat: 40.607216, lon: 44.650767 },
+      { name: "Aghveran", lat: 40.454443, lon: 44.521711 },
+      { name: "Taghenik / Karashamb", lat: 40.425745, lon: 44.426056, direction: "left" },
+      { name: "Aragats", lat: 40.474329, lon: 44.182797, direction: "left" },
+    ],
     mapTitle: "Carte de l’itinéraire du voyage à ski en Arménie – du lac Sevan à l’Aragats",
     /* Stats par jour calculées depuis les 7 <trkseg> natifs de public/gpx/
        armenie-sevan-aragats-2027.gpx (trace planifiée AlpineQuest, non modifiée) —

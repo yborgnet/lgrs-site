@@ -291,6 +291,15 @@ export const alpesLigures: Carnet = {
     title: "Limone Piemonte → Garessio 2000",
     note: "Carte interactive — zoom volontairement limité.",
     gpx: "/gpx/alpes-ligures-traversee-2024.gpx",
+    // Positions = premier/dernier point de chaque segment du GPX (fins d'étape), noms repris des titres de journée.
+    markers: [
+      { name: "Limone Piemonte", lat: 44.155708, lon: 7.596117, direction: "left" },
+      { name: "Rifugio Don Barbera", lat: 44.158203, lon: 7.673706 },
+      { name: "Capanna Saracco Volante", lat: 44.168215, lon: 7.708122, direction: "left" },
+      { name: "Rifugio Mondovì", lat: 44.191410, lon: 7.731785, direction: "left" },
+      { name: "Bivacco Franco Caravero", lat: 44.179476, lon: 7.810342, direction: "top" },
+      { name: "Garessio 2000", lat: 44.216496, lon: 7.944686 },
+    ],
   },
   itinerary,
   story: {

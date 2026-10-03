@@ -76,6 +76,8 @@ export type Voyage = {
     map?: VoyagePhoto;
     /** Chemin(s) public(s) vers le(s) fichier(s) GPX du voyage, ex. "/gpx/georgie-petit-caucase-2027.gpx". */
     gpx?: string | string[];
+    /** Repères nommés (villages, refuges d'étape) affichés sur la carte — positions lues sur la trace GPX. */
+    markers?: { name: string; lat: number; lon: number; direction?: "left" | "right" | "top" | "bottom" }[];
     /** Description accessible de la carte GPX (aria-label). */
     mapTitle?: string;
     items: VoyageItineraryItem[];

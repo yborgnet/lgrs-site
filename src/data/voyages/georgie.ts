@@ -67,6 +67,17 @@ export const georgie: Voyage = {
       alt: "Carte de l’itinéraire à ski 2027 dans le Petit Caucase, entre Javakheti, Adjarie et Gourie",
     },
     gpx: "/gpx/georgie-petit-caucase-2027.gpx",
+    // Positions = début de trace, points de coupure des jours (distances cumulées de la trace planifiée) et fin de trace ; Bakuriani (coupure J2/J3 non résolue, voir note ci-dessus) non repéré.
+    markers: [
+      { name: "Tsikhisjvari", lat: 41.717897, lon: 43.441604, direction: "left" },
+      { name: "Tabatskouri", lat: 41.647002, lon: 43.630696 },
+      { name: "Samsari / Abuli", lat: 41.536040, lon: 43.670734, direction: "left" },
+      { name: "Olaverdi", lat: 41.663247, lon: 42.603187 },
+      { name: "Utkhisubani", lat: 41.664433, lon: 42.602683, direction: "top" },
+      { name: "Danisparauli", lat: 41.663247, lon: 42.603187, direction: "bottom" },
+      { name: "Ghorjomi", lat: 41.663247, lon: 42.603187, direction: "left" },
+      { name: "Bakhmaro", lat: 41.846498, lon: 42.326464 },
+    ],
     mapTitle: "Carte de l’itinéraire du voyage à ski en Géorgie – Petit Caucase",
     /* Stats par jour : ce GPX n'est pas découpé par <trkseg> par jour (contrairement à
        l'Arménie/l'Ouzbékistan/le Tadjikistan) — il contient même des <trkseg> imbriqués

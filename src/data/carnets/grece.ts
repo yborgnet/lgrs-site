@@ -279,6 +279,17 @@ export const grece: Carnet = {
     title: "Theodoriana → Agia Paraskevi",
     note: "Carte interactive — zoom volontairement limité.",
     gpx: "/gpx/grece-tzoumerka-pinde-2026.gpx",
+    // Positions = premier/dernier point de chaque segment du GPX (fins d'étape), noms repris des titres de journée.
+    markers: [
+      { name: "Refuge Stavros", lat: 39.448492, lon: 21.227715 },
+      { name: "Kalarites", lat: 39.584139, lon: 21.123211, direction: "left" },
+      { name: "Matsouki", lat: 39.682658, lon: 21.190687 },
+      { name: "Anthochori", lat: 39.733476, lon: 21.129392 },
+      { name: "Périvoli", lat: 39.976499, lon: 21.116493 },
+      { name: "Vasilitsa", lat: 40.063964, lon: 21.079554 },
+      { name: "Samarina", lat: 40.103370, lon: 21.022315 },
+      { name: "Pades", lat: 40.041805, lon: 20.908466, direction: "left" },
+    ],
   },
   itinerary,
   story: {

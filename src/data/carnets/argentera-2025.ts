@@ -205,6 +205,15 @@ export const argentera2025: Carnet = {
     title: "Vinadio → Pontechianale",
     note: "Carte interactive — zoom volontairement limité.",
     gpx: "/gpx/argentera-2025.gpx",
+    // Positions = premier/dernier point de chaque segment du GPX (fins d'étape), noms repris des titres de journée.
+    markers: [
+      { name: "Vinadio", lat: 44.276648, lon: 7.138941 },
+      { name: "San Bernolfo", lat: 44.260516, lon: 7.044556 },
+      { name: "Pietraporzio", lat: 44.299943, lon: 6.999519 },
+      { name: "Val-d'Oronaye", lat: 44.450282, lon: 6.846973 },
+      { name: "Maljasset", lat: 44.592778, lon: 6.842360, direction: "left" },
+      { name: "Pontechianale", lat: 44.645771, lon: 7.000764 },
+    ],
   },
   itinerary,
   story: {

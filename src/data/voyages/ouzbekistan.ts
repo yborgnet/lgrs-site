@@ -61,6 +61,16 @@ export const ouzbekistan: Voyage = {
     intro:
       "D’abord une exploration de vallées isolées, avec une nuit sous tente au cœur du massif. Puis une itinérance de village en village, avant une journée de battement qui pourra devenir dernière journée de ski ou découverte de Samarcande.",
     gpx: "/gpx/ouzbekistan-hissar-2027.gpx",
+    // Positions = premier/dernier point de chaque segment du GPX (fins d'étape), noms repris des titres de journée.
+    markers: [
+      { name: "Lyaylik", lat: 38.637873, lon: 67.036911 },
+      { name: "Kosh-Kul", lat: 38.764002, lon: 67.129250 },
+      { name: "Zarmas", lat: 38.847370, lon: 67.091872, direction: "left" },
+      { name: "Tamshush", lat: 38.998327, lon: 67.344942, direction: "left" },
+      { name: "Sarahashma", lat: 39.032602, lon: 67.378923, direction: "left" },
+      { name: "Gelon", lat: 39.075323, lon: 67.460583, direction: "left" },
+      { name: "Kul’", lat: 39.115990, lon: 67.517293 },
+    ],
     mapTitle: "Carte de l’itinéraire du voyage à ski en Ouzbékistan – massif du Hissar",
     /* Stats par jour calculées depuis les 7 <trkseg> natifs de public/gpx/
        ouzbekistan-hissar-2027.gpx (trace planifiée, non modifiée) — reproductible via

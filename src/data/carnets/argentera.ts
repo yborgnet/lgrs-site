@@ -308,6 +308,17 @@ export const argentera: Carnet = {
     title: "Traversée du Mercantour à l'Argentera",
     note: "Carte interactive — zoom volontairement limité.",
     gpx: "/gpx/argentera-mercantour-2026.gpx",
+    // Positions = premier/dernier point de chaque segment du GPX (fins d'étape), noms repris des titres de journée.
+    markers: [
+      { name: "Entracque", lat: 44.206343, lon: 7.438104 },
+      { name: "Casterino", lat: 44.099435, lon: 7.506045 },
+      { name: "Refuge de Nice", lat: 44.104462, lon: 7.400437 },
+      { name: "Refuge de la Cougourde", lat: 44.126309, lon: 7.330864, direction: "left" },
+      { name: "Rifugio Remondino", lat: 44.163494, lon: 7.295672 },
+      { name: "Refuge de Valasco", lat: 44.198757, lon: 7.232789 },
+      { name: "Rifugio Livio Bianco", lat: 44.246052, lon: 7.247900, direction: "left" },
+      { name: "Sant'Anna di Valdieri", lat: 44.242987, lon: 7.320214 },
+    ],
   },
   itinerary,
   story: {

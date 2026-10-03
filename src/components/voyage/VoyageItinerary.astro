@@ -24,6 +24,7 @@ const { itinerary } = Astro.props;
           gpx={itinerary.gpx}
           title={itinerary.mapTitle ?? `Carte de l'itinéraire — ${itinerary.title}`}
           fallback={itinerary.map}
+          markers={itinerary.markers}
         />
       ) : (
         itinerary.map && (

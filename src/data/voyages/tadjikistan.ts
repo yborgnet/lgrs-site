@@ -61,6 +61,11 @@ export const tadjikistan: Voyage = {
     intro:
       "Une première exploration autonome autour du Pereval Angisht, avec deux nuits sous tente, puis une traversée entre les villages d’hiver du Haut-Zeravshan.",
     gpx: "/gpx/tadjikistan-zeravshan-2027.gpx",
+    // Positions = premier/dernier point de chaque segment du GPX (fins d'étape), noms repris des titres de journée.
+    markers: [
+      { name: "Margib", lat: 39.157609, lon: 68.816759, direction: "left" },
+      { name: "Marzich", lat: 39.171999, lon: 68.732452 },
+    ],
     mapTitle: "Carte de l’itinéraire du voyage à ski au Tadjikistan – vallées du Zeravshan",
     /* Stats par jour calculées depuis les 7 <trkseg> natifs de public/gpx/
        tadjikistan-zeravshan-2027.gpx (trace planifiée, non modifiée) — reproductible via

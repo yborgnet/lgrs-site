@@ -223,6 +223,14 @@ export const verwall: Carnet = {
     title: "Sankt Anton am Arlberg → Langen am Arlberg",
     note: "Carte interactive — zoom volontairement limité.",
     gpx: "/gpx/verwall-tour-ski-randonnee.gpx",
+    // Positions = premier/dernier point de chaque segment du GPX (fins d'étape), noms repris des titres de journée.
+    markers: [
+      { name: "Sankt Anton am Arlberg", lat: 47.104597, lon: 10.268057 },
+      { name: "Friedrichshafener Hütte", lat: 46.994688, lon: 10.215570 },
+      { name: "Neue Heilbronner Hütte", lat: 47.007247, lon: 10.139412, direction: "left" },
+      { name: "Neue Reutlinger Hütte", lat: 47.075273, lon: 10.115535 },
+      { name: "Langen am Arlberg", lat: 47.131785, lon: 10.120938, direction: "left" },
+    ],
   },
   itinerary,
   story: {

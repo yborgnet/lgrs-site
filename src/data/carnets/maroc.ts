@@ -171,6 +171,14 @@ export const maroc: Carnet = {
     title: "Imlil → Tizgui",
     note: "Carte interactive — zoom volontairement limité.",
     gpx: "/gpx/maroc-toubkal-2026.gpx",
+    // Positions = premier/dernier point de chaque segment du GPX (fins d'étape), noms repris des titres de journée.
+    markers: [
+      { name: "Imlil", lat: 31.136416, lon: -7.920343, direction: "left" },
+      { name: "Tacchdirt", lat: 31.157152, lon: -7.846566, direction: "left" },
+      { name: "Timichchi", lat: 31.194147, lon: -7.768447 },
+      { name: "Tizi Oussem", lat: 31.148276, lon: -7.888892, direction: "left" },
+      { name: "Tizgui", lat: 31.071889, lon: -8.038849, direction: "left" },
+    ],
   },
   itinerary,
   story: {

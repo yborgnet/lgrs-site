@@ -294,6 +294,17 @@ export const kosovo: Carnet = {
     title: "Zimur → vallée sous le Luboten",
     note: "Carte interactive — zoom volontairement limité.",
     gpx: "/gpx/kosovo-montagnes-sar-2025.gpx",
+    // Positions = premier/dernier point de chaque segment du GPX (fins d'étape), noms repris des titres de journée.
+    markers: [
+      { name: "Zimur", lat: 41.720756, lon: 20.447336, direction: "left" },
+      { name: "Radomirë", lat: 41.814502, lon: 20.488102, direction: "left" },
+      { name: "Brod", lat: 41.991219, lon: 20.705443, direction: "left" },
+      { name: "Bozovce", lat: 42.054674, lon: 20.827850 },
+      { name: "Lubinje e Poshtme", lat: 42.128909, lon: 20.869701, direction: "left" },
+      { name: "Prevallë", lat: 42.171237, lon: 20.963576, direction: "left" },
+      { name: "Brezovicë", lat: 42.182718, lon: 21.034197, direction: "top" },
+      { name: "Refuge Ljuboten", lat: 42.184625, lon: 21.127322 },
+    ],
   },
   itinerary,
   story: {

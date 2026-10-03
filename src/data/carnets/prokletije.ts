@@ -214,6 +214,11 @@ export const prokletije: Carnet = {
     title: "Vermosh → Čakor",
     note: "Carte interactive — zoom volontairement limité.",
     gpx: "/gpx/prokletije-montenegro-2026.gpx",
+    // Seuls départ et arrivée : les distances publiées par jour ne correspondent pas au GPX, les fins d'étape intermédiaires ne sont donc pas placées.
+    markers: [
+      { name: "Vermosh", lat: 42.528973, lon: 19.726449, direction: "left" },
+      { name: "Čakor", lat: 42.673974, lon: 19.998908 },
+    ],
   },
   itinerary,
   story: {

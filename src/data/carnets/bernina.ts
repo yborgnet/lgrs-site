@@ -218,6 +218,14 @@ export const bernina: Carnet = {
     title: "Tour du massif de la Bernina",
     note: "Carte interactive — zoom volontairement limité.",
     gpx: "/gpx/bernina-tour-massif-2026.gpx",
+    // Positions = premier/dernier point de chaque segment du GPX (fins d'étape), noms repris des titres de journée.
+    markers: [
+      { name: "Diavolezza", lat: 46.411949, lon: 9.965635 },
+      { name: "Chamanna da Boval", lat: 46.415176, lon: 9.925124, direction: "left" },
+      { name: "Bivacco Parravicini", lat: 46.361386, lon: 9.883539, direction: "left" },
+      { name: "Bivacco Pansera", lat: 46.361155, lon: 9.950171 },
+      { name: "Bernina Diavolezza", lat: 46.441154, lon: 9.982365 },
+    ],
   },
   itinerary,
   story: {

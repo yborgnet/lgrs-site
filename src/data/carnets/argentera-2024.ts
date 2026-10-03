@@ -222,6 +222,15 @@ export const argentera2024: Carnet = {
     title: "Limone Piemonte → Vinadio",
     note: "Carte interactive — zoom volontairement limité.",
     gpx: "/gpx/argentera-2024.gpx",
+    // Positions = premier/dernier point de chaque segment du GPX (fins d'étape), noms repris des titres de journée.
+    markers: [
+      { name: "Limone Piemonte", lat: 44.158464, lon: 7.560323 },
+      { name: "Entracque", lat: 44.131056, lon: 7.466456, direction: "top" },
+      { name: "Canale Saint Robert", lat: 44.130885, lon: 7.389358, direction: "left" },
+      { name: "Gias delle Mosche", lat: 44.206638, lon: 7.271104, direction: "top" },
+      { name: "Gias della Paur", lat: 44.220198, lon: 7.184533, direction: "left" },
+      { name: "Vinadio", lat: 44.282151, lon: 7.143812 },
+    ],
   },
   itinerary,
   story: {

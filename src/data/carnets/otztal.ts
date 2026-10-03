@@ -224,6 +224,15 @@ export const otztal: Carnet = {
     title: "Obergurgl → Sölden",
     note: "Carte interactive — zoom volontairement limité.",
     gpx: "/gpx/autriche-otztal-2024.gpx",
+    // Positions = premier/dernier point de chaque segment du GPX (fins d'étape), noms repris des titres de journée.
+    markers: [
+      { name: "Obergurgl", lat: 46.866820, lon: 11.024639 },
+      { name: "Fidelitas Hütte", lat: 46.805741, lon: 10.988864, direction: "left" },
+      { name: "Martin-Busch-Hütte", lat: 46.801053, lon: 10.887015, direction: "bottom" },
+      { name: "Hochjoch-Hospiz", lat: 46.825139, lon: 10.833970 },
+      { name: "Breslauer Hütte", lat: 46.868246, lon: 10.879666 },
+      { name: "Sölden", lat: 46.941281, lon: 10.932394 },
+    ],
   },
   itinerary,
   story: {
