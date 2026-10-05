@@ -1,0 +1,108 @@
+---
+// Corps d'une ligne (plan ou variante) : phrase, photo, informations, carte,
+// itinéraire — même vocabulaire que les pages Voyage / Carnet.
+import fs from "node:fs";
+import path from "node:path";
+import GpxMap from "../GpxMap.astro";
+import InformationGrid from "../shared/InformationGrid.astro";
+import type { PlanDay, PlanLine } from "../../data/voyages/skiMedPlans";
+import { withBase } from "../../lib/url";
+
+type Props = {
+  line: PlanLine;
+  /** Libellé accessible, ex. « Maroc — Toubkal ». */
+  label: string;
+};
+
+const { line, label } = Astro.props;
+
+// La carte n'est rendue que si le GPX est présent dans public/ : jamais de
+// trace inventée ni de cadre vide.
+const hasGpx = !!line.map && fs.existsSync(path.join(process.cwd(), "public", line.map.gpx));
+const fmt = (n: number) => n.toLocaleString("fr-FR");
+const fmtKm = (n: number) => n.toFixed(1).replace(".", ",");
+
+function stats(d: PlanDay) {
+  const parts: string[] = [];
+  if (d.km != null) parts.push(`${d.approx ? "≈ " : ""}${fmtKm(d.km)} km`);
+  if (d.up != null) parts.push(`D+ ${fmt(d.up)} m`);
+  if (d.down != null) parts.push(`D− ${fmt(d.down)} m`);
+  return parts.join(" · ");
+}
+---
+
+<div class="plan-body">
+  <p class="plan-body__pitch">{line.pitch}</p>
+
+  {(line.photo || !line.pending) && (
+  <figure class="plan-photo">
+    {
+      line.photo ? (
+        <img
+          src={withBase(line.photo.src)}
+          alt={line.photo.alt}
+          loading="lazy"
+          decoding="async"
+          style={line.photo.position ? `object-position: ${line.photo.position};` : undefined}
+        />
+      ) : (
+        <div class="plan-photo__placeholder" role="img" aria-label={`Photo à venir — ${label}`}>
+          <span>Photo à venir</span>
+        </div>
+      )
+    }
+  </figure>
+  )}
+
+  <div class="plan-info">
+    <InformationGrid label="Informations" fields={line.info} />
+  </div>
+
+  {
+    line.map && (
+      <div class="plan-map">
+        {hasGpx ? (
+          <GpxMap gpx={line.map.gpx} title={line.map.title} />
+        ) : (
+          <p class="plan-map__pending">Carte et trace à venir.</p>
+        )}
+      </div>
+    )
+  }
+
+  {
+    line.itinerary ? (
+      <div class="plan-itinerary">
+        <p class="plan-itinerary__eyebrow">Itinéraire</p>
+        <h4>{line.itinerary.title}</h4>
+        {line.itinerary.intro && <p class="plan-itinerary__intro">{line.itinerary.intro}</p>}
+        <div class="plan-days">
+          {line.itinerary.days.map((d) => (
+            <>
+              {d.part && <p class="plan-days__part">{d.part}</p>}
+              <article class="plan-day">
+                <div class="plan-day__num">{d.num}</div>
+                <div>
+                  <h5>{d.title}</h5>
+                  {d.via && d.via.length > 0 && <p class="plan-day__via">{d.via.join(" · ")}</p>}
+                  {d.text && <p>{d.text}</p>}
+                  {d.night && (
+                    <p class="plan-day__night">
+                      <strong>{d.nightLabel ?? "Nuit"}</strong> · {d.night}
+                    </p>
+                  )}
+                  {d.alert && <p class="plan-day__alert">{d.alert}</p>}
+                  {stats(d) && <p class="plan-day__stats">{stats(d)}</p>}
+                </div>
+              </article>
+              {d.link && <p class="plan-days__link">{d.link}</p>}
+            </>
+          ))}
+        </div>
+        {line.itinerary.note && <p class="plan-itinerary__note">{line.itinerary.note}</p>}
+      </div>
+    ) : (
+      line.pending && <p class="plan-body__pending">{line.pending}</p>
+    )
+  }
+</div>

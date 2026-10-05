@@ -1,0 +1,147 @@
+---
+// Sélecteur des plans du Raid / Ski méditerranéen : un seul voyage, cinq lignes
+// préparées, une seule skiée. Tous les panneaux sont dans le HTML (SEO) ; seuls
+// les panneaux inactifs sont `hidden`. Le JS ne fait que basculer l'affichage
+// (tablist ARIA, clavier, sans rechargement). Les cartes GPX s'initialisent
+// quand leur panneau devient visible (voir GpxMap : IntersectionObserver).
+import PlanBody from "./SkiMedPlanBody.astro";
+import { plans, plansSection } from "../../data/voyages/skiMedPlans";
+import "../../styles/skimed-plans.css";
+
+const firstId = plans[0].id;
+---
+
+<section class="skimed" id="plans">
+  <div class="site-shell">
+    <header class="skimed__head">
+      <p class="skimed__eyebrow">{plansSection.eyebrow}</p>
+      <h2>{plansSection.title}</h2>
+      <p class="skimed__intro">{plansSection.intro}</p>
+    </header>
+
+    <div class="skimed__tabs" role="tablist" aria-label={plansSection.tabsLabel} data-tabs data-hash="plan">
+      {
+        plans.map((plan) => (
+          <button
+            type="button"
+            role="tab"
+            class="skimed__tab"
+            id={`tab-${plan.id}`}
+            data-tab={plan.id}
+            aria-controls={`panel-${plan.id}`}
+            aria-selected={plan.id === firstId ? "true" : "false"}
+            tabindex={plan.id === firstId ? 0 : -1}
+          >
+            <span class="skimed__tab-plan">Plan {plan.letter}</span>
+            <span class="skimed__tab-country">{plan.country}</span>
+          </button>
+        ))
+      }
+    </div>
+
+    {
+      plans.map((plan) => (
+        <div
+          class="plan"
+          role="tabpanel"
+          id={`panel-${plan.id}`}
+          aria-labelledby={`tab-${plan.id}`}
+          hidden={plan.id !== firstId}
+          tabindex="0"
+        >
+          <header class="plan__head">
+            <p class="plan__letter">Plan {plan.letter}</p>
+            <h3 class="plan__country">{plan.country}</h3>
+            <p class="plan__massif">{plan.massif}</p>
+          </header>
+
+          {plan.variants ? (
+            <>
+              <div class="plan__variants" role="tablist" aria-label={`Variantes du plan ${plan.letter}`} data-tabs>
+                {plan.variants.map((v) => (
+                  <button
+                    type="button"
+                    role="tab"
+                    class="plan__variant"
+                    id={`tab-${plan.id}-${v.id}`}
+                    data-tab={v.id}
+                    aria-controls={`panel-${plan.id}-${v.id}`}
+                    aria-selected={v.id === (plan.defaultVariant ?? plan.variants![0].id) ? "true" : "false"}
+                    tabindex={v.id === (plan.defaultVariant ?? plan.variants![0].id) ? 0 : -1}
+                  >
+                    {v.label}
+                  </button>
+                ))}
+              </div>
+              {plan.variants.map((v) => (
+                <div
+                  class="plan__variant-panel"
+                  role="tabpanel"
+                  id={`panel-${plan.id}-${v.id}`}
+                  aria-labelledby={`tab-${plan.id}-${v.id}`}
+                  hidden={v.id !== (plan.defaultVariant ?? plan.variants![0].id)}
+                >
+                  <PlanBody line={v.line} label={`${plan.country} — ${v.label}`} />
+                </div>
+              ))}
+            </>
+          ) : (
+            plan.line && <PlanBody line={plan.line} label={plan.country} />
+          )}
+        </div>
+      ))
+    }
+
+    <p class="skimed__disclaimer">{plansSection.disclaimer}</p>
+  </div>
+</section>
+
+<script>
+  // Tablists (plans + variantes) : sélection au clic, flèches / Début / Fin,
+  // jamais de rechargement. Un événement `resize` est émis à chaque
+  // changement pour que les cartes Leaflet déjà initialisées se recalent.
+  function initTabs(list: HTMLElement) {
+    const tabs = [...list.querySelectorAll<HTMLButtonElement>(':scope > [role="tab"]')];
+    const panelOf = (t: HTMLElement) => document.getElementById(t.getAttribute("aria-controls") ?? "");
+
+    function select(tab: HTMLButtonElement, focus = false) {
+      tabs.forEach((t) => {
+        const on = t === tab;
+        t.setAttribute("aria-selected", on ? "true" : "false");
+        t.tabIndex = on ? 0 : -1;
+        const p = panelOf(t);
+        if (p) p.hidden = !on;
+      });
+      if (focus) tab.focus();
+      tab.scrollIntoView({ block: "nearest", inline: "center", behavior: "smooth" });
+      window.dispatchEvent(new Event("resize"));
+    }
+
+    tabs.forEach((tab, i) => {
+      tab.addEventListener("click", () => {
+        select(tab);
+        if (list.dataset.hash) history.replaceState(null, "", `#${list.dataset.hash}-${tab.dataset.tab}`);
+      });
+      tab.addEventListener("keydown", (e) => {
+        const k = e.key;
+        let next = -1;
+        if (k === "ArrowRight") next = (i + 1) % tabs.length;
+        else if (k === "ArrowLeft") next = (i - 1 + tabs.length) % tabs.length;
+        else if (k === "Home") next = 0;
+        else if (k === "End") next = tabs.length - 1;
+        if (next < 0) return;
+        e.preventDefault();
+        select(tabs[next], true);
+      });
+    });
+
+    // Lien direct : /…/#plan-bulgarie ouvre le plan B.
+    if (list.dataset.hash) {
+      const m = location.hash.match(new RegExp(`^#${list.dataset.hash}-(.+)$`));
+      const target = m && tabs.find((t) => t.dataset.tab === m[1]);
+      if (target) select(target);
+    }
+  }
+
+  document.querySelectorAll<HTMLElement>("[data-tabs]").forEach(initTabs);
+</script>

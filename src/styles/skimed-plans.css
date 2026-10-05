@@ -1,0 +1,418 @@
+/* PLANS DU RAID / SKI MÉDITERRANÉEN — sélecteur éditorial + panneau d'un plan.
+   Mobile d'abord. Le sélecteur est un outil de navigation : ce sont le pays,
+   la photo, la carte et les étapes qui dominent. */
+
+.skimed {
+  background: var(--paper);
+  padding: 72px 0 56px;
+}
+
+.skimed__head {
+  max-width: 760px;
+}
+
+.skimed__eyebrow {
+  margin: 0;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  opacity: .56;
+}
+
+.skimed__head h2 {
+  margin: max(20px, .34em) 0 0;
+  font-family: var(--font-serif);
+  font-size: clamp(36px, 6.4vw, 64px);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -.035em;
+  text-wrap: balance;
+}
+
+.skimed__intro {
+  margin: 24px 0 0;
+  font-size: 16px;
+  line-height: 1.65;
+  color: rgba(11, 11, 10, .68);
+}
+
+/* SÉLECTEUR PRINCIPAL — petits « PLAN A », pays en serif. */
+
+.skimed__tabs {
+  margin-top: 48px;
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid rgba(11, 11, 10, .16);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.skimed__tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.skimed__tab {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 14px 28px 16px 0;
+  margin: 0 0 -1px;
+  background: none;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  opacity: .42;
+  scroll-snap-align: start;
+  transition: opacity .15s ease, border-color .15s ease;
+}
+
+.skimed__tab:hover {
+  opacity: .75;
+}
+
+.skimed__tab[aria-selected="true"] {
+  opacity: 1;
+  border-bottom-color: var(--ink);
+}
+
+.skimed__tab:focus-visible,
+.plan__variant:focus-visible,
+.plan:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.skimed__tab-plan {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+}
+
+.skimed__tab-country {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -.02em;
+  white-space: nowrap;
+}
+
+@media (min-width: 1000px) {
+  .skimed__tabs {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, auto));
+    justify-content: space-between;
+    overflow: visible;
+  }
+  .skimed__tab {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .skimed__tab-country {
+    font-size: clamp(22px, 2vw, 30px);
+  }
+}
+
+/* PANNEAU D'UN PLAN */
+
+.plan {
+  margin-top: 56px;
+}
+
+.plan[hidden],
+.plan__variant-panel[hidden] {
+  display: none;
+}
+
+.plan__head {
+  max-width: 100%;
+}
+
+.plan__letter {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  opacity: .56;
+}
+
+.plan__country {
+  margin: max(14px, .2em) 0 0;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(44px, 12vw, 132px);
+  line-height: .95;
+  letter-spacing: -.04em;
+  text-transform: uppercase;
+  overflow-wrap: normal;
+  hyphens: none;
+  text-wrap: balance;
+}
+
+.plan__massif {
+  margin: 16px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: rgba(11, 11, 10, .62);
+}
+
+/* Sous-sélecteur (variantes) : discret, plus petit que le principal. */
+
+.plan__variants {
+  margin-top: 28px;
+  display: flex;
+  gap: 22px;
+}
+
+.plan__variant {
+  padding: 4px 0;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: .42;
+  transition: opacity .15s ease;
+}
+
+.plan__variant:hover {
+  opacity: .75;
+}
+
+.plan__variant[aria-selected="true"] {
+  opacity: 1;
+  border-bottom-color: var(--ink);
+}
+
+.plan-body {
+  margin-top: 32px;
+}
+
+.plan-body__pitch {
+  max-width: 680px;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 300;
+  line-height: 1.4;
+  color: rgba(11, 11, 10, .86);
+}
+
+.plan-body__pending,
+.plan-map__pending {
+  margin: 28px 0 0;
+  font-size: 14px;
+  font-style: italic;
+  color: rgba(11, 11, 10, .55);
+}
+
+/* Une grande photo — cadrage choisi (object-position), jamais un centrage mécanique. */
+
+.plan-photo {
+  margin: 36px 0 0;
+}
+
+.plan-photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.plan-photo__placeholder {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  display: grid;
+  place-items: center;
+  background: rgba(11, 11, 10, .05);
+  color: rgba(11, 11, 10, .4);
+  font-size: 12px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+@media (min-width: 800px) {
+  .plan-photo img,
+  .plan-photo__placeholder {
+    aspect-ratio: 2.2 / 1;
+  }
+}
+
+.plan-info {
+  margin-top: 48px;
+}
+
+.plan-map {
+  margin-top: 8px;
+}
+
+/* ITINÉRAIRE — même esprit que .carnet-day. */
+
+.plan-itinerary {
+  margin-top: 56px;
+}
+
+.plan-itinerary__eyebrow {
+  margin: 0;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  opacity: .56;
+}
+
+.plan-itinerary h4 {
+  margin: max(16px, .3em) 0 0;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(30px, 3.6vw, 48px);
+  line-height: 1.04;
+  letter-spacing: -.025em;
+  text-wrap: balance;
+}
+
+.plan-itinerary__intro {
+  max-width: 620px;
+  margin: 18px 0 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(11, 11, 10, .62);
+}
+
+.plan-days {
+  margin-top: 36px;
+}
+
+.plan-days__part {
+  margin: 28px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid rgba(11, 11, 10, .14);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: rgba(11, 11, 10, .55);
+}
+
+.plan-days__part + .plan-day {
+  border-top: 0;
+}
+
+.plan-days__link {
+  margin: 0;
+  padding: 14px 0;
+  border-top: 1px dashed rgba(11, 11, 10, .25);
+  font-size: 13px;
+  font-style: italic;
+  color: rgba(11, 11, 10, .6);
+}
+
+.plan-day {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr);
+  gap: 16px;
+  padding: 20px 0;
+  border-top: 1px solid rgba(11, 11, 10, .14);
+}
+
+.plan-days > .plan-day:first-child {
+  border-top: 0;
+}
+
+.plan-day__num {
+  padding-top: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  opacity: .5;
+}
+
+.plan-day h5 {
+  margin: 0 0 6px;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(20px, 5.4vw, 25px);
+  line-height: 1.15;
+  letter-spacing: -.01em;
+  overflow-wrap: break-word;
+}
+
+.plan-day p {
+  margin: 0;
+  max-width: 620px;
+  font-size: 15px;
+  line-height: 1.55;
+  color: rgba(11, 11, 10, .68);
+}
+
+.plan-day p + p {
+  margin-top: 8px;
+}
+
+.plan-day p.plan-day__via {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+  color: rgba(11, 11, 10, .5);
+}
+
+.plan-day p.plan-day__night strong {
+  font-weight: 600;
+  color: rgba(11, 11, 10, .8);
+}
+
+.plan-day p.plan-day__alert {
+  font-size: 13px;
+  font-style: italic;
+  color: rgba(11, 11, 10, .55);
+}
+
+.plan-day p.plan-day__stats {
+  margin-top: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .02em;
+  color: rgba(11, 11, 10, .55);
+}
+
+.plan-itinerary__note,
+.skimed__disclaimer {
+  max-width: 620px;
+  margin: 20px 0 0;
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.55;
+  color: rgba(11, 11, 10, .55);
+}
+
+.skimed__disclaimer {
+  margin-top: 56px;
+}
+
+@media (min-width: 800px) {
+  .plan-day {
+    grid-template-columns: 148px minmax(0, 1fr);
+    gap: 28px;
+  }
+}

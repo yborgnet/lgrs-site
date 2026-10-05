@@ -8,7 +8,7 @@ export const mediterraneen: Voyage = {
   seo: {
     title: "Raid à ski méditerranéen 2027 | Destination selon la neige",
     description:
-      "Un raid à ski itinérant dans les montagnes méditerranéennes, avec destination choisie selon l’enneigement : Atlas, Kaçkar, Corse ou Abruzzes.",
+      "Un raid à ski itinérant dans les montagnes méditerranéennes, avec destination choisie selon l’enneigement : Haut Atlas, Bulgarie, Turquie, Corse ou Pyrénées orientales.",
   },
   masthead: {
     eyebrow: "Voyage à ski de randonnée",
@@ -23,7 +23,7 @@ export const mediterraneen: Voyage = {
     title: "7 à 8 jours de ski, destination choisie avec l’hiver",
     paragraphs: [
       "<strong>Qui n’a jamais rêvé de skier face à la mer ?</strong>",
-      "Les montagnes méditerranéennes offrent ce contraste rare entre neige et horizon marin, mais leur enneigement est trop irrégulier pour figer une destination un an à l’avance. Haut Atlas, Kaçkar, Corse ou Abruzzes : le massif sera choisi peu avant le départ, là où les conditions seront les meilleures.",
+      "Les montagnes méditerranéennes offrent ce contraste rare entre neige et horizon marin, mais leur enneigement est trop irrégulier pour figer une destination un an à l’avance. Haut Atlas, Bulgarie, Turquie, Corse ou Pyrénées orientales : le massif sera choisi peu avant le départ, là où les conditions seront les meilleures.",
       "Le projet, lui, ne change pas : une vraie itinérance, un territoire à traverser et des habitants à rencontrer.",
     ],
   },
@@ -35,7 +35,7 @@ export const mediterraneen: Voyage = {
     label: "Informations",
     fields: [
       { label: "Destination", value: "choisie quelques jours ou semaines avant le départ selon les conditions" },
-      { label: "Massifs possibles", value: "Haut Atlas, Kaçkar, Asturies, Abruzzes, Etna, Crète, Kabylie, Rila–Pirin, Corse ou Pyrénées françaises" },
+      { label: "Plans préparés", value: "A Maroc (Haut Atlas), B Bulgarie (Rila et Pirin), C Turquie, D Corse, E Pyrénées orientales" },
       { label: "Durée", value: "10 jours / 9 nuits, dont 7 à 8 jours de ski" },
       { label: "Dates", value: "du vendredi 5 au dimanche 14 mars 2027" },
       { label: "Forme du voyage", value: "itinérance dans le massif offrant les meilleures conditions" },
@@ -143,8 +143,8 @@ export const mediterraneen: Voyage = {
       "Alors, à défaut d’organiser la surprise du Père Neige cette année, je tente la surprise du Ski Med.",
       "Une date, mais 10 destinations possibles, et un choix une ou deux semaines avant le départ.",
       "Corse, Pyrénées-Orientales, Asturies en Espagne, Maroc, Abruzzes en Italie, Crète en Grèce, Bulgarie et Turquie. Sans oublier l’Algérie si un jour la diplomatie se détend et que les visas disparaissent, et le Liban si la guerre cesse pour de bon.",
-      "Pour cette année :",
-      "Plan A : Corse<br>Plan A’ : Maroc<br>Plan B : Abruzzes<br>Plan B’ : Pyrénées<br>Plan C (C comme sécurité neige !) : Bulgarie<br>Plan C’ : Turquie",
+      "Pour cette année, cinq lignes sont préparées :",
+      "Plan A : Maroc<br>Plan B : Bulgarie<br>Plan C : Turquie<br>Plan D : Corse<br>Plan E : Pyrénées orientales",
     ],
   },
   techCta: {
