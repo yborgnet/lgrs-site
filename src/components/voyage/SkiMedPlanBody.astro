@@ -62,7 +62,7 @@ function stats(d: PlanDay) {
     line.map && (
       <div class="plan-map">
         {hasGpx ? (
-          <GpxMap gpx={line.map.gpx} title={line.map.title} />
+          <GpxMap gpx={line.map.gpx} title={line.map.title} markers={line.map.markers} />
         ) : (
           <p class="plan-map__pending">Carte et trace à venir.</p>
         )}

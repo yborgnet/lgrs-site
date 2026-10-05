@@ -10,7 +10,7 @@ type Props = {
   /** Image statique affichée tant que la carte interactive n'est pas chargée (et si le GPX est introuvable). */
   fallback?: { src: string; alt: string };
   /** Repères nommés optionnels (refuges, sommets) — absent = rendu inchangé. */
-  markers?: { name: string; lat: number; lon: number; direction?: "left" | "right" | "top" | "bottom" }[];
+  markers?: { name: string; lat: number; lon: number; direction?: "left" | "right" | "top" | "bottom"; region?: boolean }[];
 };
 
 const { gpx, title, fallback, markers } = Astro.props;
@@ -152,13 +152,21 @@ const gpxList = (Array.isArray(gpx) ? gpx : [gpx]).map(withBase);
     L.circleMarker(start, markerStyle).addTo(map);
     L.circleMarker(end, markerStyle).addTo(map);
 
-    let namedMarkers: { name: string; lat: number; lon: number; direction?: "left" | "right" | "top" | "bottom" }[] = [];
+    let namedMarkers: { name: string; lat: number; lon: number; direction?: "left" | "right" | "top" | "bottom"; region?: boolean }[] = [];
     try {
       namedMarkers = JSON.parse(container.dataset.markers ?? "[]");
     } catch {
       namedMarkers = [];
     }
     namedMarkers.forEach((m) => {
+      // `region` : simple libellé de massif posé sur la carte (sans point ni trace).
+      if (m.region) {
+        L.tooltip({ permanent: true, direction: "center", className: "gpx-map__region" })
+          .setLatLng([m.lat, m.lon])
+          .setContent(m.name)
+          .addTo(map);
+        return;
+      }
       L.circleMarker([m.lat, m.lon], { ...markerStyle, radius: 4.5 })
         .bindTooltip(m.name, {
           permanent: true,

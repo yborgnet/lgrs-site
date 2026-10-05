@@ -2,9 +2,9 @@
 // destination définitive choisie selon la neige, la météo et la logistique).
 // Ordre : A Maroc · B Bulgarie · C Turquie · D Corse · E Pyrénées orientales.
 //
-// Sources : Bulgarie = brief du 05/10/2026 (chiffres GPX « SKI MED Bulgarie 7j.gpx »,
-// à vérifier contre le fichier dès qu’il est dans le dépôt) ; Corse, Pyrénées et
-// Maroc = contenu de l’ancienne section « raids » (itinéraires indicatifs).
+// Sources : Bulgarie = brief du 05/10/2026 (chiffres recoupés avec public/gpx/bulgarie-rila-pirin-2027.gpx :
+// distances par segment identiques, D+/D− = sommes brutes des <ele>, J5 = segments 5 + 6) ; Corse, Pyrénées et
+// Maroc Toubkal (GPX maroc-toubkal-2027, mêmes chiffres) = contenu de l’ancienne section « raids » (itinéraires indicatifs).
 // Aucun chiffre n’est inventé : un champ absent n’est pas affiché.
 
 export type PlanDay = {
@@ -35,7 +35,12 @@ export type PlanLine = {
   photo?: { src: string; alt: string; position?: string };
   info: { label: string; value: string }[];
   /** GPX de référence (public/). La carte n’est rendue que si le fichier existe. */
-  map?: { gpx: string; title: string };
+  map?: {
+    gpx: string;
+    title: string;
+    /** Repères d'étape (fins de segment du GPX) et libellés de massif (`region`). */
+    markers?: { name: string; lat: number; lon: number; direction?: "left" | "right" | "top" | "bottom"; region?: boolean }[];
+  };
   itinerary?: { title: string; intro?: string; days: PlanDay[]; note?: string };
   /** Message quand l’itinéraire n’est pas encore arrêté. */
   pending?: string;
@@ -107,6 +112,19 @@ export const plans: Plan[] = [
             { label: "D+", value: "environ 8 100 m" },
             { label: "Altitude maximale", value: "environ 3 980 m" },
           ],
+          map: {
+            gpx: "/gpx/maroc-toubkal-2027.gpx",
+            title: "Carte de la traversée du Haut Atlas, Maroc",
+            // Fins de segment du GPX, noms repris des titres d’étape.
+            markers: [
+              { name: "Amsouzart / Aït Igrane", lat: 30.9923, lon: -7.9048, direction: "left" },
+              { name: "Lac d’Ifni", lat: 31.0191, lon: -7.866, direction: "left" },
+              { name: "Azib Likemt", lat: 31.1071, lon: -7.7905, direction: "right" },
+              { name: "Tacheddirt", lat: 31.1553, lon: -7.8415, direction: "left" },
+              { name: "Timichi", lat: 31.1942, lon: -7.7685, direction: "right" },
+              { name: "Oukaïmeden", lat: 31.2036, lon: -7.8611, direction: "left" },
+            ],
+          },
           itinerary: {
             title: "6 à 7 jours. Du lac d’Ifni à l’Oukaïmeden.",
             days: [
@@ -143,7 +161,23 @@ export const plans: Plan[] = [
         { label: "D−", value: "environ 9 690 m" },
         { label: "Altitude maximale", value: "environ 2 790 m" },
       ],
-      map: { gpx: "/gpx/ski-med-bulgarie-7j.gpx", title: "Carte de la traversée Rila et Pirin, Bulgarie" },
+      map: {
+        gpx: "/gpx/bulgarie-rila-pirin-2027.gpx",
+        title: "Carte de la traversée Rila et Pirin, Bulgarie",
+        // Fins de segment du GPX (J1→J7) ; transfert routier Rila → Pirin tracé en pointillé par la carte.
+        markers: [
+          { name: "RILA", lat: 42.275, lon: 23.4, region: true },
+          { name: "PIRIN", lat: 41.625, lon: 23.45, region: true },
+          { name: "Seven Rila Lakes", lat: 42.2193036, lon: 23.3216414, direction: "left" },
+          { name: "Malyovitsa", lat: 42.1886, lon: 23.3747, direction: "right" },
+          { name: "Monastère de Rila", lat: 42.1338, lon: 23.3402, direction: "left" },
+          { name: "Ribni Ezera", lat: 42.1113, lon: 23.4932, direction: "right" },
+          { name: "Semkovo", lat: 42.0469, lon: 23.5306, direction: "right" },
+          { name: "Spano Pole", lat: 41.7112, lon: 23.4016, direction: "left" },
+          { name: "Tevno Ezero", lat: 41.6981, lon: 23.482, direction: "bottom" },
+          { name: "Gotse Delchev", lat: 41.7593, lon: 23.5466, direction: "right" },
+        ],
+      },
       itinerary: {
         title: "7 jours. Du Rila au Pirin.",
         days: [

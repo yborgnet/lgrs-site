@@ -57,3 +57,19 @@
 .gpx-map .gpx-map__label::before {
   display: none;
 }
+
+/* Libellé de massif (marker `region`) : texte seul, discret, sur la carte. */
+.gpx-map .gpx-map__region {
+  background: none;
+  border: 0;
+  box-shadow: none;
+  color: rgba(17, 17, 17, .72);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .28em;
+  text-shadow: 0 0 4px #fff, 0 0 4px #fff, 0 0 6px #fff;
+  pointer-events: none;
+}
+.gpx-map .gpx-map__region::before {
+  display: none;
+}
