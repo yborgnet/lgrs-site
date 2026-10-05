@@ -1,6 +1,6 @@
 import type { Carnet } from "./types";
 import { computeItineraryTotals, formatAscent, formatDescent, formatDistanceKm, formatDaysLabel, formatMeters } from "../../lib/carnet/itinerary-totals";
-import { marocPhotos } from "../photos/maroc-toubkal-2026";
+import { marocRecit, photo } from "./maroc-recit";
 
 /**
  * Contenu repris tel quel de la page WordPress live :
@@ -45,15 +45,6 @@ import { marocPhotos } from "../photos/maroc-toubkal-2026";
  * (3990 m) correspondent presque exactement aux sommets cités dans le texte
  * (Bou Iguenouane 3882 m, Tazaghart 3980 m).
  */
-
-const IMG = "/photos/Maroc/";
-
-/** ALT/légende = texte du manifeste, jamais réécrits à la main (voir
- *  src/data/photos/maroc-toubkal-2026.ts). */
-const photo = (file: string) => {
-  const meta = marocPhotos[file];
-  return { src: `${IMG}${file}`, alt: meta.alt, width: meta.width, height: meta.height };
-};
 
 const heroPhoto = photo("maroc-haut-atlas-toubkal-vallee-et-pentes-du-haut-atlas-06136.jpg");
 const introPhoto = photo("maroc-haut-atlas-toubkal-vallee-et-pentes-du-haut-atlas-06045.jpg");
@@ -184,36 +175,23 @@ export const maroc: Carnet = {
   story: {
     eyebrow: "Le récit",
     toggleLabel: "Le récit complet",
-    sections: [
-      {
-        heading: "Skier au milieu des cades centenaires",
-        paragraphs: [
-          "Nous sommes bringuebalés dans une vieille Peugeot 405. Quatre cent vingt mille kilomètres au compteur. À chaque relief, le bas de caisse racle la piste détrempée par la pluie tombée toute la nuit. Au-dessus de nous, de vastes pans de montagnes et un talus instable. Mohammed chante, ses mains gantées agrippent le volant. Mohammed prie.",
-          "Skier ici n'a rien d'évident. La neige est rare, mais quand elle se met à tomber, elle peut être capricieuse, nécessitant une recomposition permanente de l'itinéraire. On a chaussé les skis au cœur d'Imlil, ville porte du Toubkal, alors que l'importante chute de neige de la veille agite les habitants. Quelques heures plus tard, on se retrouve dans un village accroché à un flanc de montagne abrupte.",
-        ],
-      },
-      {
-        heading: "Une traversée faite d'incertitudes",
-        paragraphs: [
-          "Le voyage devient avant tout un jeu avec les incertitudes : celles de la montagne, dont nous sommes coutumiers, et celles, plus locales, de l'administration marocaine. D'Imlil à Tacchdirt puis Timichchi, les cols et les vallées imposent de recomposer sans cesse la ligne imaginée sur la carte.",
-          "Le Haut-Atlas offre un contraste singulier : des combes arides, des hauts plateaux balayés par les bourrasques et de nombreux vallons reculés où poussent les cades centenaires, aux silhouettes torsadées. Entre deux cols, il y a toujours un village suspendu, un thé partagé, un tajine fumant, un regard échangé souvent sans langue commune.",
-        ],
-      },
-      {
-        heading: "Changer de ligne",
-        paragraphs: [
-          "La traversée prévue vers Amsouzart doit finalement être abandonnée. Retour à Imlil, transfert vers Tizi Oussem, puis nouvelle ligne à ski vers Azib Tamsoult et les hauts reliefs du Tazaghart. L'itinérance continue autrement : moins comme une ligne figée que comme une exploration adaptée chaque jour aux conditions.",
-        ],
-      },
-    ],
-    // Note éditoriale, pas un paragraphe du récit : sortie du dernier bloc et
-    // déplacée après coup (voir CarnetStory) — lien réel déjà identifié en
-    // tête de fichier, jamais une URL inventée.
+    // Texte intégral de l'article Alpine Mag, photos en regard : voir maroc-recit.ts.
+    title: "Ski de rando au Maroc, l’aventure en pays Berbère",
+    byline: "Yann Borgnet · Alpine Mag, 24 février 2026",
+    standfirst:
+      "Cet hiver, la neige est tombée en abondance au Maroc. Les montagnes du Haut-Atlas sont couvertes de poudreuse, qui a attiré Yann Borgnet et ses compagnons. Mais le plan A s’est transformé, au fil des rebondissements, des chutes de neige et des aléas administratifs, en improvisation. Une superbe aventure skis aux pieds, chez les habitants des hameaux perdus de la montagne berbère.",
+    sections: marocRecit,
     sourceNote: {
-      text: "Ce récit a été initialement publié dans Alpine Mag.",
+      text: "Récit publié dans Alpine Mag. Photos : Yann Borgnet et Julien Bronnert.",
       linkLabel: "Lire l'article original",
       href: "https://alpinemag.fr/raid-ski-de-rando-maroc-aventure-pays-berbere/",
     },
+    closingLinks: [
+      {
+        label: "Bibliographie : un article sur le village d’Agouns",
+        href: "https://www.persee.fr/doc/horma_0984-2616_2002_num_46_1_2046",
+      },
+    ],
   },
   portfolio: {
     eyebrow: "Portfolio",
@@ -264,10 +242,8 @@ export const maroc: Carnet = {
       photo("maroc-haut-atlas-toubkal-groupe-a-ski-dans-la-vallee-07058.jpg"),
       photo("maroc-haut-atlas-toubkal-groupe-a-ski-dans-la-vallee-07066.jpg"),
       photo("maroc-haut-atlas-toubkal-groupe-a-ski-dans-la-vallee-07080.jpg"),
-      photo("maroc-haut-atlas-toubkal-groupe-a-ski-dans-la-vallee-07097.jpg"),
       photo("maroc-haut-atlas-toubkal-groupe-a-ski-dans-la-vallee-07103.jpg"),
       photo("maroc-haut-atlas-toubkal-groupe-a-ski-dans-la-vallee-07105.jpg"),
-      photo("maroc-haut-atlas-toubkal-groupe-a-ski-dans-la-vallee-07137.jpg"),
       photo("maroc-haut-atlas-toubkal-montee-a-ski-dans-la-neige-05753.jpg"),
       photo("maroc-haut-atlas-toubkal-montee-a-ski-dans-la-neige-05775.jpg"),
       photo("maroc-haut-atlas-toubkal-montee-a-ski-dans-la-neige-05813.jpg"),
@@ -286,7 +262,6 @@ export const maroc: Carnet = {
       photo("maroc-haut-atlas-toubkal-route-et-village-sous-la-neige-05489.jpg"),
       photo("maroc-haut-atlas-toubkal-route-et-village-sous-la-neige-05496.jpg"),
       photo("maroc-haut-atlas-toubkal-route-et-village-sous-la-neige-05543.jpg"),
-      photo("maroc-haut-atlas-toubkal-route-hivernale-et-vie-locale-07852.jpg"),
       photo("maroc-haut-atlas-toubkal-route-hivernale-et-vie-locale-07875.jpg"),
       photo("maroc-haut-atlas-toubkal-route-hivernale-et-vie-locale-07916.jpg"),
       photo("maroc-haut-atlas-toubkal-ski-de-randonnee-et-paysage-d-altitude-06206.jpg"),

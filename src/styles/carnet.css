@@ -944,3 +944,128 @@
     font-size: clamp(36px, 12.5vw, 56px);
   }
 }
+
+/* RÉCIT EN FIL CONTINU (CarnetStoryFlow) — texte à gauche, photos du passage à
+   droite. Mobile : une colonne, photos entre les blocs de texte. */
+
+.carnet-flow__title {
+  margin: 0;
+  max-width: 18ch;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(36px, 4.6vw, 64px);
+  line-height: 1.04;
+  letter-spacing: -.03em;
+  overflow-wrap: break-word;
+}
+
+.carnet-flow__byline {
+  margin: 20px 0 0;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  letter-spacing: .04em;
+  color: rgba(11, 11, 10, .55);
+}
+
+.carnet-flow__standfirst {
+  margin: 28px 0 0;
+  max-width: 62ch;
+  font-family: var(--font-serif);
+  font-size: clamp(19px, 1.7vw, 23px);
+  line-height: 1.5;
+  font-weight: 500;
+  color: rgba(11, 11, 10, .85);
+}
+
+.carnet-flow__body {
+  margin-top: 64px;
+}
+
+.carnet-flow__chunk {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+
+.carnet-flow__chunk + .carnet-flow__chunk {
+  margin-top: 36px;
+}
+
+.carnet-flow__text {
+  min-width: 0;
+  max-width: 58ch;
+}
+
+.carnet-flow__text h3 {
+  margin: 28px 0 22px;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: clamp(24px, 2.2vw, 32px);
+  line-height: 1.15;
+  letter-spacing: -.015em;
+}
+
+.carnet-flow__text h3:first-child {
+  margin-top: 0;
+}
+
+.carnet-flow__text p {
+  margin: 0 0 20px;
+  font-size: 18px;
+  line-height: 1.8;
+  color: rgba(11, 11, 10, .82);
+}
+
+.carnet-flow__text p:last-child {
+  margin-bottom: 0;
+}
+
+.carnet-flow__rail {
+  min-width: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 12px;
+}
+
+.carnet-flow__item {
+  margin: 0;
+  min-width: 0;
+}
+
+.carnet-flow__item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.carnet-flow__item--tall {
+  max-width: 78%;
+}
+
+/* ≥ 600px : rail en 2 colonnes (sous le texte tant que l'écran est étroit). */
+@media (min-width: 600px) {
+  .carnet-flow__rail {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    grid-auto-flow: dense;
+  }
+  .carnet-flow__item--wide {
+    grid-column: 1 / -1;
+  }
+  .carnet-flow__item--tall {
+    max-width: none;
+    grid-row: span 2;
+  }
+}
+
+/* Bureau : texte | photos côte à côte. */
+@media (min-width: 1000px) {
+  .carnet-flow__chunk {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 520px);
+    gap: clamp(36px, 5vw, 80px);
+  }
+  .carnet-flow__chunk + .carnet-flow__chunk {
+    margin-top: 56px;
+  }
+}

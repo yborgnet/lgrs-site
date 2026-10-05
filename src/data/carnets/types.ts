@@ -25,6 +25,12 @@ export type CarnetPhoto = {
    *  bloc placeholder sobre plutôt qu'un <img> cassé. Jamais généré ni choisi
    *  au hasard — juste un repère de mise en page en attendant. */
   placeholder?: boolean;
+  /** Récit en fil continu (CarnetStoryFlow) : la photo occupe toute la largeur
+   *  du rail plutôt qu'une demi-colonne. */
+  wide?: boolean;
+  /** Pas d'agrandissement (lightbox) — ex. photo recadrée parce que le fichier
+   *  source est tronqué : l'agrandir montrerait la zone abîmée. */
+  noZoom?: boolean;
 };
 
 export type CarnetInfoField = {
@@ -54,6 +60,9 @@ export type CarnetDayCard = {
 export type CarnetStorySection = {
   heading?: string;
   paragraphs: string[];
+  /** Récit en fil continu (voir CarnetStoryFlow) : photos placées dans le rail
+   *  de droite, en regard de ces paragraphes. */
+  photos?: CarnetPhoto[];
 };
 
 /** Une journée du raid telle qu'elle réapparaît dans le rail du récit (colonne
@@ -153,6 +162,11 @@ export type Carnet = {
     /** Libellé du <summary> qui déplie le récit complet, ex. "Le récit complet". */
     toggleLabel: string;
     sections: CarnetStorySection[];
+    /** Récit en fil continu (CarnetStoryFlow, jamais déplié par un bouton) :
+     *  titre, signature et chapô de l'article d'origine. */
+    title?: string;
+    byline?: string;
+    standfirst?: string;
     /** Rail du récit (colonne de droite) : une mosaïque par journée du raid,
      *  indépendante du découpage en `sections` (une section peut couvrir
      *  plusieurs journées, ou aucune) — voir CarnetStoryDay. Absent ou vide =
