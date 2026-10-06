@@ -948,12 +948,22 @@
 /* RÉCIT EN FIL CONTINU (CarnetStoryFlow) — texte à gauche, photos du passage à
    droite. Mobile : une colonne, photos entre les blocs de texte. */
 
-.carnet-flow__title {
-  margin: 0;
-  max-width: 18ch;
+/* Même gabarit que le titre du portfolio (.carnet-portfolio h2). */
+.carnet-flow__heading {
+  margin: max(20px, .34em) 0 0;
   font-family: var(--font-serif);
   font-weight: 300;
-  font-size: clamp(36px, 4.6vw, 64px);
+  font-size: clamp(48px, 5.2vw, 76px);
+  line-height: 1.02;
+  letter-spacing: -.03em;
+}
+
+.carnet-flow__title {
+  margin: 32px 0 0;
+  max-width: 28ch;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(26px, 2.8vw, 38px);
   line-height: 1.04;
   letter-spacing: -.03em;
   overflow-wrap: break-word;
@@ -1068,4 +1078,48 @@
   .carnet-flow__chunk + .carnet-flow__chunk {
     margin-top: 56px;
   }
+}
+
+/* Aperçu replié du récit (~15 lignes de texte) + bouton « Lire la suite ». */
+.carnet-flow.is-collapsible .carnet-flow__collapse {
+  position: relative;
+}
+.carnet-flow.is-collapsed .carnet-flow__collapse {
+  max-height: 31rem;
+  overflow: hidden;
+}
+.carnet-flow.is-collapsed .carnet-flow__collapse::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 9rem;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0), var(--white));
+  pointer-events: none;
+}
+.carnet-flow__more {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-top: 28px;
+  padding: 0;
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  padding-bottom: 6px;
+}
+.carnet-flow__more[hidden] {
+  display: none;
+}
+.carnet-flow__more .carnet-story__arrow {
+  font-size: 16px;
+}
+.carnet-flow__more .carnet-story__arrow.is-open {
+  transform: rotate(180deg);
 }

@@ -12,6 +12,7 @@ type Props = {
 };
 
 const { story } = Astro.props;
+const bodyId = "carnet-flow-body";
 
 const escapeHtml = (s: string) =>
   s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
@@ -39,11 +40,13 @@ function photoStyle(photo: CarnetPhoto): string | undefined {
 <section class="carnet-story carnet-flow" data-carnet-gallery>
   <div class="site-shell">
     <p class="carnet-story__eyebrow">{story.eyebrow}</p>
-    {story.title && <h2 class="carnet-flow__title">{story.title}</h2>}
+    <h2 class="carnet-flow__heading">{story.toggleLabel}</h2>
+    {story.title && <h3 class="carnet-flow__title">{story.title}</h3>}
     {story.byline && <p class="carnet-flow__byline">{story.byline}</p>}
     {story.standfirst && <p class="carnet-flow__standfirst">{story.standfirst}</p>}
 
-    <div class="carnet-flow__body" data-lightbox-gallery>
+    <div class="carnet-flow__collapse" data-flow-collapse>
+    <div class="carnet-flow__body" id={bodyId} data-lightbox-gallery>
       {
         story.sections.map((section) => (
           <div class="carnet-flow__chunk">
@@ -92,6 +95,11 @@ function photoStyle(photo: CarnetPhoto): string | undefined {
         ))
       }
     </div>
+    </div>
+    <button type="button" class="carnet-flow__more" data-flow-toggle aria-expanded="false" aria-controls={bodyId} hidden>
+      <span data-flow-label>Lire la suite du récit</span>
+      <span class="carnet-story__arrow" aria-hidden="true">↓</span>
+    </button>
 
     {story.sourceNote && (
       <footer class="carnet-story__source-note">
@@ -121,3 +129,22 @@ function photoStyle(photo: CarnetPhoto): string | undefined {
 
   <CarnetLightbox />
 </section>
+
+<script>
+  // Aperçu replié (~15 lignes) + bouton ; sans JS le récit reste entièrement lisible.
+  document.querySelectorAll<HTMLElement>("[data-flow-collapse]").forEach((box) => {
+    const section = box.closest(".carnet-flow");
+    const btn = section?.querySelector<HTMLButtonElement>("[data-flow-toggle]");
+    const label = btn?.querySelector<HTMLElement>("[data-flow-label]");
+    if (!section || !btn || !label) return;
+    section.classList.add("is-collapsible", "is-collapsed");
+    btn.hidden = false;
+    btn.addEventListener("click", () => {
+      const open = section.classList.toggle("is-collapsed") === false;
+      btn.setAttribute("aria-expanded", String(open));
+      label.textContent = open ? "Réduire le récit" : "Lire la suite du récit";
+      btn.querySelector(".carnet-story__arrow")?.classList.toggle("is-open", open);
+      if (!open) section.scrollIntoView({ block: "start" });
+    });
+  });
+</script>
