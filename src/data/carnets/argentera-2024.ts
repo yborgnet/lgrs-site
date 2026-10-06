@@ -47,7 +47,11 @@ import { argentera2024Photos } from "../photos/argentera-2024";
  * RÉCIT : aucun texte narratif personnel de Yann n'est disponible pour ce
  * segment (contrairement au prologue 2023/2024 d'Alpes Ligures, retrouvé
  * dans un Google Doc) — voir "GAP NON COMBLÉ" dans alpesLigures.ts pour le
- * même type de lacune. Le texte ci-dessous reste donc factuel (dates,
+ * même type de lacune. Sources inspectées sans résultat (06/10/2026) : dépôt
+ * et historique Git (93 commits), reference/ (accueil WordPress), docs/,
+ * inventaire des URL WordPress, version en ligne de la page. Le récit se
+ * limite donc au titre et au chapô fournis ; chaque journée garde son
+ * intitulé et ses photos datables (CarnetStoryFlow). Le texte ci-dessous reste donc factuel (dates,
  * projet, structure du parcours), sans anecdote inventée. À enrichir par
  * Yann si un texte source existe.
  */
@@ -236,31 +240,21 @@ export const argentera2024: Carnet = {
   story: {
     eyebrow: "Le récit",
     toggleLabel: "Le récit complet",
+    title: "Le deuxième segment",
+    standfirst:
+      "Après les Alpes Ligures, cap sur l’Argentera pour la deuxième étape de cette traversée des Alpes en segments. Cinq jours de ski entre Limone Piemonte et Vinadio, avec le groupe retrouvé pour cette nouvelle portion du projet.",
+    // Aucun texte narratif source au-delà du chapô (voir "RÉCIT" ci-dessus) :
+    // chaque journée garde son intitulé et ses photos datables, en regard.
+    // J4 : aucune photo datable, donc pas de bloc.
     sections: [
+      { heading: `J1 ${itinerary.days[0].title}`, paragraphs: [], photos: [photos.selfieGroupeMinibus, photos.helicoptereNeige] },
+      { heading: `J2 ${itinerary.days[1].title}`, paragraphs: [], photos: [photos.entrainementDvaFosse, photos.rechercheDvaPelle] },
       {
-        heading: "Le deuxième segment",
-        paragraphs: [
-          "Après les Alpes Ligures, cap sur l'Argentera pour la deuxième étape de cette traversée des Alpes en segments. Cinq jours de ski entre Limone Piemonte et Vinadio, avec le groupe retrouvé pour cette nouvelle portion du projet.",
-        ],
-      },
-    ],
-    storyDays: [
-      { day: "J1", route: itinerary.days[0].title, photos: [photos.selfieGroupeMinibus, photos.helicoptereNeige] },
-      {
-        day: "J2",
-        route: itinerary.days[1].title,
-        photos: [photos.entrainementDvaFosse, photos.rechercheDvaPelle],
-      },
-      {
-        day: "J3",
-        route: itinerary.days[2].title,
+        heading: `J3 ${itinerary.days[2].title}`,
+        paragraphs: [],
         photos: [photos.melezesMontagneEnneigee, photos.sommetEntreMelezes, photos.detenteAuRefuge, photos.charcuterieAuRefuge],
       },
-      {
-        day: "J5",
-        route: itinerary.days[4].title,
-        photos: [photos.groupeSommetSkis, photos.provisionsVinVinadio, photos.dinerClotureVinadio],
-      },
+      { heading: `J5 ${itinerary.days[4].title}`, paragraphs: [], photos: [photos.groupeSommetSkis, photos.provisionsVinVinadio, photos.dinerClotureVinadio] },
     ],
     closingLinks: [
       { label: "← Étape 1 de la traversée des Alpes en segments : les Alpes Ligures, de Limone Piemonte à Garessio 2000", href: "/alpes-ligures-traversee-ski-randonnee/" },
