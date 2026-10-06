@@ -15,7 +15,7 @@ import { grecePhotos } from "../photos/grece-2026";
  * (les 5 secteurs de la traversée), plus un niveau de confiance
  * "forte"/"moyenne" — voir src/data/photos/grece-2026.ts pour le détail du
  * schéma. L'ancien dossier public/photos/Grèce/ (non retouché) est retiré.
- * Pas de storyDays (rail photo jour par jour) : les secteurs ne se
+ * Pas de storyDays (rail photo jour par jour) ; les photos du récit (CarnetStoryFlow) sont placées par secteur du manifeste, jamais par jour supposé : les secteurs ne se
  * superposent pas exactement aux 7 jours de l'itinéraire (plusieurs jours
  * peuvent traverser le même secteur), donc pas d'attribution jour par jour
  * sans l'inventer — la mosaïque du portfolio ci-dessous reste groupée par
@@ -336,6 +336,7 @@ export const grece: Carnet = {
           "Sentier pavé, monastère suspendu au-dessus de la vallée. Puis descente vers Kalarites.",
           "19 h. Première bière. Quatre heures de marche avec les skis sur le dos.",
         ],
+        photos: [photos.tzoumerkaSecteurTheodorianaDepartAPiedEnForet, photos.tzoumerkaSecteurTheodorianaTraverseeASkiSurNeige],
       },
       {
         heading: "Chez Napoléon, à Kalarites",
@@ -347,6 +348,7 @@ export const grece: Carnet = {
           "La chambre est dominée par de vieilles boiseries sombres, patinées par le temps. Le bois encadre les fenêtres, habille les murs, compose la tête de lit. Une odeur légère de résine flotte encore. Mobilier simple, massif. Rien de superflu. On sent la montagne et les hivers passés.",
           "Ce matin, c'est la femme de Napoléon qui nous sert le petit déjeuner, et lorsque son mari arrive dans la salle, nous sentons que chez eux, l'amour ne s'érode pas avec les années.",
         ],
+        photos: [photos.tzoumerkaSecteurTheodorianaVillageDeMontagne],
       },
       {
         heading: "Col Baros et le Kalogiros",
@@ -356,6 +358,7 @@ export const grece: Carnet = {
           "Nous redescendons la grande pente Est du Kalogiros, puis remontons au Souflomiti SE. Les deux combes suivantes, plein nord, nous régalent. J'avais peur que la neige ait commencé à se transformer en nord, mais que cette transformation soit partielle et que l'on skie de la mauvaise neige croûtée. Mais il y a eu deux jours de beau temps la semaine précédente, puis une nouvelle petite chute de neige la veille de notre arrivée, stabilisant les conditions nivologiques et rendant le ski plaisant ! Et malgré la chaleur, cette poudreuse ne bouge pas, étonnamment !",
           "Après avoir pas mal porté les skis les deux jours précédents, cette fois-ci nous descendons et remontons à pied dans le même vallon. Nous vidons donc nos sacs, au sens propre, et filons par une piste forestière jusqu'au village de Matsouki, atteint alors que l'éclairage public commence à illuminer les ruelles en pierre. Un panneau indique « La Verliga, radio ». Christos Zacharis, le tenancier du bar-restaurant homonyme, est également journaliste et animateur de cette web radio, en langue aspropotame et valaque.",
         ],
+        photos: [photos.tzoumerkaValleeDeMatsoukiGrandePenteDeNeige, photos.tzoumerkaValleeDeMatsoukiSkieursAuDessusDuVallon],
       },
       {
         heading: "Dormir chez Christos",
@@ -367,6 +370,7 @@ export const grece: Carnet = {
           "Nous nous installons tout autour du poêle et Thomas et Mathieu s'affaireront toute la nuit à le charger afin qu'il continue à nous chauffer.",
           "La nuit n'a pas été si mauvaise, enfin peut-être pas pour tout le monde. Le grand chien blanc de Christos a dormi avec nous et, tout excité au petit matin, il se frotte à chacun de nous en guise de salut matinal.",
         ],
+        photos: [photos.tzoumerkaValleeDeMatsoukiDinerEnRefuge],
       },
       {
         heading: "Le chien de Christos et le lac Noss",
@@ -392,6 +396,7 @@ export const grece: Carnet = {
           "Dans la grande salle vitrée du restaurant, deux poêles chauffent la pièce. Encore des chiens. Le repas arrive : tzatziki, salades grecques, viande en sauce avec du riz. Peut-être la meilleure cuisine du séjour.",
           "La tenancière nous raconte leur vie ici, sept mois par an au village. Tout a été construit par elle et son mari. Leur passion est devenue leur travail. Elle parle avec fierté de la Valia Kalda et de son attachement au territoire.",
         ],
+        photos: [photos.pindePerivoliVasilitsaPinsTorturesDansLaNeige, photos.pindePerivoliVasilitsaChapelleGivreeAuCrepuscule],
       },
       {
         heading: "Vasilitsa",
@@ -401,6 +406,7 @@ export const grece: Carnet = {
           "Le système de restauration est particulier. Il faut bien choisir : excellente soupe de haricots, bon veau sauce tomate-citron, burgers inégaux. Nous étions pourtant plusieurs ravis de retrouver, le temps d'un soir, nos plats occidentaux.",
           "Yanis est très sympa, il a vécu à Chamonix pendant le Covid. Panos paraît bourru, mais nous ne nous arrêterons pas à cette première impression.",
         ],
+        photos: [photos.pindePerivoliVasilitsaVueVersLesVallees],
       },
       {
         heading: "Une journée de transition",
@@ -412,6 +418,7 @@ export const grece: Carnet = {
           "Depuis le début de notre séjour ici, nous constatons avec désolation les conséquences des crues de l'automne, qui ont ravagé l'Épire. Ici, le pont qui devait nous permettre de traverser la rivière a disparu, nous obligeant à tester, au moins pour partie, sa température.",
           "Nous arrivons enfin au monastère, celui-là même qui nous paraissait si proche quelques heures plus tôt. De là, deux équipes se forment : ceux que notre hôte vient récupérer en voiture, et ceux qui marchent, ou courent, délestés de leurs sacs à dos.",
         ],
+        photos: [photos.pindeVasilitsaSamarinaMarcheursAuDepart, photos.pindeVasilitsaSamarinaPinSurCrete],
       },
       {
         heading: "Samarina et les pins centenaires",
@@ -420,6 +427,7 @@ export const grece: Carnet = {
           "Paradoxalement, le centre de Samarina est animé. Plusieurs restaurants entourent la place centrale. Heureusement que Mike vient à notre rencontre, car nous aurions pu assez facilement entrer dans une mauvaise adresse. À l'entrée de sa taverne, un agneau dépecé et pendu par les pattes arrières pose le cadre de ce qui est proposé à la carte ! A priori, on va plutôt manger carné ce soir. Nous donnons carte blanche à Mike, et bientôt, la table se recouvre de nombreux mets, de sorte que la nappe devient invisible. Des tripes, de l'agneau, du bœuf et du porc, et quelques accompagnements, de façon accessoire.",
           "Pour la première fois depuis le début de la traversée, une vraie carte de vin va nous permettre de découvrir cet élément de la culture grecque. Nous confrontons le pinot noir et le Tannat, cépages plutôt répandus en Europe, au Xinomavro, cépage autochtone qui magnifie un vin produit en biodynamie. Un coup de cœur pour l'équipe, et en premier lieu pour notre vigneron exigeant !",
         ],
+        photos: [photos.pindeVasilitsaSamarinaAmbianceUrbaine],
       },
       {
         heading: "Le Smolikas",
@@ -435,6 +443,7 @@ export const grece: Carnet = {
           "Mais à ce jeu-là, nous ne gagnons jamais en dessous de 1500 mètres d'altitude. C'est par un sentier évoluant dans une végétation méridionale que nous terminons cette belle traversée, et retrouvons Panagiotis dans le village de Pades.",
           "Nous déposons nos compagnons du sud-ouest à Ioannina, avec un au revoir expéditif au regard de ces bons moments partagés.",
         ],
+        photos: [photos.pindeSmolikasPadesGroupeEnTraversee, photos.pindeSmolikasPadesSommetEnneige],
       },
     ],
   },

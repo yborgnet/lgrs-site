@@ -305,6 +305,10 @@ export const alpesLigures: Carnet = {
   story: {
     eyebrow: "Le récit",
     toggleLabel: "Le récit complet",
+    title: "Traversée des Alpes ligures",
+    byline: "12-16/03/2024",
+    // Prologue 2023 (Google Doc) puis récit 2024 mot pour mot ; photos de chaque
+    // journée en regard de la ligne de parcours correspondante.
     sections: [
       {
         heading: "Prologue — 2023 : « Foutu retour d'Est ! »",
@@ -319,18 +323,28 @@ export const alpesLigures: Carnet = {
         ],
       },
       {
-        heading: "Un an plus tard",
         paragraphs: [
-          "Un an a passé. Le projet Garessio–Limone était resté en suspens — une traversée commencée par son échec, qu'il fallait bien terminer.",
+          "L’an passé, on s’était cassé les dents, arrivant dans les Alpes Ligures le premier jour d’un puissant retour d’Est, commençant le premier jour prévu du raid et se terminant le dernier jour… On avait terminé dans le Val d’Aoste et voilà comment Etienne m’avait résumé a posteriori l’aventure avortée :",
+          "« Entre la logistique pour récupérer tout le monde, poser la voiture à destination, etc.",
+          "La soirée non prévue chez « Gian-Lu » avec les Barolo de l’année de naissance de sa fille.",
+          "Le départ avorté par 130 km/h de vent.",
+          "Le refuge fermé, la nuit dans le placard à balai à 3 lits superposés pour 6.",
+          "Le train en panne. La C4 sous 1m de neige.",
+          "La nuit chez ton copain d'enfance. La douche dans le lavoir.",
+          "La cabane Zappelli. La belle poudre.",
+          "Les cols trop sympas.",
+          "La descente du canyon comme au Japon.",
+          "La désescalade dans la cascade.",
+          "Le retour au pas de course.",
+          "Et le café au Pilier Centrale pour finir. »",
         ],
       },
       {
         heading: "2024 : la traversée réalisée",
         paragraphs: [
-          "Cette année, les conditions sont bien différentes. Cela fait deux week-ends que les retours d'Est agrémentent généreusement les Alpes du Sud d'une couverture blanche jusqu'à basse altitude, et ils prévoient un anticyclone sans vent. C'est l'occasion rêvée de retenter l'aventure, dans des conditions plus sereines.",
-          "Seul hic : le risque d'avalanches est encore annoncé à 4 le jour de notre départ. En Italie, j'ai l'épée de Damoclès au-dessus de la tête. Notamment pour cette raison, je décide d'inverser le sens de la traversée : nous partirons cette fois-ci de Limone Piemonte pour terminer à Garessio 2000, aux confins des Alpes !",
-          "Tout a été incroyable : la vue dégagée sur l'ensemble de l'arc alpin grâce aux contrastes de couleurs entre la plaine du Pô, verte, et les montagnes enneigées, la vue sur la mer Méditerranée sur l'autre versant, les lumières douces parfaites pour les photos, les 4 cabanes non gardées dans lesquelles nous avons dormi…",
-          "Et surtout : la solitude. Si nous avons croisé des centaines de chamois, nous n'avons pas croisé un skieur ni une trace durant ces cinq jours de traversée. Dans les Alpes, c'est chose rare !",
+          "Cette année, les conditions sont bien différentes. Cela fait deux weekends que les retours d’Est agrémentent généreusement les Alpes du sud d’une couverture blanche jusqu’à basse altitude, et ils prévoient un anticyclone sans vent. C’est l’occasion rêvée de retenter l’aventure, dans des conditions plus sereines.",
+          "Seul hic : le risque d’avalanches est encore annoncé à 4 le jour de notre départ. En Italie, j’ai l’épée de Damoclès au-dessus de la tête. Notamment pour cette raison, je décide d’inverser le sens de la traversée : nous partirons cette fois-ci de Limone Piemonte pour terminer à Garessio 2000, aux confins des Alpes !",
+          "Tout a été incroyable : la vue dégagée sur l’ensemble de l’arc alpin grâce aux contrastes de couleurs entre la plaine du Po, verte et les montagnes enneigées, la vue sur la mer Méditerranée sur l’autre versant, les lumières douces parfaites pour les photos, les 4 cabanes non gardées dans lesquelles nous avons dormi… Et surtout : la solitude. Si nous avons croisé des centaines de chamois, nous n’avons pas croisé un skieur ni une trace durant ces cinq jours de traversée. Dans les Alpes, c’est chose rare !",
         ],
       },
       {
@@ -339,32 +353,40 @@ export const alpesLigures: Carnet = {
           "Les emplois du temps se sont parfaitement alignés, et le surlendemain de mon arrivée à Garessio 2000 après une fantastique chevauchée des Alpes Ligures et après une journée marathon pour finaliser et (enfin) envoyer la version définitive de mon manuscrit de thèse, j'ai la chance de repartir depuis la même station de Limone Piemonte, mais cette fois-ci en mettant le cap au nord et initier une traversée des Alpes en segments, fil rouge des 20 prochaines années.",
         ],
       },
-    ],
-    // Rail jour par jour de la traversée 2024 (aucune photo du prologue
-    // 2023, voir note PHOTOS en tête de fichier) — le récit 2024 lui-même
-    // reste court (pas de détail par étape encore retrouvé, voir GAP NON
-    // COMBLÉ ci-dessus), donc 2-4 photos par jour plutôt qu'un rail dense.
-    storyDays: [
-      { day: "J1", route: itinerary.days[0].title, photos: [photos.selfieSurUnTelesiege, photos.skisAlignesSurLeTelesiege] },
       {
-        day: "J2",
-        route: itinerary.days[1].title,
-        photos: [photos.groupeReuniSurUnSommet, photos.skiSousLesToursCalcaires, photos.petiteCabaneRougeDansLaNeige, photos.soirTombantDerriereLaVitreDuRefuge],
+        heading: `J1 ${itinerary.days[0].title}`,
+        paragraphs: [
+          "Parcours : J1 : Limone Piemonte – Cima del Becco – Vachere de Malabergue – Rifugio Don Barbera",
+        ],
+        photos: [photos.selfieSurUnTelesiege, photos.skisAlignesSurLeTelesiege],
       },
       {
-        day: "J3",
-        route: itinerary.days[2].title,
-        photos: [photos.groupeMontantSurUneAreteAerienne, photos.forteresseRocheuseAuDessusDesNuages, photos.soireeALaLumiereRouge, photos.deuxSkieursApparaissantDerriereUneBosse],
+        heading: `J2 ${itinerary.days[1].title}`,
+        paragraphs: [
+          "J2 : Passo della Gaina – Cima Marguareis – Colle dei Torinesi et couloir N – Porta Marguareis – Colle del Pas – Capanna Saracco Volante",
+        ],
+        photos: [photos.groupeReuniSurUnSommet, photos.skiSousLesToursCalcaires],
       },
       {
-        day: "J4",
-        route: itinerary.days[3].title,
-        photos: [photos.skieurAuPiedDuneGrandeParoi, photos.sommetRocheuxDansLaLumiereMatinale, photos.monteeAuBordDuneFalaiseAuDessusDesNuages, photos.longueDescenteVersLeVallon, photos.cabanePresqueEnsevelieSousLaNeige, photos.cabaneEclaireeDansLaNuit],
+        heading: `J3 ${itinerary.days[2].title}`,
+        paragraphs: [
+          "J3 : Cima Pian Ballaur – Monte Ballaur – descente de la pente SE jusqu’à la cote 2100m – Colle degli Arpetti – Cima delle Saline - Passo delle Saline – Rifugio Mondovi",
+        ],
+        photos: [photos.groupeMontantSurUneAreteAerienne, photos.forteresseRocheuseAuDessusDesNuages],
       },
       {
-        day: "J5",
-        route: itinerary.days[4].title,
-        photos: [photos.departDuGroupeAuLeverDuSoleil, photos.refletDesSommetsDansUneMareDeFonte, photos.descenteEntreLesToursRocheuses, photos.longueTraverseeDuGroupeSousLesParois],
+        heading: `J4 ${itinerary.days[3].title}`,
+        paragraphs: [
+          "J4 : Colle delle Colme Est – Monte Mongioie – Colletto Revelli – Bivacco Franco Caravero",
+        ],
+        photos: [photos.skieurAuPiedDuneGrandeParoi, photos.cabanePresqueEnsevelieSousLaNeige],
+      },
+      {
+        heading: `J5 ${itinerary.days[4].title}`,
+        paragraphs: [
+          "J5 : Cima Ruscarina – Cima Cuaiera – Rifugio Manolino – Sommet des pistes de Garessio 2000",
+        ],
+        photos: [photos.departDuGroupeAuLeverDuSoleil, photos.descenteEntreLesToursRocheuses],
       },
     ],
     closingLinks: [

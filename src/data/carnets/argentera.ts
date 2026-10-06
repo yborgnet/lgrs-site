@@ -337,25 +337,54 @@ export const argentera: Carnet = {
           "Une, deux, puis trois réponses négatives pour les refuges. Retour au départ. Et pourquoi ne pas faire la traversée dans l'autre sens ? Bien souvent, c'est dans ce genre de contraintes qu'apparaissent les plus belles opportunités.",
           "Ce sera donc une traversée d'Entracque à Sant'Anna di Valdieri, en passant par Casterino et les refuges de Nice, de la Cougourde, de Remondino, de Valasco et de Livio Bianco. Et si possible en déviant des lignes évidentes. Avec l'objectif, à peine caché, de voir à nouveau les loups de l'Argentera.",
           "Entre les refuges Livio Bianco et Valasco, quelques jours avant, avec Alexis, Géraud et Laurent, j'ai enfin vu le loup. Un trio, surpris de voir dévaler des skieurs, et à leur tour dévalant la pente. Rencontre furtive, plaisir consommé mais sûrement non partagé avec ces individus qui habituellement ne se font pas voir.",
+        ],
+      },
+      {
+        heading: `J1 ${itinerary.days[0].title}`,
+        paragraphs: [
           "Des traces, nous en croiserons dès le premier jour, à l'entrée du vallon d'Ischietto, en laissant à main gauche le vallon de Sabbione. Un vaste versant raide et moutonné nous fait face. À l'intersection de ces deux options, personne n'a voulu arbitrer entre l'option paisible de Sabbione et l'option plus aventureuse de l'Ischietto. Alors, en l'absence de voix pour l'option facile, j'ai tranché pour l'inconnue.",
           "Un trou dans la neige, maculé de sang sur ses bordures. Au fond, un chamois dépecé, dont les cuisseaux sont encore bien charnus, d'une viande rosée. À l'évidence, le festin a été consommé, et les restes ont été placés au frais. Guère plus loin, nous traversons un énorme dépôt d'avalanche. Alors que je grimpe sur l'un de ses talus latéraux, je suis tout à coup surpris par un envol inattendu. Un aigle royal vient de déployer toute son envergure juste en dessous de moi, alors qu'il s'affairait à déchiqueter le cou d'un jeune chamois mort. Que de rencontres !",
           "Avec Gilles, nous nous partageons la trace. Bientôt je le vois disparaître dans les volutes de neige transportées par le vent. Un aperçu désagréable des conditions que nous allons devoir affronter les prochains jours.",
           "Casterino est un village saisonnier. Une dizaine de bâtiments, et presque la moitié d'hébergements touristiques. Contre toute attente, la neige recouvre tous les versants alentour. Une décennie que Paul n'a pas vu autant de neige, aussi tard en saison. Résolument l'année du ski méditerranéen, sous toutes ses latitudes.",
           "La mer sera notre toile de fond pour les jours à venir, un horizon bleu profond, infini, contrastant avec les versants enneigés et les forêts de pins.",
+        ],
+        photos: [photos.vallonNeige, photos.monteeVallee],
+      },
+      {
+        heading: `J2 ${itinerary.days[1].title}`,
+        paragraphs: [
           "On sent les Préalpes, les montagnes s'apparentent à des collines, des formes douces recouvertes de mélézins. Le vent nous cueille à la sortie de la forêt, pour ne plus nous lâcher. Il n'est plus question de faire des détours pour rejoindre le refuge de Nice : Baisse de Fontanalbe et Baisse de Basto constituent presque un azimut parfait.",
           "On pense être protégés en se mettant sous le vent dominant. Une sorte de canyon, bordé au nord par une falaise, pourrait être salvateur. Mais le vent est si fort qu'il tourne alternativement dans tous les sens, sans nous laisser le moindre répit. Nous sommes comme les personnages de La Horde du Contrevent, contraints d'élaborer des stratégies collectives face à cet élément qui s'impose peu à peu comme le cœur de l'expérience.",
           "Au mont Clapier, il n'y a presque plus un souffle d'air, et l'horizon s'étend jusqu'à la mer.",
           "Toute la nuit, le vent a tenté de faire vibrer le refuge, à coups de rafales. Mais même les plus fortes d'entre elles n'ont rien fait à cette construction de pierre, aux murs épais. J'aime sentir les éléments qui se déchaînent, ainsi protégé. Ils sont proches, perceptibles, mais ils ne nous atteignent pas.",
           "Christophe attaque sa vingt-sixième année de gardiennage du refuge de Nice. Une force tranquille, avec son bonnet à grosses mailles vissé sur la tête. Ici, comme à la Cougourde, il faut être déterminé et aimer son métier pour ouvrir l'hiver. Un demi-millier de nuitées, sans eau courante et sans possibilité de faire des héliportages pour transporter la nourriture, parc national oblige.",
+        ],
+        photos: [photos.tempeteVent, photos.gardienNice],
+      },
+      {
+        heading: `J3 ${itinerary.days[2].title}`,
+        paragraphs: [
           "Nous repartons au milieu des bourrasques, en direction de l'épaule du mont Gelas. Certaines rafales stoppent instantanément le moindre mouvement et le caractère « sous le vent » des lieux n'a que peu d'effet. Mais une fois de plus, par un mécanisme physique incompréhensible ou l'action de je ne sais quelle divinité, le vent se tait au sommet.",
           "Après quelques heures lors desquelles chacun se replie dans ses différentes couches protectrices, où chacun suit le rythme imposé par le concours du vent, nous rejoignons le refuge de la Cougourde. En basculant derrière le pas des Ladres, la végétation apparaît plus dense qu'auparavant. Une forêt méridionale qui mêle pins et mélèzes, un terrain idéal pour les loups.",
           "Alors que je repars, toujours dans la même quête de fatiguer Gilles, vers la Cima Gaisse, ils les verront, les loups. Juste en face, depuis les petites fenêtres du refuge. Un trio, comme la semaine précédente.",
           "Quant à nous, je chercherai non sans détour la clé pour l'entrée du couloir nord-ouest. Après avoir tenté d'y rentrer à mi-pente, me retrouvant au-dessus d'une petite barre rocheuse continue, puis avoir cherché à suivre la ligne bleue en pointillé indiquée sur la carte, me retrouvant à nouveau au-dessus de hautes barres, nous nous résignons à remettre les peaux pour tenter un accès depuis le sommet.",
           "L'accès au couloir est d'ici plus évident, même si un doute subsiste puisqu'un gros rocher semble barrer l'accès à la partie inférieure. Cela passe tout juste, et la suite est délicieuse à skier. Au retour, une nouvelle, et quelle nouvelle ! Trois loups sont passés, en plein jour, juste en face du refuge.",
           "Quentin, presque trentenaire, est gardien d'hiver depuis cette année à la Cougourde. Seul le petit poêle réchauffe la pièce. Ici aussi, ouvrir l'hiver demande d'aimer son métier.",
+        ],
+        photos: [photos.couloir, photos.gardienCougourde],
+      },
+      {
+        heading: `J4 ${itinerary.days[3].title}`,
+        paragraphs: [
           "Aujourd'hui, nous basculons en Italie, pour la seconde moitié du raid que j'ai résolument pensée transalpine, puisque trois refuges sont gardés : Remondino, Valasco et Livio Bianco.",
           "Un beau couloir ne m'était pas apparu initialement comme évident, et sa présence permet de basculer sur le lac de Chiotas avec une certaine logique, augurant une belle descente depuis la Cima dell'Agnel. Le vent a bien baissé, mais il nous accueille au sommet de façon glaciale, avant de se taire totalement dans le vallon du lac de Chiotas.",
           "Pour une fois, nous rejoignons le refuge tôt. Remondino n'était pas sur la ligne initiale : une option parmi d'autres du kaléidoscope des possibilités.",
+        ],
+        photos: [photos.portage, photos.panoramaMontagne],
+      },
+      {
+        heading: `J5 ${itinerary.days[4].title}`,
+        paragraphs: [
           "Après un petit couloir remonté en crampons, neige froide ventée, dure et compacte sous le pied, nous débouchons en réalité à la Cima di Leccia. La mer, d'ici, devient l'horizon principal de nos regards. Sur le versant opposé, la neige a pris le soleil de la Méditerranée, sa surface est dure, presque verglacée. Et la pente raide.",
           "J'esquisse deux virages sautés, courts, pour me rendre compte qu'il n'est pas raisonnable de faire descendre mes clients à ski ici, même en dérapage. Le grip n'est pas assez bon, l'erreur n'est pas permise. Il n'y a pas davantage de calcul rationnel, seulement une intuition qui me signifie que ce ne serait pas raisonnable.",
           "Nous rejoignons un versant aux pentes douces, couvert de forêts de pins et de mélèzes. Un terrain à loups. Et justement, les indices ne se font pas attendre longtemps. Plusieurs traces parallèles, caractérisées par de gros coussinets, descendent la pente de la Baisse de Rogue.",
@@ -363,35 +392,9 @@ export const argentera: Carnet = {
           "Valasco, un refuge étrange. Ancienne casemate de chasse de Victor-Emmanuel II, deux tours marquent l'entrée d'une grande cour intérieure, comme dans un riad. Tables et transats sont une invitation à la bière. Il y règne une ambiance particulière : la convivialité des retrouvailles après une bonne journée de ski.",
           "Après une assiette variée d'antipasti, une table se dresse juste derrière le bar. De grosses gamelles et une demi-meule de gorgonzola y prennent place : l'une est remplie de polenta, l'autre du traditionnel plat salsiccia in umido, comprendre saucisses à la sauce tomate. Comme au self, chacun vient se servir à sa guise après qu'Andrea a garni chaque assiette d'une généreuse louche de polenta. Ce petit rien anime la salle et donne une ambiance joyeuse.",
         ],
+        photos: [photos.descenteLeccia, photos.repasValasco],
       },
     ],
-    // Rail jour par jour (item "correction rail v4") : le récit publié
-    // couvre J1 à J5 en une seule section continue (s'arrête au dîner de
-    // Valasco) — pas de J6/J7 ici, faute de toute prose ou de tout repère
-    // GPS/date exploitable pour ces deux jours dans le pool de photos
-    // disponible (voir note ci-dessous plutôt que d'assigner une photo
-    // générique au hasard). `route` reprend le titre réel de chaque étape
-    // dans `itinerary.days`, jamais retapé. Sélection éditoriale par jour
-    // quand un rapprochement texte/photo ou étape/photo est net (vallon
-    // d'Ischietto J1, vent et gardiens nommés J2, couloir et Quentin J3,
-    // bascule italienne J4, Cima di Leccia et polenta J5) ; les photos trop
-    // génériques pour être rattachées à un jour précis restent dans le
-    // portfolio plutôt que d'être assignées au hasard.
-    storyDays: itinerary.days.slice(0, 5).map((d, i) => ({
-      day: d.dayNum,
-      route: d.title,
-      photos: [
-        [photos.tracePortrait, photos.monteeVallee, photos.panneauPeche, photos.vallonNeige],
-        [photos.tempeteVent, photos.gardienNice, photos.refugeNiceArrivee, photos.ventPortrait,
-          photos.melezes, photos.gardienNiceGenerique, photos.vueMediterranee],
-        [photos.groupeCrete, photos.descenteRandoMercantour, photos.couloir,
-          photos.gardienCougourde, photos.couloirPortrait],
-        [photos.portage, photos.panoramaMontagne, photos.poeleRefuge,
-          photos.portageHaute, photos.portagePanoramaArgentera],
-        [photos.traverseeGroupe, photos.descenteLeccia, photos.repasValasco,
-          photos.vueMediterraneeArgentera, photos.descente2],
-      ][i],
-    })),
   },
   portfolio: {
     eyebrow: "Portfolio",

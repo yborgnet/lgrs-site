@@ -208,71 +208,58 @@ export const traverseeDammastock2023: Carnet = {
   story: {
     eyebrow: "Le récit",
     toggleLabel: "Le récit complet",
+    // Texte source de Yann (brief « DAMMASTOCK 2023 »), repris mot pour mot ;
+    // corrections d'orthographe/typographie manifestes seulement. Pas de photo
+    // du 3 avril (J1 dans le brouillard) : les photos commencent en J2.
     sections: [
       {
-        heading: "Lorsque les planètes s’alignent",
+        heading: "Itinérance #11 — Traversée du Dammastock, ou lorsque les planètes s'alignent",
         paragraphs: [
-          "La saison n'est pas tout à fait terminée, mais ce sera probablement l'itinérance qui m'aura le plus marqué. Nous devions initialement aller dans le massif de la Bernina, mais faute de neige, il a fallu se rabattre sur un plan B. Et quel plan B !",
-          "Sur la route de l'Ubaye, trois jours avant de partir, je cogitais activement sur le projet de substitution, traçant des itinéraires du côté du Nufenenpass, des Tödi, du Dammastock ou du val de Suse. Un peu au nord, un peu au sud, puisque la météo continuait de jouer avec nos nerfs — surtout les miens, depuis un bon mois, car les clients, a priori, me font confiance !",
-          "Notre principal avantage : partir cinq jours en semaine, ce qui permet de n'avoir aucun mal à réserver. Enfin ça, c'est ce que je pensais !",
-          "Las de ne pas trouver la ligne idéale, et un peu pressé par le temps, je me suis rabattu sur la traversée classique du Dammastock, un peu honteux tout de même de suivre a priori un topo déjà existant. Voyant de la place dans tous les refuges, je m'empressai de les réserver.",
-          "Le lendemain, donc la veille du départ, traduisant par sécurité les mails de confirmation, quel ne fut pas mon dépit de constater que ma demande de réservation du premier refuge essuyait une réponse négative. Albert-Heim était plein… Panique à bord ! Il me fallait replonger dans les cartes.",
+          "La saison n'est pas tout à fait terminée, mais ce sera probablement l'itinérance qui m'aura le plus marqué. Nous devions initialement aller dans le massif de la Bernina, mais faute de neige, il a fallu se rabattre sur un plan B, et quel plan B !",
+          "Sur la route de l'Ubaye, trois jours avant de partir, je cogitais activement sur le projet de substitution, traçant des itinéraires du côté du Nufenenpass, des Tödi, du Dammastock ou du val de Suse. Un peu au nord, un peu au sud, puisque la météo continuait de jouer avec nos nerfs (surtout les miens, depuis un bon mois, car les clients, a priori, me font confiance !).",
+          "Notre principal avantage : partir 5 jours en semaine, ce qui permet de n'avoir aucun mal à réserver. Enfin ça, c'est ce que je pensais !",
+          "Las de ne pas trouver la ligne idéale, et un peu pressé par le temps, je me suis rabattu sur la traversée classique du Dammastock, un peu honteux tout de même de suivre a priori un topo déjà existant. Voyant de la place dans tous les refuges, je m'empressais de les réserver.",
+          "Le lendemain, donc la veille du départ, traduisant par sécurité les mails de confirmation, quel n'a pas été mon dépit de constater que ma demande de réservation du premier refuge essuyait une réponse négative. Albert-Heim était plein… Panique à bord ! Il me fallait replonger dans les cartes.",
           "Plan A : Sidelenhütte. Pas de local d'hiver, fermé.",
-          "Plan B : hôtel Tiefenbach. Premier jour plus tranquille, mais 1 800 m le lendemain… Bof.",
-          "Plan C : Salbithütte, mais un J2 long, technique et aventureux. Bref, ça me plaît, mais je ne dois pas être le seul à jubiler ! L'équipe doit me suivre dans cette idée et je leur présente en toute transparence les deux plans.",
-          "Avis unanime : on veut de l'aventure, go ! Et en plus, cela nous facilite grandement la logistique du transport pour le retour.",
-          "J1 : montée à la Salbithütte. Cinq cents mètres de marche, puis le reste dans le brouillard. Pas mémorable, mais comme toute première journée de raid. En revanche, on découvre une cabane chauffée et des placards remplis de bières !",
-          "J2 : une journée mémorable ! Entre soleil et nappes de nuages, je jubile derrière l'objectif. Deux couloirs, skis sur le sac, à la montée, puis deux couloirs inclinés d'un bon 40° à descendre en bonne transformée. Et entre les deux, un magnifique glacier à remonter et 700 m de pente nord, vierge, tout en poudre !",
-          "J3 : enfin un sommet, le Sustenhorn. Et en décalant légèrement de la descente classique, plus de 1 000 m de pente vierge, froide, tout en poudre, à travers puis sous un glacier majestueux.",
-          "J4 : une journée à 2 000 m de D+, il en fallait une, tellement les conditions étaient bonnes et mauvaise était annoncée la journée du lendemain. Encore du ski exceptionnel : du raide en face nord du Fünffingerstock, puis de la poudre légère sur le glacier du Firnalpeli, rajout opportun à une journée déjà longue ! Et quand même un peu de neige croûtée en face sud pour rejoindre la Sustlihütte : il fallait bien redescendre de notre petit nuage !",
-          "J5 : la météo nous laisse un petit créneau le matin pour bien terminer !",
-          "Difficile de mieux faire, difficile d'aligner autant de paramètres : une équipe où tout le monde ne se connaissait pas, mais qui a fonctionné à merveille, un refuge plein, des plans contraints, de la bonne neige et trois jours de soleil consécutifs, rares en ces temps perturbés !",
+          "Plan B : hôtel Tiefenbach. Premier jour plus cool mais 1800 m le lendemain… bof.",
+          "Plan C : Salbithütte, mais J2 long, technique et aventureux. Bref, ça me plaît mais je ne dois pas être le seul à jubiler ! L'équipe doit me suivre dans cette idée, et je leur présente en toute transparence les deux plans. Avis unanime : on veut de l'aventure, go ! Et en plus, ça nous facilite grandement la logistique du transport pour le retour.",
+          "J1 : montée à la Salbithütte. 500 m de marche puis le reste dans le brouillard. Pas mémorable, mais comme toute première journée de raid. En revanche, on découvre une cabane chauffée et des placards remplis de bières !",
         ],
       },
-    ],
-    // Pas de photo du 3 avril (J1 dans le brouillard) : le rail commence en J2.
-    storyDays: [
       {
-        day: "J2",
-        route: itinerary.days[1].title,
-        photos: [
-          "passage-neige-ski-alpinisme",
-          "couloir-neige-montagne",
-          "mer-nuages-sommets",
-          "passage-arete-ski",
-          "traces-ski-poudreuse",
-          "descente-poudreuse",
-          "ski-alpinisme-pente",
-        ].map(photo),
+        paragraphs: [
+          "J2 : une journée mémorable ! Entre soleil et nappes de nuages, je jubile derrière l'objectif. Deux couloirs skis sur le sac à la montée, puis deux couloirs inclinés d'un bon 40° à descendre en bonne transfo. Et entre les deux, un magnifique glacier à remonter et 700 m de pente nord, vierge, tout poudre !",
+        ],
+        photos: ["passage-neige-ski-alpinisme", "mer-nuages-sommets"].map(photo),
       },
       {
-        day: "J3",
-        route: itinerary.days[2].title,
-        photos: [
-          "ski-alpinisme-vallon",
-          "montees-ski-haute-montagne",
-          "couloir-arete-ski",
-          "ski-poudreuse-descente",
-          "ski-seracs-glacier",
-          "descente-ski-neige",
-        ].map(photo),
+        paragraphs: [
+          "J3 : enfin un sommet : le Sustenhorn. Et en décalant légèrement de la descente classique, plus de 1000 m de pente vierge, froide, tout poudre, à travers puis sous un glacier majestueux.",
+        ],
+        photos: ["ski-alpinisme-vallon", "ski-seracs-glacier"].map(photo),
       },
       {
-        day: "J4",
-        route: itinerary.days[3].title,
-        photos: [
-          "village-montagne-hiver",
-          "groupe-ski-montee",
-          "descente-ski-couloir",
-          "ski-soleil-poudreuse",
-          "glacier-seracs-hiver",
-          "refuge-ski-haute-montagne",
-        ].map(photo),
+        paragraphs: [
+          "J4 : une journée à 2000 de D+, il en fallait une tellement les conditions étaient bonnes et mauvaise était annoncée la journée du lendemain. Encore du ski exceptionnel : du raide en face nord du Fünffingerstock puis de la poudre légère sur le glacier du Firnalpeli, rajout opportun à une journée déjà longue ! Et quand même un peu de croûtée en face sud, pour rejoindre la Sustlihütte, il fallait bien redescendre de notre petit nuage !",
+        ],
+        photos: ["groupe-ski-montee", "glacier-seracs-hiver"].map(photo),
       },
       {
-        day: "J5",
-        route: itinerary.days[4].title,
+        paragraphs: [
+          "J5 : la météo nous laisse un petit créneau le matin, pour bien terminer !",
+        ],
         photos: ["groupe-ski-montagne", "passage-rocheux-ski-alpinisme"].map(photo),
+      },
+      {
+        paragraphs: [
+          "Difficile de mieux faire, difficile d'aligner autant de paramètres : une équipe où tout le monde ne se connaissait pas mais qui a fonctionné à merveille, un refuge plein, des plans contraints, de la bonne neige et 3 jours de soleil consécutifs, rares en ces temps perturbés !",
+          "Parcours :",
+          "J1 : Abfrutt > Salbithütte (1000 m D+)",
+          "J2 : Meiggelengrat > col E du Rohrspitzli > Fluelucke > Voralphütte (1900 m D+)",
+          "J3 : col au point 3285 m > Sustenhorn > rive droite du Steigletscher > Steinalp (1500 m D+)",
+          "J4 : Fünffingerstock > descente au N > Gassenbiwak > Firnalpeligletscher > Stossensattel > Sustlihütte (2000 m D+)",
+          "J5 : col S du Stössenstock > Farnigen (600 m D+)",
+        ],
       },
     ],
   },

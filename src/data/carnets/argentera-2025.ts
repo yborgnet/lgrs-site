@@ -226,11 +226,10 @@ export const argentera2025: Carnet = {
           "Un an après l'Argentera 2024, la traversée des Alpes en segments reprend exactement là où elle s'était arrêtée : Roviera, sur la commune de Vinadio. Cinq nouveaux jours de ski, entre le massif de l'Argentera, une incursion côté français par l'Ubaye, et l'arrivée dans le Val Varaita, à Pontechianale.",
         ],
       },
-    ],
-    storyDays: [
-      { day: "J1", route: itinerary.days[0].title, photos: [photos.petitDejeunerAvantDepart, photos.motManuscritRefuge] },
-      { day: "J3", route: itinerary.days[2].title, photos: [photos.portraitDeuxCoequipiers] },
-      { day: "J5", route: itinerary.days[4].title, photos: [photos.derniereDescenteVersVillage, photos.devantBarVillageArrivee] },
+      // Aucun récit narratif source : chaque journée datable garde son intitulé et ses photos, en regard.
+      { heading: `J1 ${itinerary.days[0].title}`, paragraphs: [], photos: [photos.petitDejeunerAvantDepart, photos.motManuscritRefuge] },
+      { heading: `J3 ${itinerary.days[2].title}`, paragraphs: [], photos: [photos.portraitDeuxCoequipiers] },
+      { heading: `J5 ${itinerary.days[4].title}`, paragraphs: [], photos: [photos.derniereDescenteVersVillage, photos.devantBarVillageArrivee] },
     ],
     closingLinks: [
       { label: "← Étape 2 de la traversée des Alpes en segments : l'Argentera, de Limone Piemonte à Vinadio", href: "/argentera-2024-traversee-ski-randonnee/" },

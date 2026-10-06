@@ -255,12 +255,14 @@ export const verwall: Carnet = {
           "Je découvre l'Autriche et ses montagnes, d'altitude modeste mais aux profils furieusement alpins. Le foehn apporte ses tonnes de sable du Sahara et teinte le ciel d'une belle lumière jaune.",
           "On ne retiendra pas cette première descente, à moitié transformée mais pas complètement, mais on retiendra cette seconde montée, interminable, jusqu'au Schafbichjoch. Comme souvent lors des premières journées, c'est à la frontale que nous rejoignons la cabane. Deux de ses occupants dorment déjà, après avoir sifflé six grandes canettes de bière et une bouteille de vin. Des cadavres qu'envient mes compagnons belges !",
         ],
+        photos: [photos.groupeRemontantUnVallonEncaisse, photos.descenteSousUneGrandeParoi],
       },
       {
         heading: "J2 — Friedrichshafener Hütte → Neue Heilbronner Hütte",
         paragraphs: [
           "La seconde journée, avec un petit 1000 m de dénivelé et sans distance, est passée sans forcer. Le vent est plus intermittent, mais encore bien là. Il claque sur les fenêtres de la Heilbronner Hütte, mais ne dérange plus nos longues parties de belote, passe-temps d'un après-midi de farniente…",
         ],
+        photos: [photos.petitDejeunerDansUneCabane, photos.skieurSolitaireAuDessusDesVallees],
       },
       {
         heading: "J3 — Neue Heilbronner Hütte → Neue Reutlinger Hütte",
@@ -269,6 +271,7 @@ export const verwall: Carnet = {
           "Arrivés à la Reutlinger Hütte, la seule cabane où j'ai pu réserver des places, nous trouvons une première porte close. Nous dégageons une seconde porte, dans l'espoir qu'elle soit ouverte. Mais après une demi-heure de labeur, on doit se résoudre à la même conclusion… La cabane est fermée, et à aucun moment cela n'était indiqué sur internet. La gardienne m'a seulement envoyé un mail pour m'avertir que la réserve de bois était quasiment épuisée, mais elle ne m'a jamais évoqué la présence d'une éventuelle clé. L'inquiétude me gagne. Les idées fusent vite dans la tête des garçons, mais avec bien plus de clairvoyance dans celle de Cécile, qui émet l'idée d'essayer la clé utilisée pour la première cabane. Nous n'aurons pas besoin d'user d'autres stratagèmes. La porte s'ouvre, et nous poussons tous un grand ouf de soulagement !",
           "Cette petite cabane est bien plus rustique que la précédente, mais elle incarne l'imaginaire de la cabane : une grande table et sur l'autre bat-flanc un grand dortoir qui occupe toute la largeur. C'est la première fois depuis 3 jours que personne n'a chauffé la cabane pour nous, et nous ressentons les 1 °C affichés sur le thermomètre intérieur. Nous monterons péniblement à 8 °C, et pas un dixième de plus ! Elle fait d'autant plus office d'abri que dehors, la tempête fait rage. Son emplacement, au milieu d'un col, n'est peut-être pas pour rien dans la vibration des murs à chaque rafale. Le vent parvient à s'engouffrer dans les micro-interstices des murs et du sol et même à ouvrir la double porte d'entrée pourtant fermée.",
         ],
+        photos: [photos.groupeTracantDansLaNeigeFraiche, photos.chauffageAuPoeleDansLaCabane],
       },
       {
         heading: "J4 — Neue Reutlinger Hütte → Langen am Arlberg",
@@ -277,39 +280,6 @@ export const verwall: Carnet = {
           "Une à une, les options anticipées sont rendues caduques. Telle pente ne m'inspire pas, telle autre a été balayée par une avalanche de fond, telle autre encore est plongée dans le brouillard. L'option finalement retenue n'avait jamais été identifiée. Dans la mesure du possible, je cherche à rejoindre puis franchir la crête qui me sépare de Langen, car la descente me semble beaucoup moins galère.",
           "C'est finalement dans une pente labyrinthique que nous parvenons à nos fins. Que j'aime ces descentes scandées d'incertitudes !",
         ],
-      },
-    ],
-    // Rail jour par jour : sélection guidée par Yany (ouverture, J1,
-    // Heilbronner Hütte, belle journée de J3, Neue Reutlinger/tempête, sortie
-    // vers Langen). J1/J2 : toutes les photos disponibles (4 chacun). J3 :
-    // sélection sur les 11 disponibles, couvrant ski + cabane/tempête. J4 :
-    // une seule photo existe pour ce jour (aucune comblée artificiellement).
-    storyDays: [
-      {
-        day: "J1",
-        route: itinerary.days[0].title,
-        photos: [photos.groupeRemontantUnVallonEncaisse, photos.sommetEffileDansLeBrouillard, photos.descenteSousUneGrandeParoi, photos.skieurFaceAUnSommetPyramidal],
-      },
-      {
-        day: "J2",
-        route: itinerary.days[1].title,
-        photos: [photos.petitDejeunerDansUneCabane, photos.skieurSolitaireAuDessusDesVallees, photos.descenteSurUneLargePente],
-      },
-      {
-        day: "J3",
-        route: itinerary.days[2].title,
-        photos: [
-          photos.monteeSolitaireSurUnPlateau,
-          photos.groupeTracantDansLaNeigeFraiche,
-          photos.descenteDunSkieurSurUnePenteRaide,
-          photos.virageAppuyeSousLesCretes,
-          photos.chauffageAuPoeleDansLaCabane,
-          photos.pauseBoissonApresLetape,
-        ],
-      },
-      {
-        day: "J4",
-        route: itinerary.days[3].title,
         photos: [photos.egliseDeMontagneSousLaNeige],
       },
     ],

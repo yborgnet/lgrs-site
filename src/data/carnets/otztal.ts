@@ -270,57 +270,27 @@ export const otztal: Carnet = {
         paragraphs: [
           "Le deuxième jour, le brouillard épais, encore mais sans la nuit cette fois. Et une désorientation aiguë qui me pousse inexorablement à gauche sans même que je ne m'en rende compte, à la montée comme à la descente. Lorsqu'enfin nous passons en dessous de la couche, tout le monde semble retrouver sa respiration, et ses esprits. La Martin-Busch-Hütte est déjà occupée par deux Allemands, au demeurant très sympathiques, d'autant qu'ils ont déjà chauffé la cabane !",
         ],
+        photos: [photos.vallonGlaciaireBrouillard, photos.monteeMartinBusch],
       },
       {
         heading: "J3 — Martin-Busch-Hütte → Hochjoch-Hospiz",
         paragraphs: [
           "Petit changement de programme pour le troisième jour. Au vu de la forme des troupes, nous décidons de réduire les ambitions. Et ce sera finalement un très bon choix. Nous sommes à une ligne de crête de la Hochjoch-Hospiz, et nous optons pour le sommet du Saykogel, qui permet de faire facilement la bascule. La dernière partie est une petite arête à cramponner, encore une nouveauté pour mes compagnons. Et en prime, la meilleure descente du trip nous accueille de l'autre côté. La terrasse sèche et baignée de soleil est une invitation à un bon café !",
         ],
+        photos: [photos.skieursCreteGlaciaire, photos.terrasseHochjochHospiz],
       },
       {
         heading: "J4 — Hochjoch-Hospiz → Breslauer Hütte",
         paragraphs: [
           "L'acmé du quatrième jour sera résolument le petit couloir de descente sur le refuge Breslauer, et, nouvelle surprise, le confort de la cabane. Sûrement la plus confortable des 4, c'est sympa quand ça se passe ainsi !",
         ],
+        photos: [photos.traverseePenteRaide],
       },
       {
         heading: "J5 — Breslauer Hütte → Sölden",
         paragraphs: [
           "La dernière journée consiste en un retour progressif à la civilisation, bien aidé par la vue des imposantes remontées mécaniques du Pitztaler Gletscher puis de Sölden, plus précisément Rettenbach, où nous terminons par une bonne assiette de rösti-œufs-bacon.",
         ],
-      },
-    ],
-    // Rail jour par jour : J1 est omis (0 photo prise ce jour-là, EXIF à
-    // l'appui — jamais comblé artificiellement, voir CarnetPhoto["placeholder"]
-    // et la règle de src/data/carnets/types.ts). J2/J4/J5 : texte court à
-    // moyen → 2-4 photos. J3 : paragraphe le plus dense → 6 photos, sélection
-    // éditoriale sur les 12 disponibles (le reste dans le portfolio).
-    storyDays: [
-      {
-        day: "J2",
-        route: itinerary.days[1].title,
-        photos: [photos.pauseColBrouillard, photos.departCabaneFidelitas, photos.vallonGlaciaireBrouillard, photos.monteeMartinBusch],
-      },
-      {
-        day: "J3",
-        route: itinerary.days[2].title,
-        photos: [
-          photos.groupeMonteeGlaciaire,
-          photos.traverseeGlaciairePanorama,
-          photos.heroSkieursSommets,
-          photos.skieursCreteGlaciaire,
-          photos.descentePoudreuse,
-          photos.terrasseHochjochHospiz,
-        ],
-      },
-      {
-        day: "J4",
-        route: itinerary.days[3].title,
-        photos: [photos.traverseePenteRaide, photos.cuisineVernagthutte],
-      },
-      {
-        day: "J5",
-        route: itinerary.days[4].title,
         photos: [photos.groupeRetourSolden, photos.skieursImmensiteBlanche],
       },
     ],

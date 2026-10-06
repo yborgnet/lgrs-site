@@ -250,49 +250,105 @@ export const kazakhstan: Carnet = {
   story: {
     eyebrow: "Le récit",
     toggleLabel: "Le récit complet",
+    title: "Itinérance à ski dans les montagnes sauvages du Kazakhstan",
+    standfirst:
+      "À travers les hautes vallées glaciaires du Kazakhstan, le guide de haute montagne Yann Borgnet retrace sa traversée à ski des monts Ile Alatau. Des rencontres insolites, des grands sommets et des petites cabanes oranges, et un incident qui aurait pu mal tourner : voici le récit d’une belle aventure à ski de rando au cœur de l’Asie Centrale.",
+    // Récit intégral Alpine Mag (21/12/2025) ; photos des journées J1→J6 en regard
+    // des passages correspondants (rail de droite, intercalées sur mobile).
     sections: [
       {
         paragraphs: [
-          "Mon voisin de rang est togolais, expatrié au Burkina Faso, à Ouagadugu. Il est chercheur dans les systèmes d'assainissement dans les pays en développement. Il y a quand même quelque chose d'intrigant dans ce mode de transport aérien, qui, avec ses connexions et correspondances, brasse des personnes aux horizons incroyablement variés. À ses yeux, je suis sportif, un grand malade, quand je lui parle de notre projet au Kazakhstan. Si je l'avais rencontré lors du vol retour, je lui aurais dit d'emblée que ce voyage n'a pas été simple !",
+          "Mon voisin de rang est togolais, expatrié au Burkina Faso, à Ouagadugu. Il est chercheur dans les systèmes d’assainissement dans les pays en développement. Il y a quand même quelque chose d’intrigant dans ce mode de transport aérien, qui, avec ses connexions et correspondances, brasse des personnes aux horizons incroyablement variés.",
+          "À ses yeux, je suis sportif, un grand malade quand je lui parle de notre projet au Kazakhstan. Si je l’avais rencontré lors du vol retour, je lui aurais dit d’emblée que ce voyage n’a pas été simple.",
         ],
       },
       {
-        heading: "Jour 1 — De Chimbulak au premier bivouac",
+        heading: "De Chimbulak au premier algeco",
         paragraphs: [
-          "La station de ski de Chimbulak ne nous dépayse pas, ou du moins pas comme on pourrait imaginer un pays post-soviétique. En bas, une rangée de commerces flambant neufs, des photographes qui ciblent les touristes apprêtés, des jeunes femmes déguisées en cosmonautes qui tentent de vendre je ne sais quoi aux passants et de grosses berlines. Au sommet des remontées mécaniques, des drones survolent la foule de touristes venus de la ville pour capter l'« instagramabilité » de l'instant. Ce n'est pas vraiment la montagne qui a suscité notre motivation pour venir jusque-là, et c'est pourtant ici que commence notre aventure, aux antipodes de cette vision marchandisée.",
-          "Nous remontons une raide pente froide jusqu'à un col surmonté d'un gendarme élancé. De l'autre côté, la vue sur le bassin de Tuyuk-Su nous donne la mesure des montagnes kazakhes. Au loin, nous apercevons notre premier bivouac : un algeco orange, à l'intérieur duquel se trouvent trois couchettes, une table et un poêle. Aurélien Lurquin nous a ramené une bouteille de pinot. Un grand champagne pour fêter un départ sans accroc, dégusté dans un petit bol en inox trouvé sur place.",
+          "La station de ski de Chimbulak ne nous dépayse pas, ou du moins pas comme on pourrait imaginer un pays post-soviétique. En bas, une rangée de commerces flambant neufs, des photographes qui ciblent les touristes apprêtés, des jeunes femmes déguisées en cosmonautes qui tentent de vendre je ne sais quoi aux passants et de grosses berlines – certes, électriques et de marques chinoises inconnues.",
+          "Au sommet des remontées mécaniques, des drones survolent la foule de touristes venus de la ville pour capter l’« instagramabilité » de l’instant, devant un quatre par trois « Rolex ». Ce n’est pas vraiment la montagne qui a suscité notre motivation pour venir jusque-là, et c’est pourtant ici que commence notre aventure, aux antipodes de cette vision marchandisée.",
+          "Nous remontons une raide pente froide, comme une initiation à la nivologie kazakh, jusqu’à un col surmonté d’un gendarme élancé. De l’autre côté, la pente sud, très rocailleuse, est dégarnie, mais la vue sur le bassin de Tuyuk-Su nous donne la mesure des montagnes kazakhs.",
+          "Au loin, nous apercevons notre premier bivouac : un algeco orange à l’intérieur duquel se trouvent trois couchettes, une table, un système de production d’électricité non fonctionnel et un poêle. Aurélien (Lurquin) nous a ramené une bouteille de pinot. Un grand champagne pour fêter un départ sans accroc, dégusté dans un petit bol en inox trouvé sur place ; ici, nul besoin de Zalto pour l’apprécier !",
         ],
+        photos: [photos.j1_dsc01038, photos.j1_dsc01251],
       },
       {
-        heading: "Jour 2 — Basculer dans la vallée du Talgar",
+        heading: "Exploration de la vallée de Talgar",
         paragraphs: [
-          "La seconde journée doit nous permettre de basculer dans la vallée du Talgar, une très longue vallée où la retraite par le bas serait particulièrement compliquée. Nous remontons jusqu'au col de Tuyuk-Su, à 4 015 m, et prenons pied sur une large arête cornichée, d'où s'ouvre un nouveau pan de massif. En bas de la première combe, nous rejoignons un vaste bassin glaciaire ; comme souvent dans ces configurations, il faut viser les rives pour trouver des canyons skiables.",
-          "Le bassin glaciaire que nous rejoignons après le passage de la clue est vaste et surmonté d'impressionnants sommets glaciaires. C'est incroyable d'immensité et de beauté, et j'immortalise le moment de façon frénétique. Tout à coup, un écriteau s'affiche sur mon écran : « impossible d'enregistrer le fichier »… Ma carte SD est morte. Un coup au moral…",
+          "La seconde journée doit nous permettre de basculer dans la vallée du Talgar, une très longue vallée où la retraite par le bas serait particulièrement compliquée. Nous remontons jusqu’au col de Tuyuk-Su (4015 m) et prenons pied sur une large arête cornichée, d’où s’ouvre un nouveau pan de massif. Des montagnes plus arrondies, surmontées de vastes pentes dégarnies où affleure la glace noire. En bas de la première combe, nous rejoignons un vaste bassin glaciaire.",
+          "Comme souvent dans ces configurations, il faut viser les rives pour trouver des canyons skiables. À gauche, le versant sud, complètement déneigé, abrite une nuée d’oiseaux qui s’envole à notre passage.",
+          "Notre bivouac est le même que la veille, un algeco orange à l’équipement sommaire. Il n’est que midi et nous disposons de l’après-midi pour goûter au silence de ce lieu, coupé du monde, sans réseau ni trace humaine. Le point le plus reculé de notre traversée.",
+          "Le contour des montagnes s’irrise déjà d’un fin liseré blanc, signe que le lever du jour est proche. De visu, il n’est vraiment pas évident de trouver la clé du labyrinthe causé par les débris morainiques. Ces pierriers erratiques nous imposent des tours et des détours, mais il y a tout juste assez de neige pour garder les skis aux pieds. J’adore ces situations de perpétuels paris sur la suite.",
+          "Le bassin glaciaire que nous rejoignons après le passage de la clue est vaste et surmonté d’impressionnants sommets glaciaires, lointains et inaccessibles. C’est incroyable d’immensité et de beauté, et j’immortalise le moment de façon frénétique.",
+          "Tout à coup, un écriteau s’affiche sur mon écran : « impossible d’enregistrer le fichier »… Ma carte SD est morte, et il n’y aura aucun moyen de la remplacer avant la station Cosmo, à tout le moins. Un coup au moral.",
         ],
+        photos: [photos.j2_dsc01363, photos.j2_dsc01566],
       },
       {
-        heading: "Jour 3 — La chute",
+        heading: "La chute",
         paragraphs: [
-          "Nous continuons à remonter le glacier sous une chaleur pesante. Mais tout n'est pas aussi simple que sur ma carte, et l'arête repérée devient plus effilée et technique. La fatigue du groupe impose de recomposer le plan initial. Je pars en reconnaissance. Sans me méfier, j'engage le ski amont dans une neige plus dure dont le grip me paraît sûr. Mais mon ski aval ne mord pas lorsque je lui transfère mon poids, et il m'entraîne, comme à la suite d'un pas dans le vide. Mes skis grattent alors la surface de la neige, découvrant de la glace bleue. Je crie. C'est interminable. Entre l'approche de la pierre et mon arrêt, c'est le trou noir.",
-          "Je lève la tête vers l'origine de ma chute. La pente de glace était en fait très raide. Il y a du sang dans la neige. Mes lèvres me brûlent. Mais le plus inquiétant, c'est ma cuisse que je sens douloureuse. Ma crainte principale concerne le fémur. Nous sommes très isolés, loin de tout, et le mauvais temps est en train d'arriver. Thomas émerge de la crête piégeuse. Mes compagnons me rejoignent en contournant la pente de glace, crampons aux pieds.",
-          "Quelques conversions plus haut, j'atteins le col, et le premier regard sur le versant opposé confirme mes craintes. J'opte pour la « moins pire ». Je sors la corde pour assurer l'entrée de la pente, et les premiers virages confirment mon pari. Nous prenons bientôt pied sur l'immense glacier Gorodetsky et la cabane est finalement atteinte, avec plus de facilité que ce que je redoutais.",
+          "Nous continuons à remonter le glacier sous une chaleur pesante. J’ai envie de rallier un sommet frontalier avec le Kirghizistan, qui nous permettrait ensuite de basculer dans une pente a priori skiable. Mais tout n’est pas aussi simple que sur ma carte et l’arête repérée, d’abord confortable, devient plus effilée et technique. La fatigue du groupe impose de recomposer le plan initial et de traverser à flanc jusqu’au col Ouest dudit sommet.",
+          "Nous rejoignons une selle confortable, et, pendant que mes compagnons rechaussent leurs skis, je pars en reconnaissance. Je traverse à flanc dans une neige poudreuse, je suis détendu. Je rejoins une petite arête qui coupe verticalement la pente et marque un changement d’orientation.",
+          "Sans me méfier, j’engage le ski amont dans une neige plus dure dont le grip me paraît sûr. Mais mon ski aval ne mord pas lorsque je lui transfère mon poids. Il m’entraîne, comme à la suite d’un pas dans le vide.",
+          "Mes skis grattent alors la surface de la neige, découvrant de la glace bleue. Je sens ses petits reliefs sur mon fessier postérieur. Je crie. C’est interminable. Je vois tout et en premier lieu cette pierre saillante vers laquelle je me dirige à pleine vitesse. J’essaie de me freiner par tous les moyens mais évidemment il n’y a rien à faire. Seulement attendre et espérer ne pas taper trop fort.",
+          "Dans ma tentative de résistance à la gravité, j’ai commencé à pivoter la tête la première. Entre l’approche de la pierre et mon arrêt, quelques dizaines de mètres plus loin, c’est le trou noir. Je me suis arrêté car la pente devenait plus douce et la neige froide et molle. Je lève la tête vers l’origine de ma chute.",
         ],
+        photos: [photos.j3_dsc01634],
       },
       {
-        heading: "Jour 4 — Cosmo, vestige soviétique",
         paragraphs: [
-          "Cosmo est une station d'observation astronomique perchée à 3 300 m, possédant deux télescopes Gamma encore en activité. Nous la rejoignons après une journée de lent glissement hors du monde glaciaire. Le brouillard enveloppe des bâtiments hérités de l'ère soviétique. Un homme surgit de la brume et vient à notre rencontre. « Yann ? » — « Da ».",
-          "Il nous accompagne dans un bâtiment d'époque. C'est tellement bon de se trouver dans une pièce chauffée que cet hébergement, par contraste, me paraît très confortable. Igor est un retraité actif, ingénieur mécanique et électronique sur les télescopes gamma depuis 1983.",
-          "Au repas, l'ambiance est pesante. J'engage la discussion avec Amélie. En tant que guide, nous nous concentrons sur les incertitudes liées aux conditions de la montagne, en occultant peut-être parfois les incertitudes de l'humain. Une chose est certaine : ce soir, tout le monde se couche le cœur plus léger.",
+          "La pente de glace était en fait très raide. Mais avec le jour blanc, je n’ai rien vu, rien perçu non plus avec mes skis. Rien. Il y a du sang dans la neige, j’essaie d’en comprendre l’origine. Le nez, ça va. Mes lèvres me brûlent. Mais le plus inquiétant, c’est ma cuisse que je sens douloureuse. J’inspecte mon pantalon sans rien voir au premier regard. Mais il est bien déchiré, et l’ouverture correspond à l’angle arrondi de mon DVA. Une perforatrice n’aurait pas été plus précise.",
+          "Ma jambe est douloureuse et ma crainte principale concerne le fémur. Si jamais quelque chose était cassé, la situation deviendrait extrêmement tendue. D’une part parce que nous sommes très isolés, loin de tout, et d’autre part car le mauvais temps est en train d’arriver. Je suis agare, incapable d’acter la moindre décision.",
+          "Une tête émerge de la crête piégeuse. C’est Thomas, qui m’a entendu crier et qui a compris tout de suite que j’avais chuté. Malgré le coup de l’émotion, je suis préoccupé à présent par la manière dont le groupe pourra me rejoindre en sécurité. Mes compagnons me rejoignent en contournant la pente de glace, crampons aux pieds.",
+          "Visiblement, Amélie est sous le choc de ce qui vient de se produire. Le plus dur reste à faire : prendre une décision pour passer cette foutue crête en sécurité. J’ai bien du mal à comprendre la carte, et les images satellites ne m’aident guère davantage.",
+          "D’ici, je distingue clairement une pente évidente à remonter, mais qu’est ce que nous allons trouver derrière ? Je sens que je n’ai plus beaucoup d’énergie pour gérer le groupe alors qu’habituellement, de telles situations d’incertitudes me feraient jubiler.",
+          "Quelques conversions plus haut, j’atteins le col. Le premier regard sur le versant opposé confirme mes craintes. J’égraine, comme d’habitude, le kaléidoscope des options qui s’offrent à nous pour ensuite opter pour la « moins pire ». Longer la crête vers le sud me semble compliqué à gérer dans ces conditions de fatigue avancée d’une partie de groupe et de ma douleur à la cuisse, toujours vive.",
+          "Tout droit en dessous, c’est beaucoup trop raide et escarpé. En revanche, légèrement en contrebas, à droite, une pente de neige semble skiable. « Semble », car entre-temps, la neige s’est mise à tomber et la visibilité s’est considérablement dégradée. Ce que confirment les images aériennes : l’été, il y a là un pierrier. Et conformément aux lois de la gravité, un pierrier n’est jamais très raide.",
+          "Je sors la corde pour assurer l’entrée de la pente et les premiers virages confirment mon pari, bingo ! Nous prenons bientôt pied sur l’immense glacier Gorodetsky et je suis à présent très concentré pour trouver la meilleure ligne « gravitaire » dans ce relief particulièrement torturé.",
+          "Je compare la carte imprécise aux images aériennes, plus fidèles au terrain et qui permettent notamment de détecter les lits de rivière. La visibilité est nulle et le terrain particulièrement complexe et torturé, mais la cabane est finalement atteinte, avec plus de facilité que ce que je redoutais.",
+          "Mon bon Aurélien, fidèle parmi les fidèles, accepte volontiers la corvée consistant à remplir la vache à eau dans le cours d’eau jouxtant la cabane. Mais quand il revient, avec sa mine optimiste qu’il quitte rarement, il accompagne la dépose du bidon avec une sentence dont il garde le secret : « de la belle pisse ! » Effectivement, l’eau est jaunâtre, vaseuse.",
+          "Une fois que tout le monde s’est mis au sec, nous nous activons pour nettoyer le bivouac, avec la technique à présent éprouvée : plusieurs sacs de neige sont déversés sur le sol, humide et boueux, puis évacués avec un balai rudimentaire trouvé sur place. Mais l’ambiance reste humide : la grille de ventilation a été bouchée avec un sac en plastique, l’eau suinte sur la vitre et le sol ne sèche pas…",
+          "Au lit, il me faut trouver les positions les moins inconfortables, car outre ma cuisse droite, je me rends compte que mon fessier gauche est lui aussi douloureux à la pression.",
         ],
+        photos: [photos.j3_dsc01777],
       },
       {
-        heading: "Jours 5 & 6 — Vers Koklaisay",
+        heading: "Cosmo et fin de la traversée",
         paragraphs: [
-          "Le soleil se lève sur Tian-Shan, et sa position dominante développe l'étendue des montagnes d'Ile Alatau. L'horizon s'ouvre sur la plaine kazakhe et sa capitale économique, Almaty, d'où nous sommes partis. L'ambiance est plus légère aujourd'hui et la descente, délicieuse.",
-          "Nous vivons ici notre dernière soirée dans les montagnes kazakhes. Elle est joyeuse et teintée de nostalgie. Demain, nous achèverons notre traversée. Puis il y aura la lente descente, au sens propre comme figuré.",
-          "En tant que guide, j'ai atteint avec cette itinérance l'incarnation de ce que je veux vivre comme professionnel, et également une limite de ce que je suis prêt à accepter comme engagement avec des clients. Ce voyage m'a poussé dans mes retranchements. Mais à la fin, quel voyage !",
+          "Cosmo est une station d’observation astronomique perchée à 3300m et possédant deux télescopes Gamma encore en activité, permettant d’analyser les rayons cosmiques. Ce lieu dépend historiquement de l’Institut de physique Lebedev de la faculté des Sciences de Moscou, qui gère également deux autres bases similaires : la station sur le Mont Aragats en Arménie, et une autre située sur le plateau de Fedtchenko dans les montagnes du Pamir, au Tadjikistan.",
+          "Ils étaient une soixantaine à travailler ici à l’apogée de l’observatoire, mais ils ne sont tout au plus qu’une quinzaine aujourd’hui.",
+          "Nous la rejoignons après une journée de lent glissement hors du monde glaciaire, lorsque l’herbe réapparaît par larges îlots et que le relief semble répondre au cri des lagopèdes. Derrière nous, les glaciers descendus la veille dans le brouillard étirent leur masse pâle, donnant au paysage une profondeur saisissante.",
+          "Le brouillard enveloppe des bâtiments hérités de l’ère soviétique, accentuant encore leur caractère délabré. Un homme de bonne corpulence surgit de la brume et vient à notre rencontre. Il nous parle en russe et je lui réponds par un signe illustrant le dodo. « Yann ? » « Da. »",
+          "Il nous accompagne dans une contre-allée et nous pénétrons dans un bâtiment d’époque, fermé grâce à une double porte. Le minuscule sas d’entrée accueille nos skis, à côté du coin cuisine. Un raide escalier à pas alternés nous conduit dans une pièce lumineuse, qui donne à son tour accès à deux pièces borgnes avec, dans chacune d’elle, un lit en alcôve. Une table et 4 chaises complètent l’équipement rudimentaire du lieu.",
+          "Aux questionnements d’Amélie sur la présence fortement désirée d’une douche (je leur avais vendu un hébergement « confortable »), il répond d’un « niet. » C’est tellement bon de se trouver dans une pièce chauffée que cet hébergement, par contraste, me paraît très confortable. Je me délecte de l’ambiance de ce lieu. J’improvise une douche en suspendant la vache à eau sous l’avant-toit du sas d’entrée. L’eau tiédie sur la gazinière atténue le froid mordant, tandis que quelques flocons s’attardent dans l’air calme.",
         ],
+        photos: [photos.j4_p20250423101337],
+      },
+      {
+        paragraphs: [
+          "Une visite des lieux s’impose. Je traverse la rue principale et rejoins un grand parking où sont garées quelques voitures. Je ne sais pas vraiment si j’ai le droit d’être là. Je m’approche d’un homme farfouillant dans son coffre. Le prétexte de la carte mémoire me permet de l’aborder. Il m’invite à le suivre. Après avoir gravi un large escalier, nous entrons dans une vaste pièce lambrissée où trône un grand billard. Le plancher, gondolé par endroits, a sans doute pris l’eau.",
+          "Nous poursuivons dans un long couloir, dont nous nous échappons par une porte maçonnée pour gagner l’étage. Là-haut, le même couloir, immense, s’étire à nouveau, débouchant sur une petite pièce meublée d’un bureau, d’une table et d’un canapé. Après m’avoir réchauffé au micro-ondes un mug de café soluble, il sort un téléphone à la vitre fissurée, en extrait la carte mémoire et me la tend.",
+          "Je lui propose de venir déguster le reste du champagne d’Aurélien à l’apéro. Igor est un retraité actif. Il est ingénieur mécanique et électronique sur les télescopes gamma depuis 1983 et en assure la maintenance en restant ici généralement sur des périodes de 15 jours.",
+          "Après le départ d’Igor, Amélie se retire et je sens qu’il se passe quelque chose. Elle a besoin d’être seule, me dit-elle. Au repas, l’ambiance est pesante. Je vois bien que cela ne va pas. Alors j’engage la discussion : « tu es perturbée par rapport au voyage ? ». Sa dernière question à Igor se renseignait sur les manières de descendre de la station de Tian-Shan : 23 km à pied. Cette absence d’alternative lui pesait, même si au fond, Amélie est une battante qui n’a pas l’habitude d’abandonner. Mais elle se sent acculée en ayant la désagréable impression de nous retarder.",
+          "Elle a aussi besoin de se projeter sur les étapes restantes. En tant que guide, nous nous concentrons sur les incertitudes liées aux conditions de la montagne, en occultant peut-être parfois les incertitudes de l’humain, qui sont paradoxalement plus faciles à lever, à condition de provoquer de tels moments d’échanges. Une chose est certaine : ce soir, tout le monde se couche le cœur plus léger !",
+        ],
+        photos: [photos.j4_dsc01923],
+      },
+      {
+        paragraphs: [
+          "Le soleil se lève sur Tian-Shan, et sa position dominante développe l’étendue des montagnes d’Ile Alatau. Un pont de neige providentiel nous permet de traverser le torrent pour basculer sur le versant d’en face. L’horizon s’ouvre sur la plaine Kazakh et sa capitale économique, Almaty, d’où nous sommes partis. L’ambiance est plus légère aujourd’hui et la descente, délicieuse.",
+          "Au loin, nous apercevons notre petite cabane. Il s’agit d’une petite construction en tôle, avec un toit à deux pans et une petite cheminée. Aurélien blague en se demandant si nous parviendrons à nous allonger. Étonnamment, elle est plutôt moderne dans sa fabrication : plancher au sol, doublage des murs avec un contreplaqué d’aspect bois, fenêtre en double-vitrage. La banquette de lit est calée sous chaque pied mais encore loin d’être plane, et la porte a disparu, substituée par une couverture en laine.",
+          "Assis dans nos duvets, nous lisons, écrivons, discutons, et parfois, nous ne faisons rien. Il ne s’agit pas d’attente, puisque attendre signifie qu’il y aurait un terme à atteindre, un aboutissement à quelque chose ou un objectif à remplir. Le bruissement presque imperceptible de la neige qui se dépose délicatement sur le toit en tôle de notre petit abri ajoute au silence une douceur presque irréelle.",
+          "Peut-être formulons-nous l’espoir, en chacun de nous, que jamais ce temps volé à nos existences frénétiques ne prenne fin ou ne soit perturbé d’une quelconque entrave. Nous vivons ici notre dernière soirée dans les montagnes kazakhs. Elle est joyeuse, car toutes ces péripéties nous ont souvent fait douter de l’issue du périple. Mais elle est aussi teintée de nostalgie, ces passages de vie étant éphémères, condition de leur existence et incarnation d’une rareté chérie.",
+        ],
+        photos: [photos.j5_p20250424050153, photos.j5_dsc02110],
+      },
+      {
+        paragraphs: [
+          "Demain, nous achèverons notre traversée par un beau sommet dominant l’immense plaine kazakh, à perte de vue, d’où nous pourrons mesurer le chemin parcouru. Puis il y aura la lente descente, au sens propre comme figuré, que je sais longue et incertaine. Nous rencontrerons des kazakhs intrigués de nous voir arriver de montagnes pour eux infréquentables l’hiver. Ils nous offriront un bol de soupe comme marque d’hospitalité à l’étranger. Puis nous irons nous saouler dans les bars d’Almaty pour oublier ce retour brutal à la civilisation moderne.",
+          "En tant que guide, j’ai atteint avec cette itinérance à la fois l’incarnation de ce que je veux vivre comme professionnel et une limite de ce que je suis prêt à accepter comme engagement avec des clients. Ce voyage m’a poussé dans mes retranchements et l’accident a probablement fortement teinté ce ressenti. Mais à la fin, quel voyage !",
+        ],
+        photos: [photos.j6_dsc02166, photos.j6_p20250426122432],
       },
     ],
     // Note éditoriale, pas un paragraphe du récit : sortie du dernier bloc et
@@ -303,30 +359,6 @@ export const kazakhstan: Carnet = {
       linkLabel: "Lire l'article original",
       href: "https://alpinemag.fr/ski-rando-yann-borgnet-kazakhstan-traversee-monts-ile-alatau/",
     },
-    /* Rail jour par jour : 2-4 photos par journée selon la longueur du
-       passage de récit qui lui correspond (J3 "La chute" et J4 "Cosmo" sont
-       les plus longs, J1/J2/J5/J6 partagent des paragraphes plus courts ou
-       une heading commune "Jours 5 & 6") — sélection chronologique dans
-       chaque jour GPX (voir la note "jour" en tête de fichier), jamais un
-       sous-ensemble choisi au hasard. */
-    storyDays: itinerary.days.map((d, i) => ({
-      day: d.dayNum,
-      route: d.title,
-      photos: [
-        // J1 — Chimbulak → bivouac de Tuyuk-Su
-        [photos.j1_dsc01038, photos.j1_dsc01251],
-        // J2 — Tuyuk-Su → gorge gauche du Talgar
-        [photos.j2_dsc01363, photos.j2_dsc01566],
-        // J3 — Gorge gauche du Talgar → Kuzylsau
-        [photos.j3_dsc01634, photos.j3_dsc01689, photos.j3_dsc01777, photos.j3_p20250422120555],
-        // J4 — Kuzylsau → Cosmo Tian-Shan
-        [photos.j4_p20250423050840, photos.j4_p20250423101337, photos.j4_dsc01923],
-        // J5 — Cosmo Tian-Shan → gorges de Kargaly
-        [photos.j5_p20250424050153, photos.j5_dsc02110],
-        // J6 — Gorges de Kargaly → Koklaisay
-        [photos.j6_dsc02166, photos.j6_dsc02253, photos.j6_p20250426122432],
-      ][i],
-    })),
   },
   portfolio: {
     eyebrow: "Portfolio",

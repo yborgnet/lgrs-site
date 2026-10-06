@@ -25,13 +25,10 @@ import { berninaPhotos } from "../photos/bernina-2026";
  * 9 photos le 30/04 (J1), 8 le 01/05 (J2), 8 le 02/05 (J3), 9 le 03/05 (J4).
  * Numérotées p01→p34 dans cet ordre chronologique.
  *
- * RÉCIT : le texte publié sur WordPress ne couvrait que le J1 et le début du
- * J2 (jusqu'à la traversée de moraine du Vadret Tschierva). La suite
- * (fin du J2, J3 — sommet du Piz Bernina — et J4 — traversée du Piz Palü et
- * retour à Diavolezza) a été rédigée ici à partir de l'itinéraire structuré
- * (lui-même tiré du GPX réel) et des légendes/toponymes du manifeste photo,
- * dans la continuité de voix du texte existant — faute de prose WordPress
- * d'origine pour ces journées.
+ * RÉCIT : texte source de Yann (brief « BERNINA 2026 »), repris mot pour mot jusqu'à
+ * la traversée de moraine du Vadret Tschierva (fin du J2). Aucune prose n'existe
+ * pour la fin du J2, le J3 et le J4 : le récit s'arrête donc là (pas de texte
+ * rédigé à la place).
  */
 
 const IMG = "/photos/Bernina/";
@@ -231,71 +228,38 @@ export const bernina: Carnet = {
   story: {
     eyebrow: "Le récit",
     toggleLabel: "Le récit complet",
+    // Texte source fourni par Yann (brief « BERNINA 2026 »), repris mot pour
+    // mot, corrections d'orthographe/typographie manifestes seulement. Le
+    // récit rédigé s'arrête au franchissement de la moraine du Vadret
+    // Tschierva (fin du J2) : les notes de plan qui suivent dans la source
+    // (liste fragmentaire) ne sont pas du récit et ne sont pas reprises.
     sections: [
       {
-        heading: "Un massif qui attendait depuis trois hivers",
         paragraphs: [
-          "Cela fait au moins trois hivers que ce petit massif à l'est des Alpes me donne des envies d'exploration à ski, et j'avais multiplié, chaque année, les tracés possibles sur mon application cartographique, partant parfois de St-Moritz ou de Diavolezza en Suisse, parfois de Campo Moro, en Italie.",
+          "Cela fait au moins trois hivers que ce petit massif à l'Est des Alpes me donne des envies d'exploration à ski, et j'avais multiplié, chaque année, les tracés possibles sur mon application cartographique, partant parfois de St-Moritz ou de Diavolezza en Suisse, parfois de Campo Moro, en Italie.",
           "Et puis vient ce dernier grand raid de la saison 2026, où je dois partager une expérience avec deux frères jumeaux, qui fêtent leurs quatre décennies, à cheval sur les mois d'avril et de mai. Je lance en pâture cette idée. Le caractère lointain du lieu ne semble pas les effrayer et le créneau météo se précise : une petite perturbation passe le mercredi, mais du jeudi au dimanche, le temps devient stable, avant de tourner à nouveau le lundi suivant. Une aubaine !",
         ],
       },
       {
-        heading: "Diavolezza, la Fortezza et Boval",
+        heading: `J1 ${itinerary.days[0].title}`,
         paragraphs: [
-          "Lorsque nous nous garons sur le grand parking, au pied du téléphérique de Diavolezza, celui-ci est immense et presque vide. L'ambiance est printanière, seul un petit air frais nous rappelle que nous sommes venus pour skier. Diavolezza, étrange nom. Pourquoi le diable, présent de façon suggestive dans la communication de la station, est-il ainsi convoqué pour nommer un lieu touristique ? Que diable fait-il ici !",
-          "Peut-être que l'image du diable traduit à la fois la splendeur et la dangerosité de ces immenses barres de séracs qui frappent l'œil de quiconque arrivant au sommet du téléphérique, quand s'ouvre le panorama s'étendant du Piz Palü jusqu'à la Bernina, et ses innombrables glaciers suspendus et chaotiques. Peu de massifs alpins renvoient ces images. Et paradoxalement, ce caractère impressionnant est contrebalancé par la taille relativement modeste du massif, dont le tour est envisageable en trois ou quatre jours.",
-          "Nous traversons le glacier en direction d'une langue de neige, sorte d'écharpe entre les barres rocheuses. Alors que nous subissons la chaleur, je choisis presque inconsciemment un endroit ventilé pour pique-niquer : la crête issue de la Fortezza, notre objectif du jour. Elle forme une épaule confortable à remonter à ski, protégée de part et d'autre par des barres rocheuses, qui bientôt s'emparent également de la crête pour former cette fameuse forteresse.",
-          "De là, une nouvelle écharpe nous dépose sur le glacier opposé, et à la cabane Boval, bâtie bien au-dessus de la moraine, immense ici. Après quelques réflexions mûries sur la possibilité de remettre les peaux pour une petite remontée, au vu de la qualité de la neige inégale, nous optons sans trop hésiter pour la bière en terrasse.",
-          "Le pari s'avère gagnant : une terrasse au soleil, et la solitude d'un refuge où nous serons presque seuls ce soir. Le gardien, Roberto, semble rustre d'abord. Pas très causant, mais il fait tout de même l'effort de parler un mix de français et d'anglais, pour nous amener trois grandes bières pression. Cela fait vingt-deux ans qu'il garde ce refuge après quatre années passées à la cabane Forno.",
+          "Lorsque nous nous garons sur le grand parking, au pied du téléphérique de Diavolezza, celui-ci est immense et presque vide. L'ambiance est printanière, seul un petit air frais nous rappelle que nous sommes venus pour skier. Il y a aussi la piste de ski, déjà descendue par quelques skieurs invétérés. Diavolezza, étrange nom. Pourquoi le diable, présent de façon suggestive dans la communication de la station, est-il ainsi convoqué pour nommer un lieu touristique ? Que diable fait-il ici ! Question sans réponse, mais plaisir non masqué de parvenir aussi rapidement au pied des glaciers. Peut-être que l'image du diable traduit à la fois la splendeur et la dangerosité de ces immenses barres de séracs qui frappent l'œil de quiconque arrivant au sommet du téléphérique, quand s'ouvre le panorama s'étendant du Piz Palü jusqu'à la Bernina, et ses innombrables glaciers suspendus et chaotiques. Peu de massifs alpins renvoient ces images. Et paradoxalement, ce caractère impressionnant est contrebalancé par la taille relativement modeste du massif, dont le tour est envisageable en trois ou quatre jours.",
+          "Nous ressentons le printemps, et peut-être même l'été, lorsque nous prenons pied sur le glacier. Il n'y a pas un souffle d'air. Sur ce glacier, il y a des millions de petites bêtes, de forme allongée et mesurant seulement quelques millimètres. C'est la première fois que je rencontre ce phénomène, non sans être surpris par leur nombre, et les capacités que ces insectes développent pour pouvoir vivre ici, dans la neige.",
+          "Nous traversons le glacier en direction d'une langue de neige, sorte d'écharpe entre les barres rocheuses. Alors que nous subissons la chaleur, je choisis presque inconsciemment un endroit ventilé pour pique-niquer : la crête issue de « Fortezza », notre objectif du jour. Elle forme une épaule confortable à remonter à ski, protégée de part et d'autre par des barres rocheuses, qui bientôt s'emparent également de la crête pour former cette fameuse « forteresse ». De là, une nouvelle écharpe nous dépose sur le glacier opposé, et à la cabane Boval, bâtie bien au-dessus de la moraine, immense ici. D'ailleurs, l'accès à la cabane semble franchir cette moraine dans sa zone de faiblesse, qui semble un peu moins raide et relativement stabilisée. Après quelques réflexions mûries sur la possibilité de remettre les peaux pour une petite remontée, au vu de la qualité de la neige inégale, nous optons sans trop hésiter pour la bière en terrasse. Mes compagnons semblent relativement inquiets à la perspective d'en manquer les prochains jours, lorsque nous serons en cabane non gardée, et ils semblent vouloir compenser de façon anticipée ce manque. Je ne peux envisager de mettre mes Gignoux en carbone dans tous ces rochers saillants et instables, alors je quitte les coques pour ne garder que les chaussons. Et c'est finalement bien plus confortable.",
+          "Le pari s'avère gagnant : une terrasse au soleil, et la solitude d'un refuge où nous serons presque seuls ce soir. Le gardien, Roberto, semble rustre d'abord. Pas très causant, mais il fait tout de même l'effort de parler un mix de français et d'anglais, pour nous amener trois grandes bières pression. Cela fait vingt-deux ans qu'il garde ce refuge après quatre années passées à la cabane Forno, et je le sens fatigué d'être là. Un ou deux ans et ce sera la retraite, pour ce moniteur de ski de Pontresina qui ne semble jamais vraiment s'arrêter de travailler. Il attend également deux personnes des pays de l'Est qui ont réservé, mais qui ne semblent pas honorer leur engagement, une attitude qui semble rendre notre hôte résigné, qui les qualifie de « stupid people ». Un comportement qui n'a cessé de prendre de l'importance ces dernières années, peut-être aidé par la facilité et la déshumanisation des échanges permettant d'effectuer des réservations en refuge. Nous ne sommes donc que trois dans le réfectoire, avec un service aux petits oignons et un menu « à la suisse », la soupe étant toujours suivie de salade verte, et le dessert, à base de meringue.",
         ],
+        photos: [photos.p02, photos.p06],
       },
       {
-        heading: "L'enfer des moraines",
+        heading: `J2 ${itinerary.days[1].title}`,
         paragraphs: [
-          "Quand nous descendons au réfectoire, à 6 h, les deux autres skieurs arrivés tard la veille sont déjà repartis. Inconsciemment, cette journée me stresse. Je ne sais si c'est à cause de sa longueur, du fait que je ne connaisse pas vraiment mes compagnons, ou de l'inconnu des passages et du versant opposé, où en 2024 un gigantesque écroulement a balayé le Vadret de Tschierva.",
-          "De la Fuorcia Tschierva, la neige manque encore, et le versant dans lequel nous basculons, sur l'imposant Vadret Tschierva, est immense et minéral. Comme repéré la veille au soir sur les images satellite, nous allons devoir franchir la moraine à pied. Des pentes instables, certes raides, mais si simples à descendre avec les skis aux pieds, deviennent rapidement un calvaire en chaussures de ski.",
-          "Je change de mode d'action. À présent, nous allons concevoir la suite du programme problème après problème, en tentant de poser sur la table toutes les options possibles. Après avoir un peu tourné pour trouver l'entrée d'une petite écharpe, je jubile de voir que le passage fonctionne, et de savoir que le bout de ce « tunnel morainique » est proche. Pour moi, mais surtout pour mes compagnons, qui lâchent du jus dans ces passages.",
+          "Quand nous descendons au réfectoire, à 6 h, les deux autres skieurs arrivés tard la veille sont déjà repartis. Inconsciemment, cette journée me stresse. Je ne sais si c'est à cause de sa longueur, associée au fait que je ne connaisse pas vraiment mes compagnons, ou l'inconnue des passages et du versant opposé, où en 2024 un gigantesque écroulement a balayé le Vadret de Tschierva. L'enneigement est tout juste pour rejoindre la combe issue du Piz Misaun. Le passage de la Forcia Misaun est une écharpe de neige, pour partie exposée et, d'en bas, peu accueillante. Yannaël et Erwan sont peu à l'aise dans ce passage, et je les sens d'emblée interrogatifs sur ma stratégie et mes choix d'itinéraire. Je préfère remonter l'écharpe depuis le bas, et ne pas tenter de prendre la pente de neige qui semble offrir un raccourci. De la brèche, un pierrier, puis un chemin déneigé et équipé de câbles traverse au milieu d'une barre rocheuse. Enfin un glacier débonnaire !",
+          "De la Fuorcia Tschierva, la neige manque encore, et le versant dans lequel nous basculons, sur l'imposant Vadret Tschierva, est immense et minéral. Comme repéré la veille au soir sur les images satellite, nous allons devoir franchir la moraine à pied. La neige est déjà rare dans la première partie de la descente, mais nous nous en sortons bien. Jusqu'au moment où la pente devient vraiment plus raide, facilitant la fonte de la neige. Et complexifiant notre progression. Des pentes instables, certes raides, mais si simples à descendre avec les skis aux pieds, deviennent rapidement un calvaire en chaussures de ski. Nous rejoignons un sentier, et descendons vers un inconnu qui me semble de plus en plus incertain, à mesure que le terrain sous nos pieds se découvre. Après avoir franchi une barre rocheuse à l'aide d'une chaîne, je pars en repérage. On distingue clairement une trace de ski sur le glacier, juste en face de nous, et je me demande bien où ces skieurs ont pu y prendre pied. Après une traversée le long d'une vague sente, je me retrouve face à un goulet morainique, infranchissable. Je commence à être très perplexe quant à la suite du parcours, parce que ce qui s'ouvre à mon regard est particulièrement chaotique. Je change de mode d'action. À présent, nous allons concevoir la suite du programme problème après problème, en tentant de poser sur la table toutes les options possibles. Rejoindre le refuge Tschierva, pique-niquer et aviser ensuite. Au refuge, je tente d'ouvrir chaque porte, avec l'espoir vain que le local d'hiver soit ouvert, contrairement à ce qui est indiqué sur son site internet. Toutes sont fermées, bien verrouillées, sans aucun jeu. Cette option ne fonctionne pas. Je suis en colère contre ces gardiens qui, ici comme à Coaz, n'ouvrent plus leur local d'hiver. Ces points d'urgence, zones de sécurité ou tout simplement ces haltes sauvages qui maillent la montagne sont là des lieux de composition d'expériences improvisées pour le guide que je suis, mais cette absence pour un tour de clé est frustrante.",
+          "Je pars devant avec une certaine hâte, pour repérer. Me laisser du temps pour affiner les options avant que Yannaël et Erwan arrivent. Nous suivons le sentier de descente, en direction de la moraine. Celui-ci bifurque juste avant, mais une sente s'échappe vers elle, donnant le sentiment d'un point de passage possible. La moraine est raide, mais franchissable. Il est ainsi possible de rejoindre une pente de neige intermittente en face, et de là, la partie supérieure de la zone plate du glacier de Tschierva. Sauf qu'une barre rocheuse nous en défend l'accès. Seule une minuscule écharpe moins raide semble la franchir. Si cela ne fonctionne pas, alors il nous faudra contourner par la moraine déneigée. Un petit calvaire. Après avoir un peu tourné pour trouver l'entrée de l'écharpe, je jubile de voir que mon passage fonctionne, et de savoir que le bout de ce « tunnel morainique » est proche. Pour moi mais surtout pour mes compagnons, qui lâchent du jus dans ces passages.",
         ],
-      },
-      {
-        heading: "Le bivouac Parravicini, suspendu au-dessus de l'Italie",
-        paragraphs: [
-          "De l'autre côté de la moraine, les skis reprennent enfin leurs droits. Le glacier de Roseg nous absorbe dans une neige de printemps déjà lourde ; nous filons plein sud, sous des faces nord qui n'ont pas vu le soleil depuis des mois, avant de remonter les dernières pentes vers la Fuorcla da la Sella. Au col, à plus de 3 250 m, la Suisse se referme derrière nous : de l'autre côté commence l'Italie, et la Vedretta di Scerscen Superiore, où plus aucun refuge gardé ne nous attend avant deux jours.",
-          "Le bivouac Parravicini apparaît enfin, minuscule capsule rouge posée sur un éperon rocheux à plus de 3 180 m, au-dessus de ce vaste plateau glaciaire italien. Nous y arrivons vidés par cette deuxième journée — plus de 2 200 m de dénivelé positif, la moraine en prime. Le confort y est sommaire, mais la vue ne l'est pas : le couchant embrase les faces est du massif, et l'Italie s'étend, immense, sous nos pieds. Nous refaisons le monde et la suite du programme, frontale entre les dents, avant de nous glisser dans les duvets.",
-        ],
-      },
-      {
-        heading: "Le Piz Bernina, point culminant du raid",
-        paragraphs: [
-          "Nous quittons le bivouac avant huit heures, ragaillardis par une nuit finalement reposante. Devant nous s'étend la Vedretta di Scerscen Superiore, un vaste plateau glaciaire à traverser presque à plat avant de remonter au Passo Marinelli Occidentale. La lumière reste franche, sans un souffle de vent, et la neige, encore dure du gel nocturne, porte parfaitement les skis.",
-          "Depuis le Passo Marinelli, nous entamons une grande boucle par le secteur du Bivacco Pansera, atteint une première fois en milieu de matinée sans nous y arrêter — il faudra y revenir ce soir, mais loin encore. La montée se poursuit vers le Pass dal Zupò, puis longe le fil de la Cresta Guzza, où les jumeaux, davantage alpinistes que skieurs dans l'âme, retrouvent leur élément : crampons, corde tendue, quelques pas d'escalade facile entre rochers et neige. Vers midi, nous rejoignons l'épaule italienne de La Spedla, à 4 020 m, porte d'entrée de la voie normale du Bernina.",
-          "Il reste alors un dernier ressaut, étroit et exposé, pour atteindre le point culminant du raid : le Piz Bernina, 4 048 m, sommet le plus élevé des Alpes orientales. Le vent s'est levé sur l'arête sommitale et nous ne nous attardons pas, mais la vue mérite chaque pas : les Alpes suisses et italiennes se déploient à 360 degrés.",
-          "Redescendre prend presque aussi longtemps que monter. Nous repassons par la Fuorcla Bellavista, sur le haut massif, avant de rejoindre enfin le Bivacco Pansera à la nuit tombante, cette fois pour y dormir. Le réchaud tourne, la soupe fume, et personne ne parle beaucoup : la journée a été longue — plus de 2 600 m de dénivelé positif — et le sommeil arrive vite.",
-        ],
-      },
-      {
-        heading: "Le Piz Palü, dans la lumière de l'aube",
-        paragraphs: [
-          "Départ avant l'aube, frontales allumées, pour la dernière journée. Nous remontons vers la crête occidentale du massif du Palü sous une pleine lune qui découpe nettement les reliefs — l'ambiance est presque irréelle, entre le froid sec et le silence complet. Puis le ciel commence à rosir à l'est, juste au moment où nous atteignons l'arête, vers le secteur du Piz Spinas.",
-          "La traversée du Piz Palü qui suit restera l'un des grands moments du voyage : une arête de neige filant plein est, avec le lever du soleil qui embrase progressivement le massif. Nous passons par le sommet central, à un peu moins de 3 900 m, puis poursuivons jusqu'au sommet oriental, dans une lumière qui n'aura duré qu'une petite heure, mais que personne n'oubliera.",
-          "Il reste ensuite la plus longue descente du séjour : près de 2 200 m de dénivelé négatif, par le système glaciaire du Vadret Pers, jusqu'à Bernina Diavolezza, dans la vallée. La neige, remontée en température depuis le début du raid, s'est transformée en une bonne poudreuse de printemps sur les premiers hectomètres, avant de laisser place à une neige plus lourde dans le bas. Peu importe : après quatre jours autour de ce massif qui m'attendait depuis trois hivers, la descente a un goût de victoire tranquille, partagée avec les deux frères — quarante ans tout neufs, et une traversée glaciaire à travers les Alpes en guise de cadeau d'anniversaire.",
-        ],
+        photos: [photos.p13, photos.p14],
       },
     ],
-    // Rail jour par jour : 4 photos par journée (rythme régulier, chaque jour
-    // du raid étant désormais couvert par le texte, voir sections ci-dessus).
-    // `route` reprend exactement le titre de l'étape dans `itinerary.days`,
-    // jamais retapé.
-    storyDays: itinerary.days.map((d, i) => ({
-      day: d.dayNum,
-      route: d.title,
-      photos: [
-        [photos.p02, photos.p06, photos.p07, photos.p09],
-        [photos.p13, photos.p14, photos.p15, photos.p17],
-        [photos.p20, photos.p22, photos.p24, photos.p25],
-        [photos.p26, photos.p30, photos.p32, photos.p34],
-      ][i],
-    })),
   },
   portfolio: {
     eyebrow: "Portfolio",

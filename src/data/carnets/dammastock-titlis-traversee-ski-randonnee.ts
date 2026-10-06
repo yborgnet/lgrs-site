@@ -343,6 +343,7 @@ export const dammastockTitlis: Carnet = {
           "Après 500 m à pied, nous chaussons enfin les skis, pour remonter dans une neige bien ramollie le long du Rindertal, puis, aux lumières du couchant, jusqu'au Furtwangsattel. Par une belle session de grattage, nous rejoignons les pentes surplombant la Windegghütte, régulièrement croûtées puis de plus en plus portantes à mesure que nous descendons.",
           "Une petite cabane d'hiver, très confortable, avec un poêle à bois et du bois que nous tarderons à trouver !",
         ],
+        photos: [photos.passageEtroitRochers, photos.arriveeNocturneCabane],
       },
       {
         heading: "J2 — Windegghütte → Steingletscher",
@@ -352,6 +353,7 @@ export const dammastockTitlis: Carnet = {
           "La neige s'alourdit à mesure que nous perdons de l'altitude, si bien que nous préférons gratter en traversée à la fin plutôt que de risquer des virages. Nous remontons ensuite le canyon jusqu'à Steingletscher, où Thomas nous accueille très chaleureusement.",
           "Aprem belote, chill et échange avec Daniel Dulac que je n'avais pas croisé depuis longtemps. C'est bon, le confort d'une bonne douche chaude, parfois, au milieu d'un trip à ski de randonnée. Et aussi de se faire servir à manger et d'ouvrir le robinet pour se procurer de l'eau !",
         ],
+        photos: [photos.traverseePasserelle, photos.panoramaLacGele],
       },
       {
         heading: "J3 — Steingletscher → Grassenbiwak",
@@ -362,6 +364,7 @@ export const dammastockTitlis: Carnet = {
           "La remontée du Wendengletscher se déroule dans un brouillard épais, des conditions qui rendent le petit bivouac Grassen, haut perché sur la crête dominée par l'imposante paroi du Titlis, d'autant plus accueillant.",
           "Nous passerons l'après-midi et la soirée réchauffés par le feu de bois, à écouter le vent et la neige fouetter les parois du bivouac.",
         ],
+        photos: [photos.passageHotelGlacier, photos.pauseDejeunerCabane],
       },
       {
         heading: "J4 — Grassenbiwak → Spannorthütte",
@@ -375,6 +378,7 @@ export const dammastockTitlis: Carnet = {
           "Il nous faut encore traverser une moraine presque entièrement déneigée et effectuer une longue traversée en grattage pour atteindre enfin le refuge.",
           "La surprise est plutôt bonne : s'il est moins cosy que les précédents, il est en revanche neuf et confortable, et bien doté en bière. Manque peut-être juste un poêle à bois qui aurait adouci l'ambiance plutôt fraîche.",
         ],
+        photos: [photos.aiguilleDominantGlacier, photos.grandeTraverseeSommets],
       },
       {
         heading: "J5 — Spannorthütte → Innertkirchen",
@@ -386,55 +390,7 @@ export const dammastockTitlis: Carnet = {
           "Après la descente vers Engelberg, une transition en bus dans la vallée nous permet de rejoindre les remontées mécaniques d'Engelberg-Titlis. Du Jochpass, au sommet du domaine skiable, une longue descente nous attend à travers le Gental jusqu'à la voiture.",
           "Quelle journée et quelle traversée !",
         ],
-      },
-    ],
-    // Rail jour par jour : J1/J2/J3 reprennent leurs 3 photos disponibles
-    // (texte court à moyen). J4 (texte le plus long, 25 photos disponibles)
-    // et J5 (7 photos) restent une sélection éditoriale resserrée sur l'arc
-    // du récit — jamais un simple ordre chronologique brut — le reste de
-    // chaque journée est de toute façon accessible dans le portfolio.
-    storyDays: [
-      {
-        day: "J1",
-        route: itinerary.days[0].title,
-        photos: [photos.passageEtroitRochers, photos.arriveeNocturneCabane, photos.dinerConvivialCabane],
-      },
-      {
-        day: "J2",
-        route: itinerary.days[1].title,
-        photos: [photos.leverJourMontagnes, photos.traverseePasserelle, photos.panoramaLacGele],
-      },
-      {
-        day: "J3",
-        route: itinerary.days[2].title,
-        photos: [photos.passageHotelGlacier, photos.pauseDejeunerCabane, photos.portraitApresEtape],
-      },
-      {
-        day: "J4",
-        route: itinerary.days[3].title,
-        photos: [
-          photos.aiguilleDominantGlacier,
-          photos.panoramaItineraireAltitude,
-          photos.virageDynamiquePoudreuse,
-          photos.groupeAreteEtroite,
-          photos.grandeTraverseeSommets,
-          photos.cordeeVasteVersant,
-          photos.arriveePlateauPanoramique,
-          photos.toursRocheusesLumiereSoir,
-        ],
-      },
-      {
-        day: "J5",
-        route: itinerary.days[4].title,
-        photos: [
-          photos.departNocturneFrontale,
-          photos.alpenglowSommetRocheux,
-          photos.progressionPlateauGlaciaire,
-          photos.monteeMerNuages,
-          photos.passageCroixSommitale,
-          photos.panoramaToursCalcaires,
-          photos.dernierVirageValee,
-        ],
+        photos: [photos.departNocturneFrontale, photos.passageCroixSommitale],
       },
     ],
   },

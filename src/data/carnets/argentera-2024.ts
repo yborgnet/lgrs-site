@@ -44,16 +44,9 @@ import { argentera2024Photos } from "../photos/argentera-2024";
  * cette passe) : le texte de chaque jour reste donc volontairement général
  * sur ces passages plutôt que de nommer un col non confirmé — À VALIDER.
  *
- * RÉCIT : aucun texte narratif personnel de Yann n'est disponible pour ce
- * segment (contrairement au prologue 2023/2024 d'Alpes Ligures, retrouvé
- * dans un Google Doc) — voir "GAP NON COMBLÉ" dans alpesLigures.ts pour le
- * même type de lacune. Sources inspectées sans résultat (06/10/2026) : dépôt
- * et historique Git (93 commits), reference/ (accueil WordPress), docs/,
- * inventaire des URL WordPress, version en ligne de la page. Le récit se
- * limite donc au titre et au chapô fournis ; chaque journée garde son
- * intitulé et ses photos datables (CarnetStoryFlow). Le texte ci-dessous reste donc factuel (dates,
- * projet, structure du parcours), sans anecdote inventée. À enrichir par
- * Yann si un texte source existe.
+ * RÉCIT : texte complet fourni par Yann (brief carnets), repris mot pour mot
+ * (fautes manifestes corrigées) ; photos datables de chaque journée en regard
+ * (CarnetStoryFlow).
  */
 
 const IMG = "/photos/Argentera-2024/";
@@ -241,20 +234,64 @@ export const argentera2024: Carnet = {
     eyebrow: "Le récit",
     toggleLabel: "Le récit complet",
     title: "Le deuxième segment",
-    standfirst:
-      "Après les Alpes Ligures, cap sur l’Argentera pour la deuxième étape de cette traversée des Alpes en segments. Cinq jours de ski entre Limone Piemonte et Vinadio, avec le groupe retrouvé pour cette nouvelle portion du projet.",
-    // Aucun texte narratif source au-delà du chapô (voir "RÉCIT" ci-dessus) :
-    // chaque journée garde son intitulé et ses photos datables, en regard.
-    // J4 : aucune photo datable, donc pas de bloc.
+    standfirst: "17-21 (Demi)-traversée de l’Argentera, de Limone Piemonte à Vinadio.",
+    // Récit complet fourni par Yann (brief carnets) ; photos datables de chaque
+    // journée en regard du passage correspondant (J4 : aucune photo datable).
     sections: [
-      { heading: `J1 ${itinerary.days[0].title}`, paragraphs: [], photos: [photos.selfieGroupeMinibus, photos.helicoptereNeige] },
-      { heading: `J2 ${itinerary.days[1].title}`, paragraphs: [], photos: [photos.entrainementDvaFosse, photos.rechercheDvaPelle] },
+      {
+        paragraphs: [
+          "Après notre fantastique chevauchée dans les Alpes Ligures, jusqu’aux confins des Alpes, je me retrouve seul à Vinadio, avec la lourde charge de rendre mon manuscrit de thèse.  Après 7 années où “Thérèse” a été une obsession quotidienne, Vinadio et son Caffè della Piazza ont été mon dernier port, ultime bureau éphémère.",
+          "Le soir, une bonne équipe me rejoint, avec pour projet d’initier une traversée des Alpes sur plusieurs années. Pour la première étape, nous avons projeté une demi traversée du massif de l’Argentera. De longues étapes nous attendent, à la fois en termes de dénivelé et de distance. Et il y eut quelques péripéties !",
+        ],
+      },
+      {
+        heading: `J1 ${itinerary.days[0].title}`,
+        paragraphs: [
+          "Le premier soir, après une belle étape dans les forêts de pins et de mélèzes, nous arrivons de nuit dans une cabane que je n’aurais pas de mal à classer parmi les plus rustiques visitées cet hiver. Les murs en béton, déjà humides avant notre passage, n’ont pas été arrangés par celui-ci. Les lits sont superposés, à trois étages, équipés de sommiers à ressorts. Les couvertures sont rationnées : une douce et confortable et une rustique par personne. Heureusement, nous y arrivons tard et nous avons prévu de la quitter aux aurores. La nuit est fraîche.",
+        ],
+        photos: [photos.selfieGroupeMinibus, photos.helicoptereNeige],
+      },
+      {
+        heading: `J2 ${itinerary.days[1].title}`,
+        paragraphs: [
+          "Le deuxième jour, Sylvain doit nous quitter subitement, à la suite d’une mauvaise chute la veille qui n’a pas laissé sa cuisse indemne. Pour la troisième fois de ma carrière, je suis contraint d’appeler les secours transalpins. L’hélicoptère tardera à arriver, et nous ne sommes pas en avance pour terminer notre étape. Une belle pente ouest nous attend, raide à souhait, avec un petit passage de dry skiing pour en sortir. Cette pente était une zone d’ombre de ma préparation, et on s’en sort bien, sans avoir besoin de redescendre trop bas. Une autre pente me préoccupe : nous devons monter assez haut en direction du refuge Pagari pour parvenir par gravité à un petit passage exposé, que j’aimerais pouvoir franchir à la descente. Ça passe sans problème ! Il nous reste une dernière montée pour arriver à notre seconde cabane. Sauf qu’une fois arrivés au point où nous devrions la voir, il n’y a rien. Seulement une raide pente de neige.",
+          "Je me remémore alors cette expérience du petit bivouac Blais, situé juste sous la crête de la frontière franco-italienne, où pendant la nuit le vent avait apporté près d’un mètre de neige devant la porte, nous obligeant à redoubler d’ingéniosité pour ouvrir la porte de l’intérieur. La configuration de ce bivouac est identique, situé sous une crête. J’avais eu la bonne idée d’enregistrer les cartes aériennes de la zone où le bivouac est bien visible. Il m’a suffi de quelques coups de sonde pour identifier l’emplacement de la porte. Et après une petite heure de pelletage, l’entrée du bivouac est dégagée ! Ce qui est certain, c’est que nous n’avons pas eu froid cette nuit-là.",
+        ],
+        photos: [photos.entrainementDvaFosse, photos.rechercheDvaPelle],
+      },
       {
         heading: `J3 ${itinerary.days[2].title}`,
-        paragraphs: [],
-        photos: [photos.melezesMontagneEnneigee, photos.sommetEntreMelezes, photos.detenteAuRefuge, photos.charcuterieAuRefuge],
+        paragraphs: [
+          "Le lendemain, c’est Roland qui ne se sent pas bien, encore sous antibio après une mauvaise bronchite. Il me faut organiser son rapatriement, cette fois-ci sans hélicoptère car il n’était pas empêché pour skier à la descente. S’en est suivi une journée interminable, alourdie par la chaleur. Il y eut encore l’épisode du lac de barrage, qu’il nous fallait bien traverser. Loupant le petit tunnel du chemin d’été, en partie obstrué par la neige, on s’est retrouvé à faire de l’urban ski-mountaineering le long d’une imposante structure de béton… puis il y a eu enfin ce chemin à descendre pour arriver aux thermes de Valdieri. Il n’en fallait pas moins pour skier.",
+          "Valdieri, Casa Savoia, enfin, on va manger autre chose que des Rana, enfin on peut épancher notre soif d’une grande bière et se délecter de bons vins piémontais. Alors que la soirée était aussi mollassonne que notre fatigue, elle a subitement été relancée lorsque quatre italiennes sont entrées dans le refuge, de façon tout à fait improbable, tirées des entrailles de la nuit noire.",
+        ],
+        photos: [photos.melezesMontagneEnneigee, photos.detenteAuRefuge],
       },
-      { heading: `J5 ${itinerary.days[4].title}`, paragraphs: [], photos: [photos.groupeSommetSkis, photos.provisionsVinVinadio, photos.dinerClotureVinadio] },
+      {
+        heading: `J4 ${itinerary.days[3].title}`,
+        paragraphs: [
+          "Refuge Valasco, on profite d’une petite pause boisson, au cœur de la canicule printanière. Refuge étrange, tout droit sorti d’un conte de fées ou bien un reste du tournage d’un film fantastique. Je profite du wifi pour caler un énième changement de plan météo pour le week-end qui arrive. Ce n’est pas mince affaire de trouver un refuge pour 12, un samedi soir du mois de mars. Dans la montée qui suit, nous croisons enfin des skieurs. C’est Claude, un guide suisse à qui j’ai conseillé il y a quelques jours de venir dans le coin.",
+          "Refuge Malinvern, perché là-haut sur son promontoire. Le local d’hiver, également haut perché, jouit d’une vue magnifique sur la vallée.",
+        ],
+      },
+      {
+        heading: `J5 ${itinerary.days[4].title}`,
+        paragraphs: [
+          "La dernière étape remplit toutes ses promesses : le paysage est ouvert et de nouveau clairsemé de petits mélèzes. Nous décidons de monter jusqu’à la Cima Gias dei Laghi, notamment pour voir la suite de notre traversée. L’an prochain, nous essayerons de dormir à l’imposant hospice de Sant’Anna. On a du mal à partir tant la vue est prenante. Encore une bonne descente abritée du soleil, avant de retrouver Sylvain là où la neige ne recouvre plus la route.",
+          "Cette demi-traversée de l’Argentera a rempli toutes ses promesses. De belles et longues étapes, des paysages très variés, des cabanes rustiques et parfois joueuses, des descentes restées froides et parfois devenues très molles. Des rencontres aussi, avec les gardiens de Valdieri, avec des coqs de bruyères et des dizaines de chamois.",
+        ],
+        photos: [photos.groupeSommetSkis, photos.dinerClotureVinadio],
+      },
+      {
+        heading: "Parcours",
+        paragraphs: [
+          "J1 : sommet du télésiège “Colle di Tenda” - Asile Arnaldi - crête de la Cima del Sabbione - Bivacco Sperenza.",
+          "J2 : col à l’ouest de la Cima della Scandeiera - lac de l’Agnel - passo dell’agnello - traversée sur le flanc nord de la Cima de Peïrabroc - refuge Pagari - bivouac Moncalieri bien caché !",
+          "J3 : passaggio dei Ghiacchiai del Gelas - Rifugio Soria Elena - Colle delle Fenestrelle - Lago dei Chiotas - passo del Chiapous - Terme di Valdieri",
+          "J4 : rifugio Valasco - Coletto di Valscura - rifugio Malinvern",
+          "J5 : Testa Gias dei Laghi - valone di Sant’Anna - Vinadio.",
+        ],
+      },
     ],
     closingLinks: [
       { label: "← Étape 1 de la traversée des Alpes en segments : les Alpes Ligures, de Limone Piemonte à Garessio 2000", href: "/alpes-ligures-traversee-ski-randonnee/" },
