@@ -21,6 +21,27 @@ const inline = (s: string) => escapeHtml(s).replace(/\*([^*]+)\*/g, "<em>$1</em>
 
 const isTall = (p: CarnetPhoto) => !!p.width && !!p.height && p.width < p.height;
 
+// Modèle commun à tous les carnets (celui du Maroc) : le premier bloc s'ouvre
+// sur une grande photo pleine largeur, en tête du rail. Si le récit en
+// déclare déjà une (`wide`), rien ne change. Sinon on prend la première photo
+// horizontale du premier bloc qui en a — ou, si le chapô n'en a aucune, la
+// première horizontale du récit, déplacée (jamais dupliquée) en tête du rail.
+function withOpener(sections: Carnet["story"]["sections"]) {
+  const first = sections[0];
+  if (!first || first.photos?.some((p) => p.wide)) return sections;
+  const landscape = (p: CarnetPhoto) => !p.placeholder && !isTall(p);
+  let from = first.photos?.some(landscape) ? 0 : sections.findIndex((s) => s.photos?.some(landscape));
+  if (from < 0) return sections;
+  const opener = sections[from].photos!.find(landscape)!;
+  return sections.map((s, i) => {
+    const rest = i === from ? s.photos!.filter((p) => p !== opener) : s.photos;
+    if (i === 0) return { ...s, photos: [{ ...opener, wide: true }, ...(rest ?? [])] };
+    return i === from ? { ...s, photos: rest } : s;
+  });
+}
+
+const sections = withOpener(story.sections);
+
 // Rail en 2 colonnes : une photo verticale occupe deux rangées (deux photos
 // horizontales à côté), wide = toute la largeur.
 function railItems(photos: CarnetPhoto[]) {
@@ -48,7 +69,7 @@ function photoStyle(photo: CarnetPhoto): string | undefined {
     <div class="carnet-flow__collapse" data-flow-collapse>
     <div class="carnet-flow__body" id={bodyId} data-lightbox-gallery>
       {
-        story.sections.map((section) => (
+        sections.map((section) => (
           <div class="carnet-flow__chunk">
             <div class="carnet-flow__text">
               {section.heading && <h3>{section.heading}</h3>}
