@@ -32,7 +32,9 @@ export type PlanDay = {
 export type PlanLine = {
   /** Phrase éditoriale courte sous le titre. */
   pitch: string;
-  photo?: { src: string; alt: string; position?: string };
+  photo?: { src: string; alt: string; position?: string; credit?: string };
+  /** Photos complémentaires, affichées en grille sous la photo principale. */
+  morePhotos?: { src: string; alt: string; position?: string; credit?: string }[];
   info: { label: string; value: string }[];
   /** GPX de référence (public/). La carte n’est rendue que si le fichier existe. */
   map?: {
@@ -44,6 +46,8 @@ export type PlanLine = {
   itinerary?: { title: string; intro?: string; days: PlanDay[]; note?: string };
   /** Message quand l’itinéraire n’est pas encore arrêté. */
   pending?: string;
+  /** Affiche l’emplacement photo « à venir » même sans itinéraire arrêté. */
+  photoPlaceholder?: boolean;
 };
 
 export type Plan = {
@@ -81,12 +85,19 @@ export const plans: Plan[] = [
         id: "mgoun",
         label: "M’Goun",
         line: {
-          pitch: "Une ligne dans le Haut Atlas central, autour du M’Goun.",
+          pitch:
+            "À l’est du Toubkal, le massif du M’Goun offre un autre visage du Haut Atlas. De longues crêtes dépassant 4 000 mètres, des combes d’altitude et des vallées profondément entaillées composent un terrain particulièrement intéressant pour le ski de randonnée. Depuis la vallée des Aït Bougmez, l’itinéraire peut s’organiser autour de plusieurs journées de traversée, entre villages de montagne, bergeries et hauts plateaux. Moins fréquenté que le Toubkal, le M’Goun se prête à un voyage exploratoire, où l’enneigement détermine les passages possibles et où les rencontres dans les villages occupent une place essentielle.",
+          photoPlaceholder: true,
           info: [
             { label: "Pays", value: "Maroc" },
-            { label: "Massif", value: "Haut Atlas — M’Goun" },
+            { label: "Massif", value: "Haut Atlas central — M’Goun" },
+            { label: "Sommet principal", value: "Ighil M’Goun, environ 4 071 m" },
+            { label: "Accès envisagé", value: "vallée des Aït Bougmez (village d’accès : Agouti)" },
+            { label: "Forme du raid", value: "Itinérance exploratoire dans le Haut Atlas central" },
+            { label: "Hébergements", value: "Gîtes de village et, éventuellement, hébergements rustiques en altitude. Azibs, refuges et possibilités de bivouac à confirmer." },
+            { label: "Période envisageable", value: "février à mars, éventuellement début avril selon l’enneigement" },
           ],
-          pending: "Itinéraire en cours de préparation : étapes, distances et trace seront publiés dès qu’ils seront validés.",
+          pending: "Programme détaillé en préparation : le découpage des étapes, les distances et les dénivelés seront publiés une fois l’itinéraire validé.",
         },
       },
       {
@@ -94,7 +105,7 @@ export const plans: Plan[] = [
         label: "Toubkal",
         line: {
           pitch:
-            "Une traversée originale du Haut Atlas, qui évite volontairement l’itinéraire classique du Toubkal : hautes vallées, grands cols, villages berbères et une seule nuit en bivouac.",
+            "Au sud du Toubkal, les montagnes du Haut Atlas prennent une autre dimension. Loin des itinéraires les plus fréquentés, cette traversée relie les hautes vallées berbères, le lac d’Ifni et les grands cols du massif. Le ski devient un moyen de voyager d’un village à l’autre, de franchir les lignes de partage des eaux et de découvrir une montagne habitée. Les nuits se passent principalement dans de petits gîtes familiaux, avec une seule nuit en bivouac au cœur de la traversée. Une itinérance où la découverte des habitants et de leur territoire compte autant que les descentes à ski.",
           photo: {
             src: "/photos/Maroc/maroc-haut-atlas-toubkal-ski-de-randonnee-et-paysage-d-altitude-06386.jpg",
             alt: "Crêtes enneigées du Haut Atlas dominant la plaine au loin, Maroc",
@@ -127,6 +138,7 @@ export const plans: Plan[] = [
           },
           itinerary: {
             title: "6 à 7 jours. Du lac d’Ifni à l’Oukaïmeden.",
+            note: "Découpage de travail : les noms de villages et d’azibs restent à vérifier par rapport aux coordonnées exactes de la trace, et les points d’arrivée des étapes sont à confirmer.",
             days: [
         {"num": "J1", "title": "Amsouzart / Aït Igrane → lac d’Ifni", "km": 5.6, "up": 1025, "down": 1025, "text": "Entrée dans le massif par son versant sud et montée vers le lac d’Ifni.", "night": "hébergement local / organisation selon conditions."},
         {"num": "J2", "title": "Lac d’Ifni → haute vallée / azibs", "km": 10.1, "up": 1380, "down": 1345, "text": "Premier grand franchissement vers le nord.", "night": "bivouac — la seule nuit de bivouac de tout le raid."},
@@ -146,8 +158,13 @@ export const plans: Plan[] = [
     country: "Bulgarie",
     massif: "Rila & Pirin",
     line: {
+      photo: {
+        src: "/images/Illustrations ski med/bulgarie-rila-ski-randonnee-gregory-rohart.jpg",
+        alt: "Ski de randonnée dans le massif du Rila, Bulgarie.",
+        credit: "Grégory Rohart",
+      },
       pitch:
-        "Deux massifs, une seule ligne. Des hauts plateaux du Rila aux reliefs plus acérés du Pirin, une traversée à ski en itinérance, entre refuges d’altitude, monastère orthodoxe et grands vallons balkaniques.",
+        "Skier dans les Balkans est un vieux rêve. Bien sûr pour le ski, mais aussi pour l’ambiance de ces anciens pays du bloc de l’Est. J’ai imaginé ce voyage comme une itinérance en deux temps, à travers les massifs du Rila et du Pirin, au sud de Sofia : le Rila et ses vastes paysages de lacs et de hauts plateaux, puis le Pirin, plus minéral et alpin, avec ses sommets et ses arêtes calcaires. Nous dormirons dans des refuges de montagne, parfois au confort spartiate, des cabanes non gardées et des hébergements locaux. Entre les deux traversées, une halte en vallée permettra de découvrir une autre facette de la Bulgarie.",
       info: [
         { label: "Pays", value: "Bulgarie" },
         { label: "Massifs", value: "Rila & Pirin" },
@@ -210,14 +227,22 @@ export const plans: Plan[] = [
     country: "Corse",
     massif: "Alta Strada",
     line: {
-      pitch: "Une grande traversée hivernale de la montagne corse, du sud vers le nord, suivant l’épine dorsale de l’île. Une itinérance sauvage où alternent hauts plateaux, lacs gelés, forêts de pins laricio et grands reliefs granitiques. En hiver, la montagne retrouve une solitude presque totale : une partie des nuits se passe dans les refuges du GR20 devenus refuges non gardés, entrecoupée de nuits plus confortables dans les rares auberges accessibles par les vallées.",
+      photo: {
+        src: "/images/Illustrations ski med/monte-cinto-corse-panorama-mer-alpine-line-ski-randonnee.webp",
+        alt: "Panorama des montagnes enneigées du Monte Cinto, avec la mer à l’horizon, pendant l’Alpine Line en Corse.",
+      },
+      morePhotos: [
+        { src: "/images/Illustrations ski med/monte-cinto-corse-ascension-ski-randonnee-alpine-line.webp", alt: "Skieur sur une crête enneigée pendant l’ascension du Monte Cinto à ski de randonnée, lors de l’Alpine Line en Corse." },
+        { src: "/images/Illustrations ski med/monte-cinto-corse-aretes-enneigees-alpine-line.webp", alt: "Arêtes rocheuses et reliefs enneigés pendant l’ascension du Monte Cinto à ski de randonnée, en Corse." },
+      ],
+      pitch: "Une grande traversée hivernale de la montagne corse, du sud vers le nord, suivant l’épine dorsale de l’île. Une itinérance sauvage où alternent hauts plateaux, lacs gelés, forêts de pins laricio et grands reliefs granitiques. En hiver, la montagne retrouve une solitude presque totale. Une partie des nuits se passe dans les refuges du GR20, non gardés à cette période, entrecoupée de nuits plus confortables dans les auberges accessibles par les vallées. Une traversée exigeante, à la découverte d’une montagne insulaire au caractère unique.",
       info: [
         { label: "Pays", value: "France — Corse" },
         { label: "Massif", value: "Alta Strada, du Renoso au Cinto" },
         { label: "Départ", value: "Val d’Ese" },
         { label: "Arrivée", value: "Haut-Asco" },
         { label: "Forme du raid", value: "Traversée à ski en itinérance" },
-        { label: "Hébergements", value: "Refuges non gardés en altitude + auberges/hôtels lors des passages en vallée." },
+        { label: "Hébergements", value: "Refuges non gardés du GR20 en altitude et auberges lors des passages en vallée (ouverture hivernale à vérifier)." },
         { label: "Durée", value: "8 jours de ski" },
         { label: "Distance", value: "environ 105 km" },
         { label: "D+", value: "environ 9 820 m" },
@@ -245,27 +270,48 @@ export const plans: Plan[] = [
     country: "Pyrénées orientales",
     massif: "Du Canigou à l’Ariège",
     line: {
-      pitch: "Une traversée d’est en ouest des Pyrénées orientales, depuis les contreforts méditerranéens du Canigou jusqu’aux portes de l’Ariège. L’itinéraire traverse successivement le Canigou, les hauts plateaux du Pla Guillem, le secteur de Vallter, la Cerdagne puis les paysages granitiques du Carlit et des Bésines. Une véritable ligne à travers les Pyrénées catalanes, alternant refuges d’hiver et passages dans les vallées habitées.",
+      photo: {
+        src: "/images/Illustrations ski med/canigou-madres-pin-isole-pyrenees-enneigees.webp",
+        alt: "Pin isolé et montagnes enneigées du Canigou et du Madres, Pyrénées orientales.",
+      },
+      pitch: "Ce raid à ski est le premier segment d’un projet de traversée intégrale des Pyrénées, de la Méditerranée à l’Atlantique, au plus près de la ligne de partage des eaux, à raison d’un tronçon par hiver et sur plusieurs années. Ce premier volet relie les versants catalans du Canigou aux hautes vallées enneigées de la Cerdagne et de l’Ariège, marquant la transition entre mer et montagnes intérieures. Le parcours alterne ski de montagne, immersion culturelle et observation des paysages : forêts méditerranéennes, vastes plateaux d’altitude, crêtes frontalières, lacs gelés et refuges isolés.",
       info: [
         { label: "Pays", value: "France — Pyrénées orientales" },
         { label: "Massif", value: "Canigou, Pla Guillem, Cerdagne, Carlit et Bésines" },
         { label: "Départ", value: "Batère" },
         { label: "Arrivée", value: "L’Hospitalet-près-l’Andorre" },
-        { label: "Forme du raid", value: "Traversée à ski en itinérance" },
-        { label: "Hébergements", value: "Refuges d’hiver rustiques + refuge gardé lorsqu’il est ouvert + une nuit confortable en Cerdagne." },
+        { label: "Forme du raid", value: "Traversée à ski en itinérance — premier segment de la traversée intégrale des Pyrénées" },
+        { label: "Niveau", value: "skieurs de randonnée ayant déjà une expérience de l’itinérance ; pentes généralement de 30 à 35°, passages à 40° possibles" },
+        { label: "Hébergements", value: "Refuges gardés ou non gardés selon les étapes et leur ouverture, hôtels ou gîtes en vallée." },
         { label: "Durée", value: "6 jours de ski" },
         { label: "Distance", value: "environ 106 km" },
         { label: "D+", value: "environ 6 220 m" },
         { label: "Altitude maximale", value: "environ 2 850 m" },
       ],
+      map: {
+        gpx: "/gpx/pyrenees-orientales-transpyr-2027.gpx",
+        title: "Carte de la traversée du Canigou à l’Ariège, Pyrénées orientales",
+        // Fins de segment du GPX (J1→J6).
+        markers: [
+          { name: "Batère", lat: 42.5016, lon: 2.5563, direction: "right" },
+          { name: "Cortalets", lat: 42.5342, lon: 2.4653, direction: "top" },
+          { name: "Pla Guillem", lat: 42.476, lon: 2.4126, direction: "right" },
+          { name: "Ulldeter", lat: 42.419, lon: 2.2584, direction: "bottom" },
+          { name: "Font-Romeu", lat: 42.5, lon: 2.0358, direction: "bottom" },
+          { name: "Bésines", lat: 42.6032, lon: 1.8674, direction: "top" },
+          { name: "L’Hospitalet-près-l’Andorre", lat: 42.5879, lon: 1.8035, direction: "left" },
+        ],
+      },
       itinerary: {
         title: "6 jours. Du Canigou à l’Ariège.",
+        note: "Les prochains segments de la traversée intégrale (Cerdagne, Encantats, Maladeta, Ossau, Pays basque) sont à l’état de notes de préparation : aucun n’est arrêté.",
         days: [
-        {"num": "J1", "title": "Batère → Cortalets", "km": 15.7, "up": 1470, "down": 710, "text": "Traversée des contreforts orientaux du Canigou vers son versant nord.", "alert": "Hébergement à confirmer : pour l’hiver 2026-2027, l’annexe hivernale des Cortalets est annoncée fermée en raison des travaux. La solution exacte devra être adaptée.", "night": "secteur des Cortalets."},
-        {"num": "J2", "title": "Cortalets → Pla Guillem, par le Canigou", "km": 12.6, "up": 1210, "down": 1090, "peak": 2770, "text": "Grande traversée du massif du Canigou.", "night": "refuge non gardé de Pla Guillem, d’environ 20 places avec poêle à bois."},
-        {"num": "J3", "title": "Pla Guillem → Ulldeter", "km": 16.5, "up": 720, "down": 780, "text": "Traversée des hauts plateaux puis passage de la frontière vers le haut bassin du Ter.", "night": "refuge d’Ulldeter, gardé avec restauration lorsqu’il est ouvert. Hors gardiennage, un petit local d’urgence est disponible."},
-        {"num": "J4", "title": "Ulldeter → Cerdagne / Font-Romeu–Odeillo", "km": 25.8, "up": 970, "down": 1550, "peak": 2850, "text": "Longue traversée des crêtes frontalières puis descente en Cerdagne.", "night": "hôtel, gîte ou auberge en vallée."},
-        {"num": "J5", "title": "Cerdagne → refuge des Bésines", "km": 28.7, "up": 1660, "down": 1230, "text": "Longue journée permettant de quitter les villages pour retrouver progressivement la haute montagne.", "night": "refuge d’hiver des Bésines, avec espace hiver : couchages, couvertures, eau, équipement de cuisson et chauffage."},
+        {"num": "J0", "title": "Arrivée à Arles-sur-Tech", "text": "Rendez-vous dans le Vallespir, au pied du Canigou, et préparation du matériel.", "night": "hôtel ou gîte à Arles-sur-Tech."},
+        {"num": "J1", "title": "Batère → Cortalets", "km": 15.7, "up": 1470, "down": 710, "text": "Transfert jusqu’au refuge de Batère, puis montée par le col de la Cirera et traversée du Ras de Prat Cabrera : forêts, pentes du Canigou et vues sur la Méditerranée.", "alert": "Hébergement à confirmer : pour l’hiver 2026-2027, l’annexe hivernale des Cortalets est annoncée fermée en raison des travaux. La solution exacte devra être adaptée.", "night": "secteur des Cortalets."},
+        {"num": "J2", "title": "Cortalets → Pla Guillem, par le Canigou", "km": 12.6, "up": 1210, "down": 1090, "peak": 2770, "text": "Pic Joffre, Canigou (2 784 m), refuge Arago et Puig Roja : la grande traversée du massif.", "night": "refuge non gardé de Pla Guillem, d’environ 20 places avec poêle à bois."},
+        {"num": "J3", "title": "Pla Guillem → Ulldeter", "km": 16.5, "up": 720, "down": 780, "text": "Roca Colom, Portella de Mantet, puis descente vers la Catalogne espagnole. Ascension du Costabona possible selon les conditions.", "night": "refuge d’Ulldeter, gardé avec restauration lorsqu’il est ouvert. Hors gardiennage, un petit local d’urgence est disponible."},
+        {"num": "J4", "title": "Ulldeter → Cerdagne / Font-Romeu–Odeillo", "km": 25.8, "up": 970, "down": 1550, "peak": 2850, "text": "Crêtes frontalières par les Pics de la Vaca et le secteur du Pic de les Nou Fonts, puis descente par le vallon d’Eyne vers la Cerdagne.", "night": "hôtel, gîte ou auberge en vallée."},
+        {"num": "J5", "title": "Cerdagne → refuge des Bésines", "km": 28.7, "up": 1660, "down": 1230, "text": "Hauts plateaux du Capcir par les Bouillouses, puis passage au Coll de Coma d’Anyell : grande étape de haute montagne entre Cerdagne et Ariège.", "night": "refuge d’hiver des Bésines, avec espace hiver : couchages, couvertures, eau, équipement de cuisson et chauffage."},
         {"num": "J6", "title": "Bésines → L’Hospitalet-près-l’Andorre", "km": 6.5, "up": 190, "down": 710, "text": "Dernière descente jusqu’à la vallée de l’Ariège.", "nightLabel": "Fin du raid", "night": "L’Hospitalet-près-l’Andorre, avec gare ferroviaire."},
         ],
       },

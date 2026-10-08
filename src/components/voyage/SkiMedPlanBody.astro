@@ -34,7 +34,7 @@ function stats(d: PlanDay) {
 <div class="plan-body">
   <p class="plan-body__pitch">{line.pitch}</p>
 
-  {(line.photo || !line.pending) && (
+  {(line.photo || line.photoPlaceholder || !line.pending) && (
   <figure class="plan-photo">
     {
       line.photo ? (
@@ -51,8 +51,21 @@ function stats(d: PlanDay) {
         </div>
       )
     }
+    {line.photo?.credit && <figcaption class="plan-photo__credit">© {line.photo.credit}</figcaption>}
   </figure>
   )}
+
+  {
+    line.morePhotos && line.morePhotos.length > 0 && (
+      <div class="plan-photos">
+        {line.morePhotos.map((ph) => (
+          <figure class="plan-photo plan-photo--small">
+            <img src={withBase(ph.src)} alt={ph.alt} loading="lazy" decoding="async" />
+          </figure>
+        ))}
+      </div>
+    )
+  }
 
   <div class="plan-info">
     <InformationGrid label="Informations" fields={line.info} />
