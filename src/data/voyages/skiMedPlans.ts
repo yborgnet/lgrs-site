@@ -87,7 +87,11 @@ export const plans: Plan[] = [
         line: {
           pitch:
             "À l’est du Toubkal, le massif du M’Goun offre un autre visage du Haut Atlas. De longues crêtes dépassant 4 000 mètres, des combes d’altitude et des vallées profondément entaillées composent un terrain particulièrement intéressant pour le ski de randonnée. Depuis la vallée des Aït Bougmez, l’itinéraire peut s’organiser autour de plusieurs journées de traversée, entre villages de montagne, bergeries et hauts plateaux. Moins fréquenté que le Toubkal, le M’Goun se prête à un voyage exploratoire, où l’enneigement détermine les passages possibles et où les rencontres dans les villages occupent une place essentielle.",
-          photoPlaceholder: true,
+          photo: {
+            src: "/photos/Maroc/maroc-haut-atlas-toubkal-rencontre-habitants-village-montagne.jpg",
+            alt: "Rencontre avec des habitants d’un village du Haut Atlas, Maroc",
+            position: "center 35%",
+          },
           info: [
             { label: "Pays", value: "Maroc" },
             { label: "Massif", value: "Haut Atlas central — M’Goun" },
