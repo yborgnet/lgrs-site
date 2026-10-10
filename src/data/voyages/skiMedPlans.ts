@@ -1,6 +1,6 @@
 // Page Raid / Ski méditerranéen : les cinq plans d’un même départ (un seul voyage,
 // destination définitive choisie selon la neige, la météo et la logistique).
-// Ordre : A Maroc · B Bulgarie · C Turquie · D Corse · E Pyrénées orientales.
+// Ordre : A Corse · B Maroc · C Bulgarie · D Turquie · E Pyrénées orientales.
 //
 // Sources : Bulgarie = brief du 05/10/2026 (chiffres recoupés avec public/gpx/bulgarie-rila-pirin-2027.gpx :
 // distances par segment identiques, D+/D− = sommes brutes des <ele>, J5 = segments 5 + 6) ; Corse, Pyrénées et
@@ -75,8 +75,51 @@ export const plansSection = {
 
 export const plans: Plan[] = [
   {
-    id: "maroc",
+    id: "corse",
     letter: "A",
+    country: "Corse",
+    massif: "Alta Strada",
+    line: {
+      photo: {
+        src: "/images/Illustrations ski med/monte-cinto-corse-panorama-mer-alpine-line-ski-randonnee.webp",
+        alt: "Panorama des montagnes enneigées du Monte Cinto, avec la mer à l’horizon, pendant l’Alpine Line en Corse.",
+      },
+      morePhotos: [
+        { src: "/images/Illustrations ski med/monte-cinto-corse-ascension-ski-randonnee-alpine-line.webp", alt: "Skieur sur une crête enneigée pendant l’ascension du Monte Cinto à ski de randonnée, lors de l’Alpine Line en Corse." },
+        { src: "/images/Illustrations ski med/monte-cinto-corse-aretes-enneigees-alpine-line.webp", alt: "Arêtes rocheuses et reliefs enneigés pendant l’ascension du Monte Cinto à ski de randonnée, en Corse." },
+      ],
+      pitch: "Une grande traversée hivernale de la montagne corse, du sud vers le nord, suivant l’épine dorsale de l’île. Une itinérance sauvage où alternent hauts plateaux, lacs gelés, forêts de pins laricio et grands reliefs granitiques. En hiver, la montagne retrouve une solitude presque totale. Une partie des nuits se passe dans les refuges du GR20, non gardés à cette période, entrecoupée de nuits plus confortables dans les auberges accessibles par les vallées. Une traversée exigeante, à la découverte d’une montagne insulaire au caractère unique.",
+      info: [
+        { label: "Pays", value: "France — Corse" },
+        { label: "Massif", value: "Alta Strada, du Renoso au Cinto" },
+        { label: "Départ", value: "Val d’Ese" },
+        { label: "Arrivée", value: "Haut-Asco" },
+        { label: "Forme du raid", value: "Traversée à ski en itinérance" },
+        { label: "Hébergements", value: "Refuges non gardés du GR20 en altitude et auberges lors des passages en vallée (ouverture hivernale à vérifier)." },
+        { label: "Durée", value: "8 jours de ski" },
+        { label: "Distance", value: "environ 105 km" },
+        { label: "D+", value: "environ 9 820 m" },
+        { label: "D−", value: "environ 10 020 m" },
+      ],
+      map: { gpx: "/gpx/corse-alta-strada-2027.gpx", title: "Carte de l’Alta Strada en Corse" },
+      itinerary: {
+        title: "8 jours. Du Val d’Ese à Haut-Asco.",
+        days: [
+        {"num": "J1", "title": "Val d’Ese → Capannelle", "km": 14.2, "up": 1394, "down": 1332, "text": "Traversée depuis le plateau d’Ese vers le massif du Renoso et Capannelle.", "night": "gîte/auberge ou hébergement de montagne dans le secteur de Capannelle selon ouverture."},
+        {"num": "J2", "title": "Capannelle → Vizzavona", "km": 14.3, "up": 1073, "down": 1789, "text": "Traversée vers le col de Vizzavona et retour temporaire dans une vallée habitée.", "night": "hôtel, gîte ou auberge à Vizzavona."},
+        {"num": "J3", "title": "Vizzavona → refuge de l’Onda", "km": 12.5, "up": 1522, "down": 1007, "text": "Retour immédiat en haute montagne et entrée dans la partie centrale de l’Alta Strada.", "night": "refuge de l’Onda, non gardé en hiver."},
+        {"num": "J4", "title": "Onda → Petra Piana", "km": 7.7, "up": 955, "down": 583, "night": "refuge de Petra Piana, non gardé en hiver."},
+        {"num": "J5", "title": "Petra Piana → Manganu", "km": 9.4, "up": 871, "down": 1128, "text": "Traversée du cœur granitique de l’île, dans le secteur des grands lacs.", "night": "refuge de Manganu, non gardé en hiver."},
+        {"num": "J6", "title": "Manganu → Castel de Vergio", "km": 15.2, "up": 702, "down": 898, "text": "Descente vers le col de Vergio permettant de retrouver un hébergement accessible par la route.", "night": "hôtel/auberge à Castel de Vergio selon ouverture hivernale."},
+        {"num": "J7", "title": "Castel de Vergio → Tighiettu, par Ciottulu di i Mori", "km": 16.7, "up": 1328, "down": 1093, "text": "Retour dans la haute montagne et traversée du secteur de la Paglia Orba.", "night": "refuge non gardé de Tighiettu."},
+        {"num": "J8", "title": "Tighiettu → Haut-Asco", "km": 14.9, "up": 1977, "down": 2189, "text": "Dernière grande journée dans le massif du Cinto avant la descente vers Asco.", "nightLabel": "Fin du raid", "night": "hébergement accessible par la route à Haut-Asco."},
+        ],
+      },
+    },
+  },
+  {
+    id: "maroc",
+    letter: "B",
     country: "Maroc",
     massif: "Haut Atlas",
     defaultVariant: "toubkal",
@@ -109,27 +152,27 @@ export const plans: Plan[] = [
             gpx: "/gpx/maroc-mgoun-2027.gpx",
             title: "Carte de la traversée du M’Goun, Haut Atlas central, Maroc",
             markers: [
-              { name: "Départ", lat: 31.3814875, lon: -6.8940021, direction: "right" },
-              { name: "Fin étape 1", lat: 31.3800165, lon: -6.8552718, direction: "right" },
-              { name: "Fin étape 2", lat: 31.3907841, lon: -6.7911851, direction: "right" },
-              { name: "Fin étape 3", lat: 31.4352311, lon: -6.6740301, direction: "right" },
-              { name: "Fin étape 4", lat: 31.5309743, lon: -6.5155347, direction: "right" },
-              { name: "Fin étape 5", lat: 31.5743505, lon: -6.4755232, direction: "right" },
-              { name: "Fin étape 6", lat: 31.6681386, lon: -6.3642222, direction: "right" },
-              { name: "Arrivée", lat: 31.7075075, lon: -6.3026383, direction: "right" },
+              { name: "Ouaounagmoute", lat: 31.3814875, lon: -6.8940021, direction: "left" },
+              { name: "Tagoukht", lat: 31.3800165, lon: -6.8552718, direction: "right" },
+              { name: "Magdaz", lat: 31.3907841, lon: -6.7911851, direction: "right" },
+              { name: "Imi n Ikis", lat: 31.4352311, lon: -6.6740301, direction: "right" },
+              { name: "Haute montagne (2 927 m)", lat: 31.5309743, lon: -6.5155347, direction: "right" },
+              { name: "Ikiss", lat: 31.5743505, lon: -6.4755232, direction: "right" },
+              { name: "Rbat", lat: 31.6681386, lon: -6.3642222, direction: "right" },
+              { name: "Zaouiat Oulmzi", lat: 31.7075075, lon: -6.3026383, direction: "right" },
             ],
           },
           itinerary: {
-            title: "Une traversée du M’Goun en 7 étapes de travail.",
-            note: "Découpage issu des segments de la trace de travail : noms des étapes, villages, azibs, refuges, bivouacs et hébergements restent à préciser et à confirmer avant publication. Distances et dénivelés bruts, non lissés. Une discontinuité d’environ 5 km sépare les étapes 3 et 4 sur la trace (liaison non skiée ou à reprendre) ; elle n’est pas comptée dans les distances.",
+            title: "7 étapes de travail. D’Ouaounagmoute à Zaouiat Oulmzi.",
+            note: "Découpage issu des segments de la trace de travail. Les noms de villages sont ceux d’OpenStreetMap les plus proches des points de fin d’étape (moins de 250 m) ; ils restent à valider sur le terrain, de même que les hébergements, azibs, refuges et possibilités de bivouac. Distances et dénivelés bruts, non lissés. Une discontinuité d’environ 5 km sépare Imi n Ikis (fin de J3) et Amezri (début de J4) : liaison non skiée ou trace à compléter, non comptée dans les distances.",
             days: [
-        {"num": "J1", "title": "Étape 1", "km": 10.4, "up": 1169, "down": 1080, "peak": 2754},
-        {"num": "J2", "title": "Étape 2", "km": 12.5, "up": 1135, "down": 1187, "peak": 2834},
-        {"num": "J3", "title": "Étape 3", "km": 14.3, "up": 1597, "down": 1387, "peak": 3255},
-        {"num": "J4", "title": "Étape 4", "km": 19.0, "up": 1631, "down": 981, "peak": 3594},
-        {"num": "J5", "title": "Étape 5", "km": 18.6, "up": 1362, "down": 2023, "peak": 4054},
-        {"num": "J6", "title": "Étape 6", "km": 17.6, "up": 1577, "down": 1857, "peak": 3504},
-        {"num": "J7", "title": "Étape 7", "km": 22.8, "up": 2046, "down": 1895, "peak": 3740}
+        {"num": "J1", "title": "Ouaounagmoute → Tagoukht", "night": "Tagoukht, hébergement à confirmer.", "km": 10.4, "up": 1169, "down": 1080, "peak": 2754},
+        {"num": "J2", "title": "Tagoukht → Magdaz", "night": "Magdaz, hébergement à confirmer (un gîte, Dar Megdaz, y est référencé dans OpenStreetMap).", "km": 12.5, "up": 1135, "down": 1187, "peak": 2834},
+        {"num": "J3", "title": "Magdaz → Imi n Ikis", "night": "Imi n Ikis, hébergement à confirmer.", "km": 14.3, "up": 1597, "down": 1387, "peak": 3255},
+        {"num": "J4", "title": "Amezri → haute montagne", "alert": "Fin d’étape à 2 927 m, sans village sur la trace : le point de nuit (azib, refuge ou bivouac) reste à déterminer.", "night": "à déterminer.", "km": 19.0, "up": 1631, "down": 981, "peak": 3594},
+        {"num": "J5", "title": "Haute montagne → Ikiss", "night": "Ikiss, hébergement à confirmer.", "km": 18.6, "up": 1362, "down": 2023, "peak": 4054},
+        {"num": "J6", "title": "Ikiss → Rbat", "night": "Rbat, hébergement à confirmer.", "km": 17.6, "up": 1577, "down": 1857, "peak": 3504},
+        {"num": "J7", "title": "Rbat → Zaouiat Oulmzi", "nightLabel": "Fin du raid", "night": "Zaouiat Oulmzi, où plusieurs gîtes sont référencés dans OpenStreetMap (à confirmer).", "km": 22.8, "up": 2046, "down": 1895, "peak": 3740}
             ],
           },
         },
@@ -188,13 +231,14 @@ export const plans: Plan[] = [
   },
   {
     id: "bulgarie",
-    letter: "B",
+    letter: "C",
     country: "Bulgarie",
     massif: "Rila & Pirin",
     line: {
       photo: {
         src: "/images/Illustrations ski med/bulgarie-rila-ski-randonnee-gregory-rohart.jpg",
         alt: "Ski de randonnée dans le massif du Rila, Bulgarie.",
+        position: "center 30%",
         credit: "Grégory Rohart",
       },
       pitch:
@@ -246,56 +290,13 @@ export const plans: Plan[] = [
   },
   {
     id: "turquie",
-    letter: "C",
+    letter: "D",
     country: "Turquie",
     massif: "Massifs méditerranéens · Taurus",
     line: {
       pitch: "Les montagnes méditerranéennes de Turquie, entre Taurus et littoral.",
       info: [{ label: "Pays", value: "Turquie" }, { label: "Massif", value: "Massifs méditerranéens — Taurus" }],
       pending: "Itinéraire en cours de préparation : étapes, distances et trace seront publiés dès qu’ils seront validés.",
-    },
-  },
-  {
-    id: "corse",
-    letter: "D",
-    country: "Corse",
-    massif: "Alta Strada",
-    line: {
-      photo: {
-        src: "/images/Illustrations ski med/monte-cinto-corse-panorama-mer-alpine-line-ski-randonnee.webp",
-        alt: "Panorama des montagnes enneigées du Monte Cinto, avec la mer à l’horizon, pendant l’Alpine Line en Corse.",
-      },
-      morePhotos: [
-        { src: "/images/Illustrations ski med/monte-cinto-corse-ascension-ski-randonnee-alpine-line.webp", alt: "Skieur sur une crête enneigée pendant l’ascension du Monte Cinto à ski de randonnée, lors de l’Alpine Line en Corse." },
-        { src: "/images/Illustrations ski med/monte-cinto-corse-aretes-enneigees-alpine-line.webp", alt: "Arêtes rocheuses et reliefs enneigés pendant l’ascension du Monte Cinto à ski de randonnée, en Corse." },
-      ],
-      pitch: "Une grande traversée hivernale de la montagne corse, du sud vers le nord, suivant l’épine dorsale de l’île. Une itinérance sauvage où alternent hauts plateaux, lacs gelés, forêts de pins laricio et grands reliefs granitiques. En hiver, la montagne retrouve une solitude presque totale. Une partie des nuits se passe dans les refuges du GR20, non gardés à cette période, entrecoupée de nuits plus confortables dans les auberges accessibles par les vallées. Une traversée exigeante, à la découverte d’une montagne insulaire au caractère unique.",
-      info: [
-        { label: "Pays", value: "France — Corse" },
-        { label: "Massif", value: "Alta Strada, du Renoso au Cinto" },
-        { label: "Départ", value: "Val d’Ese" },
-        { label: "Arrivée", value: "Haut-Asco" },
-        { label: "Forme du raid", value: "Traversée à ski en itinérance" },
-        { label: "Hébergements", value: "Refuges non gardés du GR20 en altitude et auberges lors des passages en vallée (ouverture hivernale à vérifier)." },
-        { label: "Durée", value: "8 jours de ski" },
-        { label: "Distance", value: "environ 105 km" },
-        { label: "D+", value: "environ 9 820 m" },
-        { label: "D−", value: "environ 10 020 m" },
-      ],
-      map: { gpx: "/gpx/corse-alta-strada-2027.gpx", title: "Carte de l’Alta Strada en Corse" },
-      itinerary: {
-        title: "8 jours. Du Val d’Ese à Haut-Asco.",
-        days: [
-        {"num": "J1", "title": "Val d’Ese → Capannelle", "km": 14.2, "up": 1394, "down": 1332, "text": "Traversée depuis le plateau d’Ese vers le massif du Renoso et Capannelle.", "night": "gîte/auberge ou hébergement de montagne dans le secteur de Capannelle selon ouverture."},
-        {"num": "J2", "title": "Capannelle → Vizzavona", "km": 14.3, "up": 1073, "down": 1789, "text": "Traversée vers le col de Vizzavona et retour temporaire dans une vallée habitée.", "night": "hôtel, gîte ou auberge à Vizzavona."},
-        {"num": "J3", "title": "Vizzavona → refuge de l’Onda", "km": 12.5, "up": 1522, "down": 1007, "text": "Retour immédiat en haute montagne et entrée dans la partie centrale de l’Alta Strada.", "night": "refuge de l’Onda, non gardé en hiver."},
-        {"num": "J4", "title": "Onda → Petra Piana", "km": 7.7, "up": 955, "down": 583, "night": "refuge de Petra Piana, non gardé en hiver."},
-        {"num": "J5", "title": "Petra Piana → Manganu", "km": 9.4, "up": 871, "down": 1128, "text": "Traversée du cœur granitique de l’île, dans le secteur des grands lacs.", "night": "refuge de Manganu, non gardé en hiver."},
-        {"num": "J6", "title": "Manganu → Castel de Vergio", "km": 15.2, "up": 702, "down": 898, "text": "Descente vers le col de Vergio permettant de retrouver un hébergement accessible par la route.", "night": "hôtel/auberge à Castel de Vergio selon ouverture hivernale."},
-        {"num": "J7", "title": "Castel de Vergio → Tighiettu, par Ciottulu di i Mori", "km": 16.7, "up": 1328, "down": 1093, "text": "Retour dans la haute montagne et traversée du secteur de la Paglia Orba.", "night": "refuge non gardé de Tighiettu."},
-        {"num": "J8", "title": "Tighiettu → Haut-Asco", "km": 14.9, "up": 1977, "down": 2189, "text": "Dernière grande journée dans le massif du Cinto avant la descente vers Asco.", "nightLabel": "Fin du raid", "night": "hébergement accessible par la route à Haut-Asco."},
-        ],
-      },
     },
   },
   {

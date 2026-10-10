@@ -135,7 +135,7 @@ const firstId = plans[0].id;
       });
     });
 
-    // Lien direct : /…/#plan-bulgarie ouvre le plan B.
+    // Lien direct : /…/#plan-bulgarie ouvre le plan C.
     if (list.dataset.hash) {
       const m = location.hash.match(new RegExp(`^#${list.dataset.hash}-(.+)$`));
       const target = m && tabs.find((t) => t.dataset.tab === m[1]);
