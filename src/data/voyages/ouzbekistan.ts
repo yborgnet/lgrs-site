@@ -7,7 +7,7 @@ export const ouzbekistan: Voyage = {
     description:
       "Raid à ski dans le massif du Hissar en Ouzbékistan : exploration sauvage, bivouac, villages d’altitude et hospitalité au cœur de l’Asie centrale.",
     ogImage:
-      "/images/Illustration-FT-Ouzbekistan-scaled.jpeg",
+      "/images/ouzbekistan-hissar.jpg",
   },
   masthead: {
     eyebrow: "Voyage à ski de randonnée",
@@ -21,11 +21,12 @@ export const ouzbekistan: Voyage = {
       "<strong>Montagnes sauvages, bivouac et villages d’altitude au cœur de l’Asie centrale.</strong>",
       "Ce raid dans le massif du Hissar se déroule en deux temps. D’abord une vraie exploration, avec des vallées reculées et une nuit sous tente au cœur de montagnes peu parcourues. Puis une itinérance de village en village, où les nuits chez l’habitant prennent autant de place que le ski.",
       "Samarcande ouvre et referme le voyage. Entre les deux, neige, météo et conditions d’accès décideront de la ligne exacte.",
+      "<em>Image d’illustration de l’hiver ouzbek.</em>",
     ],
   },
   photoIntro: {
-    src: "/images/Illustration-FT-Ouzbekistan-scaled.jpeg",
-    alt: "Ski de randonnée en Ouzbékistan — massif du Hissar",
+    src: "/images/ouzbekistan-hissar.jpg",
+    alt: "Montagnes enneigées du massif du Hissar, Ouzbékistan",
   },
   availability: { places: 1, departure: "Départ assuré" },
   info: {
@@ -49,12 +50,12 @@ export const ouzbekistan: Voyage = {
     note: "Le séjour demande une très bonne condition physique : huit journées de ski, environ 1 200 à 2 000 m de dénivelé positif selon les étapes et du matériel de bivouac à porter dans la première partie. Les pentes sont généralement modérées à soutenues, avec quelques passages possibles autour de 40°. L’engagement vient surtout de l’isolement : plusieurs journées loin des secours, peu d’infrastructures et une évacuation complexe.",
   },
   photoInfo: {
-    src: "/images/Illustration-FT-Ouzbekistan-1-scaled.jpeg",
-    alt: "Montagnes enneigées du massif du Hissar en Ouzbékistan",
+    src: "/images/ouzbekistan-hissar.jpg",
+    alt: "Montagnes enneigées du massif du Hissar, Ouzbékistan",
   },
   bigPhoto: {
-    src: "/images/Illustration-FT-Ouzbekistan-1-scaled.jpeg",
-    alt: "Montagnes enneigées du massif du Hissar en Ouzbékistan",
+    src: "/images/ouzbekistan-hissar.jpg",
+    alt: "Montagnes enneigées du massif du Hissar, Ouzbékistan",
   },
   itinerary: {
     eyebrow: "Itinéraire",

@@ -153,9 +153,9 @@ export const voyages: VoyageSummary[] = [
     excerpt:
       "Exploration du massif du Hissar puis itinérance de village en village, dans un terrain encore peu parcouru à ski.",
     cover: {
-      src: "/images/Illustration-FT-Ouzbekistan-1-scaled.jpeg",
-      alt: "Panorama sur le massif du Hissar, Ouzbékistan",
-      position: "50% 30%",
+      src: "/images/ouzbekistan-hissar.jpg",
+      alt: "Montagnes enneigées du massif du Hissar, Ouzbékistan",
+      position: "50% 40%",
     },
   }),
   toSummary(armenie, {
