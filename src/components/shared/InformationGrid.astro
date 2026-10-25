@@ -5,6 +5,8 @@
  * (VoyageInfo.astro) — le carnet a son propre rendu indépendant
  * (CarnetInfo.astro + src/styles/carnet.css, .carnet-info__*).
  */
+import Availability from "./Availability.astro";
+
 type Field = { label: string; value: string };
 
 type Props = {
@@ -13,13 +15,15 @@ type Props = {
   /** Paragraphe libre optionnel sous la grille (ex. public visé du voyage) —
    *  absent sur les carnets, utilisé par les pages voyage. */
   note?: string;
+  availability?: { places: number; departure?: string };
 };
 
-const { label, fields, note } = Astro.props;
+const { label, fields, note, availability } = Astro.props;
 ---
 
 <p class="info-badge">{label}</p>
 <dl class="info-grid">
+  {availability && <Availability availability={availability} />}
   {
     fields.map((field) => (
       <div class="info-grid__field">

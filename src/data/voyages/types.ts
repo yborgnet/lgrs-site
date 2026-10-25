@@ -60,6 +60,9 @@ export type Voyage = {
     paragraphs: string[];
   };
   photoIntro?: VoyagePhoto;
+  /** Places restantes (0 = complet) et garantie de départ éventuelle. Valeurs
+   *  communiquées par Yann — ne jamais en déduire ni les modifier. */
+  availability?: { places: number; departure?: string };
   info: {
     label: string;
     fields: { label: string; value: string }[];

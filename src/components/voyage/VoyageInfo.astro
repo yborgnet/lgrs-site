@@ -5,10 +5,11 @@ import type { Voyage } from "../../data/voyages/types";
 
 type Props = {
   info: Voyage["info"];
+  availability?: Voyage["availability"];
   photo?: Voyage["photoInfo"];
 };
 
-const { info, photo } = Astro.props;
+const { info, photo, availability } = Astro.props;
 ---
 
 <section class="voyage-row--info">
@@ -16,7 +17,7 @@ const { info, photo } = Astro.props;
     <VoyagePhotoPanel photo={photo} hideOnMobile />
 
     <div class="voyage-row__text">
-      <InformationGrid label={info.label} fields={info.fields} note={info.note} />
+      <InformationGrid label={info.label} fields={info.fields} note={info.note} availability={availability} />
     </div>
   </div>
 </section>

@@ -27,6 +27,7 @@ export const ouzbekistan: Voyage = {
     src: "/images/Illustration-FT-Ouzbekistan-scaled.jpeg",
     alt: "Ski de randonnée en Ouzbékistan — massif du Hissar",
   },
+  availability: { places: 1, departure: "Départ assuré" },
   info: {
     label: "Informations",
     fields: [

@@ -10,7 +10,7 @@ import { mediterraneen as voyage } from "../../data/voyages/mediterraneen";
 
 <VoyageLayout voyage={voyage}>
   <VoyageDescription description={voyage.description} photo={voyage.photoIntro} />
-  <VoyageInfo info={voyage.info} photo={voyage.photoInfo} />
+  <VoyageInfo info={voyage.info} availability={voyage.availability} photo={voyage.photoInfo} />
   <SkiMedPlans />
   <VoyageBirth birth={voyage.birth} />
   <VoyageTechCta techCta={voyage.techCta} />

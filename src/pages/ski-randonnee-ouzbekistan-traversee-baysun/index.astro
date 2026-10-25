@@ -10,7 +10,7 @@ import { ouzbekistan as voyage } from "../../data/voyages/ouzbekistan";
 
 <VoyageLayout voyage={voyage}>
   <VoyageDescription description={voyage.description} photo={voyage.photoIntro} />
-  <VoyageInfo info={voyage.info} photo={voyage.photoInfo} />
+  <VoyageInfo info={voyage.info} availability={voyage.availability} photo={voyage.photoInfo} />
   <VoyageItinerary itinerary={voyage.itinerary} />
   <VoyageBirth birth={voyage.birth} />
   <VoyageTechCta techCta={voyage.techCta} />

@@ -3,6 +3,8 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
 import "../../styles/voyages-index.css";
 import { voyages } from "../../data/voyages/index";
+import Availability from "../../components/shared/Availability.astro";
+import "../../styles/info-grid.css";
 import { withBase } from "../../lib/url";
 
 const canonical = "https://lesgrandsraidsaski.com/prochains-voyages/";
@@ -103,6 +105,8 @@ const heroPhoto = {
                     {[voyage.duration, voyage.country, voyage.massif].filter(Boolean).join(" · ")}
                   </p>
                 )}
+
+                {voyage.availability && <Availability availability={voyage.availability} variant="card" />}
 
                 <a class="voyages-index-item__link" href={withBase(`/${voyage.slug}/`)}>
                   Découvrir le voyage →

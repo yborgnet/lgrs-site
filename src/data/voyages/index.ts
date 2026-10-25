@@ -55,6 +55,7 @@ export type VoyageSummary = {
   /** Réservé : aucun statut (complet/places disponibles/...) n'existe dans
    *  les données sources actuelles — jamais inventé. */
   status?: string;
+  availability?: Voyage["availability"];
   /** Réservé pour un filtrage futur par grande zone — vide pour l'instant,
    *  5 voyages ne justifient pas un filtre (voir brief). */
   zones: string[];
@@ -124,6 +125,7 @@ function toSummary(
     cover: opts.cover,
     year: extractYear(voyage.masthead.meta),
     order: opts.order,
+    availability: voyage.availability,
     zones: opts.zones ?? [],
     published: opts.published ?? true,
   };

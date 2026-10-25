@@ -28,6 +28,7 @@ export const georgie: Voyage = {
     src: "/images/georgie-svanetie-2024DSC03959.jpg",
     alt: "Ski de randonnée en Géorgie — Petit Caucase",
   },
+  availability: { places: 2, departure: "Départ assuré au prochain·e inscrit·e" },
   info: {
     label: "Informations",
     fields: [

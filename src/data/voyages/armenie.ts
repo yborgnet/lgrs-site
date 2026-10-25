@@ -27,6 +27,7 @@ export const armenie: Voyage = {
     src: "/images/Armenie-—-Parc-national-de-Dilijan-en-hiver.jpg",
     alt: "Parc national de Dilijan en hiver, Arménie",
   },
+  availability: { places: 1, departure: "Départ assuré" },
   info: {
     label: "Informations",
     fields: [

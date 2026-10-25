@@ -59,3 +59,25 @@
   line-height: 1.6;
   color: rgba(11, 11, 10, .68);
 }
+
+/* Disponibilités — même bloc dans Infos et sur /prochains-voyages/ ;
+   couleur secondaire existante (--warm), sans badge ni urgence. */
+.availability__count {
+  font-weight: 600;
+  color: var(--ink);
+  border-bottom: 2px solid var(--warm);
+}
+
+.availability__departure {
+  display: block;
+  margin-top: 4px;
+  font-size: 14px;
+  font-style: italic;
+  color: rgba(11, 11, 10, .62);
+}
+
+.availability--card {
+  margin: 14px 0 0;
+  font-size: 15px;
+  line-height: 1.4;
+}

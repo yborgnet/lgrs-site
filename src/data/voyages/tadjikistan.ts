@@ -31,6 +31,7 @@ export const tadjikistan: Voyage = {
     src: "/photos/Kazakhstan/kazakhstan-ile-alatau-ski-randonnee-dsc01724-030.jpg",
     alt: "Skieur de randonnée dans un vaste cirque glaciaire, massif de l'Ile-Alatau, Kazakhstan",
   },
+  availability: { places: 0 },
   info: {
     label: "Informations",
     fields: [

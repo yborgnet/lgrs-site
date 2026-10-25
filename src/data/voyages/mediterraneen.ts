@@ -31,6 +31,7 @@ export const mediterraneen: Voyage = {
     src: "/photos/Alpes Ligures/italie-alpes-ligures-ski-randonnee-dsc07657-047.jpg",
     alt: "Skieurs de randonnée au-dessus d'une mer de nuages, Alpes ligures, Italie",
   },
+  availability: { places: 1 },
   info: {
     label: "Informations",
     fields: [

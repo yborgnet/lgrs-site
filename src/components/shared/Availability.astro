@@ -1,0 +1,32 @@
+---
+/**
+ * Disponibilités d'un voyage — structure unique pour le bloc Infos
+ * (variant "field", dans InformationGrid) et les cartes de /prochains-voyages/
+ * (variant "card"). Style : src/styles/info-grid.css (.availability__*).
+ */
+type Props = {
+  availability: { places: number; departure?: string };
+  variant?: "field" | "card";
+};
+
+const { availability, variant = "field" } = Astro.props;
+const { places, departure } = availability;
+const text = places <= 0 ? "Complet" : places === 1 ? "1 place disponible" : `${places} places disponibles`;
+---
+
+{
+  variant === "field" ? (
+    <div class="info-grid__field info-grid__field--availability">
+      <dt>Disponibilités</dt>
+      <dd>
+        <span class="availability__count">{text}</span>
+        {departure && <span class="availability__departure">{departure}</span>}
+      </dd>
+    </div>
+  ) : (
+    <p class="availability availability--card">
+      <span class="availability__count">{text}</span>
+      {departure && <span class="availability__departure">{departure}</span>}
+    </p>
+  )
+}
