@@ -163,9 +163,9 @@ export const voyages: VoyageSummary[] = [
     excerpt:
       "Forêts, hauts plateaux et reliefs volcaniques : une traversée hivernale entre le lac Sevan et le massif de l'Aragats.",
     cover: {
-      src: "/images/Armenie-—-Mont-Aragats-depuis-Kari-Lake.jpg",
-      alt: "Khachkar de pierre sous le mont Aragats enneigé, Arménie",
-      position: "65% 40%",
+      src: "/images/armenie-ararat-village.jpg",
+      alt: "L’Ararat au-dessus d’un village arménien enneigé",
+      position: "50% 45%",
     },
   }),
   toSummary(mediterraneen, {

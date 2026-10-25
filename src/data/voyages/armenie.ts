@@ -7,7 +7,7 @@ export const armenie: Voyage = {
     description:
       "Traversée à ski en Arménie, du lac Sevan au massif de l’Aragats : forêts, hauts plateaux, volcans et nuits chez l’habitant.",
     ogImage:
-      "/images/Armenie-—-Parc-national-de-Dilijan-en-hiver.jpg",
+      "/images/armenie-ararat-village.jpg",
   },
   masthead: {
     eyebrow: "Voyage à ski de randonnée",
@@ -21,11 +21,12 @@ export const armenie: Voyage = {
       "<strong>Une itinérance à ski de village en village, des rives du lac Sevan au massif de l’Aragats.</strong>",
       "L’Arménie est probablement la plus belle surprise de cette collection. Peu connue des skieurs, elle permet de relier forêts, hauts plateaux et volcans en dormant chaque soir chez l’habitant ou dans de petites guest houses.",
       "Depuis Sevan, la ligne traverse Dilijan, Margahovit, Meghradzor et Aghveran avant le mont Ara et l’Aragats. Comme toujours, neige et météo garderont le dernier mot sur le détail des étapes.",
+      "<em>Images d’illustration de l’hiver arménien.</em>",
     ],
   },
   photoIntro: {
-    src: "/images/Armenie-—-Parc-national-de-Dilijan-en-hiver.jpg",
-    alt: "Parc national de Dilijan en hiver, Arménie",
+    src: "/images/armenie-ararat-village.jpg",
+    alt: "L’Ararat au-dessus d’un village arménien enneigé",
   },
   availability: { places: 1, departure: "Départ assuré" },
   info: {
@@ -49,12 +50,12 @@ export const armenie: Voyage = {
     note: "Le séjour s’adresse à des skieurs de randonnée expérimentés, en bonne condition physique, capables d’enchaîner plusieurs journées complètes. Une bonne maîtrise du ski en toutes neiges et des conversions est indispensable. L’itinérance, l’altitude et l’adaptation permanente aux conditions constituent l’essentiel de l’engagement.",
   },
   photoInfo: {
-    src: "/images/Armenie-—-Mont-Aragats-depuis-Kari-Lake.jpg",
-    alt: "Mont Aragats enneigé vu depuis le lac Kari gelé en Arménie",
+    src: "/images/armenie-ararat-croix.jpg",
+    alt: "Pente enneigée et croix de fer, l’Ararat à l’horizon",
   },
   bigPhoto: {
-    src: "/images/Armenie-—-Mont-Aragats-depuis-Kari-Lake.jpg",
-    alt: "Mont Aragats enneigé vu depuis le lac Kari gelé en Arménie",
+    src: "/images/armenie-ararat-croix.jpg",
+    alt: "Pente enneigée et croix de fer, l’Ararat à l’horizon",
   },
   itinerary: {
     eyebrow: "Itinéraire",
