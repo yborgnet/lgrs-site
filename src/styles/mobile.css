@@ -399,3 +399,133 @@
     width: 100%;
   }
 }
+
+/* TITRES LONGS (carnets, voyages) — le plus long mot doit tenir dans la largeur */
+@media (max-width: 800px) {
+  main .carnet-hero h1,
+  main .carnet-hero.carnet-hero--compact-title h1 {
+    font-size: clamp(30px, 11.5vw, 64px);
+    overflow-wrap: break-word;
+  }
+
+  main .voyage-masthead h1 {
+    font-size: clamp(38px, 15.5vw, 78px);
+    overflow-wrap: break-word;
+  }
+}
+
+/* PHILOSOPHIE — colonnes empilées */
+@media (max-width: 800px) {
+  .philo-method__grid,
+  .philo-split__grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .philo-method__col,
+  .philo-method__col:first-child,
+  .philo-method__col:last-child {
+    padding: 32px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  .philo-method__col:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  .philo-split__col--right {
+    padding: 40px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+}
+
+/* TITRES DE SECTION CARNET + GRILLES SANS RÈGLE MOBILE */
+@media (max-width: 800px) {
+  main .carnet-portfolio h2,
+  main .carnet-flow__heading {
+    font-size: clamp(30px, 12.5vw, 48px);
+    overflow-wrap: break-word;
+  }
+
+  body .philo-method__grid,
+  body .philo-split__grid,
+  body .raid-landmarks,
+  body .vsr-landmarks {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  body .philo-method__col,
+  body .philo-method__col:first-child,
+  body .philo-method__col:last-child {
+    padding: 32px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  body .philo-method__col:first-child {
+    padding-top: 0;
+    border-top: 0;
+  }
+
+  body .philo-split__col--right {
+    padding: 40px 0 0;
+    border-left: 0;
+    border-top: 1px solid var(--line);
+  }
+
+  body .raid-list__row,
+  body .vsr-list__row {
+    grid-template-columns: 1fr 24px;
+    gap: 6px 16px;
+  }
+
+  body .raid-list__title,
+  body .vsr-list__title {
+    grid-column: 1;
+  }
+
+  body .raid-list__excerpt,
+  body .vsr-list__excerpt {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+
+  body .raid-list__arrow,
+  body .vsr-list__arrow {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  body .vsr-list__meta + .vsr-list__title,
+  body .vsr-list__meta ~ .vsr-list__arrow {
+    grid-row: 2;
+  }
+}
+
+/* TRÈS PETITS ÉCRANS (≤ 400 px) */
+@media (max-width: 400px) {
+  body .raid-tool {
+    grid-template-columns: 1fr;
+    gap: 8px 0;
+    padding: 36px 0;
+  }
+
+  body .philo-transition__secondary {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  main .carnet-day {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+
+  main .voyage-masthead__meta {
+    font-size: clamp(22px, 6.4vw, 38px);
+    overflow-wrap: break-word;
+  }
+}
