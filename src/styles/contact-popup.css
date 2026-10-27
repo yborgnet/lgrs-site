@@ -1,0 +1,242 @@
+/* === POP-UP + BANDEAU « SUIVRE LES PROCHAINS RAIDS » === */
+
+.contact-strip {
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 13px;
+}
+
+.contact-strip__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 6px 28px;
+  padding: 14px 0;
+}
+
+.contact-strip__label {
+  opacity: 0.6;
+}
+
+.contact-strip__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 24px;
+}
+
+.contact-strip a,
+.contact-strip button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: var(--warm);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 4px;
+}
+
+.contact-strip a:hover,
+.contact-strip button:hover {
+  text-decoration-thickness: 2px;
+}
+
+.contact-popup[hidden] {
+  display: none;
+}
+
+.contact-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(11, 11, 10, 0.55);
+  overflow-y: auto;
+}
+
+body.contact-popup-open {
+  overflow: hidden;
+}
+
+.contact-popup__dialog {
+  position: relative;
+  width: min(760px, 100%);
+  margin: auto;
+  padding: 48px 44px 40px;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  outline: none;
+}
+
+.contact-popup__close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.contact-popup__close:hover {
+  color: var(--warm);
+}
+
+.contact-popup__eyebrow {
+  margin: 0 0 14px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  opacity: 0.55;
+}
+
+.contact-popup__title {
+  margin: 0 0 32px;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(30px, 4vw, 40px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+.contact-popup__options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--line);
+}
+
+.contact-popup__option {
+  padding: 28px 28px 0 0;
+}
+
+.contact-popup__option + .contact-popup__option {
+  padding: 28px 0 0 28px;
+  border-left: 1px solid var(--line);
+}
+
+.contact-popup__option h3 {
+  margin: 0 0 14px;
+  font-family: var(--font-serif);
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.2;
+}
+
+.contact-popup__option > p {
+  margin: 0 0 20px;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.contact-popup__form input[type="email"] {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0 0 12px;
+  padding: 13px 14px;
+  border: 1px solid var(--line);
+  border-radius: 0;
+  background: var(--white);
+  color: var(--ink);
+  font: inherit;
+  font-size: 16px;
+}
+
+.contact-popup__form input[type="email"]:focus-visible {
+  outline: 2px solid var(--warm);
+  outline-offset: 1px;
+}
+
+.contact-popup__button {
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 13px 22px;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: var(--ink);
+  color: var(--paper);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.contact-popup__button:hover {
+  background: transparent;
+  color: var(--ink);
+}
+
+.contact-popup__button--outline {
+  background: transparent;
+  color: var(--ink);
+}
+
+.contact-popup__button--outline:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.contact-popup__button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.contact-popup__button:focus-visible,
+.contact-popup__close:focus-visible,
+.contact-strip a:focus-visible,
+.contact-strip button:focus-visible {
+  outline: 2px solid var(--warm);
+  outline-offset: 3px;
+}
+
+.contact-popup__note {
+  margin: 14px 0 0;
+  font-size: 12px;
+  line-height: 1.5;
+  opacity: 0.6;
+}
+
+.contact-popup__error {
+  margin: 12px 0 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #8a2f1a;
+}
+
+.contact-popup__thanks {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: 20px;
+  line-height: 1.4;
+  outline: none;
+}
+
+.contact-popup__form[hidden],
+.contact-popup__error[hidden],
+.contact-popup__thanks[hidden] {
+  display: none;
+}
+
+.contact-popup__sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

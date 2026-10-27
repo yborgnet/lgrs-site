@@ -1,0 +1,184 @@
+---
+import { contact } from "../../data/contact";
+import "../../styles/contact-popup.css";
+---
+
+<div class="contact-popup" id="contact-popup" hidden>
+  <div
+    class="contact-popup__dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="contact-popup-title"
+    tabindex="-1"
+    data-delay={contact.popupDelayMs}
+    data-scroll={contact.popupScrollRatio}
+    data-days={contact.dismissDays}
+  >
+    <button type="button" class="contact-popup__close" aria-label="Fermer" data-close-contact-popup>
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="1.5" /></svg>
+    </button>
+
+    <p class="contact-popup__eyebrow">LES GRANDS RAIDS À SKI</p>
+    <h2 id="contact-popup-title" class="contact-popup__title">Suivre les prochains raids</h2>
+
+    <div class="contact-popup__options">
+      <section class="contact-popup__option">
+        <h3>Recevoir la newsletter</h3>
+        <form class="contact-popup__form" action={contact.newsletterEndpoint} method="POST" novalidate>
+          <label class="contact-popup__sr" for="contact-popup-email">Adresse e-mail</label>
+          <input type="email" id="contact-popup-email" name="email" placeholder="Votre adresse e-mail" autocomplete="email" required />
+          <input type="hidden" name="_subject" value={contact.newsletterSubject} />
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="contact-popup__sr" aria-hidden="true" />
+          <button type="submit" class="contact-popup__button">Je m'inscris</button>
+          <p class="contact-popup__error" role="alert" hidden></p>
+          <p class="contact-popup__note">Une à deux lettres par saison, désinscription en un clic.</p>
+        </form>
+        <p class="contact-popup__thanks" role="status" tabindex="-1" hidden>Merci, à bientôt dans votre boîte mail.</p>
+      </section>
+
+      <section class="contact-popup__option">
+        <h3>Rejoindre la communauté WhatsApp</h3>
+        <p>Les départs, les places qui se libèrent, en direct.</p>
+        <a class="contact-popup__button contact-popup__button--outline" href={contact.whatsappCommunityUrl} target="_blank" rel="noopener noreferrer" data-contact-whatsapp>Rejoindre la communauté</a>
+      </section>
+    </div>
+  </div>
+</div>
+
+<script>
+  const KEY = "lgrs-contact-popup";
+  const popup = document.getElementById("contact-popup") as HTMLElement | null;
+  const dialog = popup?.querySelector<HTMLElement>(".contact-popup__dialog");
+
+  if (popup && dialog) {
+    const delay = Number(dialog.dataset.delay);
+    const ratio = Number(dialog.dataset.scroll);
+    const days = Number(dialog.dataset.days);
+    let opener: HTMLElement | null = null;
+    let armed = true;
+
+    const read = (): { done?: boolean; until?: number } => {
+      try {
+        return JSON.parse(localStorage.getItem(KEY) || "{}") || {};
+      } catch {
+        return {};
+      }
+    };
+    const write = (v: object) => {
+      try {
+        localStorage.setItem(KEY, JSON.stringify(v));
+      } catch {}
+    };
+    const blocked = () => {
+      const s = read();
+      return !!s.done || (!!s.until && Date.now() < s.until);
+    };
+
+    const focusables = () =>
+      Array.from(dialog.querySelectorAll<HTMLElement>("a[href], button, input:not([type=hidden]):not(.contact-popup__sr), [tabindex='0']")).filter(
+        (el) => !el.closest("[hidden]"),
+      );
+
+    const open = () => {
+      if (!popup.hidden) return;
+      opener = document.activeElement as HTMLElement | null;
+      popup.hidden = false;
+      document.body.classList.add("contact-popup-open");
+      dialog.focus();
+    };
+    const close = (remember = true) => {
+      if (popup.hidden) return;
+      popup.hidden = true;
+      document.body.classList.remove("contact-popup-open");
+      if (remember && !read().done) write({ until: Date.now() + days * 86400000 });
+      opener?.focus?.();
+    };
+    const finish = () => write({ done: true });
+
+    const auto = () => {
+      if (!armed) return;
+      armed = false;
+      if (!blocked()) open();
+    };
+    if (!blocked()) {
+      window.setTimeout(auto, delay);
+      const onScroll = () => {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        if (max > 0 && window.scrollY / max >= ratio) {
+          window.removeEventListener("scroll", onScroll);
+          auto();
+        }
+      };
+      window.addEventListener("scroll", onScroll, { passive: true });
+    }
+
+    document.querySelectorAll("[data-open-contact-popup]").forEach((el) =>
+      el.addEventListener("click", () => {
+        armed = false;
+        open();
+      }),
+    );
+    document.querySelectorAll("[data-contact-whatsapp]").forEach((el) =>
+      el.addEventListener("click", () => {
+        finish();
+        if (el.closest(".contact-popup")) close(false);
+      }),
+    );
+    popup.querySelector("[data-close-contact-popup]")?.addEventListener("click", () => close());
+    popup.addEventListener("mousedown", (e) => {
+      if (e.target === popup) close();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (popup.hidden) return;
+      if (e.key === "Escape") return close();
+      if (e.key === "Tab") {
+        const f = focusables();
+        if (!f.length) return;
+        const first = f[0];
+        const last = f[f.length - 1];
+        if (e.shiftKey && (document.activeElement === first || document.activeElement === dialog)) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+    });
+
+    const form = popup.querySelector<HTMLFormElement>(".contact-popup__form");
+    const err = popup.querySelector<HTMLElement>(".contact-popup__error");
+    const thanks = popup.querySelector<HTMLElement>(".contact-popup__thanks");
+    form?.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      if (!err || !thanks) return;
+      const email = form.querySelector<HTMLInputElement>("input[name=email]")!;
+      const btn = form.querySelector<HTMLButtonElement>("button[type=submit]")!;
+      err.hidden = true;
+      if (!email.value.trim() || !email.checkValidity()) {
+        err.textContent = "Veuillez saisir une adresse e-mail valide.";
+        err.hidden = false;
+        email.focus();
+        return;
+      }
+      btn.disabled = true;
+      try {
+        const res = await fetch(form.action, {
+          method: "POST",
+          headers: { Accept: "application/json", "Content-Type": "application/json" },
+          body: JSON.stringify(Object.fromEntries(new FormData(form))),
+        });
+        if (!res.ok) throw new Error(String(res.status));
+        finish();
+        form.hidden = true;
+        thanks.hidden = false;
+        thanks.focus();
+      } catch {
+        err.textContent = "L'inscription n'a pas abouti. Veuillez réessayer dans un instant ou nous écrire via la page contact.";
+        err.hidden = false;
+        btn.disabled = false;
+      }
+    });
+  }
+</script>
+

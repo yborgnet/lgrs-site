@@ -1,6 +1,7 @@
 ---
 import "../styles/global.css";
 import "../styles/mobile.css";
+import ContactPopup from "../components/shared/ContactPopup.astro";
 import { withBase } from "../lib/url";
 
 const {
@@ -52,5 +53,6 @@ const ogImageURL = ogImage ? new URL(ogImage, Astro.site ?? Astro.url.origin) : 
 
   <body>
     <slot />
+    <ContactPopup />
   </body>
 </html>

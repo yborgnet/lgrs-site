@@ -1,4 +1,5 @@
 ---
+import ContactStrip from "../../components/shared/ContactStrip.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
 import "../../styles/contact.css";
@@ -76,6 +77,8 @@ const FORMSPREE_ENDPOINT = "https://formspree.io/f/mkjgrpgv";
       </div>
     </section>
   </main>
+
+  <ContactStrip />
 
   <footer class="site-footer">
     <div class="site-shell site-footer__grid">

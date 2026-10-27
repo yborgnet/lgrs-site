@@ -1,0 +1,14 @@
+---
+import { contact } from "../../data/contact";
+import "../../styles/contact-popup.css";
+---
+
+<aside class="contact-strip" aria-label="Rester informé">
+  <div class="site-shell contact-strip__inner">
+    <span class="contact-strip__label">Suivre les prochains raids</span>
+    <span class="contact-strip__links">
+      <button type="button" data-open-contact-popup>Newsletter</button>
+      <a href={contact.whatsappCommunityUrl} target="_blank" rel="noopener noreferrer" data-contact-whatsapp>Communauté WhatsApp</a>
+    </span>
+  </div>
+</aside>

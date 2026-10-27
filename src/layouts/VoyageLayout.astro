@@ -1,4 +1,5 @@
 ---
+import ContactStrip from "../components/shared/ContactStrip.astro";
 import BaseLayout from "./BaseLayout.astro";
 import Header from "../components/Header.astro";
 import VoyageMasthead from "../components/voyage/VoyageMasthead.astro";
@@ -29,6 +30,8 @@ const canonical = `https://lesgrandsraidsaski.com/${voyage.slug}/`;
 
     <slot />
   </main>
+
+  <ContactStrip />
 
   <footer class="site-footer">
     <div class="site-shell site-footer__grid">
