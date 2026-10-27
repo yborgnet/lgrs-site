@@ -5,10 +5,13 @@ import "../../styles/contact-popup.css";
 
 <aside class="contact-strip" aria-label="Rester informé">
   <div class="site-shell contact-strip__inner">
-    <span class="contact-strip__label">Suivre les prochains raids</span>
+    <p class="contact-strip__text">
+      <span class="contact-strip__eyebrow">LES GRANDS RAIDS À SKI</span>
+      <span class="contact-strip__label">Suivre les prochains raids</span>
+    </p>
     <span class="contact-strip__links">
-      <button type="button" data-open-contact-popup>Newsletter</button>
-      <a href={contact.whatsappCommunityUrl} target="_blank" rel="noopener noreferrer" data-contact-whatsapp>Communauté WhatsApp</a>
+      <button type="button" class="contact-strip__link" data-open-contact-popup>Newsletter</button>
+      <a class="contact-strip__link contact-strip__link--outline" href={contact.whatsappCommunityUrl} target="_blank" rel="noopener noreferrer" data-contact-whatsapp>Communauté WhatsApp</a>
     </span>
   </div>
 </aside>
