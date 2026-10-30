@@ -7,7 +7,7 @@ export const contact = {
   // arrivent par mail, avec l'objet ci-dessous pour les distinguer.
   newsletterEndpoint: "https://formspree.io/f/mkjgrpgv",
   newsletterSubject: "Inscription newsletter",
-  popupDelayMs: 25000,
+  popupDelayMs: 17000,
   popupScrollRatio: 0.5,
   dismissDays: 30,
 } as const;
