@@ -1,5 +1,6 @@
 ---
 import { contact } from "../../data/contact";
+import { NEWSLETTER_ENDPOINT } from "../../config/newsletter";
 import "../../styles/contact-popup.css";
 ---
 
@@ -24,16 +25,17 @@ import "../../styles/contact-popup.css";
     <div class="contact-popup__options">
       <section class="contact-popup__option">
         <h3>Recevoir la newsletter</h3>
-        <form class="contact-popup__form" action={contact.newsletterEndpoint} method="POST" novalidate>
+        <form class="contact-popup__form" action={NEWSLETTER_ENDPOINT} method="POST" novalidate>
           <label class="contact-popup__sr" for="contact-popup-email">Adresse e-mail</label>
-          <input type="email" id="contact-popup-email" name="email" placeholder="Votre adresse e-mail" autocomplete="email" required />
-          <input type="hidden" name="_subject" value={contact.newsletterSubject} />
-          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" class="contact-popup__sr" aria-hidden="true" />
+          <input type="email" id="contact-popup-email" name="EMAIL" placeholder="Votre adresse e-mail" autocomplete="email" required />
+          <input type="hidden" name="locale" value="fr" />
+          <input type="hidden" name="html_type" value="simple" />
+          <input type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" class="contact-popup__sr" aria-hidden="true" />
           <button type="submit" class="contact-popup__button">Je m'inscris</button>
           <p class="contact-popup__error" role="alert" hidden></p>
           <p class="contact-popup__note">Une à deux lettres par saison, désinscription en un clic.</p>
         </form>
-        <p class="contact-popup__thanks" role="status" tabindex="-1" hidden>Merci, à bientôt dans votre boîte mail.</p>
+        <p class="contact-popup__thanks" role="status" tabindex="-1" hidden>Merci, c'est noté. Un petit mot de bienvenue vous attend dans votre boîte mail.</p>
       </section>
 
       <section class="contact-popup__option">
@@ -152,7 +154,7 @@ import "../../styles/contact-popup.css";
     form?.addEventListener("submit", async (e) => {
       e.preventDefault();
       if (!err || !thanks) return;
-      const email = form.querySelector<HTMLInputElement>("input[name=email]")!;
+      const email = form.querySelector<HTMLInputElement>("input[name=EMAIL]")!;
       const btn = form.querySelector<HTMLButtonElement>("button[type=submit]")!;
       err.hidden = true;
       if (!email.value.trim() || !email.checkValidity()) {
@@ -161,22 +163,36 @@ import "../../styles/contact-popup.css";
         email.focus();
         return;
       }
+      const honeypot = form.querySelector<HTMLInputElement>("input[name=email_address_check]");
+      if (honeypot?.value) return;
+      const label = btn.textContent;
       btn.disabled = true;
-      try {
-        const res = await fetch(form.action, {
-          method: "POST",
-          headers: { Accept: "application/json", "Content-Type": "application/json" },
-          body: JSON.stringify(Object.fromEntries(new FormData(form))),
-        });
-        if (!res.ok) throw new Error(String(res.status));
+      btn.textContent = "Envoi…";
+      const url = form.action + (form.action.includes("?") ? "&" : "?") + "isAjax=1";
+      const succeed = () => {
         finish();
         form.hidden = true;
         thanks.hidden = false;
         thanks.focus();
+      };
+      try {
+        let ok = false;
+        try {
+          const res = await fetch(url, { method: "POST", body: new FormData(form) });
+          const data = await res.json().catch(() => null);
+          ok = data ? data.success === true : res.ok;
+          if (!ok) throw new Error("brevo");
+        } catch (e) {
+          if (!(e instanceof TypeError)) throw e;
+          // Lecture bloquée (CORS) : on renvoie en no-cors, réponse opaque = succès.
+          await fetch(url, { method: "POST", body: new FormData(form), mode: "no-cors" });
+        }
+        succeed();
       } catch {
-        err.textContent = "L'inscription n'a pas abouti. Veuillez réessayer dans un instant ou nous écrire via la page contact.";
+        err.textContent = "L'inscription n'a pas abouti, réessayez dans un instant.";
         err.hidden = false;
         btn.disabled = false;
+        btn.textContent = label;
       }
     });
   }
