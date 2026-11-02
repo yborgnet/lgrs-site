@@ -50,7 +50,7 @@ const ogImageURL = ogImage ? new URL(ogImage, Astro.site ?? Astro.url.origin) : 
       rel="stylesheet"
     />
     <!-- Mesure d'audience Umami (sans cookies). data-domains : ne compte que le site en ligne. -->
-    <script is:inline defer src="https://cloud.umami.is/script.js" data-website-id="8979da23-78c0-4795-9661-23ee68aceaa1" data-domains="lesgrandsraidsaski.com"></script>
+    <script is:inline defer src="https://cloud.umami.is/script.js" data-website-id="8979da23-78c0-4795-9661-23ee68aceaa1" data-domains="lesgrandsraidsaski.com" data-exclude-search="true"></script>
   </head>
 
   <body>
