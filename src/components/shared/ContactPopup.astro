@@ -35,7 +35,7 @@ import "../../styles/contact-popup.css";
           <p class="contact-popup__error" role="alert" hidden></p>
           <p class="contact-popup__note">Une à deux lettres par saison, désinscription en un clic.</p>
         </form>
-        <p class="contact-popup__thanks" role="status" tabindex="-1" hidden>Merci, c'est noté. Un petit mot de bienvenue vous attend dans votre boîte mail.</p>
+        <p class="contact-popup__thanks" role="status" tabindex="-1" hidden>Merci, c'est noté&nbsp;! Un mot de bienvenue vient de partir vers votre boîte mail. Sur Gmail, il arrive souvent dans l'onglet Promotions&nbsp;: glissez-le dans Principale pour ne manquer aucune lettre.</p>
       </section>
 
       <section class="contact-popup__option">
@@ -171,6 +171,7 @@ import "../../styles/contact-popup.css";
       const url = form.action + (form.action.includes("?") ? "&" : "?") + "isAjax=1";
       const succeed = () => {
         finish();
+        (window as any).umami?.track?.("newsletter-inscription");
         form.hidden = true;
         thanks.hidden = false;
         thanks.focus();

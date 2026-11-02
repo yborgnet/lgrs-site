@@ -49,10 +49,33 @@ const ogImageURL = ogImage ? new URL(ogImage, Astro.site ?? Astro.url.origin) : 
       href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600&family=Newsreader:opsz,wght@6..72,300;6..72,400;6..72,500&display=swap"
       rel="stylesheet"
     />
+    <!-- Mesure d'audience Umami (sans cookies). data-domains : ne compte que le site en ligne. -->
+    <script is:inline defer src="https://cloud.umami.is/script.js" data-website-id="8979da23-78c0-4795-9661-23ee68aceaa1" data-domains="lesgrandsraidsaski.com"></script>
   </head>
 
   <body>
     <slot />
     <ContactPopup />
+    <script is:inline>
+      // Événements Umami sur les actions clés (délégués : couvre tous les liens, y compris ceux générés depuis src/data).
+      (function () {
+        var track = function (name) { if (window.umami && typeof window.umami.track === "function") window.umami.track(name); };
+        document.addEventListener("click", function (e) {
+          var t = e.target instanceof Element ? e.target : null;
+          if (!t) return;
+          var a = t.closest("a[href]");
+          if (a) {
+            var href = a.getAttribute("href") || "";
+            if (href.indexOf("chat.whatsapp.com") !== -1) return track("whatsapp-communaute");
+            if (href.indexOf("wa.me/") !== -1) return track("whatsapp-contact");
+          }
+          if (t.closest("[data-open-contact-popup]")) track("newsletter-ouverture");
+        });
+        document.addEventListener("submit", function (e) {
+          var f = e.target;
+          if (f instanceof HTMLFormElement && f.classList.contains("contact-form")) track("contact-envoye");
+        });
+      })();
+    </script>
   </body>
 </html>
