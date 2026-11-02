@@ -1,4 +1,5 @@
 ---
+import SponsorStrip from "../components/shared/SponsorStrip.astro";
 import ContactStrip from "../components/shared/ContactStrip.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Header from "../components/Header.astro";
@@ -46,6 +47,8 @@ import { withBase } from "../lib/url";
         <a href="https://www.facebook.com/yannborgnet/">Facebook</a>
       </div>
     </div>
+
+    <SponsorStrip />
 
     <div class="site-shell site-footer__bottom">
       <a href={withBase("/yann-borgnet-guide-haute-montagne/")}>Yann Borgnet · Guide de haute montagne UIAGM</a>

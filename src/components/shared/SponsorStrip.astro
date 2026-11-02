@@ -1,0 +1,77 @@
+---
+/**
+ * Partenaires (logos officiels, ramenés en blanc monochrome pour rester
+ * sobres sur le fond --ink du pied de page). Fichiers : public/images/sponsors/.
+ * La hauteur de chaque logo est réglée à l'œil pour un poids visuel égal.
+ */
+import { withBase } from "../../lib/url";
+
+const sponsors = [
+  { name: "Scott", file: "scott.png", href: "https://www.scott-sports.com/", h: 22 },
+  { name: "Pyrenex", file: "pyrenex.png", href: "https://www.pyrenex.com/", h: 40 },
+  { name: "CAMP", file: "camp.png", href: "https://www.camp.it/", h: 20 },
+  { name: "Arva", file: "arva.png", href: "https://www.arva-equipment.com/", h: 24 },
+];
+---
+
+<div class="site-shell sponsor-strip">
+  <p class="sponsor-strip__label">Avec le soutien de</p>
+  <ul class="sponsor-strip__list">
+    {sponsors.map((s) => (
+      <li>
+        <a href={s.href} target="_blank" rel="noopener" aria-label={s.name}>
+          <img src={withBase(`/images/sponsors/${s.file}`)} alt={s.name} style={`height:${s.h}px`} loading="lazy" decoding="async" />
+        </a>
+      </li>
+    ))}
+  </ul>
+</div>
+
+<style>
+  .sponsor-strip {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    padding-bottom: 32px;
+  }
+  .sponsor-strip__label {
+    margin: 0;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    white-space: nowrap;
+  }
+  .sponsor-strip__list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 22px 44px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .sponsor-strip__list a {
+    display: block;
+    opacity: 0.72;
+    transition: opacity 0.2s ease;
+  }
+  .sponsor-strip__list a:hover,
+  .sponsor-strip__list a:focus-visible {
+    opacity: 1;
+  }
+  .sponsor-strip__list img {
+    display: block;
+    width: auto;
+  }
+  @media (max-width: 760px) {
+    .sponsor-strip {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
+    }
+    .sponsor-strip__list {
+      gap: 20px 32px;
+    }
+  }
+</style>
