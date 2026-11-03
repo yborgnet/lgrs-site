@@ -28,7 +28,7 @@ export const armenie: Voyage = {
     src: "/images/armenie-ararat-village.jpg",
     alt: "L’Ararat au-dessus d’un village arménien enneigé",
   },
-  availability: { places: 1, departure: "Départ assuré" },
+  availability: { places: 0, departure: "Départ assuré" },
   info: {
     label: "Informations",
     fields: [

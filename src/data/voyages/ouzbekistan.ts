@@ -28,7 +28,7 @@ export const ouzbekistan: Voyage = {
     src: "/images/ouzbekistan-hissar.jpg",
     alt: "Montagnes enneigées du massif du Hissar, Ouzbékistan",
   },
-  availability: { places: 1, departure: "Départ assuré" },
+  availability: { places: 0, departure: "Départ assuré" },
   info: {
     label: "Informations",
     fields: [

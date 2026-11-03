@@ -11,7 +11,7 @@ type Props = {
 
 const { availability, variant = "field" } = Astro.props;
 const { places, departure } = availability;
-const text = places <= 0 ? "Complet" : places === 1 ? "1 place disponible" : `${places} places disponibles`;
+const text = places <= 0 ? "Complet" : places === 1 ? "Dernière place disponible" : `${places} places disponibles`;
 ---
 
 {
