@@ -4,6 +4,6 @@
 export const contact = {
   whatsappCommunityUrl: "https://chat.whatsapp.com/FkWw2ggL8oXFwAGEL0kCy3",
   popupDelayMs: 28000,
-  popupScrollRatio: 0.5,
+  popupScrollRatio: 0.7,
   dismissDays: 30,
 } as const;
