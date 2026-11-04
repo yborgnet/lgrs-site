@@ -57,7 +57,7 @@ const canonical = "https://lesgrandsraidsaski.com/newsletter/";
             <label>E-mail<input type="email" name="EMAIL" placeholder="Votre adresse e-mail" autocomplete="email" required /></label>
             <input type="hidden" name="locale" value="fr" />
             <input type="hidden" name="html_type" value="simple" />
-            <input type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" class="contact-popup__sr" aria-hidden="true" />
+            <div class="newsletter-form__trap" aria-hidden="true"><input type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" /></div>
             <button type="submit">Je m'inscris</button>
             <p class="newsletter-form__error" role="alert" hidden></p>
           </form>
@@ -104,6 +104,17 @@ const canonical = "https://lesgrandsraidsaski.com/newsletter/";
 </BaseLayout>
 
 <style>
+  /* Champ anti-robot de Brevo : hors de vue. Le conteneur rogne l'input, que
+     les styles .contact-form input étirent à 100 % de largeur (débordement
+     horizontal de toute la page sinon). */
+  .newsletter-form__trap {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
   .newsletter-form__error {
     margin: 0;
     font-size: 14px;
