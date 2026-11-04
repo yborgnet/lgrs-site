@@ -1,0 +1,178 @@
+---
+import SponsorStrip from "../../components/shared/SponsorStrip.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import "../../styles/contact.css";
+import "../../styles/contact-popup.css";
+import { withBase } from "../../lib/url";
+import { contact } from "../../data/contact";
+import { NEWSLETTER_ENDPOINT } from "../../config/newsletter";
+
+/**
+ * Page d'inscription à la newsletter, à partager en lien direct (Facebook,
+ * Instagram, WhatsApp). Même envoi vers Brevo que le pop-up
+ * (components/shared/ContactPopup.astro), mise en page de /contact/.
+ * Le pop-up est désactivé ici (prop popup={false}) pour ne pas doublonner.
+ */
+const canonical = "https://lesgrandsraidsaski.com/newsletter/";
+---
+
+<BaseLayout
+  title="Newsletter | Les Grands Raids à Ski"
+  description="Recevez les prochains départs des Grands Raids à Ski et les places qui se libèrent : une à deux lettres par saison, désinscription en un clic."
+  canonical={canonical}
+  ogImage="/images/DSC07143_DxO-3-scaled.jpg"
+  popup={false}
+>
+  <Header solid />
+
+  <main>
+    <section class="contact-hero">
+      <div class="site-shell">
+        <p class="contact-hero__eyebrow">Newsletter</p>
+        <h1>Suivre les<br /><em>prochains raids.</em></h1>
+        <p class="contact-hero__lead">
+          Une à deux lettres par saison, avec les prochains départs et les places qui se libèrent.
+        </p>
+      </div>
+    </section>
+
+    <section class="contact-main">
+      <div class="site-shell contact-grid newsletter-grid">
+        <div class="contact-copy">
+          <p class="contact-copy__eyebrow">L'aventure à ski, de village en village</p>
+          <h2>Peu de lettres.<br /><em>Juste l'essentiel.</em></h2>
+          <p>
+            Les Grands Raids à Ski, ce sont des traversées de massif, souvent dans des montagnes encore peu parcourues
+            à ski. On passe d'un village à l'autre, on dort chez l'habitant, parfois dans une cabane ou sous tente.
+          </p>
+          <p>
+            En vous inscrivant, vous recevez un mot de bienvenue, puis les dates des prochains voyages dès qu'elles
+            sont fixées. Désinscription en un clic, à tout moment.
+          </p>
+        </div>
+
+        <div class="contact-panel">
+          <form class="contact-form newsletter-form" action={NEWSLETTER_ENDPOINT} method="POST" novalidate>
+            <label>E-mail<input type="email" name="EMAIL" placeholder="Votre adresse e-mail" autocomplete="email" required /></label>
+            <input type="hidden" name="locale" value="fr" />
+            <input type="hidden" name="html_type" value="simple" />
+            <input type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" class="contact-popup__sr" aria-hidden="true" />
+            <button type="submit">Je m'inscris</button>
+            <p class="newsletter-form__error" role="alert" hidden></p>
+          </form>
+          <p class="newsletter-form__thanks" role="status" tabindex="-1" hidden>
+            Merci, c'est noté&nbsp;! Un mot de bienvenue vient de partir vers votre boîte mail. Sur Gmail, il arrive
+            souvent dans l'onglet Promotions&nbsp;: glissez-le dans Principale pour ne manquer aucune lettre.
+          </p>
+
+          <hr class="contact-panel__divider" />
+
+          <a class="contact-panel__whatsapp" href={contact.whatsappCommunityUrl} target="_blank" rel="noopener noreferrer">
+            <span class="contact-panel__whatsapp-eyebrow">Ou en direct sur WhatsApp</span>
+            <span class="contact-panel__whatsapp-row">
+              <strong>Rejoindre la communauté</strong>
+              <span aria-hidden="true">→</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-shell site-footer__grid">
+      <div>
+        <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+        <p class="site-footer__statement">Explorer · improviser · rencontrer · skier.</p>
+      </div>
+
+      <div class="site-footer__links">
+        <a href="https://wa.me/33689295826">WhatsApp · +33 6 89 29 58 26</a>
+        <a href="https://www.instagram.com/lesgrandsraidsaski/">Instagram</a>
+        <a href="https://www.facebook.com/yannborgnet/">Facebook</a>
+      </div>
+    </div>
+
+    <SponsorStrip />
+
+    <div class="site-shell site-footer__bottom">
+      <a href={withBase("/yann-borgnet-guide-haute-montagne/")}>Yann Borgnet · Guide de haute montagne UIAGM</a>
+      <span>© 2026</span>
+    </div>
+  </footer>
+</BaseLayout>
+
+<style>
+  .newsletter-form__error {
+    margin: 0;
+    font-size: 14px;
+    color: #a3261b;
+  }
+  .newsletter-form__thanks {
+    margin: 0;
+    font-family: var(--font-serif);
+    font-size: clamp(19px, 1.6vw, 23px);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  .newsletter-form__thanks:focus {
+    outline: none;
+  }
+  /* Sur mobile (l'essentiel du trafic venu de Facebook), le formulaire passe
+     avant le texte pour être visible sans défiler. */
+  @media (max-width: 900px) {
+    .newsletter-grid .contact-panel {
+      order: -1;
+    }
+  }
+</style>
+
+<script>
+  const form = document.querySelector<HTMLFormElement>(".newsletter-form");
+  const err = document.querySelector<HTMLElement>(".newsletter-form__error");
+  const thanks = document.querySelector<HTMLElement>(".newsletter-form__thanks");
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (!err || !thanks) return;
+    const email = form.querySelector<HTMLInputElement>("input[name=EMAIL]")!;
+    const btn = form.querySelector<HTMLButtonElement>("button[type=submit]")!;
+    err.hidden = true;
+    if (!email.value.trim() || !email.checkValidity()) {
+      err.textContent = "Veuillez saisir une adresse e-mail valide.";
+      err.hidden = false;
+      email.focus();
+      return;
+    }
+    if (form.querySelector<HTMLInputElement>("input[name=email_address_check]")?.value) return;
+    const label = btn.textContent;
+    btn.disabled = true;
+    btn.textContent = "Envoi…";
+    const url = form.action + (form.action.includes("?") ? "&" : "?") + "isAjax=1";
+    try {
+      try {
+        const res = await fetch(url, { method: "POST", body: new FormData(form) });
+        const data = await res.json().catch(() => null);
+        if (!(data ? data.success === true : res.ok)) throw new Error("brevo");
+      } catch (e) {
+        if (!(e instanceof TypeError)) throw e;
+        // Lecture bloquée (CORS) : on renvoie en no-cors, réponse opaque = succès.
+        await fetch(url, { method: "POST", body: new FormData(form), mode: "no-cors" });
+      }
+      // Inscrit : le pop-up ne se montrera plus sur le reste du site.
+      try {
+        localStorage.setItem("lgrs-contact-popup", JSON.stringify({ done: true }));
+      } catch {}
+      (window as any).umami?.track?.("newsletter-inscription");
+      form.hidden = true;
+      thanks.hidden = false;
+      thanks.focus();
+    } catch {
+      err.textContent = "L'inscription n'a pas abouti, réessayez dans un instant.";
+      err.hidden = false;
+      btn.disabled = false;
+      btn.textContent = label;
+    }
+  });
+</script>
