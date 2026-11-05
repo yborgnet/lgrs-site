@@ -1,7 +1,11 @@
 :root {
   --ink: #0b0b0a;
   --paper: #f3f1ec;
-  --warm: #d6a17a;
+  /* Identité violette, reprise du favicon (et de l'app Traverse) : un seul accent sur tout le site. */
+  --violet: #8b3dff;       /* violet du logo : mots en italique des titres sur fond clair, liens au survol */
+  --violet-nuit: #a46dff;  /* même teinte, un cran plus clair : sur fond noir et sur photo */
+  --violet-pale: #ebe1ff;  /* bandeau newsletter, sélection de texte */
+  --rose: #ff8fd0;         /* uniquement la petite barre sous les surtitres, comme sur le favicon */
   --line: rgba(11, 11, 10, 0.16);
   --white: #ffffff;
 
@@ -152,6 +156,7 @@ a {
 }
 
 .hero h1 em {
+  color: var(--violet-nuit);
   font-family: inherit;
   font-size: 0.9em;
   font-style: italic;
@@ -275,7 +280,49 @@ a {
 }
 
 .eyebrow--warm {
-  color: var(--warm);
+  color: var(--violet-nuit);
+}
+
+/* Petite barre rose du favicon sous les surtitres. Posée en absolu dans la marge
+   existante (26 px) : aucun élément ne bouge. */
+.eyebrow:not(.eyebrow--warm),
+.voyage-masthead__eyebrow {
+  position: relative;
+}
+
+.eyebrow:not(.eyebrow--warm)::after,
+.voyage-masthead__eyebrow::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(100% + 9px);
+  width: 22px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--rose);
+}
+
+.story-card .eyebrow::after {
+  content: none;
+}
+
+/* Mots en italique des titres : le violet du logo. */
+h2 em {
+  color: var(--violet);
+}
+
+.intro-section h2 em,
+.projets-section h2 em {
+  color: var(--violet-nuit);
+}
+
+::selection {
+  background: var(--violet-pale);
+  color: var(--ink);
+}
+
+a:hover {
+  color: var(--violet);
 }
 
 .home-link {

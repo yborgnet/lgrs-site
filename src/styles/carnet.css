@@ -629,7 +629,7 @@
 }
 
 .carnet-story__photo-trigger:focus-visible {
-  outline: 2px solid var(--warm);
+  outline: 2px solid var(--violet);
   outline-offset: 2px;
 }
 
@@ -741,7 +741,7 @@
 }
 
 .carnet-portfolio__trigger:focus-visible {
-  outline: 2px solid var(--warm);
+  outline: 2px solid var(--violet);
   outline-offset: 2px;
 }
 
@@ -775,7 +775,7 @@
 }
 
 .carnet-portfolio__more-toggle:focus-visible {
-  outline: 2px solid var(--warm);
+  outline: 2px solid var(--violet);
   outline-offset: 4px;
 }
 
@@ -934,7 +934,7 @@
 }
 
 .carnet-closing__cta:focus-visible {
-  outline: 2px solid var(--warm);
+  outline: 2px solid var(--violet);
   outline-offset: 3px;
 }
 

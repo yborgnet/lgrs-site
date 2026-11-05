@@ -61,11 +61,11 @@
 }
 
 /* Disponibilités — même bloc dans Infos et sur /prochains-voyages/ ;
-   couleur secondaire existante (--warm), sans badge ni urgence. */
+   couleur d'accent du site (--violet), sans badge ni urgence. */
 .availability__count {
   font-weight: 600;
   color: var(--ink);
-  border-bottom: 2px solid var(--warm);
+  border-bottom: 2px solid var(--violet);
 }
 
 .availability__departure {

@@ -1,7 +1,7 @@
 /* === POP-UP + BANDEAU « SUIVRE LES PROCHAINS RAIDS » === */
 
 .contact-strip {
-  background: var(--warm);
+  background: var(--violet-pale);
   color: var(--ink);
   font-family: var(--font-sans);
 }
@@ -126,7 +126,7 @@ body.contact-popup-open {
 }
 
 .contact-popup__close:hover {
-  color: var(--warm);
+  color: var(--violet);
 }
 
 .contact-popup__eyebrow {
@@ -189,7 +189,7 @@ body.contact-popup-open {
 }
 
 .contact-popup__form input[type="email"]:focus-visible {
-  outline: 2px solid var(--warm);
+  outline: 2px solid var(--violet);
   outline-offset: 1px;
 }
 
@@ -231,7 +231,7 @@ body.contact-popup-open {
 
 .contact-popup__button:focus-visible,
 .contact-popup__close:focus-visible {
-  outline: 2px solid var(--warm);
+  outline: 2px solid var(--violet);
   outline-offset: 3px;
 }
 
