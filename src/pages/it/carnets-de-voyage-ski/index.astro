@@ -15,8 +15,8 @@ const canonical = "https://lesgrandsraidsaski.com/it/carnets-de-voyage-ski/";
 ---
 
 <BaseLayout
-  title={"Da diari di viaggio a scialpinismo | Les Grands Raids à Ski"}
-  description={"Storie di traversate con gli sci nelle Alpi e nelle montagne del mondo: itinerari, mappe GPX e fotografie delle scorse incursioni in itineranza."}
+  title={"Diari di viaggio scialpinistico | Les Grands Raids à Ski"}
+  description={"Racconti di traversate con gli sci sulle Alpi e sulle montagne del mondo: itinerari, carte GPX e fotografie dei viaggi passati."}
   canonical={canonical}
   ogImage={indexHeroPhoto.src}
 >
@@ -25,17 +25,17 @@ const canonical = "https://lesgrandsraidsaski.com/it/carnets-de-voyage-ski/";
   <main>
     <section class="carnets-index-hero">
       <div class="site-shell">
-        <p class="carnets-index-hero__eyebrow">{"Quaderni da campo"}</p>
+        <p class="carnets-index-hero__eyebrow">{"Diari sul campo"}</p>
 
         <div class="carnets-index-hero__grid">
           <h1>
-            {"Le Grandi Incursioni"}<br />
+            {"Les Grands Raids"}<br />
             <em>{"lasciano tracce."}</em>
           </h1>
 
           <div>
             <p class="carnets-index-hero__intro">
-              {"Un taccuino è composto da tutte le tracce lasciate da uno itineranza sugli sci. Una storia, spesso scritta ogni sera alla luce di una lampada frontale, foto – tante foto – e, ovviamente, una linea tracciata su una mappa."}
+              {"Un diario raccoglie tutte le tracce lasciate da un’itineranza con gli sci. Un racconto, spesso scritto ogni sera alla luce della frontale, fotografie — tante fotografie — e, naturalmente, una linea tracciata su una carta."}
             </p>
             <a class="home-link carnets-index-hero__link" href={localizedHref(lang, "/raid-a-ski/")}>
               {"Capire come è costruito uno traversata scialpinistica →"}
@@ -60,8 +60,8 @@ const canonical = "https://lesgrandsraidsaski.com/it/carnets-de-voyage-ski/";
           <div class="site-shell carnets-filters__grid">
             {carnetZones.length > 0 && (
               <div>
-                <p class="carnets-filters__label">{"Per vasta area"}</p>
-                <div class="carnets-filters__row" data-filter-group="zone" role="group" aria-label={"Filtra i taccuini per area"}>
+                <p class="carnets-filters__label">{"Per area"}</p>
+                <div class="carnets-filters__row" data-filter-group="zone" role="group" aria-label={"Filtra i diari per area"}>
                   <button type="button" class="is-active" data-zone="all">{"Tutte le aree"}</button>
                   {carnetZones.map((zone) => (
                     <button type="button" data-zone={zone.slug}>{zone.label}</button>
@@ -73,7 +73,7 @@ const canonical = "https://lesgrandsraidsaski.com/it/carnets-de-voyage-ski/";
             {carnetYears.length > 0 && (
               <div>
                 <p class="carnets-filters__label">{"Per anno"}</p>
-                <div class="carnets-filters__row" data-filter-group="year" role="group" aria-label={"Filtra i taccuini per anno"}>
+                <div class="carnets-filters__row" data-filter-group="year" role="group" aria-label={"Filtra i diari per anno"}>
                   <button type="button" class="is-active" data-year="all">{"Tutti gli anni"}</button>
                   {carnetYears.map((year) => (
                     <button type="button" data-year={year}>{year}</button>
@@ -101,7 +101,7 @@ const canonical = "https://lesgrandsraidsaski.com/it/carnets-de-voyage-ski/";
           <p class="carnets-traversee__eyebrow">{"Progetto a lungo termine"}</p>
           <h2 class="carnets-traversee__title">{"Traversata delle Alpi"}</h2>
           <p class="carnets-traversee__text">
-            {"Dal Mediterraneo all'Austria, questa traversata è costruita a tappe, con gli sci e senza alcuna logica progettuale complessiva. Ogni anno un nuovo segmento racconta una porzione di questa linea continua: dalle Alpi Liguri al Piemonte, dal Viso alla Vanoise, poi nel 2027 verso la Valle d'Aosta e la Svizzera vallesana. Quaderni indipendenti, legati dallo stesso progetto di viaggio."}
+            {"Dal Mediterraneo all’Austria, questa traversata si costruisce a tappe, sci ai piedi e senza pianificare l’insieme. Ogni anno un nuovo segmento racconta una parte di questa linea continua: dalle Alpi Liguri al Piemonte, dal Viso alla Vanoise, poi nel 2027 verso la Valle d’Aosta e il Vallese svizzero. Diari indipendenti, legati dallo stesso progetto di viaggio."}
           </p>
           <a class="carnets-traversee__cta" href="#carnets-list" data-traversee-cta>
             {"Scopri le tappe della Traversata delle Alpi →"}

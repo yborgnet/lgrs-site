@@ -20,6 +20,7 @@ for (const [i, file] of files.entries()) {
 }
 const temporary = fs.mkdtempSync(path.join(os.tmpdir(), 'lgrs-i18n-check-'));
 const keep = new Set(['slug', 'src', 'gpx', 'ogImage', 'href', 'buttonHref', 'ctaHref', 'position', 'cropRatio', 'zones', 'id', 'defaultVariant', 'letter', 'type', 'variant', 'direction', 'name', 'via']);
+const namedTitles = new Set(['ARGENTERA', 'BERNINA', 'DAMMASTOCK', 'DAMMASTOCK · TITLIS', 'TOUR DES AGNEAUX', 'ÉCRINS', 'ÖTZTAL', 'KOSOVO', 'VERWALL', 'SKI MED', 'ALPINE LINE']);
 let numbers = 0, identifiers = 0, text = 0;
 function check(source, target, keys = []) {
   const location = keys.join('.');
@@ -30,6 +31,8 @@ function check(source, target, keys = []) {
   }
   if (typeof source === 'string') {
     if (typeof target !== 'string') throw new Error(`Changed type: ${location}`);
+    if (namedTitles.has(source) && source !== target) throw new Error(`Translated proper name: ${location}`);
+    if (/Ile Alatau/.test(source) && /Alatau Island|Island Alatau|Isola (?:di )?Alatau/i.test(target)) throw new Error(`Translated mountain name: ${location}`);
     if (keep.has(key) || /^(?:https?:|\/|mailto:)/.test(source)) {
       if (source !== target) throw new Error(`Changed file or identifier: ${location}`);
       identifiers++;

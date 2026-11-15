@@ -15,8 +15,8 @@ const canonical = "https://lesgrandsraidsaski.com/en/carnets-de-voyage-ski/";
 ---
 
 <BaseLayout
-  title={"Trip journals to ski touring | Les Grands Raids à Ski"}
-  description={"Stories of ski crossings in the Alps and mountains of the world: itineraries, GPX maps and photographs of past raids on a multi-day journey."}
+  title={"Ski touring trip journals | Les Grands Raids à Ski"}
+  description={"Stories of ski traverses in the Alps and mountains around the world: itineraries, GPX maps and photographs from past journeys."}
   canonical={canonical}
   ogImage={indexHeroPhoto.src}
 >
@@ -25,17 +25,17 @@ const canonical = "https://lesgrandsraidsaski.com/en/carnets-de-voyage-ski/";
   <main>
     <section class="carnets-index-hero">
       <div class="site-shell">
-        <p class="carnets-index-hero__eyebrow">{"Field notebooks"}</p>
+        <p class="carnets-index-hero__eyebrow">{"Field journals"}</p>
 
         <div class="carnets-index-hero__grid">
           <h1>
-            {"The Great Raids"}<br />
+            {"Les Grands Raids"}<br />
             <em>{"leave their mark."}</em>
           </h1>
 
           <div>
             <p class="carnets-index-hero__intro">
-              {"A notebook is made up of all the traces left by a ski journey. A story, often written every evening by the light of the headlamp, photos — lots of photos — and, of course, a line drawn on a map."}
+              {"A trip journal gathers the traces left by a ski journey. A story, often written each evening by headtorch light, photographs — lots of photographs — and, of course, a line drawn on a map."}
             </p>
             <a class="home-link carnets-index-hero__link" href={localizedHref(lang, "/raid-a-ski/")}>
               {"Understand how a ski traverse is built →"}
@@ -60,8 +60,8 @@ const canonical = "https://lesgrandsraidsaski.com/en/carnets-de-voyage-ski/";
           <div class="site-shell carnets-filters__grid">
             {carnetZones.length > 0 && (
               <div>
-                <p class="carnets-filters__label">{"By large area"}</p>
-                <div class="carnets-filters__row" data-filter-group="zone" role="group" aria-label={"Filter notebooks by area"}>
+                <p class="carnets-filters__label">{"By region"}</p>
+                <div class="carnets-filters__row" data-filter-group="zone" role="group" aria-label={"Filter journals by region"}>
                   <button type="button" class="is-active" data-zone="all">{"All areas"}</button>
                   {carnetZones.map((zone) => (
                     <button type="button" data-zone={zone.slug}>{zone.label}</button>
@@ -73,7 +73,7 @@ const canonical = "https://lesgrandsraidsaski.com/en/carnets-de-voyage-ski/";
             {carnetYears.length > 0 && (
               <div>
                 <p class="carnets-filters__label">{"By year"}</p>
-                <div class="carnets-filters__row" data-filter-group="year" role="group" aria-label={"Filter notebooks by year"}>
+                <div class="carnets-filters__row" data-filter-group="year" role="group" aria-label={"Filter journals by year"}>
                   <button type="button" class="is-active" data-year="all">{"All years"}</button>
                   {carnetYears.map((year) => (
                     <button type="button" data-year={year}>{year}</button>
@@ -101,7 +101,7 @@ const canonical = "https://lesgrandsraidsaski.com/en/carnets-de-voyage-ski/";
           <p class="carnets-traversee__eyebrow">{"Long-term project"}</p>
           <h2 class="carnets-traversee__title">{"Alps traverse"}</h2>
           <p class="carnets-traversee__text">
-            {"From the Mediterranean to Austria, this crossing is built in stages, on skis and without any overall planning logic. Each year, a new segment tells a portion of this continuous line: from the Ligurian Alps to Piedmont, from Viso to Vanoise, then in 2027 towards the Aosta Valley and Valais Switzerland. Independent notebooks, linked by the same travel project."}
+            {"From the Mediterranean to Austria, this traverse grows in stages, on skis, without planning the whole journey in advance. Each year, a new segment tells another part of this continuous line: from the Ligurian Alps to Piedmont, from Viso to the Vanoise, then in 2027 towards the Aosta Valley and the Swiss Valais. Independent journals linked by a shared journey."}
           </p>
           <a class="carnets-traversee__cta" href="#carnets-list" data-traversee-cta>
             {"Discover the segments of the Crossing of the Alps →"}
@@ -161,7 +161,7 @@ const canonical = "https://lesgrandsraidsaski.com/en/carnets-de-voyage-ski/";
         </div>
 
         <p class="carnets-list__empty" data-filter-empty hidden>
-          {"No notebook matches this filter."}
+          {"No journal matches this filter."}
         </p>
       </div>
     </section>
