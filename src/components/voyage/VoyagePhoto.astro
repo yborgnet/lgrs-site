@@ -1,4 +1,7 @@
 ---
+import { getLang, useTranslations } from "../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 import type { VoyagePhoto } from "../../data/voyages/types";
 import { withBase } from "../../lib/url";
 
@@ -15,7 +18,7 @@ const { photo } = Astro.props;
       <img src={withBase(photo.src)} alt={photo.alt} loading="lazy" decoding="async" />
     ) : (
       <div class="voyage-photo__placeholder">
-        <span>Photo à venir</span>
+        <span>{t("photo.pending")}</span>
       </div>
     )
   }

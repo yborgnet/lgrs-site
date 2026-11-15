@@ -1,4 +1,7 @@
 ---
+import { getLang, useTranslations } from "../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 // Sélecteur des plans du Raid / Ski méditerranéen : un seul voyage, cinq lignes
 // préparées, une seule skiée. Tous les panneaux sont dans le HTML (SEO) ; seuls
 // les panneaux inactifs sont `hidden`. Le JS ne fait que basculer l'affichage
@@ -32,7 +35,7 @@ const firstId = plans[0].id;
             aria-selected={plan.id === firstId ? "true" : "false"}
             tabindex={plan.id === firstId ? 0 : -1}
           >
-            <span class="skimed__tab-plan">Plan {plan.letter}</span>
+            <span class="skimed__tab-plan">{t("plan.label")} {plan.letter}</span>
             <span class="skimed__tab-country">{plan.country}</span>
           </button>
         ))
@@ -50,14 +53,14 @@ const firstId = plans[0].id;
           tabindex="0"
         >
           <header class="plan__head">
-            <p class="plan__letter">Plan {plan.letter}</p>
+            <p class="plan__letter">{t("plan.label")} {plan.letter}</p>
             <h3 class="plan__country">{plan.country}</h3>
             <p class="plan__massif">{plan.massif}</p>
           </header>
 
           {plan.variants ? (
             <>
-              <div class="plan__variants" role="tablist" aria-label={`Variantes du plan ${plan.letter}`} data-tabs>
+              <div class="plan__variants" role="tablist" aria-label={t("plan.variants").replace("{letter}", plan.letter)} data-tabs>
                 {plan.variants.map((v) => (
                   <button
                     type="button"

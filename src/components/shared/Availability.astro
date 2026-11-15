@@ -1,4 +1,7 @@
 ---
+import { getLang, useTranslations } from "../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 /**
  * Disponibilités d'un voyage — structure unique pour le bloc Infos
  * (variant "field", dans InformationGrid) et les cartes de /prochains-voyages/
@@ -11,13 +14,13 @@ type Props = {
 
 const { availability, variant = "field" } = Astro.props;
 const { places, departure } = availability;
-const text = places <= 0 ? "Complet" : places === 1 ? "Dernière place disponible" : `${places} places disponibles`;
+const text = places <= 0 ? t("availability.full") : places === 1 ? t("availability.last") : t("availability.places").replace("{places}", String(places));
 ---
 
 {
   variant === "field" ? (
     <div class="info-grid__field info-grid__field--availability">
-      <dt>Disponibilités</dt>
+      <dt>{t("availability.label")}</dt>
       <dd>
         <span class="availability__count">{text}</span>
         {departure && <span class="availability__departure">{departure}</span>}

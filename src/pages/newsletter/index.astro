@@ -1,4 +1,6 @@
 ---
+import { getLang } from "../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
 import SponsorStrip from "../../components/shared/SponsorStrip.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
@@ -55,7 +57,7 @@ const canonical = "https://lesgrandsraidsaski.com/newsletter/";
         <div class="contact-panel">
           <form class="contact-form newsletter-form" action={NEWSLETTER_ENDPOINT} method="POST" novalidate>
             <label>E-mail<input type="email" name="EMAIL" placeholder="Votre adresse e-mail" autocomplete="email" required /></label>
-            <input type="hidden" name="locale" value="fr" />
+            <input type="hidden" name="locale" value={lang} />
             <input type="hidden" name="html_type" value="simple" />
             <div class="newsletter-form__trap" aria-hidden="true"><input type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" /></div>
             <button type="submit">Je m'inscris</button>

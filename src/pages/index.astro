@@ -1,4 +1,6 @@
 ---
+import { getLang } from "../i18n/utils";
+const lang = getLang(Astro.currentLocale);
 import SponsorStrip from "../components/shared/SponsorStrip.astro";
 import ContactStrip from "../components/shared/ContactStrip.astro";
 import BaseLayout from "../layouts/BaseLayout.astro";
@@ -15,7 +17,7 @@ const canonical = "https://lesgrandsraidsaski.com/";
 const segmentsAlpins = carnets
   .filter((c) => c.zones.includes("traversee-des-alpes"))
   .map((c, i) => ({ slug: c.slug, i, name: (c.subtitle ?? c.title).replace(" : ", " · ") }))
-  .sort((a, b) => a.name.localeCompare(b.name, "fr", { numeric: true }) || a.i - b.i);
+  .sort((a, b) => a.name.localeCompare(b.name, lang, { numeric: true }) || a.i - b.i);
 ---
 
 <BaseLayout

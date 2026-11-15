@@ -1,4 +1,7 @@
 ---
+import { getLang, useTranslations } from "../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 // Lightbox plein écran partagée par toutes les galeries cliquables d'un
 // carnet (portfolio, rail photo du récit...). Générique : elle ne connaît
 // pas les photos à l'avance, elle les lit dans le DOM de la section
@@ -8,10 +11,10 @@
 // séquence J1→J5 indépendante de celle du portfolio).
 ---
 
-<div class="carnet-lightbox" data-lightbox hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label="Photo en grand">
-  <button type="button" class="carnet-lightbox__close" data-lightbox-close aria-label="Fermer">✕</button>
-  <button type="button" class="carnet-lightbox__nav carnet-lightbox__nav--prev" data-lightbox-prev aria-label="Photo précédente">‹</button>
-  <button type="button" class="carnet-lightbox__nav carnet-lightbox__nav--next" data-lightbox-next aria-label="Photo suivante">›</button>
+<div class="carnet-lightbox" data-lightbox hidden aria-hidden="true" role="dialog" aria-modal="true" aria-label={t("photo.large")}>
+  <button type="button" class="carnet-lightbox__close" data-lightbox-close aria-label={t("common.close")}>✕</button>
+  <button type="button" class="carnet-lightbox__nav carnet-lightbox__nav--prev" data-lightbox-prev aria-label={t("photo.previous")}>‹</button>
+  <button type="button" class="carnet-lightbox__nav carnet-lightbox__nav--next" data-lightbox-next aria-label={t("photo.next")}>›</button>
   <div class="carnet-lightbox__stage" data-lightbox-stage>
     <img class="carnet-lightbox__image" data-lightbox-image alt="" />
     <p class="carnet-lightbox__caption" data-lightbox-caption hidden></p>

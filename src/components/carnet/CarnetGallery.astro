@@ -1,4 +1,7 @@
 ---
+import { getLang, useTranslations } from "../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 import type { Carnet, CarnetPhoto } from "../../data/carnets/types";
 import CarnetLightbox from "./CarnetLightbox.astro";
 import { withBase } from "../../lib/url";
@@ -41,7 +44,7 @@ function photoStyle(photo: CarnetPhoto): string | undefined {
                 class="carnet-portfolio__trigger"
                 data-lightbox-trigger
                 data-caption={photo.caption ?? ""}
-                aria-label={`Agrandir la photo : ${photo.alt}`}
+                aria-label={t("photo.enlarge").replace("{alt}", photo.alt)}
               >
                 <img
                   src={withBase(photo.src)}
@@ -63,10 +66,12 @@ function photoStyle(photo: CarnetPhoto): string | undefined {
               type="button"
               class="carnet-portfolio__more-toggle"
               data-portfolio-toggle
+              data-more={t("portfolio.more")}
+              data-less={t("portfolio.less")}
               aria-expanded="false"
               aria-controls="carnet-portfolio-grid"
             >
-              Voir la suite du portfolio ↓
+              {t("portfolio.more")}
             </button>
           </div>
         )}
@@ -90,7 +95,7 @@ function photoStyle(photo: CarnetPhoto): string | undefined {
         else el.removeAttribute("hidden");
       });
       toggle.setAttribute("aria-expanded", String(!expanded));
-      toggle.textContent = expanded ? "Voir la suite du portfolio ↓" : "Réduire le portfolio ↑";
+      toggle.textContent = expanded ? toggle.dataset.more! : toggle.dataset.less!;
     });
   }
 

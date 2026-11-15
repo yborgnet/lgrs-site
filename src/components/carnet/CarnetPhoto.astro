@@ -1,4 +1,7 @@
 ---
+import { getLang, useTranslations } from "../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 import type { CarnetPhoto } from "../../data/carnets/types";
 import { withBase } from "../../lib/url";
 
@@ -16,7 +19,7 @@ const { photo: img, variant = "wide" } = Astro.props;
 <figure class:list={["carnet-photo", `carnet-photo--${variant}`, { "carnet-photo--placeholder": img.placeholder }]}>
   {img.placeholder ? (
     <div class="carnet-photo__placeholder" role="img" aria-label={img.alt}>
-      <span>Photo à venir</span>
+      <span>{t("photo.pending")}</span>
     </div>
   ) : (
     <img

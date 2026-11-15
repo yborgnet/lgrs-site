@@ -1,4 +1,7 @@
 ---
+import { getLang, useTranslations } from "../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 import { withBase } from "../../lib/url";
 
 /**
@@ -29,7 +32,7 @@ const {
   alt = "",
   position,
   file,
-  label = "Photo à venir",
+  label = t("photo.pending"),
   loading = "lazy",
 } = Astro.props;
 ---

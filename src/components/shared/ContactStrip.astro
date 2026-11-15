@@ -1,17 +1,20 @@
 ---
+import { getLang, useTranslations } from "../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 import { contact } from "../../data/contact";
 import "../../styles/contact-popup.css";
 ---
 
-<aside class="contact-strip" aria-label="Rester informé">
+<aside class="contact-strip" aria-label={t("contact.stay")}>
   <div class="site-shell contact-strip__inner">
     <p class="contact-strip__text">
       <span class="contact-strip__eyebrow">LES GRANDS RAIDS À SKI</span>
-      <span class="contact-strip__label">Être informé·e des prochains grands raids à ski</span>
+      <span class="contact-strip__label">{t("contact.title")}</span>
     </p>
     <span class="contact-strip__links">
-      <button type="button" class="contact-strip__link" data-open-contact-popup>Newsletter</button>
-      <a class="contact-strip__link contact-strip__link--outline" href={contact.whatsappCommunityUrl} target="_blank" rel="noopener noreferrer" data-contact-whatsapp>Communauté WhatsApp</a>
+      <button type="button" class="contact-strip__link" data-open-contact-popup>{t("contact.newsletter")}</button>
+      <a class="contact-strip__link contact-strip__link--outline" href={contact.whatsappCommunityUrl} target="_blank" rel="noopener noreferrer" data-contact-whatsapp>{t("contact.community")}</a>
     </span>
   </div>
 </aside>

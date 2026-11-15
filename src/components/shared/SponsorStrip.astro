@@ -1,4 +1,7 @@
 ---
+import { getLang, useTranslations } from "../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 /**
  * Partenaires (logos officiels, ramenés en blanc monochrome pour rester
  * sobres sur le fond --ink du pied de page). Fichiers : public/images/sponsors/.
@@ -15,7 +18,7 @@ const sponsors = [
 ---
 
 <div class="site-shell sponsor-strip">
-  <p class="sponsor-strip__label">Avec le soutien de</p>
+  <p class="sponsor-strip__label">{t("footer.support")}</p>
   <ul class="sponsor-strip__list">
     {sponsors.map((s) => (
       <li>

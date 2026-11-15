@@ -22,7 +22,7 @@ const links = Object.fromEntries(
     ) : links[l] ? (
       <a class="lang-switch__item" href={links[l]} hreflang={l} lang={l}>{l.toUpperCase()}</a>
     ) : (
-      <span class="lang-switch__item is-unavailable" lang={l} title="Bientôt disponible">{l.toUpperCase()}</span>
+      <span class="lang-switch__item is-unavailable" lang={l} title={t("lang.soon")}>{l.toUpperCase()}</span>
     )
   )}
 </div>

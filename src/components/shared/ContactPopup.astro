@@ -1,4 +1,7 @@
 ---
+import { getLang, useTranslations } from "../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 import { contact } from "../../data/contact";
 import { NEWSLETTER_ENDPOINT } from "../../config/newsletter";
 import "../../styles/contact-popup.css";
@@ -14,34 +17,37 @@ import "../../styles/contact-popup.css";
     data-delay={contact.popupDelayMs}
     data-scroll={contact.popupScrollRatio}
     data-days={contact.dismissDays}
+    data-invalid={t("contact.invalid")}
+    data-sending={t("contact.sending")}
+    data-failed={t("contact.failed")}
   >
-    <button type="button" class="contact-popup__close" aria-label="Fermer" data-close-contact-popup>
+    <button type="button" class="contact-popup__close" aria-label={t("common.close")} data-close-contact-popup>
       <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="1.5" /></svg>
     </button>
 
     <p class="contact-popup__eyebrow">LES GRANDS RAIDS À SKI</p>
-    <h2 id="contact-popup-title" class="contact-popup__title">Être informé·e des prochains grands raids à ski</h2>
+    <h2 id="contact-popup-title" class="contact-popup__title">{t("contact.title")}</h2>
 
     <div class="contact-popup__options">
       <section class="contact-popup__option">
-        <h3>Recevoir la newsletter</h3>
+        <h3>{t("contact.receive")}</h3>
         <form class="contact-popup__form" action={NEWSLETTER_ENDPOINT} method="POST" novalidate>
-          <label class="contact-popup__sr" for="contact-popup-email">Adresse e-mail</label>
-          <input type="email" id="contact-popup-email" name="EMAIL" placeholder="Votre adresse e-mail" autocomplete="email" required />
-          <input type="hidden" name="locale" value="fr" />
+          <label class="contact-popup__sr" for="contact-popup-email">{t("contact.email")}</label>
+          <input type="email" id="contact-popup-email" name="EMAIL" placeholder={t("contact.placeholder")} autocomplete="email" required />
+          <input type="hidden" name="locale" value={lang} />
           <input type="hidden" name="html_type" value="simple" />
           <input type="text" name="email_address_check" value="" tabindex="-1" autocomplete="off" class="contact-popup__sr" aria-hidden="true" />
-          <button type="submit" class="contact-popup__button">Je m'inscris</button>
+          <button type="submit" class="contact-popup__button">{t("contact.subscribe")}</button>
           <p class="contact-popup__error" role="alert" hidden></p>
-          <p class="contact-popup__note">Une à deux lettres par saison, désinscription en un clic.</p>
+          <p class="contact-popup__note">{t("contact.note")}</p>
         </form>
-        <p class="contact-popup__thanks" role="status" tabindex="-1" hidden>Merci, c'est noté&nbsp;! Un mot de bienvenue vient de partir vers votre boîte mail. Sur Gmail, il arrive souvent dans l'onglet Promotions&nbsp;: glissez-le dans Principale pour ne manquer aucune lettre.</p>
+        <p class="contact-popup__thanks" role="status" tabindex="-1" hidden>{t("contact.thanks")}</p>
       </section>
 
       <section class="contact-popup__option">
-        <h3>Rejoindre la communauté WhatsApp</h3>
-        <p>Les départs, les places qui se libèrent, en direct.</p>
-        <a class="contact-popup__button contact-popup__button--outline" href={contact.whatsappCommunityUrl} target="_blank" rel="noopener noreferrer" data-contact-whatsapp>Rejoindre la communauté</a>
+        <h3>{t("contact.joinWhatsApp")}</h3>
+        <p>{t("contact.departures")}</p>
+        <a class="contact-popup__button contact-popup__button--outline" href={contact.whatsappCommunityUrl} target="_blank" rel="noopener noreferrer" data-contact-whatsapp>{t("contact.join")}</a>
       </section>
     </div>
   </div>
@@ -158,7 +164,7 @@ import "../../styles/contact-popup.css";
       const btn = form.querySelector<HTMLButtonElement>("button[type=submit]")!;
       err.hidden = true;
       if (!email.value.trim() || !email.checkValidity()) {
-        err.textContent = "Veuillez saisir une adresse e-mail valide.";
+        err.textContent = dialog.dataset.invalid!;
         err.hidden = false;
         email.focus();
         return;
@@ -167,7 +173,7 @@ import "../../styles/contact-popup.css";
       if (honeypot?.value) return;
       const label = btn.textContent;
       btn.disabled = true;
-      btn.textContent = "Envoi…";
+      btn.textContent = dialog.dataset.sending!;
       const url = form.action + (form.action.includes("?") ? "&" : "?") + "isAjax=1";
       const succeed = () => {
         finish();
@@ -190,7 +196,7 @@ import "../../styles/contact-popup.css";
         }
         succeed();
       } catch {
-        err.textContent = "L'inscription n'a pas abouti, réessayez dans un instant.";
+        err.textContent = dialog.dataset.failed!;
         err.hidden = false;
         btn.disabled = false;
         btn.textContent = label;

@@ -1,4 +1,7 @@
 ---
+import { getLang, useTranslations } from "../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 import type { VoyagePhoto } from "../../data/voyages/types";
 import { withBase } from "../../lib/url";
 
@@ -17,7 +20,7 @@ const { photo, hideOnMobile = false } = Astro.props;
       <div class="voyage-photo-panel__image" style={`background-image: url('${withBase(photo.src)}')`} role="img" aria-label={photo.alt} />
     ) : (
       <div class="voyage-photo-panel__placeholder">
-        <span>Photo à venir</span>
+        <span>{t("photo.pending")}</span>
       </div>
     )
   }

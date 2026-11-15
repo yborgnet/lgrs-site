@@ -1,4 +1,7 @@
 ---
+import { getLang, useTranslations } from "../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 // Corps d'une ligne (plan ou variante) : phrase, photo, informations, carte,
 // itinéraire — même vocabulaire que les pages Voyage / Carnet.
 import fs from "node:fs";
@@ -19,8 +22,8 @@ const { line, label } = Astro.props;
 // La carte n'est rendue que si le GPX est présent dans public/ : jamais de
 // trace inventée ni de cadre vide.
 const hasGpx = !!line.map && fs.existsSync(path.join(process.cwd(), "public", line.map.gpx));
-const fmt = (n: number) => n.toLocaleString("fr-FR");
-const fmtKm = (n: number) => n.toFixed(1).replace(".", ",");
+const fmt = (n: number) => n.toLocaleString({ fr: "fr-FR", en: "en-GB", it: "it-IT" }[lang]);
+const fmtKm = (n: number) => n.toFixed(1).replace(".", lang === "en" ? "." : ",");
 
 function stats(d: PlanDay) {
   const parts: string[] = [];
@@ -46,8 +49,8 @@ function stats(d: PlanDay) {
           style={line.photo.position ? `object-position: ${line.photo.position};` : undefined}
         />
       ) : (
-        <div class="plan-photo__placeholder" role="img" aria-label={`Photo à venir — ${label}`}>
-          <span>Photo à venir</span>
+        <div class="plan-photo__placeholder" role="img" aria-label={t("plan.photo").replace("{label}", label)}>
+          <span>{t("photo.pending")}</span>
         </div>
       )
     }
@@ -68,7 +71,7 @@ function stats(d: PlanDay) {
   }
 
   <div class="plan-info">
-    <InformationGrid label="Informations" fields={line.info} />
+    <InformationGrid label={t("plan.info")} fields={line.info} />
   </div>
 
   {
@@ -77,7 +80,7 @@ function stats(d: PlanDay) {
         {hasGpx ? (
           <GpxMap gpx={line.map.gpx} title={line.map.title} markers={line.map.markers} />
         ) : (
-          <p class="plan-map__pending">Carte et trace à venir.</p>
+          <p class="plan-map__pending">{t("plan.map")}</p>
         )}
       </div>
     )
@@ -86,7 +89,7 @@ function stats(d: PlanDay) {
   {
     line.itinerary ? (
       <div class="plan-itinerary">
-        <p class="plan-itinerary__eyebrow">Itinéraire</p>
+        <p class="plan-itinerary__eyebrow">{t("voyage.itinerary")}</p>
         <h4>{line.itinerary.title}</h4>
         {line.itinerary.intro && <p class="plan-itinerary__intro">{line.itinerary.intro}</p>}
         <div class="plan-days">
@@ -101,7 +104,7 @@ function stats(d: PlanDay) {
                   {d.text && <p>{d.text}</p>}
                   {d.night && (
                     <p class="plan-day__night">
-                      <strong>{d.nightLabel ?? "Nuit"}</strong> · {d.night}
+                      <strong>{d.nightLabel ?? t("plan.night")}</strong> · {d.night}
                     </p>
                   )}
                   {d.alert && <p class="plan-day__alert">{d.alert}</p>}

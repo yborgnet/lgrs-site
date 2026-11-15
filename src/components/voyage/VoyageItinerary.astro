@@ -1,4 +1,7 @@
 ---
+import { getLang, useTranslations } from "../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 import type { Voyage } from "../../data/voyages/types";
 import GpxMap from "../GpxMap.astro";
 import { withBase } from "../../lib/url";
@@ -22,7 +25,7 @@ const { itinerary } = Astro.props;
       itinerary.gpx ? (
         <GpxMap
           gpx={itinerary.gpx}
-          title={itinerary.mapTitle ?? `Carte de l'itinéraire — ${itinerary.title}`}
+          title={itinerary.mapTitle ?? t("voyage.map").replace("{title}", itinerary.title)}
           fallback={itinerary.map}
           markers={itinerary.markers}
         />
@@ -54,7 +57,7 @@ const { itinerary } = Astro.props;
                 <h3>{item.title}</h3>
                 {(item.distanceKm != null || item.ascentM != null || item.descentM != null) && (
                   <p class="voyage-day__stats">
-                    {item.distanceKm != null && <span>{item.distanceKm.toFixed(1).replace(".", ",")} km</span>}
+                    {item.distanceKm != null && <span>{item.distanceKm.toFixed(1).replace(".", lang === "en" ? "." : ",")} km</span>}
                     {item.ascentM != null && <span>+{item.ascentM} m</span>}
                     {item.descentM != null && <span>−{item.descentM} m</span>}
                   </p>

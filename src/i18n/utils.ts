@@ -49,8 +49,12 @@ export function hasRoute(route: string): boolean {
 /** Lien interne localisé : version traduite si elle existe, sinon la page
  *  française. À utiliser pour tous les liens internes des pages en/it. */
 export function localizedHref(lang: Lang, path: string): string {
-  const route = routeFor(lang, path);
-  return withBase(hasRoute(route) ? route : path);
+  if (!path.startsWith("/") || path.startsWith("//")) return path;
+  const [, pathname, suffix = ""] = path.match(/^([^?#]*)(.*)$/)!;
+  // Files are assets (PDF, GPX, photos), never translated routes.
+  if (/\.[^/]+$/.test(pathname)) return withBase(path);
+  const route = routeFor(lang, pathname);
+  return withBase((hasRoute(route) ? route : pathname) + suffix);
 }
 
 /** Pour le sélecteur de langue et les balises hreflang : URL de la page

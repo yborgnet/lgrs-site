@@ -1,4 +1,7 @@
 ---
+import { getLang, useTranslations, localizedHref } from "../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 import type { Carnet, CarnetPhoto } from "../../data/carnets/types";
 import CarnetLightbox from "./CarnetLightbox.astro";
 import { withBase } from "../../lib/url";
@@ -42,7 +45,7 @@ function photoStyle(photo: CarnetPhoto): string | undefined {
               <p>
                 {story.sourceNote.text}
                 {" "}
-                <a href={story.sourceNote.href}>{story.sourceNote.linkLabel}</a>
+                <a href={localizedHref(lang, story.sourceNote.href)}>{story.sourceNote.linkLabel}</a>
               </p>
             </footer>
           )}
@@ -52,7 +55,7 @@ function photoStyle(photo: CarnetPhoto): string | undefined {
                 {story.closingLinks.map((link) => (
                   <li>
                     {link.href ? (
-                      <a href={withBase(link.href)}>{link.label}</a>
+                      <a href={localizedHref(lang, link.href)}>{link.label}</a>
                     ) : (
                       <span class="carnet-story__closing-links-placeholder">{link.label}</span>
                     )}
@@ -81,7 +84,7 @@ function photoStyle(photo: CarnetPhoto): string | undefined {
                           class="carnet-story__photo-trigger"
                           data-lightbox-trigger
                           data-caption={photo.caption ?? ""}
-                          aria-label={`Agrandir la photo : ${photo.alt}`}
+                          aria-label={t("photo.enlarge").replace("{alt}", photo.alt)}
                         >
                           <img
                             src={withBase(photo.src)}

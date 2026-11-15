@@ -1,4 +1,6 @@
 ---
+import { getLang } from "../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
 import type { Carnet } from "../../data/carnets/types";
 import GpxMap from "../GpxMap.astro";
 
@@ -42,7 +44,7 @@ const { map, itinerary } = Astro.props;
                   <p>{day.text}</p>
                   {(day.distanceKm || day.ascentM || day.descentM) && (
                     <p class="carnet-day__stats">
-                      {day.distanceKm != null && <span>{day.distanceKm.toFixed(1).replace(".", ",")} km</span>}
+                      {day.distanceKm != null && <span>{day.distanceKm.toFixed(1).replace(".", lang === "en" ? "." : ",")} km</span>}
                       {day.ascentM != null && <span>D+ {day.ascentM} m</span>}
                       {day.descentM != null && <span>D− {day.descentM} m</span>}
                     </p>

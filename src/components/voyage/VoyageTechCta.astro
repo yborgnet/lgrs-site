@@ -1,6 +1,8 @@
 ---
+import { getLang, useTranslations, localizedHref } from "../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
 import type { Voyage } from "../../data/voyages/types";
-import { withBase } from "../../lib/url";
 
 type Props = {
   techCta: Voyage["techCta"];
@@ -22,9 +24,9 @@ const { techCta } = Astro.props;
 
 <section class="voyage-explore">
   <div class="site-shell voyage-explore__inner">
-    <h3>Explorer ailleurs.</h3>
-    <a class="voyages-button" href={withBase("/#voyages")}>
-      Découvrir les autres raids programmés <span aria-hidden="true">→</span>
+    <h3>{t("voyage.explore")}</h3>
+    <a class="voyages-button" href={localizedHref(lang, "/#voyages")}>
+      {t("voyage.other")} <span aria-hidden="true">→</span>
     </a>
   </div>
 </section>
