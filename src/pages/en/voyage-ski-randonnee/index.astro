@@ -1,0 +1,546 @@
+---
+import { getLang, localizedHref } from "../../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+import SponsorStrip from "../../../components/shared/SponsorStrip.astro";
+import ContactStrip from "../../../components/shared/ContactStrip.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/voyage-ski-randonnee.css";
+import { carnets } from "../../../data/carnets/en/index";
+import { voyages } from "../../../data/voyages/en/index";
+import { withBase } from "../../../lib/url";
+
+const canonical = "https://lesgrandsraidsaski.com/en/voyage-ski-randonnee/";
+
+/**
+ * Page pilier "Voyage ski de randonnée" — audit préalable de la page
+ * WordPress live (https://lesgrandsraidsaski.com/voyage-ski-randonnee/,
+ * inspectée via WebFetch avant rédaction) : texte, liens, FAQ et structure
+ * SEO déjà validés par Yann. Principe suivi : garder ses formulations
+ * réelles chaque fois qu'elles existent, ne combler avec le texte du brief
+ * que les sections absentes du live (ex. l'exemple Šar, "Habiter
+ * momentanément un territoire", "Un camp de base, parfois").
+ *
+ * Écarts volontaires avec le live WordPress, pour ne pas dupliquer /
+ * cannibaliser les pages déjà reconstruites :
+ * - Section "Deux manières de voyager" (Alpes/extra-alpins, texte
+ *   "Sortir des randos classiques" / "Complexifier l'aventure") NON reprise
+ *   ici : texte strictement identique déjà publié sur /philosophie/
+ *   (.philo-split). Remplacée par les 4 "formes de voyage" du brief.
+ * - Triptyque "Préparer / Improviser / Relier" (gammes du jazzman) NON
+ *   repris : identique à .philo-method sur /philosophie/. Remplacé par le
+ *   texte "Préparer suffisamment pour rester libre" du brief.
+ * - Pull-quote "Relier des espaces, tenir une ligne..." NON repris : déjà
+ *   la citation d'ouverture de la section "Une ligne plutôt qu'un sommet"
+ *   sur /raid-a-ski/. Remplacé par le texte "moyen de déplacement" du brief
+ *   pour la section "Qu'est-ce qu'un voyage à ski ?", avec renvoi vers
+ *   /raid-a-ski/ pour qui veut la version longue.
+ * - Newsletter (bloc MailPoet en bas de la page live) non reconstruite :
+ *   aucune infra newsletter équivalente ailleurs dans le rebuild, hors
+ *   scope de ce brief.
+ *
+ * FAQ : les 6 questions/réponses sont celles, réelles, déjà en ligne — la
+ * première ("Quelle différence entre ski de randonnée, raid à ski et
+ * voyage à ski ?") couvre exactement la distinction sémantique demandée en
+ * tête de brief, un lien vers /raid-a-ski/ y a été ajouté comme demandé.
+ *
+ * Slots image facultatifs (non renseignés à dessein, voir brief) :
+ * heroImage / territoiresImage / sarImage / conceptionImage. La page doit
+ * rester complète sans elles.
+ */
+
+const territoires = [
+  {
+    name: "Alpes",
+    text: "Transalpine crossings, refuges, bivouacs and secondary valleys. The challenge is often to find marginal spaces within a well-travelled massif.",
+  },
+  {
+    name: "Balkans & Caucase",
+    text: "Mountains where the trip can be built in contact with the villages, with local logistics and much less standardized itineraries.",
+  },
+  {
+    name: "Asie centrale",
+    text: "More distant territories where preparation, transfers, accommodation and sometimes bivouacs become inseparable from the ski traverse itself.",
+  },
+];
+
+const vsrCarnets = ["bernina-tour-massif-ski-randonnee", "traversee-ski-argentera-mercantour", "kosovo"]
+  .map((slug) => carnets.find((c) => c.slug === slug))
+  .filter((c): c is NonNullable<typeof c> => Boolean(c));
+
+const faq = [
+  {
+    q: "What is the difference between ski touring, ski traverse and ski trip?",
+    a: "The ski touring denotes practice. The ski traverse is a multi-day journeying. I use “ski travel” when the crossing is not just a sequence of stages: discovery of a territory, villages, accommodation, meetings and logistics are part of the experience.",
+    link: { href: "/raid-a-ski/", label: "Learn more about the ski traverse →" },
+  },
+  {
+    q: "What is the difference between an alpine raid and a ski trip abroad?",
+    a: "In the Alps, I am especially looking for spaces outside the classic routes and the possibilities of building a continuous line. Abroad, logistics becomes a more important component: finding accommodation, connecting villages, organising transfers and working with local contacts.",
+  },
+  {
+    q: "How many days does a ski traverse last?",
+    a: "Most of the journeyings offered take place over several consecutive days. The exact duration depends on the massif, accommodation options, transfers and the length of the crossing. It is indicated on each travel sheet.",
+  },
+  {
+    q: "What level of skiing do you need?",
+    a: "You must be comfortable skiing off-piste in varied snow conditions and have experience with the ski touring. The endurance and technical requirements then vary greatly from one trip to another.",
+  },
+  {
+    q: "Why go with a IFMGA mountain guide?",
+    a: "On a journeying, the guide's role is to prepare and then adapt a line over several days depending on the terrain, the snow and weather conditions and the group. On distant trips, this preparation also includes a significant part of local logistics.",
+  },
+  {
+    q: "Can you join a trip alone?",
+    a: "Yes. Scheduled departures allow you to join a small group. For an already formed group, a private project can also be built around a destination or a crossing.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.a,
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title={"Travel ski touring | Alps and mountains of the world"}
+  description={"Travel to ski touring to cross and discover the Alps and the mountains of the world: journeying, refuges, villages, meetings and trips guided by Yann Borgnet."}
+  canonical={canonical}
+>
+  <Header solid />
+
+  <main>
+    <!-- HERO -->
+    <section class="vsr-hero">
+      <div class="site-shell">
+        <p class="vsr-hero__kicker">{"Travelling on skis"}</p>
+        <h1>{"Travel ski touring"}</h1>
+        <p class="vsr-hero__tagline">{"Discover territories, on skis."}</p>
+
+        <div class="vsr-hero__intro">
+          <p>
+            {"Crossings lasting several days to connect valleys, villages, refuges or bivouacs. Skiing as a means of travel, in the Alps and beyond."}
+          </p>
+        </div>
+
+        <a class="vsr-cta" href={localizedHref(lang, "/prochains-voyages/")}>{"See ski trips →"}</a>
+      </div>
+    </section>
+
+    <!-- SECTION 01 — QU'EST-CE QU'UN VOYAGE À SKI DE RANDONNÉE ? -->
+    <section class="vsr-section vsr-section--white">
+      <div class="site-shell vsr-section__inner">
+        <p class="vsr-section__kicker">{"Travel"}</p>
+        <h2>{"The ski touring"}<br />{"as a means of transportation."}</h2>
+
+        <div class="vsr-body">
+          <p>
+            {"A journey to ski touring begins when skiing stops being just an activity done around a starting point and becomes a means of transportation."}
+          </p>
+          <p>{"We no longer wear shoes just to climb and then descend a peak."}</p>
+          <p>{"We move."}</p>
+          <p>
+            {"We connect one valley to another, a refuge to a village, a cabin to a pass, sometimes one country to another."}
+          </p>
+          <p>{"Travel then becomes an essential part of the trip."}</p>
+          <p>
+            {"Skiing allows you to enter territories which, in winter, are sometimes almost cut off from the rest of the world. It provides access to villages, valleys and mountains that one would probably not view in the same way from a road."}
+          </p>
+          <p>{"It also allows you to slow down."}</p>
+          <p>
+            {"Distance is no longer only measured in kilometres or in elevation&nbsp;: it is measured in days, in stages, in lights, in shared meals, in snow changes and in encounters."}
+          </p>
+        </div>
+
+        <a class="vsr-inline-link" href={localizedHref(lang, "/raid-a-ski/")}>{"How a line is built: the ski traverse →"}</a>
+      </div>
+    </section>
+
+    <!-- SECTION 02 — PLUSIEURS MANIÈRES DE VOYAGER À SKI -->
+    <section class="vsr-section vsr-section--paper">
+      <div class="site-shell vsr-section__inner">
+        <p class="vsr-section__kicker">{"Forms of travel"}</p>
+        <h2>{"A practice,"}<br />{"several ways to leave."}</h2>
+
+        <div class="vsr-body vsr-body--intro">
+          <p>{"A trip to ski touring does not necessarily take a single form."}</p>
+          <p>
+            {"This site gives a central place to the journeying, but depending on the territory, conditions, group or logistics, several forms can be combined."}
+          </p>
+        </div>
+
+        <div class="vsr-forms">
+          <article class="vsr-form">
+            <p class="vsr-form__num">01</p>
+            <div class="vsr-form__body">
+              <h3>{"The crossing"}</h3>
+              <p>{"Change valley or massif over the days."}</p>
+              <p>{"The starting point and the ending point are different."}</p>
+              <p>{"The geographical progression gives coherence to the journey."}</p>
+              <a class="vsr-inline-link vsr-inline-link--tight" href={localizedHref(lang, "/raid-a-ski/")}>
+                {"Understand how a ski traverse is built →"}
+              </a>
+            </div>
+          </article>
+
+          <article class="vsr-form">
+            <p class="vsr-form__num">02</p>
+            <div class="vsr-form__body">
+              <h3>{"From village to village"}</h3>
+              <p>
+                {"A form that I particularly favour outside the Alps. Ski stages connect inhabited places&nbsp;; accommodation, meals, meetings and possible transfers become part of the trip."}
+              </p>
+            </div>
+          </article>
+
+          <article class="vsr-form">
+            <p class="vsr-form__num">03</p>
+            <div class="vsr-form__body">
+              <h3>{"Refuges, cabins and bivouacs"}</h3>
+              <p>
+                {"The classic form of the ski traverse in the Alps&nbsp;: several stages connected without returning to the starting point. It allows you to cross a massif with a relatively light bag and maintain great continuity."}
+              </p>
+              <p>
+                {"When geography requires it, one or more nights in a tent or bivouac can extend the line. Autonomy increases the weight of the bag and clearly changes the commitment of the trip."}
+              </p>
+            </div>
+          </article>
+
+          <article class="vsr-form">
+            <p class="vsr-form__num">04</p>
+            <div class="vsr-form__body">
+              <h3>{"A base camp, sometimes"}</h3>
+              <p>{"Not all territories are suitable for continuous crossing."}</p>
+              <p>
+                {"It may be more appropriate to stay a few nights in the same place to explore several valleys before returning to journeying."}
+              </p>
+              <p>{"The format must remain at the service of the territory and the conditions, never the other way around."}</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 03 — DES ALPES AUX MONTAGNES DU MONDE -->
+    <section class="vsr-section vsr-section--white">
+      <div class="site-shell vsr-section__inner">
+        <p class="vsr-section__kicker">{"Territories"}</p>
+        <h2>{"The Alps."}<br />{"And much further."}</h2>
+
+        <div class="vsr-body">
+          <p>{"The Alps are fantastic ski travel territory."}</p>
+          <p>
+            {"The network of valleys, passes, refuges and bivouacs allows you to imagine an infinite number of crossings."}
+          </p>
+          <p>{"But the ski touring is also a great way to discover other mountains."}</p>
+          <p>{"The Caucasus, the Balkans or Central Asia require us to think about travel differently."}</p>
+          <p>{"Maps are sometimes approximate."}</p>
+          <p>{"Shelters are disappearing."}</p>
+          <p>{"The villages become stages."}</p>
+          <p>{"Transfers, accommodation or meals are arranged with the residents."}</p>
+          <p>{"And the route no longer just crosses a mountain."}</p>
+          <p>{"It crosses a territory."}</p>
+        </div>
+
+        <div class="vsr-landmarks">
+          {
+            territoires.map((t) => (
+              <div class="vsr-landmark">
+                <p class="vsr-landmark__name">{t.name}</p>
+                <p class="vsr-landmark__desc">{t.text}</p>
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="vsr-cta-row">
+          <a class="vsr-cta" href={localizedHref(lang, "/prochains-voyages/")}>{"See destinations and dates →"}</a>
+          <a class="vsr-cta" href={localizedHref(lang, "/carnets-de-voyage-ski/")}>{"See trips already made →"}</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SÉQUENCE — MONTAGNES DE ŠAR -->
+    <section class="vsr-section vsr-section--archive">
+      <div class="site-shell vsr-section__inner">
+        <p class="vsr-section__kicker">{"An example"}</p>
+        <h2>{"Nine days,"}<br />{"from village to village."}</h2>
+
+        <div class="vsr-body">
+          <p>
+            {"When I prepared to cross the Šar mountains, between Albania, Kosovo and North Macedonia, I spent hours studying maps in order to find a line crossing the entire massif on skis while reconciling the desire to visit the villages of the three border countries."}
+          </p>
+          <p>{"This crossing was ultimately a long journey&nbsp;:"}</p>
+        </div>
+
+        <p class="vsr-statement">
+          {"nine days of skiing, from village to village, with significant elevation changes and sometimes long distances to cover."}
+        </p>
+
+        <div class="vsr-body">
+          <p>{"But what I remember goes far beyond skiing."}</p>
+          <p>
+            {"Mosques and their calls to prayer, smoky cafes, meals, improbable taxis, discussions with our hosts, villages very different from each other."}
+          </p>
+          <p>
+            {"As we advanced, the massif took on a geographical, historical and human depth."}
+          </p>
+          <p>{"That’s also what travelling on skis is all about."}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 04 — HABITER MOMENTANÉMENT UN TERRITOIRE -->
+    <section class="vsr-section vsr-section--paper">
+      <div class="site-shell vsr-section__inner">
+        <h2>{"Living temporarily"}<br />{"a territory."}</h2>
+
+        <div class="vsr-body">
+          <p>
+            {"What interests me in a ski trip goes far beyond the quality of the snow or the beauty of a peak."}
+          </p>
+          <p>
+            {"The itinerary choices, the adjustments imposed by the conditions, the relationships with the group, the meetings, the local resources or even the geographical, historical and human depth of the territories crossed fully participate in the experience."}
+          </p>
+          <p>
+            {"Depending on the trip, this means sleeping in an isolated refuge, sharing a meal in a house, crossing a village where our presence in winter seems incongruous, waiting for a taxi, looking for bread, chatting around a stove or simply observing the way in which a territory continues to live under the snow."}
+          </p>
+          <p>{"The journey is also built in these moments."}</p>
+        </div>
+
+        <a class="vsr-inline-link" href={localizedHref(lang, "/philosophie/")}>{"Read the philosophy of Grands Raids à Ski →"}</a>
+      </div>
+    </section>
+
+    <!-- SECTION 05 — PRÉPARER SANS TOUT ÉCRIRE À L'AVANCE -->
+    <section class="vsr-section vsr-section--white">
+      <div class="site-shell vsr-section__inner">
+        <p class="vsr-section__kicker">{"Preparation"}</p>
+        <h2>{"Prepare enough"}<br />{"to stay free."}</h2>
+
+        <div class="vsr-body">
+          <p>{"A ski trip requires a lot of preparation."}</p>
+          <p>
+            {"Maps, relief, snow conditions, accommodation, transport, weather, snow conditions, fallback options&nbsp;: a large part of the trip is planned even before departure."}
+          </p>
+          <p>{"But this preparation does not serve to set the program in stone."}</p>
+          <p>
+            {"On the contrary, it serves to preserve enough possibilities to be able to deal with reality."}
+          </p>
+          <p>{"A crossing imagined several months before necessarily encounters something else&nbsp;:"}</p>
+          <p>{"a weather forecast,"}<br />{"a snow,"}<br />{"a group,"}<br />{"a territory."}</p>
+          <p>
+            {"The journey is constructed in this gap between what had been imagined and what actually becomes possible."}
+          </p>
+        </div>
+
+        <div class="vsr-cta-row">
+          <a class="vsr-cta" href={localizedHref(lang, "/raid-a-ski/")}>{"Build a ski traverse →"}</a>
+          <a class="vsr-inline-link vsr-inline-link--tight" href={localizedHref(lang, "/philosophie/")}>{"Philosophy →"}</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 06 — NIVEAU + DURÉE + GROUPE -->
+    <section class="vsr-section vsr-section--paper">
+      <div class="site-shell vsr-section__inner">
+        <p class="vsr-section__kicker">{"Level"}</p>
+        <h2>{"The level does not hold"}<br />{"in a single digit."}</h2>
+
+        <div class="vsr-body">
+          <p>{"There is no single level."}</p>
+          <p>
+            {"A six-day trek in less technical terrain may require more endurance than a short trip with steeper passages. The level is therefore read through several criteria&nbsp;: daily altitude difference, duration of the stages, quality of skiing, technicality of the terrain, portage and number of consecutive days."}
+          </p>
+          <p>
+            {"To benefit from a journeying, you must above all be comfortable skiing off-piste in varied snow conditions and already have experience with the ski touring. Each program then specifies its own requirements."}
+          </p>
+          <p>{"For a specific project, the trip sheets indicate duration, elevation, terrain and journeying constraints."}</p>
+        </div>
+
+        <a class="vsr-cta" href={localizedHref(lang, "/prochains-voyages/")}>{"Compare trips →"}</a>
+
+        <h3 class="vsr-subheading">{"Several days to enter the territory."}</h3>
+
+        <div class="vsr-body">
+          <p>
+            {"The interest in the raid begins when the days cease to be independent. The place reached in the evening becomes the starting point for the next day. The weather, snow, fatigue and the group accumulate and sometimes force the imagined line to be moved."}
+          </p>
+          <p>
+            {"Each crossing is thus constructed less like a program to be carried out than as an experience to be composed, over the days, with a territory, conditions and a group."}
+          </p>
+        </div>
+
+        <h3 class="vsr-subheading">{"Travel together."}</h3>
+
+        <div class="vsr-body">
+          <p>{"The ski trip is a collective experience."}</p>
+          <p>
+            {"For several days, the group moves forward, eats, sleeps, doubts, decides and adapts together."}
+          </p>
+          <p>
+            {"Differences in pace, conditions, fatigue or simply the desires of the day necessarily influence the journey."}
+          </p>
+          <p>{"This is also why I favour small groups."}</p>
+          <p>
+            {"The itinerary can then be truly adapted to the group instead of imposing on the group an itinerary decided several months before. The small workforce facilitates decisions, adaptations, local transport and reception in small accommodation."}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 07 — VOYAGER À SKI AVEC UN GUIDE -->
+    <section class="vsr-section vsr-section--white">
+      <div class="site-shell vsr-section__inner">
+        <p class="vsr-section__kicker">{"Guide"}</p>
+        <h2>{"Open field"}<br />{"possibilities."}</h2>
+
+        <div class="vsr-body">
+          <p>
+            {"The role of the guide in a ski trip is not just to follow a known route."}
+          </p>
+          <p>{"It starts well before departure&nbsp;:"}</p>
+          <p>
+            {"understand the territory, look for passages, identify accommodation, imagine variants, anticipate conditions and build a project adapted to the group."}
+          </p>
+          <p>{"Once gone, this work continues."}</p>
+          <p>
+            {"The choices are re-evaluated over the days depending on the terrain, the weather, the snow and the condition of the group."}
+          </p>
+          <p>{"The guide is therefore not only the one who knows the way."}</p>
+          <p>
+            {"It is the one that allows us to retain enough possibilities so that the journey can continue to build."}
+          </p>
+        </div>
+
+        <a class="vsr-inline-link" href={localizedHref(lang, "/yann-borgnet-guide-haute-montagne/")}>
+          {"Yann Borgnet, mountain guide and geographer →"}
+        </a>
+      </div>
+    </section>
+
+    <!-- SECTION 08 — LES VOYAGES À VENIR -->
+    <section class="vsr-section vsr-section--paper">
+      <div class="site-shell vsr-section__inner">
+        <p class="vsr-section__kicker">{"Next departures"}</p>
+        <h2>{"Upcoming trips"}<br />{"at ski touring."}</h2>
+
+        <div class="vsr-list">
+          {
+            voyages.map((voyage) => (
+              <a class="vsr-list__row" href={localizedHref(lang, `/${voyage.slug}/`)}>
+                <span class="vsr-list__meta">
+                  {[voyage.dateLabel, voyage.duration].filter(Boolean).join(" · ")}
+                </span>
+                <span class="vsr-list__title">
+                  {voyage.title}
+                  {voyage.subtitle && <span class="vsr-list__subtitle"> — {voyage.subtitle}</span>}
+                </span>
+                <span class="vsr-list__excerpt">{voyage.excerpt}</span>
+                <span class="vsr-list__arrow">→</span>
+              </a>
+            ))
+          }
+        </div>
+
+        <a class="vsr-cta" href={localizedHref(lang, "/prochains-voyages/")}>{"See all upcoming trips →"}</a>
+      </div>
+    </section>
+
+    <!-- SECTION 09 — LES VOYAGES DÉJÀ VÉCUS -->
+    <section class="vsr-section vsr-section--white">
+      <div class="site-shell vsr-section__inner">
+        <p class="vsr-section__kicker">{"Journals"}</p>
+        <h2>{"Travel leaves its mark."}</h2>
+
+        <div class="vsr-body vsr-body--intro">
+          <p>
+            {"Projected itineraries never fully tell the story of what a trip actually becomes."}
+          </p>
+          <p>
+            {"The Notebooks bring together the traces left by these journeyings&nbsp;: a story, photographs, a line, stages and what happened when the project hit the ground."}
+          </p>
+        </div>
+
+        <div class="vsr-list">
+          {
+            vsrCarnets.map((carnet) => (
+              <a class="vsr-list__row" href={localizedHref(lang, `/${carnet.slug}/`)}>
+                <span class="vsr-list__title">
+                  {carnet.title}
+                  {carnet.subtitle && <span class="vsr-list__subtitle"> — {carnet.subtitle}</span>}
+                </span>
+                <span class="vsr-list__excerpt">{carnet.excerpt}</span>
+                <span class="vsr-list__arrow">→</span>
+              </a>
+            ))
+          }
+        </div>
+
+        <a class="vsr-cta" href={localizedHref(lang, "/carnets-de-voyage-ski/")}>{"Discover all the notebooks →"}</a>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="vsr-section vsr-section--paper vsr-section--faq">
+      <div class="site-shell vsr-section__inner">
+        <h2>{"Frequently asked questions."}</h2>
+
+        <div class="vsr-faq">
+          {
+            faq.map((item) => (
+              <div class="vsr-faq__item">
+                <p class="vsr-faq__q">{item.q}</p>
+                <p class="vsr-faq__a">{item.a}</p>
+                {item.link && (
+                  <a class="vsr-inline-link vsr-inline-link--tight" href={localizedHref(lang, item.link.href)}>
+                    {item.link.label}
+                  </a>
+                )}
+              </div>
+            ))
+          }
+        </div>
+
+        <div class="vsr-cta-row">
+          <a class="vsr-cta" href={localizedHref(lang, "/prochains-voyages/")}>{"See ski trips →"}</a>
+          <a class="vsr-cta" href={localizedHref(lang, "/contact/")}>{"Talk about a project →"}</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <ContactStrip />
+
+  <footer class="site-footer">
+    <div class="site-shell site-footer__grid">
+      <div>
+        <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+        <p class="site-footer__statement">{"Explore · improvise · meet · ski."}</p>
+      </div>
+
+      <div class="site-footer__links">
+        <a href="https://wa.me/33689295826">{"WhatsApp · +33 6 89 29 58 26"}</a>
+        <a href="https://www.instagram.com/lesgrandsraidsaski/">{"Instagram"}</a>
+        <a href="https://www.facebook.com/yannborgnet/">{"Facebook"}</a>
+      </div>
+    </div>
+
+    <SponsorStrip />
+
+    <div class="site-shell site-footer__bottom">
+      <a href={localizedHref(lang, "/yann-borgnet-guide-haute-montagne/")}>{"Yann Borgnet · IFMGA mountain guide"}</a>
+      <span>© 2026</span>
+    </div>
+  </footer>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+</BaseLayout>

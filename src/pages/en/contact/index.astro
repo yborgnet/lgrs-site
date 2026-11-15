@@ -1,0 +1,104 @@
+---
+import { getLang, localizedHref } from "../../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+import SponsorStrip from "../../../components/shared/SponsorStrip.astro";
+import ContactStrip from "../../../components/shared/ContactStrip.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/contact.css";
+import { withBase } from "../../../lib/url";
+
+const canonical = "https://lesgrandsraidsaski.com/en/contact/";
+
+/**
+ * Contenu repris tel quel de la page WordPress live
+ * https://lesgrandsraidsaski.com/contact/ : hero, bloc "Un projet sur
+ * mesure", formulaire (mêmes champs/libellés/bouton) et CTA WhatsApp.
+ * Charte visuelle du nouveau site (tokens de global.css, mêmes patterns
+ * d'eyebrow/h1/CTA que /philosophie/ et les pages voyage) plutôt que le
+ * CSS WordPress d'origine.
+ *
+ * Le formulaire poste vers Formspree (https://formspree.io) plutôt que
+ * vers WordPress : un site statique GitHub Pages ne peut pas traiter
+ * lui-même un envoi de formulaire, et poster vers wp-admin/admin-post.php
+ * dépendait d'un nonce WordPress qui expire au bout de ~24h.
+ */
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mkjgrpgv";
+---
+
+<BaseLayout
+  title={"Contact | Les Grands Raids à Ski"}
+  description={"A scheduled trip, a traverse yet to be imagined or simply a country or mountain range you dream of visiting: contact Yann Borgnet to talk it through."}
+  canonical={canonical}
+>
+  <Header solid />
+
+  <main>
+    <section class="contact-hero">
+      <div class="site-shell">
+        <p class="contact-hero__eyebrow">{"Contact"}</p>
+        <h1>{"Talk about a"}<br /><em>{"journey."}</em></h1>
+        <p class="contact-hero__lead">
+          {"A scheduled trip, a traverse yet to be imagined or simply a country or mountain range you dream of visiting: the simplest thing is to talk it through."}
+        </p>
+      </div>
+    </section>
+
+    <section class="contact-main">
+      <div class="site-shell contact-grid">
+        <div class="contact-copy">
+          <p class="contact-copy__eyebrow">{"A journey of your own"}</p>
+          <h2>{"Start with an idea."}<br /><em>{"Draw the route afterwards."}</em></h2>
+          <p>
+            {"Do you have a destination in mind, a window of time or simply a wish for a ski touring journey that differs from the scheduled trips? Write to me with a few details: the number of people, possible dates, the group’s experience and the terrain you have in mind."}
+          </p>
+          <p>{"I’ll reply so we can see what we might put together."}</p>
+        </div>
+
+        <div class="contact-panel">
+          <form class="contact-form" action={FORMSPREE_ENDPOINT} method="POST">
+            <label>{"Name"}<input type="text" name="name" required /></label>
+            <label>{"Email"}<input type="email" name="email" required /></label>
+            <label>{"Your project"}<textarea name="message" rows="7" required></textarea></label>
+
+            <button type="submit">{"Send message"}</button>
+          </form>
+
+          <hr class="contact-panel__divider" />
+
+          <a class="contact-panel__whatsapp" href="https://wa.me/33689295826" target="_blank" rel="noopener">
+            <span class="contact-panel__whatsapp-eyebrow">{"Or via WhatsApp"}</span>
+            <span class="contact-panel__whatsapp-row">
+              <strong>{"Write to me directly"}</strong>
+              <span aria-hidden="true">→</span>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <ContactStrip />
+
+  <footer class="site-footer">
+    <div class="site-shell site-footer__grid">
+      <div>
+        <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+        <p class="site-footer__statement">{"Explore · improvise · meet · ski."}</p>
+      </div>
+
+      <div class="site-footer__links">
+        <a href="https://wa.me/33689295826">{"WhatsApp · +33 6 89 29 58 26"}</a>
+        <a href="https://www.instagram.com/lesgrandsraidsaski/">{"Instagram"}</a>
+        <a href="https://www.facebook.com/yannborgnet/">{"Facebook"}</a>
+      </div>
+    </div>
+
+    <SponsorStrip />
+
+    <div class="site-shell site-footer__bottom">
+      <a href={localizedHref(lang, "/yann-borgnet-guide-haute-montagne/")}>{"Yann Borgnet · IFMGA mountain guide"}</a>
+      <span>© 2026</span>
+    </div>
+  </footer>
+</BaseLayout>

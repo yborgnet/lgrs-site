@@ -1,0 +1,632 @@
+---
+import { getLang, localizedHref } from "../../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+import SponsorStrip from "../../../components/shared/SponsorStrip.astro";
+import ContactStrip from "../../../components/shared/ContactStrip.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/raid-a-ski.css";
+import { carnets } from "../../../data/carnets/en/index";
+import { voyages } from "../../../data/voyages/en/index";
+import { withBase } from "../../../lib/url";
+
+const canonical = "https://lesgrandsraidsaski.com/en/raid-a-ski/";
+
+/**
+ * Page de référence "Raid à ski" — texte fourni par Yann Borgnet, repris
+ * quasi tel quel (voir brief). Ne pas réécrire dans un style marketing.
+ *
+ * Sources éditoriales :
+ * - Montagnes Magazine #501, Yann Borgnet, « Préparer une itinérance improvisée »
+ * - Yann Borgnet, « Léon "Zwing", pionnier dans l'inconnu »
+ * - Brief Yann Borgnet, « Les Grands Raids à Ski — Récits d'itinérance »
+ * - Léon Zwingelstein, Carnet de route (reproduction Gallica / BnF)
+ * - Jacques Dieterlen, Léon Zwingelstein — Le Chemineau de la montagne
+ * - Gérard Guerrier, « La première traversée hivernale des Alpes à ski,
+ *   par Léon Zwingelstein », Alpine Mag, 26 mars 2024 — sert uniquement à la
+ *   vérification factuelle, jamais cité comme texte de Yann.
+ *
+ * Précaution historique : Zwingelstein n'est pas présenté comme l'inventeur
+ * du raid à ski (Paulcke 1897, Tocqueville & Fogès 1928 rappelés en amont).
+ *
+ * Bibliographie Berruex/Parmentier : l'année de première édition du premier
+ * volume ("De la Vanoise au Spitzberg") diverge selon les sources (1981,
+ * 1984, 1991 selon les catalogues consultés) — volontairement non affichée,
+ * conservé "début des années 1980" tant qu'aucune source institutionnelle
+ * définitive n'est trouvée.
+ *
+ * Slots image facultatifs (non renseignés à dessein, voir brief) :
+ * heroImage / historyImage / zwingImage / toolboxImage / anthropologicalImage.
+ * La page doit rester complète sans elles.
+ *
+ * /voyage-ski-randonnee/ existe maintenant (page pilier créée dans la même
+ * session) : lien réciproque ajouté sous le hero, voir raid-hero__intro.
+ */
+
+const raidCarnets = ["bernina-tour-massif-ski-randonnee", "traversee-ski-argentera-mercantour", "alpes-ligures-traversee-ski-randonnee"]
+  .map((slug) => carnets.find((c) => c.slug === slug))
+  .filter((c): c is NonNullable<typeof c> => Boolean(c));
+
+const faq = [
+  {
+    q: "What is a ski traverse?",
+    a: "A ski traverse is a multi-day journeying in ski touring. It connects valleys, passes, refuges, cabins, villages or bivouacs according to a logic of geographical progression.",
+  },
+  {
+    q: "How many days does it take to actually talk about journeying?",
+    a: "There is no absolute rule. In my opinion, it becomes difficult to really experience the immersion of the journeying below three days. However, two days can already allow a real crossing.",
+  },
+  {
+    q: "What is the difference between a ski traverse and star tours?",
+    a: "In a star stay, you generally return to the same accommodation every evening. In a raid, the movement itself structures the journey: we move forward and we change stages.",
+  },
+  {
+    q: "Is a ski traverse fully defined before departure?",
+    a: "I prefer to prepare a main line and many variations. The objective is to know the territory well enough to be able to adapt the route to the snow and weather conditions, the terrain and the group.",
+  },
+  {
+    q: "Do we necessarily have to climb peaks?",
+    a: "No. A raid can perfectly be built around passes, valleys, refuges or villages. The consistency of the line matters more than the accumulation of vertices.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((item) => ({
+    "@type": "Question",
+    name: item.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: item.a,
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title={"Ski traverse | journeying and crossings at ski touring"}
+  description={"What is a ski traverse? Yann Borgnet tells his story, from Léon Zwingelstein to Grands Raids à Ski, and shares his way of building a journeying: preparing, tracing, improvising and crossing a territory."}
+  canonical={canonical}
+>
+  <Header solid />
+
+  <main>
+    <!-- HERO -->
+    <section class="raid-hero">
+      <div class="site-shell">
+        <p class="raid-hero__kicker">{"Journeying · crossing · immersion"}</p>
+        <h1>{"Ski traverse"}</h1>
+        <p class="raid-hero__tagline">{"Draw horizontal lines."}</p>
+
+        <div class="raid-hero__intro">
+          <p>
+            {"The ski traverse gradually became the heart, then the only form of my winter practice. An amateur crossing of the Alps in 2015, from Corsica to Slovenia, almost half of which was ski touring, also played a decisive role."}
+          </p>
+          <p>
+            {"These experiences have permanently oriented my way of considering the practice of the mountain, less as a succession of races or summits to be ticked off than as a space to be connected, to cross and to inhabit over time."}
+          </p>
+          <p>
+            {"The ski touring has proven to be a fantastic way to discover Alpine and extra-Alpine territories."}
+          </p>
+        </div>
+
+        <a class="raid-inline-link" href={localizedHref(lang, "/voyage-ski-randonnee/")}>{"A broader notion: the journey to ski touring →"}</a>
+      </div>
+    </section>
+
+    <!-- SECTION 01 — QU'EST-CE QU'UN RAID À SKI ? -->
+    <section class="raid-section raid-section--white">
+      <div class="site-shell raid-section__inner">
+        <h2>{"What is a ski traverse&nbsp;?"}</h2>
+
+        <div class="raid-body">
+          <p>
+            {"I usually define journeying by the length of the experience. I often tell the people I support that under three days, it is difficult to do journeying."}
+          </p>
+          <p>
+            {"In two days, the practice method is more classic&nbsp;: access to the refuge on the first day and ascent of a peak the next day. There are obviously shorter journeyings, but the counterpart of time compression is often the inflation of daily elevations."}
+          </p>
+          <p>
+            {"In my opinion, the journeying is closely linked to the feeling of immersion, which can only come from spending time in the mountains."}
+          </p>
+          <p>
+            {"The fact of living at least a full day in the mountains, from sunrise to sunset, without going to the valley or taking the car is a corollary of this deep feeling, which tends on the contrary to stretch time."}
+          </p>
+          <p>
+            {"To experience a journey on the move is to experience time suspended: a slow stretch of time shaped by the conditions and by things that often seem insignificant down below — dawn or dusk, hunger, thirst, contemplation…"}
+          </p>
+          <p>
+            {"As I progressed in my thinking, I realised that the shape of the lines sketched and then traced was at the heart of the lived experience."}
+          </p>
+          <p>
+            {"The vertical lines, which rise towards the summits and symbolize a modern and conquering relationship with the mountains, are replaced by horizontal lines, which cross towards sometimes uncertain horizons."}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 02 — UNE BRÈVE HISTOIRE DE LIGNES (Zwingelstein) -->
+    <section class="raid-section raid-section--archive">
+      <div class="site-shell raid-section__inner">
+        <p class="raid-section__kicker">{"A Brief History of Lines"}</p>
+        <h2>{"Leon Zwingelstein,"}<br />{"pioneer into the unknown."}</h2>
+
+        <div class="raid-body">
+          <p>
+            {"The history of the ski traverse is older. As early as 1897, Wilhelm Paulcke carried out a ski traverse lasting several days in the Oberland. Other major crossings will follow."}
+          </p>
+          <p>{"But the story I want to tell here begins with Léon Zwingelstein."}</p>
+          <p>
+            {"Léon Zwingelstein is an intriguing character. It was by looking at his solitary ski crossing of the Alps that I discovered a mountaineer's journey that commands admiration."}
+          </p>
+          <p>
+            {"In 1933, “&nbsp;Zwing&nbsp;” embarked on a huge crossing of the Alps. It leaves Grenoble, first goes down to Nice, then goes up the Alpine arc to Tyrol before heading back to the west."}
+          </p>
+          <p>
+            {"Nearly three months of winter journeying, in a refined style that seeks the unknown while anticipating it by using tools that could protect against it."}
+          </p>
+          <p>
+            {"Originally from Rennes, Zwing has left his mark on a spirit of practice driven by adventure and improvisation."}
+          </p>
+          <p>
+            {"All you have to do is read your travel diary to gauge your relationship to the uncertainties and imponderables of the mountain."}
+          </p>
+        </div>
+
+        <blockquote class="raid-quote">{"My route was carefully studied on the maps."}</blockquote>
+
+        <div class="raid-body">
+          <p>
+            {"The rest of the sentence is almost as interesting: &nbsp;: Zwing explains that he traced his route as he wished, without prior documentation and without worrying about whether certain parts had already been covered on skis."}
+          </p>
+          <p>{"He prepares a lot."}</p>
+          <p>
+            {"Its ultralight tent can become a sleeping bag. It gives him almost complete independence. He studies his maps, his equipment, his food, his stages."}
+          </p>
+          <p>{"The unknown is therefore not the opposite of preparation."}</p>
+          <p>{"He is almost the product of it."}</p>
+          <p>{"This is precisely what fascinates me about his story."}</p>
+        </div>
+
+        <div class="raid-landmarks">
+          <div class="raid-landmark">
+            <p class="raid-landmark__year">1897</p>
+            <p class="raid-landmark__name">{"Wilhelm Paulcke"}</p>
+            <p class="raid-landmark__desc">{"One of the first large ski traverses documented in the Oberland."}</p>
+          </div>
+          <div class="raid-landmark">
+            <p class="raid-landmark__year">1928</p>
+            <p class="raid-landmark__name">{"Tocqueville &amp; Fogès"}</p>
+            <p class="raid-landmark__desc">{"Nice → Les Contamines."}</p>
+          </div>
+          <div class="raid-landmark">
+            <p class="raid-landmark__year">1933</p>
+            <p class="raid-landmark__name">{"Leon Zwingelstein"}</p>
+            <p class="raid-landmark__desc">{"A huge, solitary crossing of the Alpine arc."}</p>
+          </div>
+        </div>
+
+        <h3 class="raid-subheading">{"Travel rather than collect."}</h3>
+
+        <div class="raid-body">
+          <p>
+            {"What perhaps brings me closest to Zwingelstein, however, is not the scale of his enterprise."}
+          </p>
+          <p>{"It's his way of crossing."}</p>
+          <p>
+            {"Apart from a few large peaks, he does not construct his journey as a collection of peaks. He advances through the massif."}
+          </p>
+          <p>{"The line matters more than the accumulation."}</p>
+          <p>{"The move becomes the project."}</p>
+          <p>
+            {"His notebook also shows a man who knows how to wait. After heavy snowfalls, he postponed his departure. He observes, calculates, sometimes gives up, then leaves."}
+          </p>
+          <p>{"Preparation and adventure are not opposed."}</p>
+        </div>
+
+        <blockquote class="raid-quote">
+          {"I could have made noise, publicized my trip, been received, encouraged... I preferred to go unnoticed."}
+        </blockquote>
+
+        <div class="raid-body">
+          <p>
+            {"This is probably what moves me most in this story: behind the extraordinary figures of the journey, Zwingelstein does not seem to be chasing a record."}
+          </p>
+          <p>{"He wants to be in the mountains."}</p>
+          <p>
+            {"Jacques Dieterlen writes about him that the technique matters little and “&nbsp;the feat even less&nbsp;”."}
+          </p>
+          <p>{"A Zwingelstein formula perhaps summarizes this relationship&nbsp;:"}</p>
+        </div>
+
+        <blockquote class="raid-quote raid-quote--small">{"True mountaineering is internal."}</blockquote>
+      </div>
+    </section>
+
+    <!-- SECTION 03 — LES GRANDS RAIDS À SKI (transition, filiation) -->
+    <section class="raid-section raid-section--ink">
+      <div class="site-shell raid-section__inner">
+        <p class="raid-section__kicker">{"A lineage"}</p>
+        <h2>{"Les Grands Raids à Ski."}</h2>
+
+        <div class="raid-body">
+          <p>
+            {"A few decades later, a series of works would profoundly mark my imagination of ski traverse."}
+          </p>
+          <p>
+            {"Les Grands Raids à Ski, by Michel Berruex and Michel Parmentier, then Montagnes de Méditerranée, by Michel Parmentier, offer great ski crossings in the Alps and well beyond."}
+          </p>
+          <p>{"Stories, photographs, maps, some practical references."}</p>
+          <p>{"And especially lines."}</p>
+          <p>
+            {"These works published in the early 1980s are still a reference among certain practitioners today."}
+          </p>
+          <p>{"The name of this site pays direct homage to them."}</p>
+          <p>
+            {"When I imagined Les Grands Raids à Ski, it was not about reproducing these routes nor nostalgically reactivating a vanished era."}
+          </p>
+          <p>
+            {"What interested me was the intuition contained in these books&nbsp;: imagine broad outlines, go through them, then recount the experience."}
+          </p>
+          <p>
+            {"Since then, conditions have changed considerably: increasingly variable snow cover, a huge growth in ski touring, renewed interest in multi-day traverses, more visitors in certain ranges and on certain routes, and geopolitical changes that redraw some of the horizons of travel."}
+          </p>
+          <p>{"But the idea remains&nbsp;:"}</p>
+        </div>
+
+        <p class="raid-statement">{"imagine a line and go live it."}</p>
+      </div>
+    </section>
+
+    <!-- SECTION 04 — CONSTRUIRE UN RAID À SKI -->
+    <section class="raid-section raid-section--paper">
+      <div class="site-shell raid-section__inner">
+        <p class="raid-section__kicker">{"The toolbox"}</p>
+        <h2>{"Build a ski traverse."}</h2>
+
+        <div class="raid-body raid-body--intro">
+          <p>
+            {"The journeying cannot be prepared and experienced in the same way as the ascending mountain, the one that we usually climb from bottom to top around a previously fixed objective."}
+          </p>
+          <p>
+            {"The practice of journeying must be considered, in my opinion, as an improvised process."}
+          </p>
+          <p>{"This certainly does not mean leaving without preparation."}</p>
+          <p>{"On the contrary."}</p>
+          <p>{"Preparation is a crucial phase."}</p>
+          <p>{"But it does not consist of locking a route."}</p>
+          <p>{"It consists of opening up the field of possibilities."}</p>
+        </div>
+
+        <div class="raid-tools">
+          <article class="raid-tool">
+            <p class="raid-tool__num">01</p>
+            <div class="raid-tool__body">
+              <h3>{"Limit the space."}</h3>
+              <p>
+                {"The first step consists of targeting a massif and then understanding its relief."}
+              </p>
+              <p>
+                {"I look for natural barriers, passes, lines of weakness, basins between which it seems reasonable to circulate."}
+              </p>
+              <p>
+                {"Digital terrain models, slope maps, topographical maps, aerial images and photographs gradually make it possible to create a mental map of the terrain."}
+              </p>
+              <p>{"As soon as I have a doubt about a passage, I cross-reference sources."}</p>
+              <p>{"It’s not about drawing the line yet."}</p>
+              <p>{"This is about understanding where multiple lines might exist."}</p>
+            </div>
+          </article>
+
+          <article class="raid-tool">
+            <p class="raid-tool__num">02</p>
+            <div class="raid-tool__body">
+              <h3>{"Identify the mesh."}</h3>
+              <p>{"In the Alps, huts, bivouacs and refuges often structure the journeying."}</p>
+              <p>{"Elsewhere, it is sometimes the villages."}</p>
+              <p>
+                {"Unless you carry a tent, the places where you can spend the night provide an initial geography of the trip."}
+              </p>
+              <p>{"So I crisscross the territory looking for possible accommodation."}</p>
+              <p>
+                {"In the Alps, a network of huts sometimes makes it possible to build a line that would have been impossible during the day."}
+              </p>
+              <p>
+                {"In the Caucasus, the Balkans or Central Asia, it is often inhabited villages that become the anchor points."}
+              </p>
+              <p>{"The raid then gradually appears as a network of points that still need to be connected."}</p>
+            </div>
+          </article>
+
+          <article class="raid-tool">
+            <p class="raid-tool__num">03</p>
+            <div class="raid-tool__body">
+              <h3>{"Draw lines."}</h3>
+              <p>{"Next comes the most important job&nbsp;: connecting each of these dots."}</p>
+              <p>
+                {"My strategy is to first draw the simplest lines between each accommodation."}
+              </p>
+              <p>
+                {"Ease is defined by the height difference and the distance, but also and above all by the nature of the slopes."}
+              </p>
+              <p>
+                {"I always favour the search for a route that is as robust as possible, capable of remaining feasible in a large number of situations."}
+              </p>
+              <p>{"From this line “&nbsp;all conditions&nbsp;”, I explore the possible variations."}</p>
+              <p>{"One pass rather than another."}</p>
+              <p>{"A different valley."}</p>
+              <p>{"A summit if conditions permit."}</p>
+              <p>{"A simpler passage if they deteriorate."}</p>
+              <p>{"A shortened step."}</p>
+              <p>{"Another prolonged one."}</p>
+              <p>{"Preparation then becomes a sort of kaleidoscope of options offered by the terrain."}</p>
+              <p>{"The main route ceases to be an obligation."}</p>
+              <p>{"It becomes one possibility among others."}</p>
+            </div>
+          </article>
+
+          <article class="raid-tool">
+            <p class="raid-tool__num">04</p>
+            <div class="raid-tool__body">
+              <h3>{"Prepare the ground, the conditions and the people."}</h3>
+              <p>{"Preparing a journeying involves constantly confronting three things&nbsp;:"}</p>
+              <p>{"the land,"}<br />{"the conditions,"}<br />{"the group."}</p>
+              <p>
+                {"The weather and snow conditions allow us to identify what could change the course of events."}
+              </p>
+              <p>{"But there is also a human factor."}</p>
+              <p>
+                {"In addition to the physical or technical level, I am very interested in the “&nbsp;cursor of adventure&nbsp;”&nbsp;: to what extent do the people I am going to accompany in the mountains want to deal with uncertainties concerning the route, the conditions or the weather&nbsp;?"}
+              </p>
+              <p>{"A ski traverse is never just a line on a map."}</p>
+              <p>{"It is a line travelled by a group."}</p>
+            </div>
+          </article>
+
+          <article class="raid-tool">
+            <p class="raid-tool__num">05</p>
+            <div class="raid-tool__body">
+              <h3>{"Drive the journeying."}</h3>
+              <p>
+                {"Once gone, it ultimately involves redoing the same preparation work, but updating it with new data from the field and from humans."}
+              </p>
+              <p>
+                {"Upstream preparation has normally made it possible to identify certain areas and certain sources of uncertainty."}
+              </p>
+              <p>{"The movement then allows them to be lifted one by one."}</p>
+              <p>
+                {"We must constantly make the link between theoretical routes, the terrain, snow-meteorological conditions and humans."}
+              </p>
+              <p>{"The line becomes clearer as you move forward."}</p>
+              <p>
+                {"And underlying this entire journey, plan R – as renunciation – must always remain a possible option."}
+              </p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 05 — PRÉPARER POUR IMPROVISER -->
+    <section class="raid-section raid-section--ink raid-section--strong">
+      <div class="site-shell raid-section__inner">
+        <p class="raid-section__kicker">{"Improvise"}</p>
+        <h2>{"Prepare carefully"}<br />{"to then be able to improvise."}</h2>
+
+        <div class="raid-body">
+          <p>{"Forget being unprepared."}</p>
+          <p>{"Improvisation is much more structured than its common usage suggests."}</p>
+          <p>{"Think about music, jazz, Keith Jarrett."}</p>
+          <p>{"Improvisation is preparation, know-how and experience."}</p>
+          <p>
+            {"It allows us to maintain large degrees of freedom to deal until the last minute with the uncertainties that interfere with the travelling skier's path."}
+          </p>
+          <p>
+            {"Registering in the journeying is therefore not just about tracing a line that never retraces its steps."}
+          </p>
+          <p>{"It is the adoption of a certain state of mind."}</p>
+        </div>
+
+        <p class="raid-statement">{"Prepare carefully so that you can then improvise."}</p>
+
+        <a class="raid-inline-link" href={localizedHref(lang, "/philosophie/")}>{"Read the philosophy of Grands Raids à Ski →"}</a>
+      </div>
+    </section>
+
+    <!-- SECTION 06 — UNE LIGNE PLUTÔT QU'UN SOMMET -->
+    <section class="raid-section raid-section--white">
+      <div class="site-shell raid-section__inner">
+        <h2>{"A line rather than a peak."}</h2>
+
+        <div class="raid-body">
+          <p>{"The raid is not necessarily an exploit story."}</p>
+          <p>
+            {"He seeks neither performance, nor the accumulation of summits, nor dramatization."}
+          </p>
+          <p>{"What interests me more is what happens in the continuity of a crossing&nbsp;:"}</p>
+        </div>
+
+        <blockquote class="raid-quote">
+          {"Connecting spaces, holding a line, bending it, sometimes losing it, abandoning it or reinventing it."}
+        </blockquote>
+
+        <div class="raid-body">
+          <p>
+            {"Some of the most beautiful raids I have done had no major summit as an objective."}
+          </p>
+          <p>{"A pass may be enough to organise a crossing."}</p>
+          <p>{"A village can become a stopover."}</p>
+          <p>{"A cabin can become the destination of the day."}</p>
+          <p>
+            {"The mountain then ceases to be a collection of vertical objectives and becomes a territory in which we move."}
+          </p>
+          <p>{"This is also what I find in Zwingelstein."}</p>
+          <p>{"In his great journey of 1933, he did not systematically seek the summits."}</p>
+          <p>{"He travels."}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 07 — UNE AVENTURE COLLECTIVE -->
+    <section class="raid-section raid-section--paper">
+      <div class="site-shell raid-section__inner">
+        <h2>{"The raid is a collective adventure."}</h2>
+
+        <div class="raid-body">
+          <p>{"A great ski traverse is first and foremost a group story."}</p>
+          <p>{"Move forward together, decide together, deal with each other’s limits and desires."}</p>
+          <p>{"The journeying creates a &nbsp; frame; adventure is born from what is shared there."}</p>
+          <p>{"The role of the guide also changes."}</p>
+          <p>{"He is not only the one who knows the route or the one who walks in front."}</p>
+          <p>
+            {"It prepares the field of possibilities, reads the terrain, maintains room for maneuver and supports the progressive construction of the line."}
+          </p>
+        </div>
+
+        <blockquote class="raid-quote">{"Improvisation is collective or it is not."}</blockquote>
+      </div>
+    </section>
+
+    <!-- SECTION 08 — TRAVERSER UN TERRITOIRE (raid anthropologique) -->
+    <section class="raid-section raid-section--white">
+      <div class="site-shell raid-section__inner">
+        <p class="raid-section__kicker">{"Beyond the line"}</p>
+        <h2>{"Cross a territory,"}<br />{"not just a mountain."}</h2>
+
+        <div class="raid-body">
+          <p>
+            {"This way of practicing raiding also led me to imagine what I called “anthropological &nbsp;raids&nbsp;”."}
+          </p>
+          <p>
+            {"The first, in Queyras, combined a journeying with ski touring and the discovery of a territory through meeting the people who live there, who work there and who, in short, make this territory."}
+          </p>
+          <p>
+            {"The route and the stops each evening had been designed both for the aesthetics of the line traced on skis and for the relevance of the meetings."}
+          </p>
+          <p>
+            {"We crossed the Queyras from village to village, meeting farmers, elected officials, accommodation providers and tourism stakeholders."}
+          </p>
+          <p>
+            {"It was therefore not just about skiing, but also about sharing time and thinking collectively about the transformations of mountain areas."}
+          </p>
+          <p>
+            {"This experience gave birth to the documentary film &nbsp;: Transition — an anthropological raid in Queyras."}
+          </p>
+          <p>{"It also summarizes an important dimension of what a raid&nbsp; can become:"}</p>
+          <p>
+            {"not only crossing a relief, but temporarily inhabiting a territory, moving from one village to another, meeting those who live there and giving human depth to the line drawn on the map."}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 09 — DES LIGNES VÉCUES (Carnets) -->
+    <section class="raid-section raid-section--paper">
+      <div class="site-shell raid-section__inner">
+        <p class="raid-section__kicker">{"Journals"}</p>
+        <h2>{"Lived lines."}</h2>
+
+        <div class="raid-body raid-body--intro">
+          <p>{"I am not trying here to suggest itineraries that can be reproduced identically."}</p>
+          <p>
+            {"The Journals, by contrast, tell what actually happened when imagined lines met the terrain: those that worked, those we had to adjust, those we abandoned and those that emerged along the way."}
+          </p>
+        </div>
+
+        <div class="raid-list">
+          {
+            raidCarnets.map((carnet) => (
+              <a class="raid-list__row" href={localizedHref(lang, `/${carnet.slug}/`)}>
+                <span class="raid-list__title">
+                  {carnet.title}
+                  {carnet.subtitle && <span class="raid-list__subtitle"> — {carnet.subtitle}</span>}
+                </span>
+                <span class="raid-list__excerpt">{carnet.excerpt}</span>
+                <span class="raid-list__arrow">→</span>
+              </a>
+            ))
+          }
+        </div>
+
+        <a class="raid-cta" href={localizedHref(lang, "/carnets-de-voyage-ski/")}>{"Discover the trip journals →"}</a>
+      </div>
+    </section>
+
+    <!-- SECTION 10 — LES PROCHAINS RAIDS -->
+    <section class="raid-section raid-section--white">
+      <div class="site-shell raid-section__inner">
+        <p class="raid-section__kicker">{"Coming soon"}</p>
+        <h2>{"The next raids."}</h2>
+
+        <div class="raid-body raid-body--intro">
+          <p>{"Each journey is constructed as a unique piece."}</p>
+          <p>
+            {"A line prepared for the long haul, precisely enough to then allow you to deal with the conditions, the territory and the group."}
+          </p>
+        </div>
+
+        <div class="raid-list">
+          {
+            voyages.map((voyage) => (
+              <a class="raid-list__row" href={localizedHref(lang, `/${voyage.slug}/`)}>
+                <span class="raid-list__title">
+                  {voyage.title}
+                  {voyage.subtitle && <span class="raid-list__subtitle"> — {voyage.subtitle}</span>}
+                </span>
+                <span class="raid-list__excerpt">{voyage.excerpt}</span>
+                <span class="raid-list__arrow">→</span>
+              </a>
+            ))
+          }
+        </div>
+
+        <a class="raid-cta" href={localizedHref(lang, "/prochains-voyages/")}>{"See upcoming trips →"}</a>
+      </div>
+    </section>
+
+    <!-- SECTION 11 — FAQ -->
+    <section class="raid-section raid-section--paper raid-section--faq">
+      <div class="site-shell raid-section__inner">
+        <h2>{"Some benchmarks."}</h2>
+
+        <div class="raid-faq">
+          {
+            faq.map((item) => (
+              <div class="raid-faq__item">
+                <p class="raid-faq__q">{item.q}</p>
+                <p class="raid-faq__a">{item.a}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <ContactStrip />
+
+  <footer class="site-footer">
+    <div class="site-shell site-footer__grid">
+      <div>
+        <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+        <p class="site-footer__statement">{"Explore · improvise · meet · ski."}</p>
+      </div>
+
+      <div class="site-footer__links">
+        <a href="https://wa.me/33689295826">{"WhatsApp · +33 6 89 29 58 26"}</a>
+        <a href="https://www.instagram.com/lesgrandsraidsaski/">{"Instagram"}</a>
+        <a href="https://www.facebook.com/yannborgnet/">{"Facebook"}</a>
+      </div>
+    </div>
+
+    <SponsorStrip />
+
+    <div class="site-shell site-footer__bottom">
+      <a href={localizedHref(lang, "/yann-borgnet-guide-haute-montagne/")}>{"Yann Borgnet · IFMGA mountain guide"}</a>
+      <span>© 2026</span>
+    </div>
+  </footer>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
+</BaseLayout>

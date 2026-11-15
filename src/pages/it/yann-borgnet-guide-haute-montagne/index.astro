@@ -1,0 +1,511 @@
+---
+import { getLang, localizedHref } from "../../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+import SponsorStrip from "../../../components/shared/SponsorStrip.astro";
+import ContactStrip from "../../../components/shared/ContactStrip.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import PhotoSlot from "../../../components/editorial/PhotoSlot.astro";
+import "../../../styles/editorial.css";
+import "../../../styles/yann.css";
+import { withBase } from "../../../lib/url";
+
+const canonical = "https://lesgrandsraidsaski.com/it/yann-borgnet-guide-haute-montagne/";
+
+/**
+ * Textes repris tels quels du brief de Yann (page profil WordPress d'origine).
+ * Photos : emplacements neutres (PhotoSlot) en attendant les fichiers locaux —
+ * hero : DSC05274-1024x683.jpg. Renseigner `src` (chemin sous public/) pour
+ * poser une photo, sans toucher à la mise en page.
+ */
+
+type Entry = {
+  year: string;
+  source: string;
+  title: string;
+  note?: string;
+  href: string;
+  cta: string;
+};
+
+const alpineLineFilm = "https://vimeo.com/376885727";
+
+const thesis = {
+  label: "Tesi di dottorato — 2024",
+  title:
+    "Riorientare il turismo alpino? Improvvisa o immunizzati per affrontare la neve incerta. Alte valli alpine e guide alpine",
+  meta: "Università di Grenoble Alpes · direzione Philippe Bourdeau e Yohann Rech · hanno difeso il 24 maggio 2024",
+  href: "https://theses.fr/2024GRALH013",
+  cta: "Leggi la scheda ufficiale della tesi →",
+  fullTextHref: "https://theses.hal.science/tel-04741315v1",
+  fullTextCta: "Testo completo su HAL →",
+};
+
+const groups: { id: string; heading: string; entries: Entry[] }[] = [
+  {
+    id: "recherche",
+    heading: "Pubblicazioni di ricerca",
+    entries: [
+      {
+        year: "2024",
+        source: "Lavoro collettivo · HAL",
+        title: "Ghiacciaio del Girose, pendio sensibile",
+        note: "Contributo ad un'opera collettiva.",
+        href: "https://hal.science/hal-04774149v1",
+        cta: "Visualizza la pubblicazione →",
+      },
+      {
+        year: "2022",
+        source: "Rivista Spazi",
+        title: "Elogio dell'improvvisazione ovvero di come rinnovare il nostro rapporto con la montagna",
+        note: "Nel numero speciale “La transizione al centro dei territori montani”.",
+        href: "https://www.tourisme-espaces.com/doc/10911.transition-coeur-territoires-montagne.html",
+        cta: "Visualizza la pubblicazione →",
+      },
+      {
+        year: "2018",
+        source: "Vacarme",
+        title: "Guida chi arriva",
+        href: "https://doi.org/10.3917/vaca.083.0043",
+        cta: "Leggi l'articolo→",
+      },
+    ],
+  },
+  {
+    id: "articles",
+    heading: "Articoli e storie",
+    entries: [
+      {
+        year: "2026",
+        source: "Alpine Mag",
+        title: "Scialpinismo in Marocco, avventura nel paese berbero",
+        href: "https://alpinemag.fr/raid-ski-de-rando-maroc-aventure-pays-berbere/",
+        cta: "Leggi l'articolo→",
+      },
+      {
+        year: "2025",
+        source: "Alpine Mag",
+        title: "Itineranza sugli sci nelle selvagge montagne del Kazakistan",
+        href: "https://alpinemag.fr/ski-rando-yann-borgnet-kazakhstan-traversee-monts-ile-alatau/",
+        cta: "Leggi l'articolo→",
+      },
+      {
+        year: "2025",
+        source: "Alpine Mag",
+        title: "Tra Kosovo, Albania e Macedonia del Nord, la traversata dei monti Šar con gli sci",
+        href: "https://alpinemag.fr/ski-kosovo-albanie-macedoine-nord-traversee-montagnes-sar/",
+        cta: "Leggi l'articolo→",
+      },
+      {
+        year: "2024",
+        source: "Alpine Mag",
+        title: "Scialpinismo. L’alta via dell'Alto Svaneti in Georgia",
+        href: "https://alpinemag.fr/georgie-haute-route-haute-svanetie-ski-randonnee-yann-borgnet/",
+        cta: "Leggi l'articolo→",
+      },
+      {
+        year: "2024",
+        source: "Alpine Mag",
+        title: "Turismo dell'ultima occasione: alpinismo opportunistico e turismo di massa alla Mer de Glace",
+        href: "https://alpinemag.fr/nouvelle-goulotte-reflexion-alpinisme-derniere-chance-montenvers-yann-borgnet/",
+        cta: "Leggi l'articolo→",
+      },
+      {
+        year: "2020",
+        source: "Alpine Mag",
+        title: "Alpine Line, un viaggio sulle Alpi",
+        href: "https://alpinemag.fr/alpine-line-voyage-dans-les-alpes/",
+        cta: "Leggi l'articolo→",
+      },
+    ],
+  },
+  {
+    id: "presse",
+    heading: "Stampa e interviste",
+    entries: [
+      {
+        year: "2024",
+        source: "Alpine Mag",
+        title: "Come riorientare il turismo alpino, secondo il ricercatore Yann Borgnet",
+        href: "https://alpinemag.fr/reorienter-tourisme-alpin-selon-guide-docteur-yann-borgnet/",
+        cta: "Leggi l'articolo→",
+      },
+      {
+        year: "2024",
+        source: "Il mio soggiorno in montagna",
+        title: "Questo nuovo percorso alpinistico sembra un turismo dell’ultima possibilità",
+        href: "https://www.mon-sejour-en-montagne.com/histoires-et-anecdotes/cette-nouvelle-voie-d-alpinisme-aux-allures-de-tourisme-de-la-derniere-chance/",
+        cta: "Leggi l'articolo→",
+      },
+      {
+        year: "2023",
+        source: "Alpine Mag",
+        title: "Dolomiti: nuova via importante al Sass Maor per Yann Borgnet e Antoine Bouqueret",
+        href: "https://alpinemag.fr/dolomites-nouvelle-voie-sass-maor-yann-borgnet-antoine-bouqueret/",
+        cta: "Leggi l'articolo→",
+      },
+      {
+        year: "2022",
+        source: "Alpine Mag",
+        title: "Sci fantastico sul ghiacciaio dell'Arolla e sul rifugio Bouquetins",
+        href: "https://alpinemag.fr/ski-scott-proguide-skirando-arolla-valais-borgnet/",
+        cta: "Leggi l'articolo→",
+      },
+      {
+        year: "2021",
+        source: "ARTICOLO Labex",
+        title: "A traversata scialpinistica in giro per le transizioni del Queyras",
+        href: "https://labexittem.fr/un-raid-a-skis-autour-des-transitions-dans-le-queyras/",
+        cta: "Leggi l'articolo→",
+      },
+      {
+        year: "2021",
+        source: "Alpine Mag",
+        title: "Quale futuro per la professione di guida alpina?",
+        href: "https://alpinemag.fr/quel-futur-pour-le-metier-de-guide-de-haute-montagne-borgnet/",
+        cta: "Leggi l'articolo→",
+      },
+      {
+        year: "2020",
+        source: "PlanetMountain",
+        title: "Yann Borgnet capolavori completi sulle Grandes Jorasses",
+        href: "https://www.planetmountain.com/en/companies-news/yann-borgnet-completes-masterpiece-the-grandes-jorasses.html",
+        cta: "Leggi l'articolo→",
+      },
+      {
+        year: "2015",
+        source: "ENS Rennes · Dipartimento 2SEP",
+        title: "Yann Borgnet, studente del dipartimento 2SEP, partecipa al progetto Alpine Line",
+        href: "https://sciencesport.ens-rennes.fr/actualites/yann-borgnet-eleve-du-departement-2sep-participe-au-projet-alpine-line",
+        cta: "Leggi l'articolo→",
+      },
+    ],
+  },
+  {
+    id: "films",
+    heading: "Films",
+    entries: [
+      {
+        year: "2019",
+        source: "Vimeo · Alpine Lines",
+        title: "Alpine Line, La grande traversata",
+        note: "Pubblicato online a dicembre 2019, 47 minuti.",
+        href: alpineLineFilm,
+        cta: "Guarda il film →",
+      },
+      {
+        year: "2019",
+        source: "Alpine Mag",
+        title: "Alpine Line",
+        note: "Presentazione del film, con FODACIM.",
+        href: "https://alpinemag.fr/alpine-line/",
+        cta: "Leggi l'articolo→",
+      },
+      {
+        year: "2016",
+        source: "FODACIM",
+        title: "Alpine Line",
+        note: "Produzione Yann Borgnet e Yoann Joly, 47 minuti.",
+        href: "https://www.fodacim.fr/film/alpine-line/",
+        cta: "Guarda il film →",
+      },
+      {
+        year: "2016",
+        source: "Cimalpes",
+        title: "Alpine Line",
+        note: "Traversata delle Alpi dalla Corsica alla Slovenia, senza mezzi a motore.",
+        href: "https://www.cimalpes.fr/films-de-montagne-752-2978-0-0.html",
+        cta: "Guarda il film →",
+      },
+    ],
+  },
+];
+
+const reperes: { title: string; text: string; href?: string; linkLabel?: string; external?: boolean }[] = [
+  {
+    title: "Normale · ENS di Rennes",
+    text: "Formazione all'École Normale Supérieure di Rennes, poi educazione fisica e aggregazione sportiva.",
+  },
+  {
+    title: "Gruppo Nazionale di Eccellenza Alpinistica · FFCAM",
+    text: "Membro del Gruppo Nazionale Alpinismo di Alto Livello dal 2011 al 2013.",
+  },
+  {
+    title: "Alpine Line — attraversando le Alpi, 2015",
+    text: "Con Yoann Joly, traversata senza motore dell'arco alpino del Monte Cinto, in Corsica, nel Triglav, in Slovenia: 161 giorni di itineranza e circa 1.500 km, combinando passeggiate, mountain bike, scialpinismo, sci nordico, parapendio, barca a vela e kayak, con quasi cinquanta vette emblematiche lungo il percorso.",
+    href: "/le-film/",
+    linkLabel: "Scopri Alpine Line →",
+  },
+  {
+    title: "Guida alpina UIAGM",
+    text: "Attualmente lavora in Alta Savoia, iscritto nell'elenco nazionale delle guide di alta montagna.",
+  },
+  {
+    title: "Professore presso ENSA",
+    text: "Chamonix, dal 2022.",
+  },
+  {
+    title: "Dottore in Geografia",
+    text: "Tesi difesa nel 2024 sull'adattamento delle pratiche di innevamento e le trasformazioni dei territori alpini.",
+    href: "https://theses.hal.science/tel-04741315",
+    linkLabel: "Consulta la tesi su HAL →",
+    external: true,
+  },
+  {
+    title: "Les Grands Raids à Ski",
+    text: "Progettazione e supervisione degli attraversamenti sciistici in itineranza nelle Alpi e nelle montagne di tutto il mondo.",
+  },
+];
+
+const publications: { year: string; source: string; title: string; authors: string; href: string; cta: string }[] = [
+  {
+    year: "2026",
+    source: "Theoros",
+    title:
+      "“Affrontare le crisi socio-ambientali in montagna: traiettorie turistiche e politiche pubbliche per lo sviluppo di un’alta valle alpina (Queyras, Francia)”",
+    authors: "Mikaël Chambru & Yann Borgnet.",
+    href: "https://share.google/6X8RslnlwbPBeg9MN",
+    cta: "Visualizza l'articolo→",
+  },
+  {
+    year: "2022",
+    source: "Rivista Spazi",
+    title: "“Elogio dell’improvvisazione o di come rinnovare il nostro rapporto con la montagna”",
+    authors: "Yann Borgnet.",
+    href: "https://www.tourisme-espaces.com/doc/10926.eloge-improvisation-comment-renouveler-notre-rapport-montagne.html",
+    cta: "Visualizza l'articolo→",
+  },
+  {
+    year: "2021",
+    source: "Geocrossroads",
+    title:
+      "\"Transizione turistica e improvvisazione. Innovazioni (anti)sociali nella Valpelline e nelle valli di Ollomont (Valle d'Aosta) »",
+    authors: "Yann Borgnet e Mathieu Le Touzé.",
+    href: "https://doi.org/10.4000/geocarrefour.19523",
+    cta: "Visualizza l'articolo→",
+  },
+  {
+    year: "2019",
+    source: "Giornale della ricerca alpina | Rassegna di geografia alpina",
+    title:
+      "\"Spazio incerto: traiettoria spaziale di un'innovazione sociale “per ritiro”. Studio della composizione dell'associazione delle logge e dei rifugi del Queyras »",
+    authors: "Yann Borgnet.",
+    href: "https://journals.openedition.org/rga/6049",
+    cta: "Visualizza l'articolo→",
+  },
+  {
+    year: "2024",
+    source: "Tesi di dottorato in Geografia",
+    title: "“Consulta la tesi su HAL”",
+    authors: "",
+    href: "https://theses.hal.science/tel-04741315",
+    cta: "Consulta la tesi→",
+  },
+];
+---
+
+<BaseLayout
+  title={"Yann Borgnet | guida alpina UIAGM"}
+  description={"Yann Borgnet, guida alpina UIAGM, professore presso ENSA e dottore in geografia. Raid, traversate con gli sci, itineranza e montagne."}
+  canonical={canonical}
+>
+  <Header solid />
+
+  <main>
+    <section class="ed-hero">
+      <div class="ed-hero__media">
+        <PhotoSlot fill tone="dark" file="DSC05274-1024x683.jpg" />
+      </div>
+      <div class="site-shell ed-hero__inner">
+        <p class="ed-hero__eyebrow">{"Chi sono io?"}</p>
+        <h1>
+          <span>{"Yann Borgnet."}</span>
+          <span class="ed-hero__sub">{"Guida, insegnante, geografo."}</span>
+        </h1>
+        <p class="ed-hero__lead">
+          {"Guida alpina UIAGM, professore associato di educazione fisica, professore a ENSA e dottore in geografia. Una pratica della professione focalizzata su itineranza, esplorazione e viaggi sugli sci a lunga percorrenza."}
+        </p>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--white" id="parcours">
+      <div class="site-shell ed-split">
+        <div class="ed-split__head">
+          <p class="ed-eyebrow">{"Corso"}</p>
+          <h2 class="ed-h2">{"La montagna come terreno di viaggio e di ricerca."}</h2>
+        </div>
+        <div class="ed-prose">
+          <p>
+            {"Originario di Annecy, sono stato normalista all'ENS di Rennes prima di diventare professore associato di educazione fisica. Oggi sono guida alpina UIAGM e dal 2022 professore presso la Scuola Nazionale di Sci e Alpinismo (ENSA) di Chamonix. Nel maggio 2024 ho discusso una tesi di dottorato in geografia dedicata alle trasformazioni del turismo alpino e all'adattamento delle pratiche e dei territori di montagna."}
+          </p>
+          <p>
+            {"Nel 2015, una traversata delle Alpi dalla Corsica alla Slovenia, effettuata senza mezzi motorizzati e mescolando diverse pratiche alpine, ha influenzato profondamente il modo in cui vedo la professione di guida. Da allora, l’itineranza è diventato il faro guida del mio studio."}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--dark" id="metier">
+      <div class="site-shell">
+        <div class="ed-split">
+          <div class="ed-split__head">
+            <p class="ed-eyebrow">{"La professione"}</p>
+            <h2 class="ed-h2">{"Disegna linee invece di raccogliere vertici."}</h2>
+          </div>
+          <div class="ed-prose">
+            <p>
+              {"Oggi dedico gran parte dei miei inverni alle incursioni e alle traversate con gli sci, sulle Alpi e sulle montagne del mondo. I viaggi si costruiscono attorno ad una linea: collegare valli, paesi, rifugi o bivacchi, e comprendere un territorio attraversandolo."}
+            </p>
+            <p>
+              {"La preparazione prevede mappe, immagini aeree, discussioni con residenti e professionisti locali. A terra, il percorso rimane vivo: si adatta alla neve, al tempo, al gruppo e a ciò che la montagna permette."}
+            </p>
+          </div>
+        </div>
+        <div class="ed-photo">
+          <PhotoSlot ratio="21 / 9" tone="dark" />
+        </div>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--paper" id="recherche">
+      <div class="site-shell ed-split ed-split--even">
+        <div>
+          <p class="ed-eyebrow">{"Cerca trasmissione &amp;"}</p>
+          <h2 class="ed-h2">{"Pensando alle trasformazioni della montagna."}</h2>
+          <div class="ed-prose" style="margin-top: 32px">
+            <p>
+              {"Il mio lavoro di ricerca si concentra sugli sviluppi del turismo alpino, sugli effetti dei cambiamenti climatici e sulla ristrutturazione delle pratiche e dei territori montani. Questa riflessione nutre anche il mio modo di insegnare e guidare."}
+            </p>
+            <p>
+              {"A ENSA mi occupo della formazione dei professionisti della montagna. Scrivo anche di professione di guida, gestione del rischio e trasformazioni del turismo montano."}
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <p class="ed-eyebrow">{"Punti di riferimento"}</p>
+          <ul class="yann-reperes">
+            {
+              reperes.map((r) => (
+                <li>
+                  <h3>{r.title}</h3>
+                  <p>{r.text}</p>
+                  {r.href && (
+                    <a
+                      class="ed-link"
+                      href={r.external ? r.href : localizedHref(lang, r.href)}
+                      target={r.external ? "_blank" : undefined}
+                      rel={r.external ? "noopener noreferrer" : undefined}
+                    >
+                      {r.linkLabel}
+                      {r.external && <span class="ed-sr"> {"(nuova scheda)"}</span>}
+                    </a>
+                  )}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--dark" id="publications">
+      <div class="site-shell">
+        <div class="yann-pubs__intro">
+          <p class="ed-eyebrow">{"Cerca pubblicazioni &amp;"}</p>
+          <h2 class="ed-h2">{"Scrivere e documentare le trasformazioni del turismo montano."}</h2>
+        </div>
+
+        <ul class="yann-pubs__list">
+          {
+            publications.map((p) => (
+              <li class="yann-pub">
+                <p class="yann-pub__meta">
+                  <span>{p.year}</span>
+                  <span aria-hidden="true"> — </span>
+                  <span>{p.source}</span>
+                </p>
+                <div>
+                  <h3 class="yann-pub__title">{p.title}</h3>
+                  {p.authors && <p class="yann-pub__authors">{p.authors}</p>}
+                  <a class="ed-link" href={p.href} target="_blank" rel="noopener noreferrer">
+                    {p.cta}
+                    <span class="ed-sr"> {"(nuova scheda)"}</span>
+                  </a>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+
+        <article class="yann-featured">
+          <p class="yann-featured__label">{thesis.label}</p>
+          <h3 class="yann-featured__title">{thesis.title}</h3>
+          <p class="yann-featured__meta">{thesis.meta}</p>
+          <p class="yann-featured__links">
+            <a class="ed-link" href={thesis.href} target="_blank" rel="noopener noreferrer">
+              {thesis.cta}<span class="ed-sr"> {"(nuova scheda)"}</span>
+            </a>
+            <a class="ed-link" href={thesis.fullTextHref} target="_blank" rel="noopener noreferrer">
+              {thesis.fullTextCta}<span class="ed-sr"> {"(nuova scheda)"}</span>
+            </a>
+          </p>
+        </article>
+
+        {
+          groups.map((group) => (
+            <div class="yann-group" id={`publications-${group.id}`}>
+              <h3 class="yann-group__title">{group.heading}</h3>
+              <ul class="yann-pubs__list yann-pubs__list--cols">
+                {group.entries.map((entry) => (
+                  <li class="yann-card">
+                    <p class="yann-pub__meta">
+                      <span>{entry.year}</span>
+                      <span aria-hidden="true"> · </span>
+                      <span>{entry.source}</span>
+                    </p>
+                    <h4 class="yann-card__title">{entry.title}</h4>
+                    {entry.note && <p class="yann-card__note">{entry.note}</p>}
+                    <a class="ed-link" href={entry.href} target="_blank" rel="noopener noreferrer">
+                      {entry.cta}
+                      <span class="ed-sr"> {"(nuova scheda)"}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+
+        <div class="ed-cta">
+          <a href={localizedHref(lang, "/prochains-voyages/")}>{"Scopri il viaggio →"}</a>
+          <a href={localizedHref(lang, "/carnets-de-voyage-ski/")}>{"Leggi i quaderni →"}</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <ContactStrip />
+
+  <footer class="site-footer">
+    <div class="site-shell site-footer__grid">
+      <div>
+        <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+        <p class="site-footer__statement">{"Esplorare · improvvisare · incontrare · sciare."}</p>
+      </div>
+
+      <div class="site-footer__links">
+        <a href="https://wa.me/33689295826">{"WhatsApp · +33 6 89 29 58 26"}</a>
+        <a href="https://www.instagram.com/lesgrandsraidsaski/">{"Instagram"}</a>
+        <a href="https://www.facebook.com/yannborgnet/">{"Facebook"}</a>
+      </div>
+    </div>
+
+    <SponsorStrip />
+
+    <div class="site-shell site-footer__bottom">
+      <span>{"Yann Borgnet · Guida alpina UIAGM"}</span>
+      <span>© 2026</span>
+    </div>
+  </footer>
+</BaseLayout>

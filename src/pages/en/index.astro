@@ -1,0 +1,469 @@
+---
+import { getLang, localizedHref } from "../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+import SponsorStrip from "../../components/shared/SponsorStrip.astro";
+import ContactStrip from "../../components/shared/ContactStrip.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import PhotoSlot from "../../components/editorial/PhotoSlot.astro";
+import "../../styles/home-projets.css";
+import { withBase } from "../../lib/url";
+import { carnets } from "../../data/carnets/en/index";
+
+const canonical = "https://lesgrandsraidsaski.com/en/";
+
+// Segments de la traversée des Alpes : uniquement les carnets publiés de la zone
+// "traversee-des-alpes" (src/data/carnets), intitulés et URLs issus des données.
+const segmentsAlpins = carnets
+  .filter((c) => c.zones.includes("traversee-des-alpes"))
+  .map((c, i) => ({ slug: c.slug, i, name: (c.subtitle ?? c.title).replace(" : ", " · ") }))
+  .sort((a, b) => a.name.localeCompare(b.name, lang, { numeric: true }) || a.i - b.i);
+---
+
+<BaseLayout
+  title={"Ski touring trips & traverses | Yann Borgnet"}
+  description={"Multi-day ski touring journeys in the Alps and mountains around the world with Yann Borgnet, IFMGA mountain guide."}
+  canonical={canonical}
+  ogImage="/images/DSC07143_DxO-3-scaled.jpg"
+>
+  <Header />
+
+  <main>
+    <section class="hero">
+      <img
+        class="hero__image"
+        src={withBase("/images/DSC07143_DxO-3-scaled.jpg")}
+        alt={"A multi-day ski traverse in the mountains"}
+      />
+
+      <div class="hero__veil"></div>
+
+      <div class="site-shell hero__content">
+        <div class="hero__kicker">{"ALPS · MOUNTAINS OF THE WORLD"}</div>
+
+        <h1>
+          LES GRANDS<br class="hero-break--desktop" />{" "}
+          RAIDS<br class="hero-break--mobile" />{" "}
+          <em>À SKI</em>
+        </h1>
+
+        <p class="hero__tagline">
+          {"Explore · improvise · meet · ski"}
+        </p>
+      </div>
+    </section>
+
+    <section class="intro-section home-screen" id="philosophie">
+      <div class="site-shell intro-grid">
+        <div>
+          <p class="eyebrow eyebrow--warm">{"A CERTAIN IDEA OF TRAVEL"}</p>
+          <h2>{"Drawing"}<br /><em>{"horizontal lines."}</em></h2>
+        </div>
+
+        <div class="intro-copy">
+          <p class="intro-copy__lead">
+            {"Travelling from place to place shapes both the way I ski tour and my relationship with the mountains."}
+          </p>
+
+          <p>
+            {"From valley to valley, village to village, bivouac to bivouac: each route is carefully prepared, then leaves real room for the terrain, the snow and the people we meet."}
+          </p>
+
+          <a class="home-link" href={localizedHref(lang, "/philosophie/")}>
+            {"Read the philosophy"} <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    <section class="voyages-section home-screen" id="voyages">
+
+      <div class="site-shell voyages-heading">
+        <div>
+          <p class="eyebrow">{"WINTER 2027"}</p>
+          <h2>{"A season"}<br /><em>{"to be written."}</em></h2>
+        </div>
+
+        <p class="voyages-heading__intro">
+          {"Five journeys shaped by travelling, exploring and whatever the terrain allows us to write along the way."}
+        </p>
+      </div>
+
+
+      <div class="site-shell voyages-grid">
+
+        <div class="voyages-photo">
+          <img
+            src={withBase("/images/DSC02181-1024x684.jpg")}
+            alt={"Terrain for a multi-day ski traverse"}
+            loading="lazy"
+          />
+
+          <div class="voyages-photo__caption">
+            <span>2027</span>
+            <p>{"Five journeys."}<br />{"A season to be written."}</p>
+          </div>
+        </div>
+
+
+        <div class="voyages-list">
+
+          <a class="voyage-row" href={localizedHref(lang, "/ski-randonnee-georgie-petit-caucase-2027/")}>
+            <span class="voyage-date">{"17 — 26 JAN"}</span>
+            <span class="voyage-text">
+              <strong>{"GEORGIA › LESSER CAUCASUS"}</strong>
+              <small>{"From the volcanoes of Javakheti to the deep snows of Adjara and Guria."}</small>
+            </span>
+            <span class="voyage-arrow">↗</span>
+          </a>
+
+          <a class="voyage-row" href={localizedHref(lang, "/ski-randonnee-ouzbekistan-traversee-baysun/")}>
+            <span class="voyage-date">{"04 — 13 FEB"}</span>
+            <span class="voyage-text">
+              <strong>{"UZBEKISTAN › HISSAR"}</strong>
+              <small>{"Exploration followed by a journey from village to village."}</small>
+            </span>
+            <span class="voyage-arrow">↗</span>
+          </a>
+
+          <a class="voyage-row" href={localizedHref(lang, "/ski-randonnee-armenie-sevan-aragats-2027/")}>
+            <span class="voyage-date">{"20 FEB — 01 MAR"}</span>
+            <span class="voyage-text">
+              <strong>{"ARMENIA › SEVAN → ARAGATS"}</strong>
+              <small>{"Forests, high plateaux and volcanic summits."}</small>
+            </span>
+            <span class="voyage-arrow">↗</span>
+          </a>
+
+          <a class="voyage-row" href={localizedHref(lang, "/raid-ski-mediterraneen-2027/")}>
+            <span class="voyage-date">{"06 — 14 MAR"}</span>
+            <span class="voyage-text">
+              <strong>{"MEDITERRANEAN SKI TRAVERSE"}</strong>
+              <small>{"Winter will decide the destination."}</small>
+            </span>
+            <span class="voyage-arrow">↗</span>
+          </a>
+
+          <a class="voyage-row" href={localizedHref(lang, "/ski-randonnee-tadjikistan-zeravshan-2027/")}>
+            <span class="voyage-date">{"21 — 29 MAR"}</span>
+            <span class="voyage-text">
+              <strong>{"TAJIKISTAN › ZERAVSHAN"}</strong>
+              <small>{"The most committing traverse of the season."}</small>
+            </span>
+            <span class="voyage-arrow">↗</span>
+          </a>
+
+
+          <div class="voyages-actions">
+            <a class="voyages-button" href={localizedHref(lang, "/prochains-voyages/")}>
+              {"Explore the 2027 trips"}
+            </a>
+
+            <a class="home-link" href="https://wa.me/33689295826">
+              {"Request a technical sheet →"}
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+
+    <section class="manifesto-section">
+
+      <div class="photo-break">
+        <img
+        src={withBase("/images/Traversées-kosovardes.png")}
+        alt={"A ski traverse in the Balkans"}
+        loading="lazy"
+      />
+
+      <div class="photo-break__overlay"></div>
+
+      <div class="site-shell photo-break__content">
+        <p class="eyebrow">{"PREPARE · IMPROVISE · CONNECT"}</p>
+        <blockquote>
+          {"“Prepare meticulously, so that you can then improvise.”"}
+        </blockquote>
+      </div>
+      </div>
+
+      <div class="method-section">
+
+      <div class="site-shell method-grid">
+
+        <article class="method-card">
+          <span>01</span>
+          <h3>{"Prepare"}</h3>
+          <p>
+            {"Maps, aerial imagery, local conversations and logistics: laying solid foundations before setting off."}
+          </p>
+        </article>
+
+        <article class="method-card">
+          <span>02</span>
+          <h3>{"Improvise"}</h3>
+          <p>
+            {"Accepting that the group, snow, weather and terrain will write the other half of the story."}
+          </p>
+        </article>
+
+        <article class="method-card">
+          <span>03</span>
+          <h3>{"Connect"}</h3>
+          <p>
+            {"Valleys, villages, bivouacs and the people who live there. Travelling through, rather than collecting summits."}
+          </p>
+        </article>
+
+      </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="carnets-section home-screen" id="carnets">
+
+      <div class="site-shell section-heading-row">
+
+        <div>
+          <p class="eyebrow">{"FIELD JOURNALS"}</p>
+          <h2>
+            {"Past journeys"}<br />
+            <em>{"leave their mark."}</em>
+          </h2>
+        </div>
+
+        <a class="home-link" href={localizedHref(lang, "/carnets-de-voyage-ski/")}>
+          {"All the stories →"}
+        </a>
+
+      </div>
+
+
+      <div class="site-shell story-grid">
+
+        <article class="story-card">
+          <a class="story-card__image" href={localizedHref(lang, "/bernina-tour-massif-ski-randonnee/")}>
+            <img
+              src={withBase("/images/bernina-ski-randonnee-01-panorama-piz-palu-glaciers-1024x684.jpg")}
+              alt={"Bernina — Around the massif"}
+              loading="lazy"
+            />
+          </a>
+          <p class="eyebrow">{"SEP 2026"}</p>
+          <h3>{"BERNINA — AROUND THE MASSIF"}</h3>
+          <p>
+            {"A ski tour around the Bernina massif, among glaciers, moraines, mountain huts and high-altitude bivouac shelters."}
+          </p>
+        </article>
+
+
+        <article class="story-card">
+          <a class="story-card__image" href={localizedHref(lang, "/traversee-ski-argentera-mercantour/")}>
+            <img
+              src={withBase("/photos/Argentera/traversee-ski-mercantour-argentera-panorama.jpg")}
+              alt={"Argentera — Mercantour"}
+              loading="lazy"
+            />
+          </a>
+          <p class="eyebrow">{"SEP 2026"}</p>
+          <h3>{"ARGENTERA — MERCANTOUR"}</h3>
+          <p>
+            {"A transalpine traverse shaped by wind, wolves and life on the move."}
+          </p>
+        </article>
+
+
+        <article class="story-card">
+          <a class="story-card__image" href={localizedHref(lang, "/alpes-ligures-traversee-ski-randonnee/")}>
+            <img
+              src={withBase("/images/alpes-ligures-j3-cima-degli-arpetti-01-1024x684.jpg")}
+              alt={"Ligurian Alps"}
+              loading="lazy"
+            />
+          </a>
+          <p class="eyebrow">{"SEP 2026"}</p>
+          <h3>{"LIGURIAN ALPS"}</h3>
+          <p>
+            {"A ski traverse through the valleys and villages of the Ligurian Alps."}
+          </p>
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <section class="projets-section" id="projets">
+      <div class="site-shell">
+
+        <div class="projets-head">
+          <p class="eyebrow">{"PROJECTS"}</p>
+          <h2>{"Traverse, investigate,"} <em>{"tell the story."}</em></h2>
+          <p class="projets-head__intro">
+            {"Projects in which travelling through the mountains also becomes a way to explore, document and tell the stories of mountain regions."}
+          </p>
+        </div>
+
+        <article class="projet">
+          <div class="projet__media">
+            <PhotoSlot ratio="3 / 2" tone="dark" label="" src="/photos/Raid anthropologique Queyras/raid-anthropologique-queyras-ski-randonnee-cretes.jpg" alt={"A ski tourer on a slope facing the rocky ridges of the Queyras"} />
+          </div>
+          <div class="projet__body">
+            <p class="eyebrow">{"QUEYRAS · 2022"}</p>
+            <h3>
+              <a class="projet__link" href={localizedHref(lang, "/transition-raid-anthropologique-queyras/")}>
+                {"TRANSITION — AN ANTHROPOLOGICAL SKI JOURNEY"}
+              </a>
+            </h3>
+            <p class="projet__text">
+              {"Five days on skis bringing a region, its inhabitants and the social sciences into conversation, at the meeting point of mountain guiding and geographical research."}
+            </p>
+            <span class="projet__cta">{"Discover the project →"}</span>
+          </div>
+        </article>
+
+        <div class="traversees">
+          <h3 class="traversees__title">{"ALPS TRAVERSES"}</h3>
+
+          <article class="projet projet--reverse traversees__part">
+            <div class="projet__media">
+              <PhotoSlot ratio="3 / 2" tone="dark" label="" src="/photos/Alpine Line/alpine-line-alpinisme-arete-neige.jpg" alt={"A roped mountaineer on a snow ridge above a sea of cloud"} />
+            </div>
+            <div class="projet__body">
+              <p class="eyebrow">2015</p>
+              <h4>{"ALPINE LINE"}</h4>
+              <p class="projet__text">
+                {"A long traverse of the Alps without motorised transport, undertaken with Yoann Joly: from Monte Cinto in Corsica to Triglav in Slovenia. For 161 days, we linked the mountain ranges on foot, by bike, on touring and Nordic skis, by paraglider, under sail and by kayak. A long, open-ended amateur journey of travelling, mountaineering and the unexpected."}
+              </p>
+              <a class="projet__cta" href={localizedHref(lang, "/le-film/")}>{"Watch the Alpine Line film →"}</a>
+            </div>
+          </article>
+
+          <div class="traversees__guidees">
+            <div class="traversees__intro">
+              <p class="eyebrow">{"SINCE 2024"}</p>
+              <h4>{"A GUIDED TRAVERSE OF THE ALPS"}</h4>
+              <p class="projet__text">
+                {"In 2024, I began a second traverse of the Alps, this time as a guide and entirely on touring skis. Each year, we cover around a hundred kilometres, finding our way through the ranges as our wishes and the conditions suggest."}
+              </p>
+            </div>
+
+            <div class="traversees__liste">
+              <ul>
+                {
+                  segmentsAlpins.map((seg) => (
+                    <li>
+                      <a href={localizedHref(lang, `/${seg.slug}/`)}>
+                        <span class="traversees__nom">{seg.name}</span>
+                        <span class="traversees__lire">{"Read the journal →"}</span>
+                      </a>
+                    </li>
+                  ))
+                }
+                {/* Segment #4 (Queyras) : pas encore de page carnet → non affiché. À ajouter quand elle existera. */}
+              </ul>
+              <a class="projet__cta" href={localizedHref(lang, "/carnets-de-voyage-ski/")}>
+                {"Read all the traverse journals →"}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <article class="projet projet--skimed">
+          <div class="projet__media">
+            <PhotoSlot ratio="3 / 2" tone="dark" label="" src="/photos/Argentera/ski-randonnee-argentera-vue-mediterranee.jpg" alt={"Ski tourers in the Maritime Alps, with the Mediterranean on the horizon"} />
+          </div>
+          <div class="projet__body">
+            <p class="eyebrow">{"MOUNTAINS FACING THE SEA"}</p>
+            <h3>
+              <a class="projet__link" href={localizedHref(lang, "/raid-ski-mediterraneen-2027/")}>
+                {"SKI MED"}
+              </a>
+            </h3>
+            <p class="projet__text">
+              {"From Morocco’s High Atlas to the Pindus mountains of Greece, from Italy’s Ligurian Alps to the ranges of southern Turkey: ski touring journeys in the heart of the Mediterranean mountains. Another way to experience winter, where snow is scarce and contrasts with a seemingly endless horizon."}
+            </p>
+            <span class="projet__cta">{"Explore the Mediterranean ski journeys →"}</span>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section class="about-section home-screen">
+
+      <div class="site-shell about-grid">
+
+        <div class="about-photo">
+          <img
+            src={withBase("/images/fba56613-bfe2-4d63-ab54-90bd71f10e09-1-819x1024.png")}
+            alt={"Yann Borgnet, IFMGA mountain guide"}
+            loading="lazy"
+          />
+        </div>
+
+        <div class="about-copy">
+
+          <p class="eyebrow">
+            {"MOUNTAIN GUIDE · GEOGRAPHER"}
+          </p>
+
+          <h2>
+            {"Yann"}<br />
+            <em>{"Borgnet."}</em>
+          </h2>
+
+          <p class="about-copy__lead">
+            {"From Annecy, an IFMGA mountain guide, lecturer at ENSA and doctor of geography."}
+          </p>
+
+          <p>
+            {"My research into the future of Alpine tourism has nurtured an interest in inhabited mountains: places we encounter as much as travel through."}
+          </p>
+
+          <a class="home-link" href={localizedHref(lang, "/yann-borgnet-guide-haute-montagne/")}>
+            {"Discover my background →"}
+          </a>
+
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <ContactStrip />
+
+  <footer class="site-footer">
+
+    <div class="site-shell site-footer__grid">
+
+      <div>
+        <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+        <p class="site-footer__statement">
+          {"Explore · improvise · meet · ski."}
+        </p>
+      </div>
+
+      <div class="site-footer__links">
+        <a href="https://wa.me/33689295826">{"WhatsApp · +33 6 89 29 58 26"}</a>
+        <a href="https://www.instagram.com/lesgrandsraidsaski/">{"Instagram"}</a>
+        <a href="https://www.facebook.com/yannborgnet/">{"Facebook"}</a>
+      </div>
+
+    </div>
+
+    <SponsorStrip />
+
+    <div class="site-shell site-footer__bottom">
+      <a href={localizedHref(lang, "/yann-borgnet-guide-haute-montagne/")}>{"Yann Borgnet · IFMGA mountain guide"}</a>
+      <span>© 2026</span>
+    </div>
+
+  </footer>
+
+</BaseLayout>

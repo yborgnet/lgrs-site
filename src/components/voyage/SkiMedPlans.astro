@@ -8,7 +8,10 @@ const t = useTranslations(lang);
 // (tablist ARIA, clavier, sans rechargement). Les cartes GPX s'initialisent
 // quand leur panneau devient visible (voir GpxMap : IntersectionObserver).
 import PlanBody from "./SkiMedPlanBody.astro";
-import { plans, plansSection } from "../../data/voyages/skiMedPlans";
+import * as frPlans from "../../data/voyages/skiMedPlans";
+import * as enPlans from "../../data/voyages/en/skiMedPlans";
+import * as itPlans from "../../data/voyages/it/skiMedPlans";
+const { plans, plansSection } = lang === "en" ? enPlans : lang === "it" ? itPlans : frPlans;
 import "../../styles/skimed-plans.css";
 
 const firstId = plans[0].id;

@@ -1,0 +1,161 @@
+---
+import { getLang, localizedHref } from "../../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+import SponsorStrip from "../../../components/shared/SponsorStrip.astro";
+import ContactStrip from "../../../components/shared/ContactStrip.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import PhotoSlot from "../../../components/editorial/PhotoSlot.astro";
+import "../../../styles/editorial.css";
+import { withBase } from "../../../lib/url";
+
+const canonical = "https://lesgrandsraidsaski.com/it/le-film/";
+
+/**
+ * Textes repris du brief de Yann (contenu extrait du dump WordPress).
+ * Photos : 3 emplacements neutres (PhotoSlot). Fichiers WordPress à retrouver :
+ * P1070234.jpg (hero), visuelAlpineLineSebCazes.jpg (affiche), et un visuel
+ * final parmi P1330297 / P1270658 / P1030250 / P1060588 / P1040402 /
+ * P1010133 / P1000786.
+ * SEO : titre = titre de la page WordPress (inventaire de migration). Meta
+ * description : aucune dans le brief ni dans WordPress → valeur par défaut
+ * du site, À VALIDER par Yann avant mise en ligne.
+ */
+---
+
+<BaseLayout
+  title={"Alpine Line — Il film"}
+  canonical={canonical}
+>
+  <Header solid />
+
+  <main>
+    <section class="ed-hero">
+      <div class="ed-hero__media">
+        <PhotoSlot fill tone="dark" src="/photos/Alpine Line/alpine-line-dolomites-lumiere-alpenglow.jpg" alt={"Le pareti delle Dolomiti risplendono della luce della sera"} loading="eager" />
+      </div>
+      <div class="site-shell ed-hero__inner">
+        <p class="ed-hero__eyebrow">{"2015 · Corsica → Slovenia"}</p>
+        <h1>
+          <span>{"Alpino"}</span>
+          <span>{"Linea."}</span>
+        </h1>
+        <p class="ed-hero__lead">
+          {"Una traversata non motorizzata dell'arco alpino, dal Monte Cinto al Triglav, effettuata per quasi sei mesi con Yoann Joly."}
+        </p>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--white" id="traversee">
+      <div class="site-shell ed-split">
+        <div class="ed-split__head">
+          <p class="ed-eyebrow">{"La traversata"}</p>
+          <h2 class="ed-h2">{"Linee orizzontali attraverso le Alpi."}</h2>
+          <ul class="ed-facts">
+            <li><strong>{"161 giorni"}</strong> {"d'itineranza"}</li>
+            <li>{"Circa"} <strong>{"6 mesi"}</strong> {"attraversamento"}</li>
+            <li>{"Circa"} <strong>{"50 picchi"}</strong> {"correlati"}</li>
+          </ul>
+        </div>
+        <div class="ed-prose">
+          <p class="ed-prose__lead">
+            {"L’avventura può essere vissuta a due passi da casa. Questo è ciò che volevamo sperimentare con Alpine Line: attraversare le Alpi senza motore, adattando il nostro modo di avanzare al terreno e alle stagioni."}
+          </p>
+          <p>
+            {"Camminate, mountain bike, scialpinismo, sci nordico, parapendio, barca a vela e kayak si sono susseguiti dal Monte Cinto, in Corsica, al Triglav, in Slovenia, passando per Mont Blanc. Durante il viaggio abbiamo collegato una cinquantina di vette emblematiche."}
+          </p>
+          <p>
+            {"Ma raggiungere le vette era meno importante di come collegarle. Questi punti salienti sono diventati la punteggiatura di una linea orizzontale, ispirata in particolare all'approccio di Patrick Berhault: attraversare, combinare pratiche, incontrarsi e lasciare che il terreno trasformi il progetto."}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--dark" id="film">
+      <div class="site-shell">
+        <p class="ed-eyebrow">{"Il film"}</p>
+        <h2 class="ed-h2">{"Un'avventura in montagna, ma soprattutto una storia di arrampicata su corda."}</h2>
+        <div class="ed-prose" style="margin-top: 32px">
+          <p>
+            {"Il film racconta la varietà delle Alpi e lo spazio creativo che offrono, ma anche l'evoluzione di un rapporto di corda confrontato con la durata, le condizioni e i cambiamenti di motivazione durante il viaggio."}
+          </p>
+        </div>
+        <div class="ed-video">
+          <iframe
+            src="https://player.vimeo.com/video/376885727?title=0&byline=0&portrait=0"
+            title={"Alpine Line, la grande traversata (film)"}
+            loading="lazy"
+            allow="autoplay; fullscreen; picture-in-picture"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--paper" id="cordee">
+      <div class="site-shell ed-split ed-split--even">
+        <div>
+          <blockquote class="ed-quote">
+            {"«Un inno all’amicizia, all’umiltà e alla montagna vissuta nel tempo. »"}
+          </blockquote>
+          <div class="ed-prose">
+            <p>
+              {"In questi 161 giorni gli incontri hanno contato quanto i vertici. La itineranza ha spiazzato le certezze, imposto i propri ritmi e dato al viaggio una dimensione umana che va ben oltre la prestazione."}
+            </p>
+            <p>{"Il film è ora disponibile qui con accesso gratuito."}</p>
+          </div>
+        </div>
+        <div class="ed-poster">
+          <PhotoSlot ratio="2 / 3" src="/photos/Alpine Line/alpine-line-affiche-film.jpg" alt={"Locandina del film Alpine Line, La Grande Traversata"} />
+        </div>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--white" id="remerciements">
+      <div class="site-shell">
+        <div class="ed-split">
+          <div class="ed-split__head">
+            <p class="ed-eyebrow">{"Ringraziamenti"}</p>
+            <h2 class="ed-h2">{"Senza di loro il film non sarebbe esistito."}</h2>
+          </div>
+          <div class="ed-prose">
+            <p>
+              {"Il progetto ha beneficiato del prezioso sostegno di Fodacim, dell'École normale supérieure de Rennes, nonché di Philippe Gaudin (Glaces des Alpes), Jacques-Yves de Rorthays (Au Vieux Campeur), Luc Blanchet (Botanico), Isabelle Leduc (Pilota), Grégory Thouverey e Lucie Lacroix (Julbo), Marco Gionola, Francesca Benedetti, Pascal Ducros e Adrien Nonglaton (Camp-Cassin), Nicolas Geydet (Scarpa) e Thomas Veillard (Eider)."}
+            </p>
+          </div>
+        </div>
+        <div class="ed-photo">
+          <PhotoSlot ratio="21 / 9" src="/photos/Alpine Line/alpine-line-parapente-traversee-alpes.jpg" alt={"Decollo in parapendio su una valle alpina"} position="50% 35%" />
+        </div>
+        <div class="ed-cta">
+          <a href={localizedHref(lang, "/yann-borgnet-guide-haute-montagne/")}>{"Scopri il viaggio di Yann Borgnet →"}</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <ContactStrip />
+
+  <footer class="site-footer">
+    <div class="site-shell site-footer__grid">
+      <div>
+        <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+        <p class="site-footer__statement">{"Esplorare · improvvisare · incontrare · sciare."}</p>
+      </div>
+
+      <div class="site-footer__links">
+        <a href="https://wa.me/33689295826">{"WhatsApp · +33 6 89 29 58 26"}</a>
+        <a href="https://www.instagram.com/lesgrandsraidsaski/">{"Instagram"}</a>
+        <a href="https://www.facebook.com/yannborgnet/">{"Facebook"}</a>
+      </div>
+    </div>
+
+    <SponsorStrip />
+
+    <div class="site-shell site-footer__bottom">
+      <span>{"Yann Borgnet · Guida alpina UIAGM"}</span>
+      <span>© 2026</span>
+    </div>
+  </footer>
+</BaseLayout>

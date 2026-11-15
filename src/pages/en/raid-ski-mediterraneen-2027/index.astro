@@ -1,0 +1,17 @@
+---
+import VoyageLayout from "../../../layouts/VoyageLayout.astro";
+import VoyageDescription from "../../../components/voyage/VoyageDescription.astro";
+import VoyageInfo from "../../../components/voyage/VoyageInfo.astro";
+import SkiMedPlans from "../../../components/voyage/SkiMedPlans.astro";
+import VoyageBirth from "../../../components/voyage/VoyageBirth.astro";
+import VoyageTechCta from "../../../components/voyage/VoyageTechCta.astro";
+import { mediterraneen as voyage } from "../../../data/voyages/en/mediterraneen";
+---
+
+<VoyageLayout voyage={voyage}>
+  <VoyageDescription description={voyage.description} photo={voyage.photoIntro} />
+  <VoyageInfo info={voyage.info} availability={voyage.availability} photo={voyage.photoInfo} />
+  <SkiMedPlans />
+  <VoyageBirth birth={voyage.birth} />
+  <VoyageTechCta techCta={voyage.techCta} />
+</VoyageLayout>

@@ -1,0 +1,204 @@
+---
+import SponsorStrip from "../../../components/shared/SponsorStrip.astro";
+import ContactStrip from "../../../components/shared/ContactStrip.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import PhotoSlot from "../../../components/editorial/PhotoSlot.astro";
+import "../../../styles/editorial.css";
+
+const canonical = "https://lesgrandsraidsaski.com/en/transition-raid-anthropologique-queyras/";
+
+/**
+ * Textes repris du brief de Yann (contenu extrait du dump WordPress).
+ * Photos : emplacements neutres (PhotoSlot), fichiers WordPress à retrouver :
+ * Raid-anthropologique-Queyras-—-DSC7394.jpg / DSC7568.jpg / DSC7753.jpg.
+ * Titre SEO : titre de la page WordPress (inventaire de migration). Meta
+ * description : aucune dans le brief ni dans WordPress → valeur par défaut du
+ * site, à valider par Yann.
+ */
+
+const principes = [
+  {
+    title: "The itinerary as a method",
+    text: "The stages are chosen as much for the quality of the ski line as for the relevance of the encounters.",
+  },
+  {
+    title: "The meeting as a subject",
+    text: "The inhabitants are not a decoration: their experiences, their doubts and their projects become the heart of the trip.",
+  },
+  {
+    title: "The mountain as a space for discussion",
+    text: "The raid makes possible scientific mediation outside of traditional academic formats, over the long term of a journeying.",
+  },
+];
+
+const credits = [
+  "France · 2023 · 32 min",
+  "Director: Yann Borgnet and Mikaël Chambru.",
+  "Production: Alpine Lines and Labex ITTEM, with the participation of CNRS Images, MSH-Alpes and Université Grenoble Alpes.",
+  "Image & sound: Anthony Fouchard · Editing and calibration: Violaine Garsault — Art’nGrade · Mixing: Julien Chabert.",
+];
+---
+
+<BaseLayout
+  title={"TRANSITION — An anthropological raid in Queyras"}
+  canonical={canonical}
+>
+  <Header solid />
+
+  <main>
+    <section class="ed-hero">
+      <div class="ed-hero__media">
+        <PhotoSlot fill tone="dark" src="/photos/Raid anthropologique Queyras/raid-anthropologique-queyras-itinerance-ski-vallee.jpg" alt={"Skier descending a snowy slope in a larch valley in Queyras"} loading="eager" />
+      </div>
+      <div class="site-shell ed-hero__inner">
+        <p class="ed-hero__eyebrow">{"Queyras · 2022"}</p>
+        <h1>
+          <span>{"TRANSITION."}</span>
+          <span class="ed-hero__sub">{"An anthropological raid."}</span>
+        </h1>
+        <p class="ed-hero__lead">
+          {"Five days on skis to bring a territory, its inhabitants and social sciences into dialogue - at the crossroads of the profession of guide and research work in geography."}
+        </p>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--white" id="projet">
+      <div class="site-shell">
+        <div class="ed-split">
+          <div class="ed-split__head">
+            <p class="ed-eyebrow">{"The project"}</p>
+            <h2 class="ed-h2">{"Cross a massif to better understand what transforms it."}</h2>
+            <ul class="ed-facts">
+              <li><strong>{"5 days"}</strong> {"d’journeying"}</li>
+              <li><strong>{"31 January → 4 February 2022"}</strong></li>
+              <li><strong>{"Arvieux → Abriès"}</strong>{", via Souliers et Aiguilles"}</li>
+              <li>{"Altitudes travelled:"} <strong>{"1500–2600 m"}</strong></li>
+            </ul>
+          </div>
+          <div class="ed-prose">
+            <p class="ed-prose__lead">
+              {"The idea was simple: to make the ski traverse a scientific investigation and mediation device."}
+            </p>
+            <p>
+              {"From 31 January to 4 February 2022, the group travelled through Queyras from Arvieux to Abriès, via Aiguilles. Each day combined journeying with skiing and meetings with local residents and stakeholders: farmers, ski instructors, hoteliers, elected and former elected officials, technicians from the Regional Natural Park or tourism managers."}
+            </p>
+            <p>
+              {"The common thread focused on the transition of mountain tourism and, more particularly, on the historical and contemporary links between agriculture and tourism. In Queyras, these two worlds were built together for a long time, before tourism became the dominant activity. The raid sought to understand the tensions, complementarities and new trajectories that are appearing today in the face of climate change."}
+            </p>
+            <p class="ed-prose__note">
+              {"The documented route: departure from Arvieux, journeying towards Souliers then Aiguilles, before continuing towards Abriès. The project sources precisely document this crossing from Arvieux to Abriès via Aiguilles, with a stage and a meeting in Souliers; the detailed ski route pass by pass not being published, I prefer not to invent the intermediate passages."}
+            </p>
+          </div>
+        </div>
+        <div class="ed-photo">
+          <PhotoSlot ratio="21 / 9" src="/photos/Raid anthropologique Queyras/raid-anthropologique-queyras-rencontre-habitants.jpg" alt={"Meeting between the skiers of the raid and a resident of Queyras in front of his house"} position="50% 40%" />
+        </div>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--paper" id="forme-hybride">
+      <div class="site-shell">
+        <p class="ed-eyebrow">{"A hybrid form"}</p>
+        <h2 class="ed-h2">{"Guide, researcher, mediator."}</h2>
+        <div class="ed-prose" style="margin-top: 32px">
+          <p>
+            {"This project was born precisely from this double position. The guide's terrain makes it possible to construct a line, a rhythm and a collective experience. The researcher's field brings questions, investigations, controversies and the historical trajectories of the massif."}
+          </p>
+        </div>
+        <ul class="ed-principles">
+          {
+            principes.map((p, i) => (
+              <li>
+                <p class="ed-principles__num">{String(i + 1).padStart(2, "0")}</p>
+                <h3>{p.title}</h3>
+                <p>{p.text}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--dark" id="film">
+      <div class="site-shell">
+        <p class="ed-eyebrow">{"The documentary · 2023"}</p>
+        <h2 class="ed-h2">{"TRANSITION — An anthropological raid in Queyras."}</h2>
+        <div class="ed-prose" style="margin-top: 32px">
+          <p>
+            {"The film extends the experience of the raid: it compares the landscapes covered, the encounters and the fundamental questions about the future of mountain territories. It was then shown in numerous panel screenings and festivals."}
+          </p>
+        </div>
+        <div class="ed-video">
+          <iframe
+            src="https://www.youtube.com/embed/RJzJYf6o3_4"
+            title={"TRANSITION — An anthropological raid in Queyras (documentary, 2023)"}
+            loading="lazy"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+        </div>
+        <ul class="ed-credits">
+          {credits.map((c) => <li>{c}</li>)}
+        </ul>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--white" id="recherche-mediation">
+      <div class="site-shell">
+        <div class="ed-split">
+          <div class="ed-split__head">
+            <p class="ed-eyebrow">{"Search &amp; mediation"}</p>
+            <h2 class="ed-h2">{"A project on the border between professional practice and research."}</h2>
+          </div>
+          <div class="ed-prose">
+            <p>
+              {"The raid was designed by Yann Borgnet and Mikaël Chambru as part of work in the human and social sciences on the transformations of mountain territories. The Labex ITTEM presents it as an experiment in scientific tourism and scientific mediation in the mountains: a way of sharing research results by putting them directly into discussion with a territory and its inhabitants."}
+            </p>
+            <p>
+              {"This first edition constituted a particularly coherent field with the research carried out in Queyras on tourist transitions, planning policies, the relations between agriculture and tourism and the effects of climate change."}
+            </p>
+            <p>
+              <a
+                class="ed-link"
+                href="https://labexittem.fr/science-et-societe/transition-un-raid-anthropologique-dans-le-queyras/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {"Labex ITTEM — project presentation →"}<span class="ed-sr"> {"(new tab)"}</span>
+              </a>
+            </p>
+          </div>
+        </div>
+        <div class="ed-photo">
+          <PhotoSlot ratio="21 / 9" src="/photos/Raid anthropologique Queyras/raid-anthropologique-queyras-ski-randonnee-cretes.jpg" alt={"A ski tourer on a slope facing the rocky ridges of the Queyras"} position="50% 60%" />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <ContactStrip />
+
+  <footer class="site-footer">
+    <div class="site-shell site-footer__grid">
+      <div>
+        <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+        <p class="site-footer__statement">{"Explore · improvise · meet · ski."}</p>
+      </div>
+
+      <div class="site-footer__links">
+        <a href="https://wa.me/33689295826">{"WhatsApp · +33 6 89 29 58 26"}</a>
+        <a href="https://www.instagram.com/lesgrandsraidsaski/">{"Instagram"}</a>
+        <a href="https://www.facebook.com/yannborgnet/">{"Facebook"}</a>
+      </div>
+    </div>
+
+    <SponsorStrip />
+
+    <div class="site-shell site-footer__bottom">
+      <span>{"Yann Borgnet · IFMGA mountain guide"}</span>
+      <span>© 2026</span>
+    </div>
+  </footer>
+</BaseLayout>

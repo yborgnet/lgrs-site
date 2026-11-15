@@ -1,0 +1,241 @@
+---
+import { getLang, localizedHref } from "../../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+import SponsorStrip from "../../../components/shared/SponsorStrip.astro";
+import ContactStrip from "../../../components/shared/ContactStrip.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/philosophie.css";
+import { withBase } from "../../../lib/url";
+
+const canonical = "https://lesgrandsraidsaski.com/it/philosophie/";
+
+/**
+ * Textes repris tel quels de deux pages WordPress live :
+ * - https://lesgrandsraidsaski.com/philosophie/ (hero, "D'où vient ce nom ?",
+ *   "En partir" / transition finale)
+ * - https://lesgrandsraidsaski.com/voyages-a-ski-grands-raids-a-ski-en-itinerance/
+ *   (triptyque Préparer/Improviser/Relier version "gammes du jazzman" —
+ *   c'est la version citée telle quelle dans le brief, distincte de la
+ *   version "cartes, images aériennes..." utilisée par ailleurs sur le site ;
+ *   les 4 principes "Explorer. Partager l'aventure." ; le split Alpes/
+ *   extra-alpin. "Autres pratiques encadrées" volontairement écarté de cette
+ *   page (hors-sujet ici, voir brief) — laissé pour la page Yann/prestations.
+ *
+ * La citation "Co-construire l'aventure" apparaît deux fois à dessein :
+ * comme 4e principe (texte complet) puis reprise en grande citation isolée
+ * plus bas — un pull-quote, pas une vraie redite (mêmes mots déjà publiés,
+ * juste mis en avant une seconde fois).
+ */
+
+// Groupe de trois skieurs en ligne, ascension dans le Mercantour — évoque
+// déplacement/groupe/ligne dans le paysage plutôt qu'un simple sommet.
+const heroPhoto = {
+  src: "/photos/Argentera/groupe-ski-randonnee-mercantour.jpg",
+  alt: "Tre sciatori in fila, salita nel massiccio del Mercantour",
+  position: "40% 85%",
+};
+
+// Bivouac de haute montagne — évoque la halte, la préparation, l'itinérance
+// habitée plutôt qu'un simple sommet.
+const offsetPhoto = {
+  src: "/images/bernina-ski-randonnee-17-bivouac-rouge-montagne.jpg",
+  alt: "Bivacco di alta montagna arroccato su un costone roccioso, massiccio del Bernina",
+  position: "50% 65%",
+};
+---
+
+<BaseLayout
+  title={"Filosofia di Grands Raids à Ski | Yann Borgnet"}
+  description={"Itineranza sugli sci, preparazione e improvvisazione, rapporto con il territorio e il gruppo: il modo in cui vengono progettati i grandi traversate scialpinistiche, nelle Alpi e nelle montagne del mondo."}
+  canonical={canonical}
+  ogImage={heroPhoto.src}
+>
+  <Header solid />
+
+  <main>
+    <section class="philo-hero">
+      <div class="site-shell">
+        <p class="philo-hero__eyebrow">{"Filosofia"}</p>
+        <h1>{"Itin-Errer"}</h1>
+        <p class="philo-hero__lead">
+          {"Preparati con cura in modo da poter poi improvvisare."}
+        </p>
+      </div>
+    </section>
+
+    <img
+      class="philo-photo-full"
+      src={withBase(heroPhoto.src)}
+      alt={heroPhoto.alt}
+      loading="eager"
+      decoding="async"
+      style={`object-position: ${heroPhoto.position}`}
+    />
+
+    <section class="philo-method">
+      <div class="site-shell">
+        <p class="philo-method__eyebrow">{"Un metodo"}</p>
+        <p class="philo-method__lead">{"Preparare · Improvvisare · Connettersi"}</p>
+
+        <div class="philo-method__grid">
+          <div class="philo-method__col">
+            <p class="philo-method__num">01</p>
+            <h3>{"Preparare"}</h3>
+            <p>{"Imposta una struttura, come le scale del jazzista. Apri il campo delle possibilità."}</p>
+          </div>
+
+          <div class="philo-method__col">
+            <p class="philo-method__num">02</p>
+            <h3>{"Improvvisare"}</h3>
+            <p>{"Gioca con ciò che si presenta, senza uscire dagli schemi. Vagare, a volte, se necessario per trovare il quadro."}</p>
+          </div>
+
+          <div class="philo-method__col">
+            <p class="philo-method__num">03</p>
+            <h3>{"Collegare"}</h3>
+            <p>{"Valli, paesi, bivacchi, abitanti... Abitano il territorio, effimeramente."}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="philo-principles">
+      <div class="site-shell">
+        <div class="philo-principles__head">
+          <p class="philo-principles__eyebrow">{"Viaggiare sugli sci: una logica di attraversamento"}</p>
+          <h2>{"Esplora. Condividi l'avventura."}</h2>
+        </div>
+
+        <div class="philo-principle">
+          <p class="philo-principle__num">01</p>
+          <div class="philo-principle__body">
+            <h3>{"Pezzi unici"}</h3>
+            <p>
+              {"Come un artigiano, modellisco ogni grande traversata scialpinistica come un pezzo unico. Sulle Alpi avanzo a piccoli passi, ampliando progressivamente il territorio esplorato. All'estero vado senza scouting né prove: ogni itinerario è una prima volta."}
+            </p>
+          </div>
+        </div>
+
+        <div class="philo-principle">
+          <p class="philo-principle__num">02</p>
+          <div class="philo-principle__body">
+            <h3>{"Lo itineranza come filo conduttore"}</h3>
+            <p>
+              {"Lo itineranza struttura il mio modo di viaggiare sugli sci e il mio rapporto con la montagna. Disegna linee orizzontali, che si incrociano, anziché linee verticali. Di valle in valle, di paese in paese, di bivacco in bivacco: un altro modo di vivere la montagna."}
+            </p>
+          </div>
+        </div>
+
+        <div class="philo-principle">
+          <p class="philo-principle__num">03</p>
+          <div class="philo-principle__body">
+            <h3>{"Traccia un grande traversata scialpinistica"}</h3>
+            <p>
+              {"Disegnare un grande traversata scialpinistica richiede molto lavoro iniziale. Osserva a lungo le mappe, confronta le immagini aeree, interroga la gente del posto, confronta le informazioni. Poi, sul campo, accettare che il percorso si aggiusta, si deforma, a volte si inventa."}
+            </p>
+          </div>
+        </div>
+
+        <div class="philo-principle">
+          <p class="philo-principle__num">04</p>
+          <div class="philo-principle__body">
+            <h3>{"Co-costruisci l'avventura"}</h3>
+            <p>
+              {"Un grande traversata scialpinistica è prima di tutto una storia di gruppo. Andare avanti insieme, decidere insieme, affrontare i limiti e i desideri dell’altro. Lo itineranza crea una cornice, l'avventura nasce da ciò che viene condiviso lì."}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <img
+      class="philo-photo-full"
+      src={withBase(offsetPhoto.src)}
+      alt={offsetPhoto.alt}
+      loading="lazy"
+      decoding="async"
+      style={`object-position: ${offsetPhoto.position}`}
+    />
+
+    <section class="philo-origin">
+      <div class="site-shell">
+        <p class="philo-origin__eyebrow">{"Da dove viene questo nome?"}</p>
+        <h2>LES GRANDS RAIDS À SKI</h2>
+        <p>
+          {"“Les grands traversate scialpinistiche” è il titolo di due opere fondatrici pubblicate negli anni '80 da Michel Berruex e Michel Parmentier. Descrivono viaggi esplorativi sugli sci, in completa autonomia, con le tende in spalla, a volte in regioni chiuse o dilaniate dalla guerra."}
+        </p>
+        <p>
+          {"Questo modo di concepire lo sci come mezzo di esplorazione continua ad ispirarmi ancora oggi, nutrito anche dagli itinerari di guide contemporanee come Jean Annequin, Jean-René Minelli, Paulo Grobel o Yvan Estienne."}
+        </p>
+      </div>
+    </section>
+
+    <section class="philo-split">
+      <div class="site-shell philo-split__grid">
+        <div class="philo-split__col">
+          <p class="philo-split__eyebrow">{"Allontanati dalle classiche escursioni"}</p>
+          <h2>{"Le grandi incursioni alpine"}</h2>
+          <p>
+            {"Alcuni vedono le Alpi come un massiccio sovraffollato. Tuttavia, a parte i comprensori sciistici e gli itinerari classici, restano una miriade di valli discrete e bivacchi isolati, tanti punti di ancoraggio per tracciare linee lontano dalla folla. Sono questi spazi marginali che mi piace esplorare con gli sci e dove ti suggerisco di andare. Una montagna da abitare, per tutta la durata di un raid."}
+          </p>
+        </div>
+
+        <div class="philo-split__col philo-split__col--right">
+          <p class="philo-split__eyebrow">{"Complicare l'avventura"}</p>
+          <h2>{"Viaggi extraalpini"}</h2>
+          <p>
+            {"Andare oltralpe è per me un’opportunità per spingere ulteriormente la complessità dell’organizzazione. Tracciare una linea diventa allora un’equazione logistica: trovare un punto di riconsegna ogni sera. Andate, per quanto possibile, di villaggio in villaggio, restando ancorati ai luoghi abitati. Abitano temporaneamente il territorio viaggiato."}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="philo-statement">
+      <div class="site-shell">
+        <p>
+          {"Un grande traversata scialpinistica è prima di tutto una storia di gruppo. Andare avanti insieme, decidere insieme, affrontare i limiti e i desideri dell’altro. Lo itineranza crea una cornice, l'avventura nasce da ciò che viene condiviso lì."}
+        </p>
+      </div>
+    </section>
+
+    <section class="philo-transition">
+      <div class="site-shell">
+        <p class="philo-transition__eyebrow">{"Mettere in moto questa filosofia"}</p>
+        <h2>{"Una stagione da scrivere."}</h2>
+        <a class="philo-transition__link" href={localizedHref(lang, "/prochains-voyages/")}>{"Scopri i prossimi viaggi →"}</a>
+
+        <div class="philo-transition__secondary">
+          <a href={localizedHref(lang, "/voyage-ski-randonnee/")}>{"Viaggia verso scialpinismo →"}</a>
+          <a href={localizedHref(lang, "/raid-a-ski/")}>{"Costruisci uno traversata scialpinistica →"}</a>
+          <a href={localizedHref(lang, "/carnets-de-voyage-ski/")}>{"Guarda cosa diventano queste linee una volta incrociate → Quaderni"}</a>
+          <a href={localizedHref(lang, "/yann-borgnet-guide-haute-montagne/")}>{"Scopri il mio percorso →"}</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <ContactStrip />
+
+  <footer class="site-footer">
+    <div class="site-shell site-footer__grid">
+      <div>
+        <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+        <p class="site-footer__statement">{"Esplorare · improvvisare · incontrare · sciare."}</p>
+      </div>
+
+      <div class="site-footer__links">
+        <a href="https://wa.me/33689295826">{"WhatsApp · +33 6 89 29 58 26"}</a>
+        <a href="https://www.instagram.com/lesgrandsraidsaski/">{"Instagram"}</a>
+        <a href="https://www.facebook.com/yannborgnet/">{"Facebook"}</a>
+      </div>
+    </div>
+
+    <SponsorStrip />
+
+    <div class="site-shell site-footer__bottom">
+      <a href={localizedHref(lang, "/yann-borgnet-guide-haute-montagne/")}>{"Yann Borgnet · Guida alpina UIAGM"}</a>
+      <span>© 2026</span>
+    </div>
+  </footer>
+</BaseLayout>

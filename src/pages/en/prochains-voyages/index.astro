@@ -1,0 +1,200 @@
+---
+import { getLang, localizedHref } from "../../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+import SponsorStrip from "../../../components/shared/SponsorStrip.astro";
+import ContactStrip from "../../../components/shared/ContactStrip.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/voyages-index.css";
+import { voyages } from "../../../data/voyages/en/index";
+import Availability from "../../../components/shared/Availability.astro";
+import "../../../styles/info-grid.css";
+import { withBase } from "../../../lib/url";
+
+const canonical = "https://lesgrandsraidsaski.com/en/prochains-voyages/";
+
+// Grande photo d'ouverture (arête + horizon de grande chaîne) — distincte de la
+// couverture Géorgie utilisée plus bas dans la liste (voir data/voyages/index.ts),
+// pour ne pas répéter deux fois la même image sur cette page.
+const heroPhoto = {
+  src: "/photos/Georgie/georgie-svanetie-ski-arete-panorama-24.jpg",
+  alt: "Touring skier on a snowy ridge facing a vast mountain range, Svaneti, Georgia",
+  position: "15% 22%",
+};
+---
+
+<BaseLayout
+  title={"Travel to ski touring 2027 | Les Grands Raids à Ski"}
+  description={"Five trips to ski touring for winter 2027: journeying to the Alps and mountains of the world, with Yann Borgnet, IFMGA mountain guide."}
+  canonical={canonical}
+  ogImage={heroPhoto.src}
+>
+  <Header solid />
+
+  <main>
+    <section class="voyages-index-hero">
+      <div class="site-shell">
+        <p class="voyages-index-hero__eyebrow">{"Upcoming trips"}</p>
+
+        <div class="voyages-index-hero__grid">
+          <h1>
+            {"A season"}<br />
+            <em>{"to be written."}</em>
+          </h1>
+
+          <div>
+            <p class="voyages-index-hero__intro">
+              {"Five journeys built around the journeying, exploration and what the field will let us write."}
+            </p>
+            <a class="home-link voyages-index-hero__link" href={localizedHref(lang, "/voyage-ski-randonnee/")}>
+              {"What is a trip to ski touring? →"}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="voyages-index-photo-wrap">
+      <img
+        class="voyages-index-photo"
+        src={withBase(heroPhoto.src)}
+        alt={heroPhoto.alt}
+        loading="eager"
+        decoding="async"
+        style={`object-position: ${heroPhoto.position}`}
+      />
+      <p class="voyages-index-photo__badge">{"Winter 2027"}</p>
+    </div>
+
+    <section class="voyages-index-list">
+      <div class="site-shell">
+        <div class="voyages-index-approach">
+          <div>
+            <p class="voyages-index-approach__eyebrow">{"Before choosing"}</p>
+            <h2>{"Ski adventure,"}<br /><em>{"from village to village"}</em></h2>
+          </div>
+
+          <div class="voyages-index-approach__text">
+            <p>
+              {"Les Grands Raids à Ski, these are massif crossings, often in mountains that are still little travelled on skis. We go from one village to another, we sleep with locals, sometimes in a cabin or in a tent. It is also an opportunity to discover regions and meet those who live there."}
+            </p>
+            <p>
+              {"I prepare carefully for each trip, but without recognising the routes in advance. There is therefore always an element of the unknown, unforeseen events and adaptations along the way. I limit groups to five or six people, which makes travelling and meeting people easier."}
+            </p>
+            <p>
+              {"You must have good experience with ski touring, be comfortable in all types of snow and be able to do seven to nine days of skiing, with 1&nbsp;000 to 1&nbsp;500 metres of altitude difference per day, sometimes 2&nbsp;000. Being independent with your equipment is essential, and training in avalanche risk management is strongly recommended."}
+            </p>
+            <p>
+              {"Doubts about your level or questions about travel&nbsp;?"}
+              <a href="https://wa.me/33689295826">{"Write to me on WhatsApp"}</a>.
+            </p>
+          </div>
+        </div>
+
+        <div class="voyages-index-list__grid">
+        {
+          voyages.map((voyage, i) => (
+            <article
+              class:list={["voyages-index-item", { "voyages-index-item--reverse": i % 2 === 1 }]}
+            >
+              <a class="voyages-index-item__photo" href={localizedHref(lang, `/${voyage.slug}/`)}>
+                {voyage.cover.placeholder ? (
+                  <div class="voyages-index-item__photo-placeholder" role="img" aria-label={voyage.cover.alt}>
+                    <span>{"Photo to follow"}</span>
+                  </div>
+                ) : (
+                  <img
+                    src={withBase(voyage.cover.src)}
+                    alt={voyage.cover.alt}
+                    loading="lazy"
+                    decoding="async"
+                    style={voyage.cover.position ? `object-position: ${voyage.cover.position}` : undefined}
+                  />
+                )}
+              </a>
+
+              <div class="voyages-index-item__body">
+                <p class="voyages-index-item__label">{`Trip ${String(i + 1).padStart(2, "0")}`}</p>
+
+                {voyage.dateLabel && <p class="voyages-index-item__dates">{voyage.dateLabel}</p>}
+
+                <h2 class="voyages-index-item__title">
+                  <a href={localizedHref(lang, `/${voyage.slug}/`)}>{voyage.title}</a>
+                </h2>
+
+                {voyage.subtitle && <p class="voyages-index-item__subtitle">{voyage.subtitle}</p>}
+
+                <p class="voyages-index-item__excerpt">{voyage.excerpt}</p>
+
+                {(voyage.duration || voyage.country || voyage.massif) && (
+                  <p class="voyages-index-item__meta">
+                    {[voyage.duration, voyage.country, voyage.massif].filter(Boolean).join(" · ")}
+                  </p>
+                )}
+
+                {voyage.availability && <Availability availability={voyage.availability} variant="card" />}
+
+                <a class="voyages-index-item__link" href={localizedHref(lang, `/${voyage.slug}/`)}>
+                  {"Discover the trip →"}
+                </a>
+              </div>
+            </article>
+          ))
+        }
+        </div>
+      </div>
+    </section>
+
+    <section class="voyages-index-cta">
+      <div class="site-shell">
+        <p class="voyages-index-cta__eyebrow">{"A question about a trip?"}</p>
+        <h2>{"Receive a technical sheet or discuss the program."}</h2>
+
+        <div class="voyages-index-cta__links">
+          <a href="https://wa.me/33689295826">{"WhatsApp · +33 6 89 29 58 26"}</a>
+          <a href={localizedHref(lang, "/contact/")}>{"Contact"}</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="voyages-index-transition">
+      <div class="site-shell voyages-index-transition__inner">
+        <div>
+          <p class="voyages-index-transition__eyebrow">{"Past journeys"}</p>
+          <h2>
+            {"The Great Raids experienced"}<br />
+            {"leave their mark."}
+          </h2>
+        </div>
+
+        <a class="voyages-index-transition__link" href={localizedHref(lang, "/carnets-de-voyage-ski/")}>
+          {"Discover the notebooks →"}
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <ContactStrip />
+
+  <footer class="site-footer">
+    <div class="site-shell site-footer__grid">
+      <div>
+        <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+        <p class="site-footer__statement">{"Explore · improvise · meet · ski."}</p>
+      </div>
+
+      <div class="site-footer__links">
+        <a href="https://wa.me/33689295826">{"WhatsApp · +33 6 89 29 58 26"}</a>
+        <a href="https://www.instagram.com/lesgrandsraidsaski/">{"Instagram"}</a>
+        <a href="https://www.facebook.com/yannborgnet/">{"Facebook"}</a>
+      </div>
+    </div>
+
+    <SponsorStrip />
+
+    <div class="site-shell site-footer__bottom">
+      <a href={localizedHref(lang, "/yann-borgnet-guide-haute-montagne/")}>{"Yann Borgnet · IFMGA mountain guide"}</a>
+      <span>© 2026</span>
+    </div>
+  </footer>
+</BaseLayout>

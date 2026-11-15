@@ -1,0 +1,249 @@
+---
+import { getLang, localizedHref } from "../../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+import SponsorStrip from "../../../components/shared/SponsorStrip.astro";
+import ContactStrip from "../../../components/shared/ContactStrip.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import "../../../styles/carnets-index.css";
+import { carnets, carnetZones, carnetYears } from "../../../data/carnets/it/index";
+import { indexHeroPhoto } from "../../../data/carnets/it/georgie";
+import { traverseeBannerPhoto } from "../../../data/carnets/it/argentera-2025";
+import { withBase } from "../../../lib/url";
+
+const canonical = "https://lesgrandsraidsaski.com/it/carnets-de-voyage-ski/";
+---
+
+<BaseLayout
+  title={"Da diari di viaggio a scialpinismo | Les Grands Raids à Ski"}
+  description={"Storie di traversate con gli sci nelle Alpi e nelle montagne del mondo: itinerari, mappe GPX e fotografie delle scorse incursioni in itineranza."}
+  canonical={canonical}
+  ogImage={indexHeroPhoto.src}
+>
+  <Header solid />
+
+  <main>
+    <section class="carnets-index-hero">
+      <div class="site-shell">
+        <p class="carnets-index-hero__eyebrow">{"Quaderni da campo"}</p>
+
+        <div class="carnets-index-hero__grid">
+          <h1>
+            {"Le Grandi Incursioni"}<br />
+            <em>{"lasciano tracce."}</em>
+          </h1>
+
+          <div>
+            <p class="carnets-index-hero__intro">
+              {"Un taccuino è composto da tutte le tracce lasciate da uno itineranza sugli sci. Una storia, spesso scritta ogni sera alla luce di una lampada frontale, foto – tante foto – e, ovviamente, una linea tracciata su una mappa."}
+            </p>
+            <a class="home-link carnets-index-hero__link" href={localizedHref(lang, "/raid-a-ski/")}>
+              {"Capire come è costruito uno traversata scialpinistica →"}
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <img
+      class="carnets-index-photo"
+      src={withBase(indexHeroPhoto.src)}
+      alt={indexHeroPhoto.alt}
+      loading="eager"
+      decoding="async"
+      style={indexHeroPhoto.position ? `object-position: ${indexHeroPhoto.position}` : undefined}
+    />
+
+    {
+      (carnetZones.length > 0 || carnetYears.length > 0) && (
+        <section class="carnets-filters">
+          <div class="site-shell carnets-filters__grid">
+            {carnetZones.length > 0 && (
+              <div>
+                <p class="carnets-filters__label">{"Per vasta area"}</p>
+                <div class="carnets-filters__row" data-filter-group="zone" role="group" aria-label={"Filtra i taccuini per area"}>
+                  <button type="button" class="is-active" data-zone="all">{"Tutte le aree"}</button>
+                  {carnetZones.map((zone) => (
+                    <button type="button" data-zone={zone.slug}>{zone.label}</button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {carnetYears.length > 0 && (
+              <div>
+                <p class="carnets-filters__label">{"Per anno"}</p>
+                <div class="carnets-filters__row" data-filter-group="year" role="group" aria-label={"Filtra i taccuini per anno"}>
+                  <button type="button" class="is-active" data-year="all">{"Tutti gli anni"}</button>
+                  {carnetYears.map((year) => (
+                    <button type="button" data-year={year}>{year}</button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
+      )
+    }
+
+    <section class="carnets-traversee">
+      <div class="carnets-traversee__grid">
+        <div class="carnets-traversee__photo">
+          <img
+            src={withBase(traverseeBannerPhoto.src)}
+            alt={traverseeBannerPhoto.alt}
+            loading="lazy"
+            decoding="async"
+            style={traverseeBannerPhoto.position ? `object-position: ${traverseeBannerPhoto.position}` : undefined}
+          />
+        </div>
+        <div class="carnets-traversee__body">
+          <p class="carnets-traversee__eyebrow">{"Progetto a lungo termine"}</p>
+          <h2 class="carnets-traversee__title">{"Traversata delle Alpi"}</h2>
+          <p class="carnets-traversee__text">
+            {"Dal Mediterraneo all'Austria, questa traversata è costruita a tappe, con gli sci e senza alcuna logica progettuale complessiva. Ogni anno un nuovo segmento racconta una porzione di questa linea continua: dalle Alpi Liguri al Piemonte, dal Viso alla Vanoise, poi nel 2027 verso la Valle d'Aosta e la Svizzera vallesana. Quaderni indipendenti, legati dallo stesso progetto di viaggio."}
+          </p>
+          <a class="carnets-traversee__cta" href="#carnets-list" data-traversee-cta>
+            {"Scopri le tappe della Traversata delle Alpi →"}
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="carnets-list" id="carnets-list">
+      <div class="site-shell">
+        <div class="carnets-list__grid">
+        {
+          carnets.map((carnet, i) => (
+            <article
+              class:list={["carnets-list__item", { "carnets-list__item--reverse": i % 2 === 1 }]}
+              data-zones={carnet.zones.join(" ")}
+              data-year={carnet.year ?? ""}
+            >
+              <a class="carnets-list__photo" href={localizedHref(lang, `/${carnet.slug}/`)}>
+                {carnet.cover.placeholder ? (
+                  <div class="carnets-list__photo-placeholder" role="img" aria-label={carnet.cover.alt}>
+                    <span>{"Foto in arrivo"}</span>
+                  </div>
+                ) : (
+                  <img
+                    src={withBase(carnet.cover.src)}
+                    alt={carnet.cover.alt}
+                    loading="lazy"
+                    decoding="async"
+                    style={carnet.cover.position ? `object-position: ${carnet.cover.position}` : undefined}
+                  />
+                )}
+              </a>
+
+              <div class="carnets-list__body">
+                <p class="carnets-list__label">{`Diario ${String(i + 1).padStart(2, "0")}`}</p>
+
+                <h2 class="carnets-list__title">
+                  <a href={localizedHref(lang, `/${carnet.slug}/`)}>{carnet.title}</a>
+                </h2>
+
+                {carnet.subtitle && <p class="carnets-list__subtitle">{carnet.subtitle}</p>}
+
+                {carnet.meta.length > 0 && (
+                  <p class="carnets-list__meta">{carnet.meta.join(" · ")}</p>
+                )}
+
+                <p class="carnets-list__excerpt">{carnet.excerpt}</p>
+
+                <a class="carnets-list__link" href={localizedHref(lang, `/${carnet.slug}/`)}>
+                  {carnet.linkLabel ?? "Leggi il diario →"}
+                </a>
+              </div>
+            </article>
+          ))
+        }
+        </div>
+
+        <p class="carnets-list__empty" data-filter-empty hidden>
+          {"Nessun taccuino corrisponde a questo filtro."}
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <ContactStrip />
+
+  <footer class="site-footer">
+    <div class="site-shell site-footer__grid">
+      <div>
+        <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+        <p class="site-footer__statement">{"Esplorare · improvvisare · incontrare · sciare."}</p>
+      </div>
+
+      <div class="site-footer__links">
+        <a href="https://wa.me/33689295826">{"WhatsApp · +33 6 89 29 58 26"}</a>
+        <a href="https://www.instagram.com/lesgrandsraidsaski/">{"Instagram"}</a>
+        <a href="https://www.facebook.com/yannborgnet/">{"Facebook"}</a>
+      </div>
+    </div>
+
+    <SponsorStrip />
+
+    <div class="site-shell site-footer__bottom">
+      <a href={localizedHref(lang, "/yann-borgnet-guide-haute-montagne/")}>{"Yann Borgnet · Guida alpina UIAGM"}</a>
+      <span>© 2026</span>
+    </div>
+  </footer>
+</BaseLayout>
+
+<script>
+  // Filtrage léger côté client — même logique que le filtre du site WordPress
+  // historique (deux dimensions indépendantes, combinées en ET), portée sur
+  // la nouvelle liste : on bascule `hidden` sur les <article>, sans reload et
+  // sans renuméroter les labels "Carnet 0X" (déjà figés au rendu serveur).
+  const zoneButtons = document.querySelectorAll<HTMLButtonElement>('[data-filter-group="zone"] button');
+  const yearButtons = document.querySelectorAll<HTMLButtonElement>('[data-filter-group="year"] button');
+  const items = document.querySelectorAll<HTMLElement>(".carnets-list__item");
+  const emptyState = document.querySelector<HTMLElement>("[data-filter-empty]");
+
+  let activeZone = "all";
+  let activeYear = "all";
+
+  function applyFilters() {
+    let visibleCount = 0;
+    items.forEach((item) => {
+      const zones = (item.dataset.zones || "").split(" ");
+      const zoneMatch = activeZone === "all" || zones.includes(activeZone);
+      const yearMatch = activeYear === "all" || item.dataset.year === activeYear;
+      const visible = zoneMatch && yearMatch;
+      item.hidden = !visible;
+      if (visible) visibleCount++;
+    });
+    if (emptyState) emptyState.hidden = visibleCount > 0;
+  }
+
+  zoneButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      activeZone = button.dataset.zone ?? "all";
+      zoneButtons.forEach((b) => b.classList.toggle("is-active", b === button));
+      applyFilters();
+    });
+  });
+
+  yearButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      activeYear = button.dataset.year ?? "all";
+      yearButtons.forEach((b) => b.classList.toggle("is-active", b === button));
+      applyFilters();
+    });
+  });
+
+  // CTA du bandeau éditorial "Traversée des Alpes" : réutilise le filtre de
+  // zone existant (pas de logique de filtrage dupliquée) — un clic sur le
+  // bouton de zone correspondant déclenche ses propres listeners ci-dessus.
+  // Le href="#carnets-list" reste un repli fonctionnel sans JS.
+  const traverseeCta = document.querySelector<HTMLAnchorElement>("[data-traversee-cta]");
+  const traverseeZoneButton = document.querySelector<HTMLButtonElement>('[data-zone="traversee-des-alpes"]');
+  traverseeCta?.addEventListener("click", (event) => {
+    if (!traverseeZoneButton) return;
+    event.preventDefault();
+    traverseeZoneButton.click();
+    document.querySelector("#carnets-list")?.scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+</script>

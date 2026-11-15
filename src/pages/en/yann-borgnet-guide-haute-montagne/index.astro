@@ -1,0 +1,511 @@
+---
+import { getLang, localizedHref } from "../../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+import SponsorStrip from "../../../components/shared/SponsorStrip.astro";
+import ContactStrip from "../../../components/shared/ContactStrip.astro";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import Header from "../../../components/Header.astro";
+import PhotoSlot from "../../../components/editorial/PhotoSlot.astro";
+import "../../../styles/editorial.css";
+import "../../../styles/yann.css";
+import { withBase } from "../../../lib/url";
+
+const canonical = "https://lesgrandsraidsaski.com/en/yann-borgnet-guide-haute-montagne/";
+
+/**
+ * Textes repris tels quels du brief de Yann (page profil WordPress d'origine).
+ * Photos : emplacements neutres (PhotoSlot) en attendant les fichiers locaux —
+ * hero : DSC05274-1024x683.jpg. Renseigner `src` (chemin sous public/) pour
+ * poser une photo, sans toucher à la mise en page.
+ */
+
+type Entry = {
+  year: string;
+  source: string;
+  title: string;
+  note?: string;
+  href: string;
+  cta: string;
+};
+
+const alpineLineFilm = "https://vimeo.com/376885727";
+
+const thesis = {
+  label: "Doctoral thesis — 2024",
+  title:
+    "Reorient Alpine tourism? Improvise or immunize yourself to deal with uncertain snow. High Alpine valleys and mountain guides",
+  meta: "Grenoble Alpes University · direction Philippe Bourdeau and Yohann Rech · defended on 24 May 2024",
+  href: "https://theses.fr/2024GRALH013",
+  cta: "Read the official thesis sheet →",
+  fullTextHref: "https://theses.hal.science/tel-04741315v1",
+  fullTextCta: "Full text on HAL →",
+};
+
+const groups: { id: string; heading: string; entries: Entry[] }[] = [
+  {
+    id: "recherche",
+    heading: "Research publications",
+    entries: [
+      {
+        year: "2024",
+        source: "Collective work · HAL",
+        title: "Girose Glacier, sensitive slope",
+        note: "Contribution to a collective work.",
+        href: "https://hal.science/hal-04774149v1",
+        cta: "View the publication →",
+      },
+      {
+        year: "2022",
+        source: "Spaces Magazine",
+        title: "Praise of improvisation or how to renew our relationship with the mountains",
+        note: "In the special issue “The transition at the heart of mountain territories”.",
+        href: "https://www.tourisme-espaces.com/doc/10911.transition-coeur-territoires-montagne.html",
+        cta: "View the publication →",
+      },
+      {
+        year: "2018",
+        source: "Vacarme",
+        title: "Guide those who arrive",
+        href: "https://doi.org/10.3917/vaca.083.0043",
+        cta: "Read the article →",
+      },
+    ],
+  },
+  {
+    id: "articles",
+    heading: "Articles and stories",
+    entries: [
+      {
+        year: "2026",
+        source: "Alpine Mag",
+        title: "Ski touring in Morocco, adventure in Berber country",
+        href: "https://alpinemag.fr/raid-ski-de-rando-maroc-aventure-pays-berbere/",
+        cta: "Read the article →",
+      },
+      {
+        year: "2025",
+        source: "Alpine Mag",
+        title: "Journeying on skis in the wild mountains of Kazakhstan",
+        href: "https://alpinemag.fr/ski-rando-yann-borgnet-kazakhstan-traversee-monts-ile-alatau/",
+        cta: "Read the article →",
+      },
+      {
+        year: "2025",
+        source: "Alpine Mag",
+        title: "Between Kosovo, Albania and North Macedonia, the ski crossing of the Šar mountains",
+        href: "https://alpinemag.fr/ski-kosovo-albanie-macedoine-nord-traversee-montagnes-sar/",
+        cta: "Read the article →",
+      },
+      {
+        year: "2024",
+        source: "Alpine Mag",
+        title: "Ski touring. The Upper Svaneti Haute Route in Georgia",
+        href: "https://alpinemag.fr/georgie-haute-route-haute-svanetie-ski-randonnee-yann-borgnet/",
+        cta: "Read the article →",
+      },
+      {
+        year: "2024",
+        source: "Alpine Mag",
+        title: "Last chance tourism: opportunistic mountaineering and mass tourism at the Mer de Glace",
+        href: "https://alpinemag.fr/nouvelle-goulotte-reflexion-alpinisme-derniere-chance-montenvers-yann-borgnet/",
+        cta: "Read the article →",
+      },
+      {
+        year: "2020",
+        source: "Alpine Mag",
+        title: "Alpine Line, a trip to the Alps",
+        href: "https://alpinemag.fr/alpine-line-voyage-dans-les-alpes/",
+        cta: "Read the article →",
+      },
+    ],
+  },
+  {
+    id: "presse",
+    heading: "Press and interviews",
+    entries: [
+      {
+        year: "2024",
+        source: "Alpine Mag",
+        title: "How to reorient Alpine tourism, according to researcher Yann Borgnet",
+        href: "https://alpinemag.fr/reorienter-tourisme-alpin-selon-guide-docteur-yann-borgnet/",
+        cta: "Read the article →",
+      },
+      {
+        year: "2024",
+        source: "My stay in the mountains",
+        title: "This new mountaineering route looks like last-chance tourism",
+        href: "https://www.mon-sejour-en-montagne.com/histoires-et-anecdotes/cette-nouvelle-voie-d-alpinisme-aux-allures-de-tourisme-de-la-derniere-chance/",
+        cta: "Read the article →",
+      },
+      {
+        year: "2023",
+        source: "Alpine Mag",
+        title: "Dolomites: new major route at Sass Maor for Yann Borgnet and Antoine Bouqueret",
+        href: "https://alpinemag.fr/dolomites-nouvelle-voie-sass-maor-yann-borgnet-antoine-bouqueret/",
+        cta: "Read the article →",
+      },
+      {
+        year: "2022",
+        source: "Alpine Mag",
+        title: "Great skiing on the Arolla glacier and Bouquetins cabin",
+        href: "https://alpinemag.fr/ski-scott-proguide-skirando-arolla-valais-borgnet/",
+        cta: "Read the article →",
+      },
+      {
+        year: "2021",
+        source: "Labex ITTEM",
+        title: "A ski traverses around transitions in Queyras",
+        href: "https://labexittem.fr/un-raid-a-skis-autour-des-transitions-dans-le-queyras/",
+        cta: "Read the article →",
+      },
+      {
+        year: "2021",
+        source: "Alpine Mag",
+        title: "What future for the profession of mountain guide?",
+        href: "https://alpinemag.fr/quel-futur-pour-le-metier-de-guide-de-haute-montagne-borgnet/",
+        cta: "Read the article →",
+      },
+      {
+        year: "2020",
+        source: "PlanetMountain",
+        title: "Yann Borgnet complete masterpieces on the Grandes Jorasses",
+        href: "https://www.planetmountain.com/en/companies-news/yann-borgnet-completes-masterpiece-the-grandes-jorasses.html",
+        cta: "Read the article →",
+      },
+      {
+        year: "2015",
+        source: "ENS Rennes · Department 2SEP",
+        title: "Yann Borgnet, student of the 2SEP department, participates in the project Alpine Line",
+        href: "https://sciencesport.ens-rennes.fr/actualites/yann-borgnet-eleve-du-departement-2sep-participe-au-projet-alpine-line",
+        cta: "Read the article →",
+      },
+    ],
+  },
+  {
+    id: "films",
+    heading: "Films",
+    entries: [
+      {
+        year: "2019",
+        source: "Vimeo · Alpine Lines",
+        title: "Alpine Line, The great crossing",
+        note: "Posted online in December 2019, 47 minutes.",
+        href: alpineLineFilm,
+        cta: "Watch the movie →",
+      },
+      {
+        year: "2019",
+        source: "Alpine Mag",
+        title: "Alpine Line",
+        note: "Presentation of the film, with FODACIM.",
+        href: "https://alpinemag.fr/alpine-line/",
+        cta: "Read the article →",
+      },
+      {
+        year: "2016",
+        source: "FODACIM",
+        title: "Alpine Line",
+        note: "Production Yann Borgnet and Yoann Joly, 47 minutes.",
+        href: "https://www.fodacim.fr/film/alpine-line/",
+        cta: "Watch the movie →",
+      },
+      {
+        year: "2016",
+        source: "Cimalpes",
+        title: "Alpine Line",
+        note: "Crossing the Alps from Corsica to Slovenia, without motorised means.",
+        href: "https://www.cimalpes.fr/films-de-montagne-752-2978-0-0.html",
+        cta: "Watch the movie →",
+      },
+    ],
+  },
+];
+
+const reperes: { title: string; text: string; href?: string; linkLabel?: string; external?: boolean }[] = [
+  {
+    title: "Normalien · ENS de Rennes",
+    text: "Training at the École Normale Supérieure in Rennes, then physical education and sports aggregation.",
+  },
+  {
+    title: "National Mountaineering Excellence Group · FFCAM",
+    text: "Member of the national high-level mountaineering group from 2011 to 2013.",
+  },
+  {
+    title: "Alpine Line — crossing the Alps, 2015",
+    text: "With Yoann Joly, non-motorised crossing of the alpine arc of Monte Cinto, in Corsica, in Triglav, in Slovenia: 161 days of journeying and approximately 1,500 km, combining walking, mountain biking, ski touring, Nordic skiing, paragliding, sailboating and kayaking, with nearly fifty emblematic peaks along the route.",
+    href: "/le-film/",
+    linkLabel: "Discover Alpine Line →",
+  },
+  {
+    title: "IFMGA mountain guide",
+    text: "Currently working in Haute-Savoie, listed in the national directory of high mountain guides.",
+  },
+  {
+    title: "Professor at ENSA",
+    text: "Chamonix, since 2022.",
+  },
+  {
+    title: "Doctor of Geography",
+    text: "Thesis defended in 2024 on the adaptation of snow practices and the transformations of Alpine territories.",
+    href: "https://theses.hal.science/tel-04741315",
+    linkLabel: "Consult the thesis on HAL →",
+    external: true,
+  },
+  {
+    title: "Les Grands Raids à Ski",
+    text: "Design and supervision of ski crossings on a multi-day journey in the Alps and mountains around the world.",
+  },
+];
+
+const publications: { year: string; source: string; title: string; authors: string; href: string; cta: string }[] = [
+  {
+    year: "2026",
+    source: "Theoros",
+    title:
+      "“Dealing with socio-environmental crises in the mountains: tourist trajectories and public policies for the development of a high Alpine valley (Queyras, France)”",
+    authors: "Mikaël Chambru & Yann Borgnet.",
+    href: "https://share.google/6X8RslnlwbPBeg9MN",
+    cta: "View the article →",
+  },
+  {
+    year: "2022",
+    source: "Spaces Magazine",
+    title: "“In praise of improvisation or how to renew our relationship with the mountains”",
+    authors: "Yann Borgnet.",
+    href: "https://www.tourisme-espaces.com/doc/10926.eloge-improvisation-comment-renouveler-notre-rapport-montagne.html",
+    cta: "View the article →",
+  },
+  {
+    year: "2021",
+    source: "Geocrossroads",
+    title:
+      "“Tourism transition and improvisation. (Anti)-social innovations in the Valpelline and Ollomont valleys (Aosta Valley) »",
+    authors: "Yann Borgnet & Mathieu Le Touzé.",
+    href: "https://doi.org/10.4000/geocarrefour.19523",
+    cta: "View the article →",
+  },
+  {
+    year: "2019",
+    source: "Journal of Alpine Research | Alpine Geography Review",
+    title:
+      "“Uncertain space: spatial trajectory of a social innovation “by withdrawal”. Study of the composition of the association of lodges and refuges of Queyras »",
+    authors: "Yann Borgnet.",
+    href: "https://journals.openedition.org/rga/6049",
+    cta: "View the article →",
+  },
+  {
+    year: "2024",
+    source: "Doctoral thesis in geography",
+    title: "“Consult the thesis on HAL”",
+    authors: "",
+    href: "https://theses.hal.science/tel-04741315",
+    cta: "Consult the thesis →",
+  },
+];
+---
+
+<BaseLayout
+  title={"Yann Borgnet | IFMGA mountain guide"}
+  description={"Yann Borgnet, IFMGA mountain guide, professor at ENSA and doctor of geography. Raids, ski crossings, journeying and mountains."}
+  canonical={canonical}
+>
+  <Header solid />
+
+  <main>
+    <section class="ed-hero">
+      <div class="ed-hero__media">
+        <PhotoSlot fill tone="dark" file="DSC05274-1024x683.jpg" />
+      </div>
+      <div class="site-shell ed-hero__inner">
+        <p class="ed-hero__eyebrow">{"Who am I?"}</p>
+        <h1>
+          <span>{"Yann Borgnet."}</span>
+          <span class="ed-hero__sub">{"Guide, teacher, geographer."}</span>
+        </h1>
+        <p class="ed-hero__lead">
+          {"IFMGA mountain guide, associate professor of PE, professor at ENSA and doctor of geography. A practice of the profession focused on journeying, exploration and long-distance ski trips."}
+        </p>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--white" id="parcours">
+      <div class="site-shell ed-split">
+        <div class="ed-split__head">
+          <p class="ed-eyebrow">{"Course"}</p>
+          <h2 class="ed-h2">{"The mountain as a terrain for travel and research."}</h2>
+        </div>
+        <div class="ed-prose">
+          <p>
+            {"Originally from Annecy, I was a normalien at the ENS in Rennes before becoming an associate professor of PE. Today I am IFMGA mountain guide and a professor at the National Ski and Mountaineering School (ENSA) in Chamonix since 2022. In May 2024, I defended a doctoral thesis in geography devoted to the transformations of alpine tourism and the adaptation of mountain practices and territories."}
+          </p>
+          <p>
+            {"In 2015, a crossing of the Alps from Corsica to Slovenia, carried out without motorised means and by mixing several alpine practices, profoundly influenced the way I view the profession of guide. Since then, the journeying has become the guiding light of my practice."}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--dark" id="metier">
+      <div class="site-shell">
+        <div class="ed-split">
+          <div class="ed-split__head">
+            <p class="ed-eyebrow">{"The profession"}</p>
+            <h2 class="ed-h2">{"Draw lines rather than collect vertices."}</h2>
+          </div>
+          <div class="ed-prose">
+            <p>
+              {"Today I devote a large part of my winters to raids and ski crossings, in the Alps and in the mountains of the world. The journeys are built around a line: connecting valleys, villages, refuges or bivouacs, and understanding a territory by crossing it."}
+            </p>
+            <p>
+              {"Preparation involves maps, aerial images, discussions with local residents and professionals. On the ground, the route remains alive: it adapts to the snow, the weather, the group and what the mountain allows."}
+            </p>
+          </div>
+        </div>
+        <div class="ed-photo">
+          <PhotoSlot ratio="21 / 9" tone="dark" />
+        </div>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--paper" id="recherche">
+      <div class="site-shell ed-split ed-split--even">
+        <div>
+          <p class="ed-eyebrow">{"Search &amp; transmission"}</p>
+          <h2 class="ed-h2">{"Thinking about the transformations of the mountain."}</h2>
+          <div class="ed-prose" style="margin-top: 32px">
+            <p>
+              {"My research work focuses on developments in alpine tourism, the effects of climate change and the restructuring of mountain practices and territories. This reflection also nourishes my way of teaching and guiding."}
+            </p>
+            <p>
+              {"At ENSA, I am involved in the training of mountain professionals. I also write about the profession of guide, risk management and the transformations of mountain tourism."}
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <p class="ed-eyebrow">{"Landmarks"}</p>
+          <ul class="yann-reperes">
+            {
+              reperes.map((r) => (
+                <li>
+                  <h3>{r.title}</h3>
+                  <p>{r.text}</p>
+                  {r.href && (
+                    <a
+                      class="ed-link"
+                      href={r.external ? r.href : localizedHref(lang, r.href)}
+                      target={r.external ? "_blank" : undefined}
+                      rel={r.external ? "noopener noreferrer" : undefined}
+                    >
+                      {r.linkLabel}
+                      {r.external && <span class="ed-sr"> {"(new tab)"}</span>}
+                    </a>
+                  )}
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--dark" id="publications">
+      <div class="site-shell">
+        <div class="yann-pubs__intro">
+          <p class="ed-eyebrow">{"Search &amp; publications"}</p>
+          <h2 class="ed-h2">{"Write and document the transformations of mountain tourism."}</h2>
+        </div>
+
+        <ul class="yann-pubs__list">
+          {
+            publications.map((p) => (
+              <li class="yann-pub">
+                <p class="yann-pub__meta">
+                  <span>{p.year}</span>
+                  <span aria-hidden="true"> — </span>
+                  <span>{p.source}</span>
+                </p>
+                <div>
+                  <h3 class="yann-pub__title">{p.title}</h3>
+                  {p.authors && <p class="yann-pub__authors">{p.authors}</p>}
+                  <a class="ed-link" href={p.href} target="_blank" rel="noopener noreferrer">
+                    {p.cta}
+                    <span class="ed-sr"> {"(new tab)"}</span>
+                  </a>
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+
+        <article class="yann-featured">
+          <p class="yann-featured__label">{thesis.label}</p>
+          <h3 class="yann-featured__title">{thesis.title}</h3>
+          <p class="yann-featured__meta">{thesis.meta}</p>
+          <p class="yann-featured__links">
+            <a class="ed-link" href={thesis.href} target="_blank" rel="noopener noreferrer">
+              {thesis.cta}<span class="ed-sr"> {"(new tab)"}</span>
+            </a>
+            <a class="ed-link" href={thesis.fullTextHref} target="_blank" rel="noopener noreferrer">
+              {thesis.fullTextCta}<span class="ed-sr"> {"(new tab)"}</span>
+            </a>
+          </p>
+        </article>
+
+        {
+          groups.map((group) => (
+            <div class="yann-group" id={`publications-${group.id}`}>
+              <h3 class="yann-group__title">{group.heading}</h3>
+              <ul class="yann-pubs__list yann-pubs__list--cols">
+                {group.entries.map((entry) => (
+                  <li class="yann-card">
+                    <p class="yann-pub__meta">
+                      <span>{entry.year}</span>
+                      <span aria-hidden="true"> · </span>
+                      <span>{entry.source}</span>
+                    </p>
+                    <h4 class="yann-card__title">{entry.title}</h4>
+                    {entry.note && <p class="yann-card__note">{entry.note}</p>}
+                    <a class="ed-link" href={entry.href} target="_blank" rel="noopener noreferrer">
+                      {entry.cta}
+                      <span class="ed-sr"> {"(new tab)"}</span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+
+        <div class="ed-cta">
+          <a href={localizedHref(lang, "/prochains-voyages/")}>{"Discover travel →"}</a>
+          <a href={localizedHref(lang, "/carnets-de-voyage-ski/")}>{"Read the notebooks →"}</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <ContactStrip />
+
+  <footer class="site-footer">
+    <div class="site-shell site-footer__grid">
+      <div>
+        <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+        <p class="site-footer__statement">{"Explore · improvise · meet · ski."}</p>
+      </div>
+
+      <div class="site-footer__links">
+        <a href="https://wa.me/33689295826">{"WhatsApp · +33 6 89 29 58 26"}</a>
+        <a href="https://www.instagram.com/lesgrandsraidsaski/">{"Instagram"}</a>
+        <a href="https://www.facebook.com/yannborgnet/">{"Facebook"}</a>
+      </div>
+    </div>
+
+    <SponsorStrip />
+
+    <div class="site-shell site-footer__bottom">
+      <span>{"Yann Borgnet · IFMGA mountain guide"}</span>
+      <span>© 2026</span>
+    </div>
+  </footer>
+</BaseLayout>

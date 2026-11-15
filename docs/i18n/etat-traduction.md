@@ -1,48 +1,73 @@
-# État de la traduction EN / IT
+# Traduction intégrale EN / IT
 
-## Lot A — composants et layouts
+## Couverture
 
-Les libellés partagés passent par `src/i18n/ui.ts` : disponibilités, newsletter,
-pop-up de contact (y compris validation et messages asynchrones), galeries,
-lecture du récit, photos en attente, plans SKI MED, pieds de page et partenaires.
+- 32 pages françaises de référence, chacune déclinée en anglais et en italien :
+  64 pages localisées, dont les 16 carnets, leur index, les cinq voyages 2027,
+  les pages éditoriales, l’accueil, le contact et la newsletter.
+- 50 modules de données localisés, avec les mêmes types, clés, tableaux,
+  nombres, dates de départ, chemins de photos/GPX et identifiants que les sources.
+- Les récits, légendes, textes alternatifs, métadonnées SEO et cinq plans SKI MED
+  sont inclus. Les noms propres et la marque restent inchangés.
+- Le français garde ses pages et imports de données d’origine. Les slugs sont
+  identiques dans les trois langues. `404.astro` et les sauvegardes sont exclus.
 
-Les liens de navigation des composants passent par `localizedHref`, qui conserve
-les fragments et paramètres, les liens externes et les chemins des fichiers.
-Les canoniques des layouts Carnet et Voyage prennent en compte la langue.
-Les formats des distances et nombres sont localisés. Les champs Brevo `locale`
-du pop-up et de la page newsletter suivent la langue courante.
+## Organisation
 
-### Vérifications du lot A
+Les modules `src/data/carnets/{en,it}/` et `src/data/voyages/{en,it}/` exposent les
+mêmes exports et types que leurs sources françaises. `src/i18n/data.ts` crée des
+copies localisées sans modifier les objets d’origine. Les textes sont stockés
+localement dans `src/i18n/content/en.json` et `it.json`, indexés par le texte
+français exact : chiffres et fichiers ne sont pas recopiés manuellement.
 
-- `npm run build` : succès (33 pages, hors redirections).
-- Fixtures temporaires EN et IT : dictionnaires complets, mêmes paramètres
-  d'interpolation, routes existantes / repli FR, fragments, paramètres, assets,
-  liens externes ; rendu des disponibilités, pop-up et lightbox ; champ Brevo.
-  Fixtures retirées après vérification.
-- Comparaison avec le build avant modification : 36 documents français,
-  aucun changement de contenu ni structure HTML après exclusion des scripts,
-  des attributs de traduction ajoutés et du conditionnement des styles.
-- Comparaison des déclarations CSS par sélecteur et contexte média : inchangées
-  pour les 36 documents. L'ordre de regroupement des feuilles générées peut varier.
-- Captures visuelles : non réalisées ; Chromium local ne démarre pas
-  (`socket() failed: Operation not permitted`). Cette comparaison de code généré
-  ne constitue pas une validation par capture pixel à pixel.
+Une traduction absente fait échouer la compilation plutôt que d’afficher
+silencieusement du français sur une page EN / IT. Les sources françaises
+n’importent pas ce mécanisme et restent indépendantes. Les coordonnées, noms
+sur les cartes, traces, fichiers, liens externes et identifiants sont préservés.
+Les nombres et prix sont formatés dans la langue cible, sans recalcul.
 
-## Travail restant — lots B / C
+Les données sont traduites à la compilation. Aucun service de traduction ni
+aucune nouvelle dépendance npm n’est utilisé par le site. Les composants et
+les liens internes utilisent les outils i18n existants. Le sélecteur de plans
+SKI MED choisit ses données selon `Astro.currentLocale`.
 
-Aucune page EN / IT permanente ni aucun jeu de données traduit n'a encore été
-créé. La traduction complète du site n'est donc pas livrée.
+## Vérifications
 
-1. Traduire les données et créer les pages EN / IT de l'accueil, des prochains
-   voyages, des voyages 2027 et des deux pages générales sur les raids.
-2. Traduire les pages éditoriales, contact, newsletter, film et Transition.
-3. Traduire l'index des carnets, chaque carnet et les légendes de photos importées.
-4. Brancher `SkiMedPlans.astro` sur les données de plans traduites selon la langue
-   (il importe encore les données françaises ; seuls ses libellés sont localisés).
-5. Contrôler titres et descriptions SEO, canoniques, hreflang, liens internes,
-   français résiduel et intégrité des chiffres / dates / GPX / chemins d'assets.
-6. Faire une vérification visuelle desktop et mobile dans un navigateur disponible.
+- Build statique réussi : 97 pages (96 dans les trois langues + 404), hors les
+  trois redirections déjà existantes ; configuration et redirections inchangées.
+- Builds vérifiés avec la base de prévisualisation `/lgrs-site/` et avec `/`,
+  configuration utilisée en production.
+- 96 pages contrôlées : langue HTML, canonique, hreflang FR / EN / IT /
+  x-default, champs newsletter et 1 809 liens internes. Aucun lien vers une
+  version française quand la version localisée existe, hors sélecteur FR.
+- 50 modules contrôlés : 6 692 nombres et indicateurs et 3 544 chemins / liens /
+  identifiants inchangés ; structure, dates de départ et balises HTML intactes.
+- Vérification TypeScript des données et du module de localisation réussie,
+  avec un compilateur isolé ; `package.json` et le fichier de verrouillage
+  ne changent pas.
+- Comparaison du build français avec celui d’avant traduction : contenu et
+  structure identiques, hors ajouts attendus du sélecteur et des hreflang.
+  Déclarations CSS françaises inchangées sur les 36 documents de référence
+  (redirections comprises), après exclusion des styles propres aux pages EN/IT.
+- Référence visuelle de l’accueil français capturée avant publication ; contrôle
+  du site en ligne effectué lors de la publication.
 
-Continuer exclusivement sur `rebuild-v1`, avec un build réussi avant chaque
-commit ; chaque push sur cette branche déclenche le déploiement en production.
-Le français demeure la référence et ses données restent inchangées.
+Contrôles reproductibles après un build :
+
+```sh
+node scripts/i18n/check-data.mjs
+python scripts/i18n/check-output.py --base /
+```
+
+Pour comparer le HTML français à un build de référence conservé :
+
+```sh
+python scripts/i18n/check-output.py --base /lgrs-site/ --baseline /chemin/vers/dist-reference
+```
+
+## Maintenance
+
+Après un changement éditorial français, mettre à jour les deux dictionnaires
+et les pages concernées, puis reconstruire et lancer les contrôles ci-dessus.
+Continuer exclusivement sur `rebuild-v1` : chaque push déclenche le déploiement
+en production. Aucun changement n’a été fait sur `main`.
