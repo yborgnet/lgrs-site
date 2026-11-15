@@ -1,0 +1,28 @@
+---
+import { langs, type Lang } from "../i18n/ui";
+import { getLang, alternates, useTranslations, hasRoute, routeFor } from "../i18n/utils";
+import { withBase } from "../lib/url";
+
+type Props = { class?: string };
+const { class: className } = Astro.props;
+const current: Lang = getLang(Astro.currentLocale);
+const t = useTranslations(current);
+const alt = alternates(Astro.url.pathname);
+// Page pas encore traduite : on renvoie vers l'accueil de la langue s'il
+// existe ; sinon la langue est affichée grisée, sans lien.
+const links = Object.fromEntries(
+  langs.map((l) => [l, alt[l] ?? (hasRoute(routeFor(l, "/")) ? withBase(routeFor(l, "/")) : null)]),
+) as Record<Lang, string | null>;
+---
+
+<div class:list={["lang-switch", className]} role="group" aria-label={t("lang.label")}>
+  {langs.map((l) =>
+    l === current ? (
+      <span class="lang-switch__item is-current" aria-current="true" lang={l}>{l.toUpperCase()}</span>
+    ) : links[l] ? (
+      <a class="lang-switch__item" href={links[l]} hreflang={l} lang={l}>{l.toUpperCase()}</a>
+    ) : (
+      <span class="lang-switch__item is-unavailable" lang={l} title="Bientôt disponible">{l.toUpperCase()}</span>
+    )
+  )}
+</div>

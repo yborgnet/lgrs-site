@@ -1,37 +1,43 @@
 ---
 import { withBase } from "../lib/url";
+import { getLang, useTranslations, localizedHref } from "../i18n/utils";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
 type Props = {
   solid?: boolean;
 };
 
 const { solid = false } = Astro.props;
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+const nav = [
+  { path: "/prochains-voyages/", label: t("nav.voyages") },
+  { path: "/philosophie/", label: t("nav.philosophie") },
+  { path: "/carnets-de-voyage-ski/", label: t("nav.carnets") },
+  { path: "/contact/", label: t("nav.contact") },
+];
 ---
 
 <header class:list={["site-header", { "site-header--solid": solid }]}>
   <div class="site-shell site-header__inner">
-    <a class="site-brand" href={withBase("/")}>
+    <a class="site-brand" href={localizedHref(lang, "/")}>
       <span>LES GRANDS RAIDS</span>
       <small>À SKI</small>
     </a>
 
-    <nav class="site-nav" aria-label="Navigation principale">
-      <a href={withBase("/prochains-voyages/")}>Voyages</a>
-      <a href={withBase("/philosophie/")}>Philosophie</a>
-      <a href={withBase("/carnets-de-voyage-ski/")}>Carnets</a>
-      <a href={withBase("/contact/")}>Contact</a>
+    <nav class="site-nav" aria-label={t("nav.label")}>
+      {nav.map((item) => <a href={localizedHref(lang, item.path)}>{item.label}</a>)}
+      <LanguageSwitcher />
     </nav>
 
     <details class="site-nav-mobile">
-      <summary aria-label="Ouvrir le menu">
+      <summary aria-label={t("nav.openMenu")}>
         <span></span>
         <span></span>
       </summary>
 
       <div class="site-nav-mobile__panel">
-        <a href={withBase("/prochains-voyages/")}>Voyages</a>
-        <a href={withBase("/philosophie/")}>Philosophie</a>
-        <a href={withBase("/carnets-de-voyage-ski/")}>Carnets</a>
-        <a href={withBase("/contact/")}>Contact</a>
+        {nav.map((item) => <a href={localizedHref(lang, item.path)}>{item.label}</a>)}
+        <LanguageSwitcher class="lang-switch--mobile" />
       </div>
     </details>
 

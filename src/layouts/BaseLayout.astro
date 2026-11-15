@@ -3,10 +3,17 @@ import "../styles/global.css";
 import "../styles/mobile.css";
 import ContactPopup from "../components/shared/ContactPopup.astro";
 import { withBase } from "../lib/url";
+import { getLang, useTranslations, alternates } from "../i18n/utils";
+import { langs, defaultLang } from "../i18n/ui";
+
+const lang = getLang(Astro.currentLocale);
+const t = useTranslations(lang);
+const hreflangs = alternates(Astro.url.pathname);
+const site = Astro.site ?? Astro.url.origin;
 
 const {
-  title = "Les Grands Raids à Ski",
-  description = "Voyages et raids à ski de randonnée en itinérance, dans les Alpes et les montagnes du monde.",
+  title = t("site.title"),
+  description = t("site.description"),
   canonical,
   ogImage,
   ogType = "website",
@@ -23,7 +30,7 @@ const ogImageURL = ogImage ? new URL(ogImage, Astro.site ?? Astro.url.origin) : 
 ---
 
 <!doctype html>
-<html lang="fr">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
@@ -36,6 +43,9 @@ const ogImageURL = ogImage ? new URL(ogImage, Astro.site ?? Astro.url.origin) : 
     <meta name="description" content={description} />
     {canonicalURL && <link rel="canonical" href={canonicalURL} />}
     {noindex && <meta name="robots" content="noindex, follow" />}
+    {!noindex && langs.map((l) => hreflangs[l] && <link rel="alternate" hreflang={l} href={new URL(hreflangs[l]!, site)} />)}
+    {!noindex && hreflangs[defaultLang] && <link rel="alternate" hreflang="x-default" href={new URL(hreflangs[defaultLang]!, site)} />}
+    <meta property="og:locale" content={{ fr: "fr_FR", en: "en_GB", it: "it_IT" }[lang]} />
 
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />

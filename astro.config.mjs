@@ -20,7 +20,23 @@ export default defineConfig({
   site: 'https://lesgrandsraidsaski.com',
   base,
   trailingSlash: 'always',
-  integrations: [sitemap()],
+  // Multilingue : français par défaut sans préfixe, anglais et italien sous
+  // /en/ et /it/ avec les mêmes slugs. Pas de fallback automatique : une
+  // page n'existe dans une langue que si son fichier src/pages/<lang>/…
+  // existe (voir docs/i18n/brief-traduction-chatgpt.md).
+  i18n: {
+    locales: ['fr', 'en', 'it'],
+    defaultLocale: 'fr',
+    routing: { prefixDefaultLocale: false },
+  },
+  integrations: [
+    sitemap({
+      i18n: {
+        defaultLocale: 'fr',
+        locales: { fr: 'fr-FR', en: 'en-GB', it: 'it-IT' },
+      },
+    }),
+  ],
   // Les 3 seules redirections validées (voir
   // docs/migration-seo/legacy-url-inventory.csv, categorie
   // "redirection_301_confirmee"). Toute autre ancienne URL WordPress non

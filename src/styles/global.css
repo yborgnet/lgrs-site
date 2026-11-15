@@ -896,3 +896,42 @@ a:hover {
     gap: 8px;
   }
 }
+
+/* Sélecteur de langue (FR · EN · IT) — discret, dans la continuité de la nav. */
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 22px;
+  border-left: 1px solid currentColor;
+  border-left-color: rgba(255, 255, 255, .35);
+  font-size: .8em;
+  letter-spacing: .12em;
+}
+
+.site-header--solid .lang-switch,
+.lang-switch--mobile {
+  border-left-color: rgba(255, 255, 255, .35);
+}
+
+.lang-switch__item {
+  opacity: .6;
+  transition: opacity .2s ease;
+}
+
+.lang-switch a.lang-switch__item:hover,
+.lang-switch__item.is-current {
+  opacity: 1;
+}
+
+.lang-switch__item.is-current {
+  text-decoration: underline;
+  text-decoration-color: #a46dff;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+}
+
+.lang-switch__item.is-unavailable {
+  opacity: .28;
+  cursor: default;
+}
