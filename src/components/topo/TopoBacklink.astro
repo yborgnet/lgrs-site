@@ -1,0 +1,21 @@
+---
+/** Bandeau « Voir le topo » affiché en bas des carnets liés à un topo. */
+import "../../styles/topo.css";
+import { getLang, localizedHref } from "../../i18n/utils";
+import { topoUi } from "../../i18n/topo";
+import { topos } from "../../data/topos/index";
+
+type Props = { slug: string };
+const lang = getLang(Astro.currentLocale);
+const u = topoUi[lang];
+const topo = topos.find((t) => t.slug === Astro.props.slug);
+---
+
+{topo && (
+  <aside class="topo-backlink">
+    <div class="site-shell topo-backlink__inner">
+      <p><span class="topo-badge">{u.badge}</span> {topo.name[lang]} · {topo.subtitle[lang]}</p>
+      <a class="topo-btn" href={localizedHref(lang, `/topos/${topo.slug}/`)}>{u.seeTopo} →</a>
+    </div>
+  </aside>
+)}

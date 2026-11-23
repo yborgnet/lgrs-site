@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../Header.astro";
+import TopoFooter from "./TopoFooter.astro";
+import "../../styles/editorial.css";
+import "../../styles/topo.css";
+import { withBase } from "../../lib/url";
+import { getLang, localizedHref, routeFor } from "../../i18n/utils";
+import { topoUi, locales } from "../../i18n/topo";
+import { topos } from "../../data/topos/index";
+
+const lang = getLang(Astro.currentLocale);
+const u = topoUi[lang];
+const nf = new Intl.NumberFormat(locales[lang], { useGrouping: "always" });
+const km = (n: number) => new Intl.NumberFormat(locales[lang], { maximumFractionDigits: 0 }).format(n);
+const canonical = `https://lesgrandsraidsaski.com${routeFor(lang, "/topos/")}`;
+const seo = {
+  fr: { title: "Topos ski de randonnée : grandes traversées | Les Grands Raids à Ski", description: "Topos de grandes traversées à ski de randonnée : cartes, traces GPX, étapes, dénivelés, refuges et contacts. Informations factuelles pour préparer un raid à ski." },
+  en: { title: "Ski touring topos: long traverses | Les Grands Raids à Ski", description: "Topos of long ski touring traverses: maps, GPX tracks, stages, ascent, huts and contacts. Factual information to prepare a hut-to-hut ski trip." },
+  it: { title: "Topo scialpinismo: grandi traversate | Les Grands Raids à Ski", description: "Topo di grandi traversate scialpinistiche: mappe, tracce GPX, tappe, dislivelli, rifugi e contatti. Informazioni per preparare un raid con gli sci." },
+}[lang];
+const [t1, t2] = u.indexTitle.split(", ");
+---
+
+<BaseLayout title={seo.title} description={seo.description} canonical={canonical} ogImage={topos[0]?.photoHero.src}>
+  <Header solid />
+  <main class="topo">
+    <section class="ed-section ed-section--paper topos-index-hero">
+      <div class="site-shell">
+        <p class="ed-eyebrow">{u.indexEyebrow}</p>
+        <h1>{t1}, <em>{t2}</em></h1>
+        <p class="lead">{u.indexLead}</p>
+      </div>
+    </section>
+    <section class="ed-section ed-section--white">
+      <div class="site-shell">
+        <ul class="topo-cards">
+          {topos.map((t) => (
+            <li class="topo-card">
+              <a href={localizedHref(lang, `/topos/${t.slug}/`)}>
+                <div class="topo-card__media">
+                  <img src={withBase(t.photoHero.src)} alt={t.photoHero.alt[lang]} width={t.photoHero.width} height={t.photoHero.height} loading="lazy" decoding="async" />
+                  <span class="topo-badge">{u.badge}</span>
+                </div>
+                <h2>{t.name[lang]}</h2>
+                <p class="topo-card__sub">{t.subtitle[lang]}</p>
+                <ul class="topo-card__data topo-mono">
+                  <li>{t.massif[lang]} · {t.country[lang]}</li>
+                  <li>{t.stats.days} {u.days}</li>
+                  <li>{km(t.stats.distanceKm)} km</li>
+                  <li>D+ {nf.format(t.stats.ascentM)} m</li>
+                  <li>{t.stats.highPoint.name} {nf.format(t.stats.highPoint.ele)} m</li>
+                </ul>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  </main>
+  <TopoFooter />
+</BaseLayout>

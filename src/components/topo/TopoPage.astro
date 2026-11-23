@@ -1,0 +1,239 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../Header.astro";
+import TopoMap from "./TopoMap.astro";
+import TopoProfile from "./TopoProfile.astro";
+import TopoFooter from "./TopoFooter.astro";
+import CarnetLightbox from "../carnet/CarnetLightbox.astro";
+import "../../styles/editorial.css";
+import "../../styles/carnet.css";
+import "../../styles/topo.css";
+import { withBase } from "../../lib/url";
+import { getLang, localizedHref, routeFor } from "../../i18n/utils";
+import { topoUi, locales } from "../../i18n/topo";
+import type { Topo, L } from "../../data/topos/types";
+
+type Props = { topo: Topo };
+const { topo } = Astro.props;
+const lang = getLang(Astro.currentLocale);
+const u = topoUi[lang];
+const tr = (v: L | null | undefined) => (v ? v[lang] : u.todo);
+const nf = new Intl.NumberFormat(locales[lang], { useGrouping: "always" });
+const km = (n: number) => new Intl.NumberFormat(locales[lang], { maximumFractionDigits: 1 }).format(n);
+const hm = (min: number) => `${Math.floor(min / 60)} h ${String(min % 60).padStart(2, "0")}`;
+const date = (iso: string) =>
+  new Intl.DateTimeFormat(locales[lang], iso.length > 7 ? { day: "numeric", month: "long", year: "numeric" } : { month: "long", year: "numeric" }).format(new Date(iso.length > 7 ? iso : `${iso}-01`));
+const canonical = `https://lesgrandsraidsaski.com${routeFor(lang, `/topos/${topo.slug}/`)}`;
+const huts = new Map(topo.huts.map((h) => [h.id, h]));
+const site = Astro.site ?? Astro.url.origin;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "TouristTrip",
+  name: `${topo.name[lang]} · ${topo.subtitle[lang]}`,
+  description: topo.seo.description[lang],
+  url: canonical,
+  inLanguage: lang,
+  image: new URL(withBase(topo.photoHero.src), site).href,
+  touristType: "Ski touring",
+  provider: { "@type": "Organization", name: "Les Grands Raids à Ski", url: "https://lesgrandsraidsaski.com/" },
+  itinerary: {
+    "@type": "ItemList",
+    itemListElement: topo.stages.map((s, i) => ({ "@type": "ListItem", position: i + 1, name: `${s.from} → ${s.to}` })),
+  },
+  subjectOf: topo.huts.map((h) => ({
+    "@type": "Place",
+    name: h.name,
+    geo: { "@type": "GeoCoordinates", latitude: h.lat, longitude: h.lon, ...(h.ele ? { elevation: h.ele } : {}) },
+    ...(h.phones[0] ? { telephone: h.phones[0].value } : {}),
+    ...(h.website ? { url: h.website } : {}),
+  })),
+};
+---
+
+<BaseLayout
+  title={topo.seo.title[lang]}
+  description={topo.seo.description[lang]}
+  canonical={canonical}
+  ogImage={topo.photoHero.src}
+>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Header />
+
+  <main class="topo">
+    <!-- 1. Hero -->
+    <section class="topo-hero">
+      <img class="topo-hero__img" src={withBase(topo.photoHero.src)} alt={topo.photoHero.alt[lang]} width={topo.photoHero.width} height={topo.photoHero.height} fetchpriority="high" />
+      <div class="topo-hero__veil"></div>
+      <div class="site-shell topo-hero__inner">
+        <p class="topo-badge">{u.badge}</p>
+        <h1 class="topo-hero__title">{topo.name[lang]}</h1>
+        <p class="topo-hero__sub">{topo.subtitle[lang]}</p>
+        <p class="topo-hero__where topo-mono">{topo.massif[lang]} · {topo.country[lang]}</p>
+        <ul class="topo-keys topo-mono">
+          <li><strong>{topo.stats.days}</strong> {u.days}</li>
+          <li><strong>{km(topo.stats.distanceKm)}</strong> {u.km}</li>
+          <li><strong>D+ {nf.format(topo.stats.ascentM)}</strong> m</li>
+          <li><strong>D− {nf.format(topo.stats.descentM)}</strong> m</li>
+          <li>{u.hp} <strong>{topo.stats.highPoint.name} {nf.format(topo.stats.highPoint.ele)}</strong> m</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 2. Fiche technique -->
+    <section class="ed-section ed-section--paper topo-section" id="fiche">
+      <div class="site-shell topo-split">
+        <div>
+          <p class="ed-eyebrow">{u.facts}</p>
+          <h2 class="ed-h2">{u.factsTitle}</h2>
+        </div>
+        <div>
+          <dl class="topo-facts">
+            {topo.facts.map((f) => (
+              <div>
+                <dt class="topo-mono">{f.label[lang]}</dt>
+                <dd class:list={{ "is-todo": !f.value }}>{tr(f.value)}</dd>
+              </div>
+            ))}
+          </dl>
+          <p class="topo-method">{topo.method[lang]}</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Carte + 4. Profil -->
+    <section class="ed-section ed-section--white topo-section" id="carte">
+      <div class="site-shell">
+        <p class="ed-eyebrow">{u.map}</p>
+        <h2 class="ed-h2">{u.mapTitle}</h2>
+        <TopoMap gpx={topo.gpx} points={topo.points} title={`${u.map} · ${topo.name[lang]}`} download={u.download} legend={u.legend} />
+        <p class="ed-eyebrow topo-profile-title">{u.profile}</p>
+        <TopoProfile profile={topo.profile} stages={topo.stages} title={`${u.profile} · ${topo.name[lang]}`} dayLabel={u.day} locale={locales[lang]} />
+      </div>
+    </section>
+
+    <!-- 5. Étapes -->
+    <section class="ed-section ed-section--paper topo-section" id="etapes">
+      <div class="site-shell">
+        <p class="ed-eyebrow">{u.stages}</p>
+        <h2 class="ed-h2">{u.stagesTitle}</h2>
+        <ol class="topo-stages">
+          {topo.stages.map((s) => {
+            const night = s.nightId ? huts.get(s.nightId) : undefined;
+            return (
+              <li class="topo-stage" id={`etape-${s.day}`}>
+                <p class="topo-stage__num topo-mono">{u.day}{s.day}<span>{u.trace} {s.source}</span></p>
+                <h3>{s.from} → {s.to}</h3>
+                <ul class="topo-stage__stats topo-mono">
+                  <li>{km(s.distanceKm)} km</li>
+                  <li>D+ {nf.format(s.ascentM)} m</li>
+                  <li>D− {nf.format(s.descentM)} m</li>
+                </ul>
+                <dl class="topo-stage__dl">
+                  <div><dt class="topo-mono">{u.duration}</dt><dd>{s.recordedMin ? hm(s.recordedMin) : u.todo}</dd></div>
+                  <div><dt class="topo-mono">{u.via}</dt><dd>{s.waypoints.join(" · ")}</dd></div>
+                  <div><dt class="topo-mono">{u.key}</dt><dd class:list={{ "is-todo": !s.keyPassages.length }}>{s.keyPassages.length ? <ul>{s.keyPassages.map((k) => <li>{k[lang]}</li>)}</ul> : u.todo}</dd></div>
+                  {night && <div><dt class="topo-mono">{u.night}</dt><dd><a class="ed-link" href={`#hut-${night.id}`}>{night.name}</a></dd></div>}
+                </dl>
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+    </section>
+
+    <!-- 6. Hébergements -->
+    <section class="ed-section ed-section--white topo-section" id="hebergements">
+      <div class="site-shell">
+        <p class="ed-eyebrow">{u.huts}</p>
+        <h2 class="ed-h2">{u.hutsTitle}</h2>
+        <div class="topo-huts">
+          {topo.huts.map((h) => (
+            <article class="topo-hut" id={`hut-${h.id}`}>
+              <h3>{h.name}</h3>
+              <p class="topo-hut__meta topo-mono">{h.ele ? `${nf.format(h.ele)} m` : u.todo}{h.section ? ` · ${h.section}` : ""}</p>
+              <dl>
+                <div><dt class="topo-mono">{u.type}</dt><dd>{h.kind[lang]}</dd></div>
+                <div><dt class="topo-mono">{u.places}</dt><dd class:list={{ "is-todo": !h.places }}>{tr(h.places)}</dd></div>
+                <div><dt class="topo-mono">{u.season}</dt><dd class:list={{ "is-todo": !h.season }}>{tr(h.season)}</dd></div>
+                <div><dt class="topo-mono">{u.winter}</dt><dd class:list={{ "is-todo": !h.winterRoom }}>{tr(h.winterRoom)}</dd></div>
+                <div><dt class="topo-mono">{u.booking}</dt><dd class:list={{ "is-todo": !h.booking }}>{tr(h.booking)}</dd></div>
+                <div><dt class="topo-mono">{u.phone}</dt><dd>{h.phones.map((p) => <span class="topo-hut__phone">{p.label[lang]} : <a href={`tel:${p.value.replace(/\s/g, "")}`}>{p.value}</a></span>)}</dd></div>
+                <div><dt class="topo-mono">{u.email}</dt><dd>{h.email ? <a href={`mailto:${h.email}`}>{h.email}</a> : u.todo}</dd></div>
+                <div><dt class="topo-mono">{u.site}</dt><dd>{h.website ? <a href={h.website} target="_blank" rel="noopener">{h.website.replace(/^https?:\/\//, "")}</a> : u.todo}</dd></div>
+                <div><dt class="topo-mono">{u.gps}</dt><dd>{h.lat.toFixed(4)}, {h.lon.toFixed(4)} <span class="topo-note">({u.gpsNote})</span></dd></div>
+              </dl>
+              {h.notes.length > 0 && <ul class="topo-hut__notes">{h.notes.map((n) => <li>{n[lang]}</li>)}</ul>}
+              <p class="topo-hut__verified topo-mono">{u.verified} : {date(h.verified)}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. Variantes -->
+    <section class="ed-section ed-section--paper topo-section" id="variantes">
+      <div class="site-shell topo-split">
+        <div>
+          <p class="ed-eyebrow">{u.variants}</p>
+          <h2 class="ed-h2">{u.variantsTitle}</h2>
+        </div>
+        <ul class="topo-list">{topo.variants.map((v) => <li>{v[lang]}</li>)}</ul>
+      </div>
+    </section>
+
+    <!-- 8. Galerie -->
+    <section class="ed-section ed-section--white topo-section" id="galerie" data-carnet-gallery>
+      <div class="site-shell">
+        <p class="ed-eyebrow">{u.gallery}</p>
+        <h2 class="ed-h2">{u.galleryTitle}</h2>
+        <div class="topo-gallery" data-lightbox-gallery>
+          {topo.gallery.map((p) => (
+            <figure class:list={["topo-gallery__item", { "is-wide": p.wide, "is-portrait": p.height > p.width }]}>
+              <button type="button" data-lightbox-trigger data-caption={p.caption[lang]}>
+                <img src={withBase(p.src)} alt={p.alt[lang]} width={p.width} height={p.height} loading="lazy" decoding="async" />
+              </button>
+              <figcaption class="topo-mono">{p.caption[lang]}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+      <CarnetLightbox />
+    </section>
+
+    <!-- 9. Récits -->
+    <section class="ed-section ed-section--paper topo-section" id="recits">
+      <div class="site-shell">
+        <p class="ed-eyebrow">{u.recits}</p>
+        <h2 class="ed-h2">{u.recitsTitle}</h2>
+        <div class="topo-recits">
+          {topo.recits.map((r) => (
+            <a class="topo-recit" href={localizedHref(lang, r.href)}>
+              <img src={withBase(r.photo)} alt="" loading="lazy" decoding="async" />
+              <span class="topo-recit__body">
+                <strong>{r.title[lang]}</strong>
+                <span class="topo-mono">{r.meta[lang]}</span>
+                <span class="topo-recit__cta">{u.read}</span>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 10. CTA + 11. Avertissement -->
+    <section class="ed-section ed-section--dark topo-section topo-cta">
+      <div class="site-shell">
+        <h2 class="ed-h2">{u.ctaTitle}</h2>
+        <p>{u.ctaText}</p>
+        <div class="topo-cta__links">
+          <a class="topo-btn topo-btn--light" href={localizedHref(lang, "/contact/")}>{u.ctaContact}</a>
+          <a class="topo-btn topo-btn--ghost" href="https://wa.me/33689295826" target="_blank" rel="noopener noreferrer">{u.ctaWhatsapp}</a>
+        </div>
+        <p class="topo-disclaimer topo-mono">{u.disclaimer} {u.updated} : {date(topo.updated)}.</p>
+      </div>
+    </section>
+  </main>
+
+  <TopoFooter />
+</BaseLayout>
