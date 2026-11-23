@@ -1,4 +1,5 @@
 ---
+import TopoBacklink from "../../../components/topo/TopoBacklink.astro";
 import CarnetLayout from "../../../layouts/CarnetLayout.astro";
 import CarnetPhoto from "../../../components/carnet/CarnetPhoto.astro";
 import CarnetIntro from "../../../components/carnet/CarnetIntro.astro";
@@ -16,4 +17,5 @@ import { dammastockTitlis as carnet } from "../../../data/carnets/en/dammastock-
   <CarnetStoryFlow story={carnet.story} />
   <CarnetGallery portfolio={carnet.portfolio} />
   <CarnetClosing closing={carnet.closing} />
+  <TopoBacklink slug="dammastock-alpes-uranaises" />
 </CarnetLayout>

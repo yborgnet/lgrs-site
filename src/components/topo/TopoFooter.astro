@@ -1,0 +1,32 @@
+---
+import SponsorStrip from "../shared/SponsorStrip.astro";
+import ContactStrip from "../shared/ContactStrip.astro";
+import { getLang, localizedHref } from "../../i18n/utils";
+const lang = getLang(Astro.currentLocale);
+const statement = { fr: "Explorer · improviser · rencontrer · skier.", en: "Explore · improvise · meet · ski.", it: "Esplorare · improvvisare · incontrare · sciare." }[lang];
+const guide = { fr: "Yann Borgnet · Guide de haute montagne UIAGM", en: "Yann Borgnet · IFMGA mountain guide", it: "Yann Borgnet · Guida alpina UIAGM" }[lang];
+---
+
+<ContactStrip />
+
+<footer class="site-footer">
+  <div class="site-shell site-footer__grid">
+    <div>
+      <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+      <p class="site-footer__statement">{statement}</p>
+    </div>
+
+    <div class="site-footer__links">
+      <a href="https://wa.me/33689295826">WhatsApp · +33 6 89 29 58 26</a>
+      <a href="https://www.instagram.com/lesgrandsraidsaski/">Instagram</a>
+      <a href="https://www.facebook.com/yannborgnet/">Facebook</a>
+    </div>
+  </div>
+
+  <SponsorStrip />
+
+  <div class="site-shell site-footer__bottom">
+    <a href={localizedHref(lang, "/yann-borgnet-guide-haute-montagne/")}>{guide}</a>
+    <span>© 2026</span>
+  </div>
+</footer>

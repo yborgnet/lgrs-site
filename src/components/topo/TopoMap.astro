@@ -1,0 +1,85 @@
+---
+import { withBase } from "../../lib/url";
+import type { TopoPoint } from "../../data/topos/types";
+
+type Props = { gpx: string; points: TopoPoint[]; title: string; download: string; legend: Record<TopoPoint["kind"], string> };
+const { gpx, points, title, download, legend } = Astro.props;
+const kinds = [...new Set(points.map((p) => p.kind))];
+---
+
+<div class="topo-map" data-topo-map data-gpx={withBase(gpx)} data-points={JSON.stringify(points)}>
+  <div class="topo-map__canvas" data-topo-map-canvas role="group" aria-label={title}></div>
+  <div class="topo-map__bar">
+    <ul class="topo-map__legend">
+      {kinds.map((k) => (
+        <li><span class:list={["topo-pin", `topo-pin--${k}`]} aria-hidden="true"></span>{legend[k]}</li>
+      ))}
+    </ul>
+    <a class="topo-btn" href={withBase(gpx)} download>{download}</a>
+  </div>
+</div>
+
+<script>
+  // Carte Leaflet sur fond Swisstopo (carte nationale hiver), chargée à l'approche du viewport.
+  type P = { id: string; kind: string; name: string; lat: number; lon: number; ele?: number };
+  const DAY_COLORS = ["#8b3dff", "#0b0b0a"];
+
+  async function init(el: HTMLElement) {
+    const canvas = el.querySelector<HTMLElement>("[data-topo-map-canvas]")!;
+    const points: P[] = JSON.parse(el.dataset.points ?? "[]");
+    let segs: [number, number][][] = [];
+    try {
+      const xml = new DOMParser().parseFromString(await (await fetch(el.dataset.gpx!)).text(), "application/xml");
+      segs = [...xml.getElementsByTagName("trkseg")].map((s) =>
+        [...s.getElementsByTagName("trkpt")].map((p) => [parseFloat(p.getAttribute("lat")!), parseFloat(p.getAttribute("lon")!)] as [number, number])
+      );
+    } catch {
+      return;
+    }
+    const [{ default: L }] = await Promise.all([import("leaflet"), import("leaflet/dist/leaflet.css")]);
+    const map = L.map(canvas, { scrollWheelZoom: false, maxZoom: 16, minZoom: 9 });
+    // Fond Swisstopo (carte nationale, édition hiver) ; si les tuiles ne répondent pas,
+    // repli automatique sur OpenTopoMap pour que la trace reste lisible.
+    const swiss = L.tileLayer("https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe-winter/default/current/3857/{z}/{x}/{y}.jpeg", {
+      maxZoom: 16,
+      attribution: '&copy; <a href="https://www.swisstopo.admin.ch/">swisstopo</a>',
+    }).addTo(map);
+    let fellBack = false;
+    swiss.on("tileerror", () => {
+      if (fellBack) return;
+      fellBack = true;
+      map.removeLayer(swiss);
+      L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png", {
+        maxZoom: 15,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="https://opentopomap.org">OpenTopoMap</a> (CC-BY-SA)',
+      }).addTo(map);
+    });
+    const bounds = L.latLngBounds([]);
+    segs.forEach((s, i) => {
+      L.polyline(s, { color: "#ffffff", weight: 7, opacity: 0.85 }).addTo(map);
+      L.polyline(s, { color: DAY_COLORS[i % 2], weight: 3.5, opacity: 1 })
+        .bindTooltip(`J${i + 1}`, { sticky: true })
+        .addTo(map);
+      bounds.extend(s);
+    });
+    points.forEach((p) => {
+      const icon = L.divIcon({ className: `topo-pin topo-pin--${p.kind}`, iconSize: [14, 14] });
+      L.marker([p.lat, p.lon], { icon, title: p.name })
+        .bindTooltip(`${p.name}${p.ele ? ` · ${p.ele.toLocaleString(document.documentElement.lang, { useGrouping: "always" } as Intl.NumberFormatOptions)} m` : ""}`, {
+          permanent: p.kind !== "sommet",
+          direction: "right",
+          offset: [8, 0],
+          className: "topo-map__label",
+        })
+        .addTo(map);
+    });
+    map.fitBounds(bounds, { padding: [28, 28] });
+    window.addEventListener("resize", () => map.invalidateSize());
+  }
+
+  const io = new IntersectionObserver(
+    (entries, obs) => entries.forEach((e) => { if (e.isIntersecting) { obs.unobserve(e.target); init(e.target as HTMLElement); } }),
+    { rootMargin: "300px" }
+  );
+  document.querySelectorAll<HTMLElement>("[data-topo-map]").forEach((el) => io.observe(el));
+</script>
