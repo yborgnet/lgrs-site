@@ -1,0 +1,221 @@
+---
+import ContactStrip from "../../components/shared/ContactStrip.astro";
+import SponsorStrip from "../../components/shared/SponsorStrip.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import "../../styles/editorial.css";
+import "../../styles/renseignements.css";
+import { withBase } from "../../lib/url";
+import { GOOGLE_FORM_ACTION, ENTRY, OPTIONS, voyagesFormulaire } from "../../data/renseignements";
+
+const cap = (raw: string) => {
+  const s = raw.replace(/\u00ad/g, "");
+  return s === "SKI MED" ? s : s.charAt(0) + s.slice(1).toLowerCase();
+};
+const partenaires = [
+  { key: "arva", label: "ARVA" },
+  { key: "camp", label: "CAMP" },
+  { key: "pyrenex", label: "Pyrenex" },
+  { key: "seatosummit", label: "Sea to Summit" },
+] as const;
+// "(3 dispos)" n'est pas montré au client, mais reste dans la valeur envoyée.
+const sansStock = (o: string) => o.replace(/\s*\(\d+ dispos?\)/, "");
+---
+
+<BaseLayout
+  title="Formulaire de renseignements | Les Grands Raids à Ski"
+  description="Formulaire de renseignements personnels à remplir avant un raid, un voyage ou une sortie avec Yann Borgnet, guide de haute montagne."
+  canonical="https://lesgrandsraidsaski.com/renseignements/"
+  noindex
+  popup={false}
+>
+  <Header solid />
+
+  <main class="rs">
+    <section class="ed-section ed-section--paper rs-hero">
+      <div class="site-shell">
+        <p class="ed-eyebrow">Avant le départ</p>
+        <h1 class="rs-title">Formulaire de <em>renseignements.</em></h1>
+        <p class="rs-lead">Si vous lisez ces lignes, c’est que nous nous préparons à partager une belle aventure. Ce formulaire est à remplir individuellement, une fois par voyage ou sortie.</p>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--white">
+      <div class="site-shell rs-wrap">
+        <form class="rs-form" data-rs-form action={GOOGLE_FORM_ACTION} method="post" novalidate>
+          <fieldset>
+            <legend>Le voyage</legend>
+            <label class="rs-field">
+              <span>Voyage ou sortie <b>*</b></span>
+              <select name="voyage" required data-rs-voyage>
+                <option value="" selected disabled>Choisir…</option>
+                {voyagesFormulaire.map((v) => <option value={v.date!}>{cap(v.label)} — {v.dates}</option>)}
+                <option value="autre">Autre raid, sortie ou course</option>
+              </select>
+            </label>
+            <label class="rs-field" data-rs-date hidden>
+              <span>Premier jour de la sortie <b>*</b></span>
+              <input type="date" name="date" />
+            </label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Vos coordonnées</legend>
+            <label class="rs-field"><span>Nom et prénom <b>*</b></span><input type="text" name={ENTRY.nom} required autocomplete="name" /></label>
+            <div class="rs-row">
+              <label class="rs-field"><span>E-mail <b>*</b></span><input type="email" name={ENTRY.email} required autocomplete="email" /></label>
+              <label class="rs-field"><span>Téléphone <b>*</b></span><input type="tel" name={ENTRY.tel} required autocomplete="tel" placeholder="+33 6 …" /></label>
+            </div>
+            <label class="rs-field"><span>Personne à prévenir en cas de problème (nom et téléphone) <b>*</b></span><input type="text" name={ENTRY.urgence} required /></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Assurance</legend>
+            <p class="rs-help">Mon assurance RC professionnelle ne couvre que les accidents où ma responsabilité est engagée : elle peut ne pas couvrir les frais de recherche, de secours ou de rapatriement. Une assurance personnelle est vivement conseillée, surtout en Suisse et en Italie : carte club <a href="https://www.auvieuxcampeur.fr/carte-club" target="_blank" rel="noopener">Au Vieux Campeur</a> (30 € par année civile), assurance multisport <a href="https://www.assurance-multi-sports.com/" target="_blank" rel="noopener">GBC</a> à la journée (4 € par jour), contrat « accident de la vie courante », ou licence FFCAM / FFME.</p>
+            <div class="rs-choices">
+              {OPTIONS.assurance.map((o, i) => (
+                <label class="rs-choice"><input type="radio" name={ENTRY.assurance} value={o} required /><span>{i === 0 ? "Je suis assuré·e" : "Je ne suis pas assuré·e, mais j’ai pris note"}</span></label>
+              ))}
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Alimentation</legend>
+            <div class="rs-choices">
+              <label class="rs-choice"><input type="radio" name="intol" value="Non" checked /><span>Aucune intolérance ni allergie alimentaire</span></label>
+              <label class="rs-choice"><input type="radio" name="intol" value="autre" /><span>J’ai une intolérance, une allergie ou un régime particulier</span></label>
+            </div>
+            <label class="rs-field" data-rs-intol hidden><span>Précisez</span><input type="text" name="intol-texte" /></label>
+          </fieldset>
+
+          <fieldset>
+            <legend>Matériel</legend>
+            <p class="rs-help">La liste complète du matériel est sur la page <a href={withBase("/checklist/")} target="_blank">checklist</a>.</p>
+            <p class="rs-q">Location de matériel SCOTT : skis, peaux, couteaux et bâtons, 20 € par jour</p>
+            <div class="rs-choices rs-choices--inline">
+              <label class="rs-choice"><input type="radio" name={ENTRY.location} value="Non" checked /><span>Non</span></label>
+              <label class="rs-choice"><input type="radio" name={ENTRY.location} value="Oui" /><span>Oui</span></label>
+            </div>
+            <div class="rs-field" data-rs-taille hidden>
+              <span>Votre taille</span>
+              <div class="rs-choices rs-choices--inline">
+                {OPTIONS.taille.map((o) => <label class="rs-choice"><input type="radio" name={ENTRY.taille} value={o} /><span>{o}</span></label>)}
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend>Prêt de matériel des partenaires</legend>
+            <p class="rs-help">Cochez ce que vous souhaitez emprunter. Le prêt se fait dans la limite des stocks ; je vous confirme ce qui est disponible.</p>
+            <div class="rs-loans">
+              {partenaires.map((p) => (
+                <div>
+                  <p class="rs-q">{p.label}</p>
+                  {OPTIONS[p.key].map((o) => (
+                    <label class="rs-check"><input type="checkbox" name={ENTRY[p.key]} value={o} /><span>{sansStock(o)}</span></label>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </fieldset>
+
+          <p class="rs-error" data-rs-error hidden role="alert"></p>
+          <button type="submit" class="rs-submit" data-rs-submit>Envoyer</button>
+          <p class="rs-legal">Ces informations servent uniquement à l’organisation de la sortie et à votre sécurité. Elles ne sont ni publiées ni transmises à des tiers.</p>
+        </form>
+
+        <div class="rs-thanks" data-rs-thanks hidden tabindex="-1">
+          <p class="ed-eyebrow">Merci</p>
+          <h2 class="ed-h2">C’est bien reçu.</h2>
+          <p>Prochaine étape : préparer son sac avec la checklist.</p>
+          <a class="rs-submit" href={withBase("/checklist/")}>Ouvrir la checklist →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <ContactStrip />
+  <footer class="site-footer">
+    <div class="site-shell site-footer__grid">
+      <div>
+        <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+        <p class="site-footer__statement">Explorer · improviser · rencontrer · skier.</p>
+      </div>
+      <div class="site-footer__links">
+        <a href="https://wa.me/33689295826">WhatsApp · +33 6 89 29 58 26</a>
+        <a href="https://www.instagram.com/lesgrandsraidsaski/">Instagram</a>
+        <a href="https://www.facebook.com/yannborgnet/">Facebook</a>
+      </div>
+    </div>
+    <SponsorStrip />
+    <div class="site-shell site-footer__bottom">
+      <a href={withBase("/yann-borgnet-guide-haute-montagne/")}>Yann Borgnet · Guide de haute montagne UIAGM</a>
+      <span>© 2026</span>
+    </div>
+  </footer>
+</BaseLayout>
+
+<script define:vars={{ ENTRY }}>
+  const form = document.querySelector("[data-rs-form]");
+  if (form) {
+    const $ = (s) => form.querySelector(s);
+    const sync = () => {
+      const autre = $("[data-rs-voyage]").value === "autre";
+      $("[data-rs-date]").hidden = !autre;
+      $("[data-rs-date] input").required = autre;
+      $("[data-rs-intol]").hidden = form.intol.value !== "autre";
+      $("[data-rs-taille]").hidden = form.elements[ENTRY.location].value !== "Oui";
+    };
+    form.addEventListener("change", sync);
+    sync();
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const err = $("[data-rs-error]");
+      err.hidden = true;
+      sync();
+      if (!form.checkValidity()) {
+        const bad = form.querySelector(":invalid");
+        err.textContent = "Merci de compléter les champs marqués d’un astérisque.";
+        err.hidden = false;
+        bad?.focus();
+        return;
+      }
+      const v = $("[data-rs-voyage]").value;
+      const iso = v === "autre" ? form.date.value : v;
+      const [y, m, d] = iso.split("-");
+      const data = new URLSearchParams();
+      data.append(`${ENTRY.date}_year`, y);
+      data.append(`${ENTRY.date}_month`, String(Number(m)));
+      data.append(`${ENTRY.date}_day`, String(Number(d)));
+      for (const [k, val] of new FormData(form)) {
+        if (!k.startsWith("entry.")) continue;
+        if (k === ENTRY.taille && form.elements[ENTRY.location].value !== "Oui") continue;
+        data.append(k, String(val).trim());
+      }
+      if (form.intol.value === "autre" && form["intol-texte"].value.trim()) {
+        data.append(ENTRY.intolerances, "__other_option__");
+        data.append(`${ENTRY.intolerances}.other_option_response`, form["intol-texte"].value.trim());
+      } else {
+        data.append(ENTRY.intolerances, "Non");
+      }
+      const btn = $("[data-rs-submit]");
+      btn.disabled = true;
+      btn.textContent = "Envoi…";
+      try {
+        // Google Forms ne renvoie pas d'en-têtes CORS : envoi « no-cors », réponse opaque.
+        await fetch(form.action, { method: "POST", mode: "no-cors", body: data });
+        form.hidden = true;
+        const t = document.querySelector("[data-rs-thanks]");
+        t.hidden = false;
+        t.focus();
+        window.umami?.track?.("renseignements-envoye");
+      } catch {
+        err.textContent = "L’envoi a échoué. Vérifiez votre connexion et réessayez, ou écrivez-moi sur WhatsApp.";
+        err.hidden = false;
+        btn.disabled = false;
+        btn.textContent = "Envoyer";
+      }
+    });
+  }
+</script>

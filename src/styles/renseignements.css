@@ -1,0 +1,37 @@
+/* Page /renseignements/ — formulaire relié au Google Form de Yann. */
+.rs-hero { padding-bottom: 64px; }
+.rs-title { margin: 0 0 24px; font-family: var(--font-serif); font-weight: 300; font-size: clamp(42px, 6vw, 84px); line-height: 1; letter-spacing: -.03em; }
+.rs-title em { color: var(--violet); }
+.rs-lead { max-width: 640px; margin: 0; font-family: var(--font-serif); font-size: clamp(19px, 1.8vw, 23px); font-weight: 300; line-height: 1.5; opacity: .86; }
+.rs-wrap { max-width: 760px; }
+.rs-form { display: grid; gap: 48px; }
+.rs-form fieldset { margin: 0; padding: 0; border: 0; display: grid; gap: 16px; }
+.rs-form legend { margin-bottom: 16px; padding-bottom: 10px; width: 100%; border-bottom: 1px solid var(--ink); font-family: var(--font-serif); font-size: 28px; font-weight: 400; }
+.rs-field { display: grid; gap: 8px; }
+.rs-field[hidden] { display: none; }
+.rs-field > span, .rs-q { margin: 0; font-size: 14px; font-weight: 600; }
+.rs-field b { color: var(--violet); font-weight: 600; }
+.rs-form input[type=text], .rs-form input[type=email], .rs-form input[type=tel], .rs-form input[type=date], .rs-form select {
+  width: 100%; padding: 13px 14px; border: 1px solid var(--line); border-radius: 0; background: var(--white); font: inherit; font-size: 16px; color: var(--ink);
+}
+.rs-form input:focus, .rs-form select:focus { outline: 2px solid var(--violet); outline-offset: 1px; }
+.rs-row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.rs-help { margin: 0; font-size: 15px; line-height: 1.65; opacity: .78; }
+.rs-help a { border-bottom: 1px solid currentColor; }
+.rs-choices { display: grid; gap: 8px; }
+.rs-choices--inline { display: flex; flex-wrap: wrap; gap: 8px; }
+.rs-choice, .rs-check { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; font-size: 15px; line-height: 1.4; }
+.rs-choice { padding: 12px 14px; border: 1px solid var(--line); background: var(--white); }
+.rs-choice:has(input:checked) { border-color: var(--ink); background: var(--violet-pale); }
+.rs-choice input, .rs-check input { flex: none; width: 18px; height: 18px; margin: 0; accent-color: var(--violet); }
+.rs-loans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 40px; }
+.rs-loans > div { display: grid; gap: 8px; align-content: start; }
+.rs-error { margin: 0; padding: 12px 14px; background: #fde8e6; border-left: 2px solid #a3261b; font-size: 15px; }
+.rs-submit { justify-self: start; display: inline-block; padding: 15px 28px; border: 0; background: var(--ink); color: var(--white); font: inherit; font-size: 15px; font-weight: 600; cursor: pointer; }
+.rs-submit:hover { background: var(--violet); }
+.rs-submit:disabled { opacity: .5; cursor: wait; }
+.rs-legal { margin: -24px 0 0; font-size: 13px; opacity: .6; }
+.rs-thanks { display: grid; gap: 16px; justify-items: start; }
+.rs-thanks[hidden] { display: none; }
+.rs-thanks p:not(.ed-eyebrow) { margin: 0; font-size: 17px; }
+@media (max-width: 640px) { .rs-row, .rs-loans { grid-template-columns: minmax(0, 1fr); } }

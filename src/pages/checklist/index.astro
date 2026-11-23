@@ -6,7 +6,7 @@ import Header from "../../components/Header.astro";
 import "../../styles/editorial.css";
 import "../../styles/checklist.css";
 import { withBase } from "../../lib/url";
-import { activities, FORM_RENSEIGNEMENTS } from "../../data/checklists";
+import { activities } from "../../data/checklists";
 
 const canonical = "https://lesgrandsraidsaski.com/checklist/";
 ---
@@ -112,7 +112,7 @@ const canonical = "https://lesgrandsraidsaski.com/checklist/";
           <li>
             <strong>Remplir le formulaire de renseignements</strong>
             <span>Dates, coordonnées, personne à prévenir, intolérances alimentaires, location de matériel.</span>
-            <a class="ed-link" href={FORM_RENSEIGNEMENTS} target="_blank" rel="noopener">Ouvrir le formulaire →</a>
+            <a class="ed-link" href={withBase("/renseignements/")}>Ouvrir le formulaire →</a>
           </li>
           <li>
             <strong>Vérifier son assurance</strong>
