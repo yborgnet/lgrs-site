@@ -4,7 +4,7 @@
  *  `when` : la section n'apparaît que si l'option correspondante est choisie.
  *  `guide: true` : matériel porté ou géré par le guide (affiché à part, pour info). */
 
-export type Opt = "refuge" | "cabane" | "bivouac" | "glacier" | "tente" | "guesthouse";
+export type Opt = "refuge" | "cabane" | "bivouac" | "glacier" | "tente" | "guesthouse" | "escalade";
 export type Section = { id: string; title: string; items: string[]; guide?: boolean; when?: Opt[] };
 export type Activity = {
   id: string;
@@ -30,14 +30,14 @@ export const activities: Activity[] = [
     sections: [
       { id: "base", title: "Base ski", items: ["Skis", "Bâtons", "Peaux", "Chaussures de ski", "DVA (ARVA) – pelle – sonde", "Couteaux", sacRaid, "Casque"] },
       { id: "vetements", title: "Vêtements", items: ["Bonnet", "Buff", "Lunettes catégorie 3 minimum", "Masque de ski", "Crème solaire indice 30 minimum", "1 paire de gants fins", "1 paire de gants épais", "Première couche mérinos manches longues", "Polaire fine ou softshell", "Doudoune", "Veste imperméable", "Collant", "Pantalon imperméable / de ski", "Chaussettes de ski"] },
-      { id: "vivres", title: "Vivres de course", items: ["Thermos / gourde", "Clémentines", "Barres de céréales / biscuits", "Fruits secs", "Pain au levain bio", "Fromage et saucisson locaux", "Chocolat artisanal"] },
+      { id: "vivres", title: "Vivres de course", items: ["Thermos / gourde", "Clémentines", "Barres de céréales / biscuits", "Fruits secs"] },
       { id: "glacier", title: "Glacier / alpinisme", when: ["glacier"], items: ["Baudrier", "Sangle 120 cm", "2 mousquetons à vis", "Crampons", "Piolet"] },
       { id: "refuge", title: "Refuge gardé", when: ["refuge"], items: ["Drap de soie", "Collant / haut manches longues de rechange", "Chaussettes de rechange", "Bouchons d’oreilles"] },
-      { id: "cabane", title: "Cabane non gardée", when: ["cabane"], items: ["Duvet", "Drap de soie", "Bol et cuillère", "Opinel", "Collant / haut manches longues de rechange", "Chaussettes de rechange", "Bouchons d’oreilles", "Mouchoirs"] },
-      { id: "autres", title: "Autres", items: ["Lampe frontale", "Brosse à dents", "Lingettes nettoyantes", "Gel désinfectant", "Piles de rechange pour le DVA", "Carte d’identité (passage de frontière)", "Badge tunnel du Mont-Blanc / Fréjus", "Sacs poubelle 30 L", "Crème anti-frottements type NOK", "Compeed"] },
+      { id: "cabane", title: "Cabane non gardée", when: ["cabane"], items: ["Duvet (s’il n’y a pas de couvertures)", "Drap de soie (s’il y a des couvertures)", "Bol et cuillère", "Opinel", "Collant / haut manches longues de rechange", "Chaussettes de rechange", "Bouchons d’oreilles", "Mouchoirs"] },
+      { id: "autres", title: "Autres", items: ["Lampe frontale", "Brosse à dents", "Lingettes nettoyantes", "Gel désinfectant", "Piles de rechange pour le DVA", "Carte d’identité (passage de frontière)", "Badge tunnel du Mont-Blanc / Fréjus", "Sacs poubelle 50 L", "Crème anti-frottements type NOK", "Compeed"] },
       { id: "g-secu", title: "Sécurité", guide: true, items: ["Radio avec canal E", "Trousse de pharmacie complète", "Cartes / GPS / boussole", "Pique-niques"] },
       { id: "g-glacier", title: "Glacier / alpinisme", guide: true, when: ["glacier"], items: ["Corde 50 m", "5 mousquetons à vis", "Micro Traxion", "Cordelette 5 mm, 5 m", "2 broches à glace", "2 sangles 120 cm", "Escaper"] },
-      { id: "g-cabane", title: "Communs cabane non gardée", guide: true, when: ["cabane"], items: ["Réchaud, gaz et briquet", "Soupes type Knorr (1 sachet pour 2 à 3)", "Pâtes fraîches", "Chocolat", "Biscuits pour le petit-déjeuner", "Sacs poubelle"] },
+      { id: "g-cabane", title: "Communs cabane non gardée", guide: true, when: ["cabane"], items: ["Réchaud, gaz et briquet", "Soupes type Knorr (1 sachet pour 2 à 3)", "Pâtes fraîches", "Chocolat", "Biscuits pour le petit-déjeuner"] },
     ],
   },
   {
@@ -57,10 +57,10 @@ export const activities: Activity[] = [
       { id: "glacier", title: "Glacier / alpinisme", when: ["glacier"], items: ["Baudrier", "Sangle 120 cm", "2 mousquetons à vis", "Crampons", "Piolet"] },
       { id: "vivres", title: "Vivres de course", items: ["Thermos / gourde", "Barres de céréales / biscuits", "Fruits secs", "Chocolat"] },
       { id: "sante", title: "Santé et hygiène", items: ["Traitement personnel habituel, en quantité suffisante", "Paracétamol", "Compeed", "Crème anti-frottements type NOK", "Gel désinfectant", "Lingettes nettoyantes", "Brosse à dents"] },
-      { id: "autres", title: "Autres", items: ["Lampe frontale", "Piles de rechange pour le DVA", "Batterie externe + câbles", "Sacs poubelle 30 L"] },
+      { id: "autres", title: "Autres", items: ["Lampe frontale", "Piles de rechange pour le DVA", "Batterie externe + câbles", "Sacs poubelle 50 L"] },
       { id: "g-secu", title: "Sécurité", guide: true, items: ["Moyens de communication adaptés au pays", "Trousse de pharmacie complète", "Cartes / GPS / boussole", "Pique-niques"] },
       { id: "g-glacier", title: "Glacier / alpinisme", guide: true, when: ["glacier"], items: ["Corde 50 m", "5 mousquetons à vis", "Micro Traxion", "Cordelette 5 mm, 5 m", "2 broches à glace", "2 sangles 120 cm", "Escaper"] },
-      { id: "g-tente", title: "Communs bivouac", guide: true, when: ["tente"], items: ["Tentes", "Réchaud, gaz (acheté sur place) et briquet", "Repas du soir et petits-déjeuners", "Sacs poubelle"] },
+      { id: "g-tente", title: "Communs bivouac", guide: true, when: ["tente"], items: ["Tentes", "Réchaud, gaz (acheté sur place) et briquet", "Repas du soir et petits-déjeuners"] },
     ],
   },
   {
@@ -71,16 +71,18 @@ export const activities: Activity[] = [
       { id: "cabane", label: "Cabane non gardée" },
       { id: "bivouac", label: "Bivouac sous tente / à la belle étoile" },
     ],
+    toggles: [{ id: "escalade", label: "Passages d’escalade" }],
     sections: [
-      { id: "tech", title: "Matériel technique", items: ["Baudrier (+ mousqueton directionnel, 3 mousquetons à vis, 1 assureur, 1 sangle 120 cm, 1 prussik)", "Piolets", "Crampons", "Chaussures d’alpinisme", "Sac à dos (30 L en refuge gardé, 40 L sinon)", "Bâtons", "Lampe frontale puissante + piles / batterie de rechange", "Casque", "Gants en cuir", "Chaussons d’escalade"] },
+      { id: "tech", title: "Matériel technique", items: ["Baudrier (+ mousqueton directionnel, 3 mousquetons à vis, 1 assureur, 1 sangle 120 cm, 1 prussik)", "Piolets", "Crampons", "Chaussures d’alpinisme", "Sac à dos (30 L en refuge gardé, 40 L sinon)", "Bâtons", "Lampe frontale puissante + piles / batterie de rechange", "Casque", "Gants en cuir"] },
+      { id: "escalade", title: "Escalade", when: ["escalade"], items: ["Chaussons d’escalade"] },
       { id: "vetements", title: "Vêtements", items: ["Casquette", "Bonnet", "Buff", "Lunettes catégorie 3 minimum", "Crème solaire indice 30 minimum", "1 paire de gants fins", "1 paire de gants épais", "Première couche mérinos manches longues", "Polaire fine ou softshell", "Doudoune", "Veste imperméable", "Collant", "Pantalon softshell", "Chaussettes"] },
       { id: "refuge", title: "Refuge gardé", when: ["refuge"], items: ["Drap de soie", "Collant / haut manches longues de rechange", "Chaussettes de rechange", "Bouchons d’oreilles"] },
-      { id: "nuit", title: "Bivouac ou cabane non gardée", when: ["cabane", "bivouac"], items: ["Duvet", "Drap de soie", "Bol et cuillère", "Opinel", "Collant / haut manches longues de rechange", "Chaussettes de rechange", "Bouchons d’oreilles", "Mouchoirs", "Gourde Nalgene (bouillotte)"] },
+      { id: "nuit", title: "Bivouac ou cabane non gardée", when: ["cabane", "bivouac"], items: ["Duvet (s’il n’y a pas de couvertures)", "Drap de soie (s’il y a des couvertures)", "Bol et cuillère", "Opinel", "Collant / haut manches longues de rechange", "Chaussettes de rechange", "Bouchons d’oreilles", "Mouchoirs", "Gourde Nalgene (bouillotte)"] },
       { id: "tente", title: "En plus pour un bivouac sous tente / à la belle étoile", when: ["bivouac"], items: ["Tente", "Matelas"] },
       { id: "vivres", title: "Nourriture de la journée", items: ["Thermos / gourde", "Fromage et saucisson", "Pain", "Barres de céréales", "Clémentines", "Fruits secs"] },
-      { id: "autres", title: "Autres et optionnel", items: ["Lingettes nettoyantes", "Gel désinfectant", "Batterie externe + câbles", "Papier toilette", "Paracétamol", "Compeed", "Badge tunnel du Mont-Blanc"] },
+      { id: "autres", title: "Autres et optionnel", items: ["Lingettes nettoyantes", "Gel désinfectant", "Batterie externe + câbles", "Papier toilette", "Paracétamol", "Compeed", "Badge tunnel du Mont-Blanc", "Sacs poubelle 50 L"] },
       { id: "g-tech", title: "Matériel technique commun", guide: true, items: ["Corde 50 m", "5 mousquetons à vis", "Micro Traxion", "Cordelette 5 mm, 5 m", "2 broches à glace", "2 sangles 120 cm", "Escaper", "Jeu de friends", "Jeu de coinceurs", "Dégaines", "Pitons", "Cordelette à laisser", "Trousse de secours", "Radio de secours", "Cartes / GPS / boussole"] },
-      { id: "g-commun", title: "Communs bivouac ou cabane non gardée", guide: true, when: ["cabane", "bivouac"], items: ["Réchaud, gaz et briquet", "Soupes type Knorr (1 sachet pour 2)", "Petites pâtes (cuisson < 5 min) ou semoule (120 g par personne)", "Muesli / flocons d’avoine / biscuits pour le petit-déjeuner", "Chocolat", "Thé et tisane", "Sacs poubelle", "Pelle", "Poche à eau (2 L par personne)"] },
+      { id: "g-commun", title: "Communs bivouac ou cabane non gardée", guide: true, when: ["cabane", "bivouac"], items: ["Réchaud, gaz et briquet", "Soupes type Knorr (1 sachet pour 2)", "Petites pâtes (cuisson < 5 min) ou semoule (120 g par personne)", "Muesli / flocons d’avoine / biscuits pour le petit-déjeuner", "Chocolat", "Thé et tisane", "Pelle", "Poche à eau (2 L par personne)"] },
     ],
   },
   {
