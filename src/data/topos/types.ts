@@ -62,6 +62,7 @@ export type TopoHut = {
 };
 
 export type Topo = {
+  type?: "traversee";
   slug: string;
   updated: string;
   photoHero: TopoPhoto;
@@ -83,3 +84,31 @@ export type Topo = {
   /** Notes de méthode affichées sous la fiche technique. */
   method: L;
 };
+
+/** Longueur d'une voie (glace, mixte, rocher). */
+export type Pitch = { n: number; grade: string; lengthM: number; text: L | null };
+
+/** Topo de voie (goulotte, couloir, ligne d'alpinisme) : pas de trace GPX ni d'étapes. */
+export type VoieTopo = {
+  type: "voie";
+  slug: string;
+  updated: string;
+  photoHero?: TopoPhoto;
+  name: L;
+  subtitle: L;
+  country: L;
+  massif: L;
+  seo: { title: L; description: L };
+  summit: { name: string; ele: number };
+  /** Hauteur de la voie = somme des longueurs. */
+  lengthM: number;
+  maxGrade: string;
+  openedYear: number;
+  facts: { label: L; value: L | null }[];
+  pitches: Pitch[];
+  descent: L[];
+  sources: { href: string; label: L }[];
+  method: L;
+};
+
+export type AnyTopo = Topo | VoieTopo;

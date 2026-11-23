@@ -784,3 +784,82 @@
     font-weight: 600;
   }
 }
+
+/* TOPO DE VOIE */
+
+.topo-hero--plain {
+  min-height: min(70svh, 640px);
+  background:
+    radial-gradient(120% 90% at 85% 0%, rgba(139, 61, 255, 0.35) 0%, rgba(139, 61, 255, 0) 60%),
+    var(--ink);
+}
+
+.topo-pitches {
+  margin: 40px 0 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--ink);
+}
+
+.topo-pitch {
+  display: grid;
+  grid-template-columns: minmax(180px, 240px) 1fr;
+  gap: 8px 32px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(11, 11, 10, 0.15);
+}
+
+.topo-pitch__head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin: 0;
+  font-size: 13px;
+}
+
+.topo-pitch__n {
+  color: var(--violet);
+  font-weight: 600;
+  min-width: 2.5em;
+}
+
+.topo-pitch__grade {
+  font-size: 20px;
+  font-weight: 600;
+  min-width: 3em;
+}
+
+.topo-pitch__text {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.topo-sources-title {
+  margin-top: 36px;
+}
+
+.topo-card__media--plain {
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: flex-end;
+  padding: 20px;
+  color: var(--white);
+  background:
+    radial-gradient(120% 90% at 85% 0%, rgba(139, 61, 255, 0.45) 0%, rgba(139, 61, 255, 0) 60%),
+    var(--ink);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 26px;
+  line-height: 1.1;
+}
+
+@media (max-width: 720px) {
+  .topo-pitch {
+    grid-template-columns: 1fr;
+  }
+}
+
+.topo-card__media--plain .topo-badge {
+  font-style: normal;
+}

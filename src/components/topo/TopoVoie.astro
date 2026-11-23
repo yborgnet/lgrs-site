@@ -1,0 +1,130 @@
+---
+/** Gabarit d'un topo de voie (goulotte, couloir) : fiche, longueurs, descente, sources. */
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../Header.astro";
+import TopoFooter from "./TopoFooter.astro";
+import "../../styles/editorial.css";
+import "../../styles/topo.css";
+import { withBase } from "../../lib/url";
+import { getLang, localizedHref, routeFor } from "../../i18n/utils";
+import { topoUi, locales } from "../../i18n/topo";
+import type { VoieTopo } from "../../data/topos/types";
+
+type Props = { topo: VoieTopo };
+const { topo } = Astro.props;
+const lang = getLang(Astro.currentLocale);
+const u = topoUi[lang];
+const nf = new Intl.NumberFormat(locales[lang], { useGrouping: "always" });
+const date = (iso: string) => new Intl.DateTimeFormat(locales[lang], { day: "numeric", month: "long", year: "numeric" }).format(new Date(iso));
+const canonical = `https://lesgrandsraidsaski.com${routeFor(lang, `/topos/${topo.slug}/`)}`;
+const photo = topo.photoHero;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: `${topo.name[lang]} · ${topo.subtitle[lang]}`,
+  description: topo.seo.description[lang],
+  url: canonical,
+  inLanguage: lang,
+  author: { "@type": "Person", name: "Yann Borgnet" },
+  about: { "@type": "Mountain", name: topo.summit.name, elevation: topo.summit.ele },
+};
+---
+
+<BaseLayout title={topo.seo.title[lang]} description={topo.seo.description[lang]} canonical={canonical} ogImage={photo?.src}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <Header />
+
+  <main class="topo">
+    <section class:list={["topo-hero", { "topo-hero--plain": !photo }]}>
+      {photo && <img class="topo-hero__img" src={withBase(photo.src)} alt={photo.alt[lang]} width={photo.width} height={photo.height} fetchpriority="high" />}
+      {photo && <div class="topo-hero__veil"></div>}
+      <div class="site-shell topo-hero__inner">
+        <p class="topo-badge">{u.badge} · {u.voie}</p>
+        <h1 class="topo-hero__title">{topo.name[lang]}</h1>
+        <p class="topo-hero__sub">{topo.subtitle[lang]}</p>
+        <p class="topo-hero__where topo-mono">{topo.massif[lang]} · {topo.country[lang]}</p>
+        <ul class="topo-keys topo-mono">
+          <li><strong>{nf.format(topo.lengthM)}</strong> {u.lengthUnit}</li>
+          <li><strong>{topo.pitches.length}</strong> {u.pitches.toLowerCase()}</li>
+          <li><strong>{topo.maxGrade}</strong></li>
+          <li>{topo.summit.name} <strong>{nf.format(topo.summit.ele)}</strong> m</li>
+          <li>{u.opened} <strong>{topo.openedYear}</strong></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--paper topo-section" id="fiche">
+      <div class="site-shell topo-split">
+        <div>
+          <p class="ed-eyebrow">{u.facts}</p>
+          <h2 class="ed-h2">{u.factsTitle}</h2>
+        </div>
+        <div>
+          <dl class="topo-facts">
+            {topo.facts.filter((f) => f.value).map((f) => (
+              <div>
+                <dt class="topo-mono">{f.label[lang]}</dt>
+                <dd>{f.value![lang]}</dd>
+              </div>
+            ))}
+          </dl>
+          <p class="topo-method">{topo.method[lang]}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--white topo-section" id="longueurs">
+      <div class="site-shell">
+        <p class="ed-eyebrow">{u.pitches}</p>
+        <h2 class="ed-h2">{u.pitchesTitle}</h2>
+        <ol class="topo-pitches">
+          {topo.pitches.map((p) => (
+            <li class="topo-pitch">
+              <p class="topo-pitch__head topo-mono">
+                <span class="topo-pitch__n">{u.pitch}{p.n}</span>
+                <span class="topo-pitch__grade">{p.grade}</span>
+                <span>{p.lengthM} m</span>
+              </p>
+              {p.text && <p class="topo-pitch__text">{p.text[lang]}</p>}
+            </li>
+          ))}
+        </ol>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--paper topo-section" id="descente">
+      <div class="site-shell topo-split">
+        <div>
+          <p class="ed-eyebrow">{u.descent}</p>
+          <h2 class="ed-h2">{u.descentTitle}</h2>
+        </div>
+        <div>
+          <ul class="topo-list">{topo.descent.map((d) => <li>{d[lang]}</li>)}</ul>
+          {topo.sources.length > 0 && (
+            <>
+              <p class="ed-eyebrow topo-sources-title">{u.sources}</p>
+              <ul class="topo-list">
+                {topo.sources.map((s) => <li><a class="ed-link" href={s.href} target="_blank" rel="noopener">{s.label[lang]}</a></li>)}
+              </ul>
+            </>
+          )}
+        </div>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--dark topo-section topo-cta">
+      <div class="site-shell">
+        <h2 class="ed-h2">{u.voieCtaTitle}</h2>
+        <p>{u.voieCtaText}</p>
+        <div class="topo-cta__links">
+          <a class="topo-btn topo-btn--light" href={localizedHref(lang, "/contact/")}>{u.ctaContact}</a>
+          <a class="topo-btn topo-btn--ghost" href="https://wa.me/33689295826" target="_blank" rel="noopener noreferrer">{u.ctaWhatsapp}</a>
+        </div>
+        <p class="topo-disclaimer topo-mono">{u.voieDisclaimer} {u.updated} : {date(topo.updated)}.</p>
+      </div>
+    </section>
+  </main>
+
+  <TopoFooter />
+</BaseLayout>
