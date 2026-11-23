@@ -102,7 +102,7 @@ const canonical = "https://lesgrandsraidsaski.com/checklist/";
       </div>
     </section>
 
-    <section class="ed-section ed-section--paper cl-before">
+    <section class="ed-section ed-section--paper cl-before" data-hide-for="voyage">
       <div class="site-shell ed-split">
         <div class="ed-split__head">
           <p class="ed-eyebrow">Avant le départ</p>
@@ -179,6 +179,8 @@ const canonical = "https://lesgrandsraidsaski.com/checklist/";
     function update() {
       const act = (form.querySelector<HTMLInputElement>("input[name=activite]:checked"))!.value;
       form.querySelectorAll<HTMLElement>("fieldset[data-for]").forEach((f) => (f.hidden = f.dataset.for !== act));
+      // Voyages à l'étranger : formulaire, assurance et matériel sont gérés avec l'agence.
+      root!.querySelectorAll<HTMLElement>("[data-hide-for]").forEach((el) => (el.hidden = el.dataset.hideFor!.split(" ").includes(act)));
       const opts = new Set<string>();
       const heb = form.querySelector<HTMLInputElement>(`input[name="heb-${act}"]:checked`);
       if (heb) opts.add(heb.value);

@@ -69,3 +69,4 @@
   .cl-guide { margin-top: 16px; padding: 12px; }
   .cl-section { break-inside: avoid; }
 }
+.cl-before[hidden] { display: none; }
