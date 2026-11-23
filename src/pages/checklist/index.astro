@@ -1,0 +1,197 @@
+---
+import SponsorStrip from "../../components/shared/SponsorStrip.astro";
+import ContactStrip from "../../components/shared/ContactStrip.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import "../../styles/editorial.css";
+import "../../styles/checklist.css";
+import { withBase } from "../../lib/url";
+import { activities, FORM_RENSEIGNEMENTS } from "../../data/checklists";
+
+const canonical = "https://lesgrandsraidsaski.com/checklist/";
+---
+
+<BaseLayout
+  title="Checklist matériel : raid à ski, alpinisme, cascade de glace | Les Grands Raids à Ski"
+  description="Liste du matériel à préparer avant un raid à ski, une course d’alpinisme ou une cascade de glace avec un guide de haute montagne : choisissez l’activité et l’hébergement, cochez au fur et à mesure."
+  canonical={canonical}
+>
+  <Header solid />
+
+  <main class="cl" data-checklist>
+    <section class="ed-section ed-section--paper cl-hero">
+      <div class="site-shell">
+        <p class="ed-eyebrow">Checklist</p>
+        <h1 class="cl-title">Préparer <em>son sac.</em></h1>
+        <p class="cl-lead">Choisissez l’activité et l’hébergement : la liste se met à jour. Cochez au fur et à mesure, vos coches restent enregistrées sur cet appareil.</p>
+
+        <form class="cl-controls" onsubmit="return false">
+          <fieldset>
+            <legend>Activité</legend>
+            <div class="cl-seg">
+              {activities.map((a, i) => (
+                <label><input type="radio" name="activite" value={a.id} checked={i === 0} /><span>{a.label}</span></label>
+              ))}
+            </div>
+          </fieldset>
+          {activities.filter((a) => a.hebergements).map((a) => (
+            <fieldset data-for={a.id}>
+              <legend>Hébergement</legend>
+              <div class="cl-seg">
+                {a.hebergements!.map((h, i) => (
+                  <label><input type="radio" name={`heb-${a.id}`} value={h.id} checked={i === 0} /><span>{h.label}</span></label>
+                ))}
+              </div>
+            </fieldset>
+          ))}
+          {activities.filter((a) => a.glacier).map((a) => (
+            <fieldset data-for={a.id}>
+              <legend>Terrain</legend>
+              <label class="cl-toggle"><input type="checkbox" name={`glacier-${a.id}`} /><span>Itinéraire glaciaire</span></label>
+            </fieldset>
+          ))}
+        </form>
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--white">
+      <div class="site-shell">
+        <div class="cl-bar">
+          <p class="cl-progress" aria-live="polite"><strong data-cl-done>0</strong> / <span data-cl-total>0</span> éléments prêts</p>
+          <div class="cl-actions">
+            <button type="button" class="cl-btn" data-cl-print>Imprimer</button>
+            <button type="button" class="cl-btn cl-btn--ghost" data-cl-reset>Tout décocher</button>
+          </div>
+        </div>
+
+        {activities.map((a) => (
+          <div class="cl-activity" data-activity={a.id}>
+            <div class="cl-grid">
+              {a.sections.filter((s) => !s.guide).map((s) => (
+                <fieldset class="cl-section" data-when={s.when?.join(" ")}>
+                  <legend>{s.title}</legend>
+                  <ul>
+                    {s.items.map((it, i) => (
+                      <li><label><input type="checkbox" data-key={`${a.id}/${s.id}/${i}`} /><span>{it}</span></label></li>
+                    ))}
+                  </ul>
+                </fieldset>
+              ))}
+            </div>
+            <div class="cl-guide">
+              <h2 class="cl-guide__title">Porté ou géré par le guide <span>pour information</span></h2>
+              <div class="cl-grid">
+                {a.sections.filter((s) => s.guide).map((s) => (
+                  <div class="cl-section cl-section--guide" data-when={s.when?.join(" ")}>
+                    <h3>{s.title}</h3>
+                    <ul>{s.items.map((it) => <li>{it}</li>)}</ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="ed-section ed-section--paper cl-before">
+      <div class="site-shell ed-split">
+        <div class="ed-split__head">
+          <p class="ed-eyebrow">Avant le départ</p>
+          <h2 class="ed-h2">Trois choses à régler.</h2>
+        </div>
+        <ol class="cl-steps">
+          <li>
+            <strong>Remplir le formulaire de renseignements</strong>
+            <span>Dates, coordonnées, personne à prévenir, intolérances alimentaires, location de matériel.</span>
+            <a class="ed-link" href={FORM_RENSEIGNEMENTS} target="_blank" rel="noopener">Ouvrir le formulaire →</a>
+          </li>
+          <li>
+            <strong>Vérifier son assurance</strong>
+            <span>L’assurance RC professionnelle du guide ne couvre que les accidents où sa responsabilité est engagée : elle peut ne pas couvrir les frais de recherche, de secours ou de rapatriement. Une assurance personnelle est recommandée, surtout en Suisse et en Italie : carte club Au Vieux Campeur (30 € par année civile), assurance multisport GBC à la journée (4 € par jour), contrat « accident de la vie courante », ou licence FFCAM / FFME.</span>
+          </li>
+          <li>
+            <strong>Louer ou emprunter du matériel</strong>
+            <span>Location possible de skis, peaux, couteaux et bâtons SCOTT à 20 € par jour (à indiquer dans le formulaire). Prêt de matériel des partenaires, dans la limite des stocks : DVA ARVA Evo 4, pelles-sondes, sacs à dos et sac airbag ARVA ; casques, crampons et sacs à dos CAMP ; sacs de couchage Pyrenex Nepal 800 ; bols et cuillères pliants Sea to Summit.</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+  </main>
+
+  <ContactStrip />
+
+  <footer class="site-footer">
+    <div class="site-shell site-footer__grid">
+      <div>
+        <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+        <p class="site-footer__statement">Explorer · improviser · rencontrer · skier.</p>
+      </div>
+      <div class="site-footer__links">
+        <a href="https://wa.me/33689295826">WhatsApp · +33 6 89 29 58 26</a>
+        <a href="https://www.instagram.com/lesgrandsraidsaski/">Instagram</a>
+        <a href="https://www.facebook.com/yannborgnet/">Facebook</a>
+      </div>
+    </div>
+    <SponsorStrip />
+    <div class="site-shell site-footer__bottom">
+      <a href={withBase("/yann-borgnet-guide-haute-montagne/")}>Yann Borgnet · Guide de haute montagne UIAGM</a>
+      <span>© 2026</span>
+    </div>
+  </footer>
+</BaseLayout>
+
+<script>
+  const root = document.querySelector<HTMLElement>("[data-checklist]");
+  if (root) {
+    const form = root.querySelector<HTMLFormElement>(".cl-controls")!;
+    const KEY = "lgrs-checklist-v1";
+    let saved: Record<string, boolean> = {};
+    try { saved = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch { saved = {}; }
+    const save = () => { try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch { /* stockage indisponible */ } };
+
+    // Activité depuis l'URL (?activite=alpinisme) pour pouvoir envoyer un lien direct.
+    const fromUrl = new URLSearchParams(location.search).get("activite");
+    const radio = fromUrl ? form.querySelector<HTMLInputElement>(`input[name=activite][value="${CSS.escape(fromUrl)}"]`) : null;
+    if (radio) radio.checked = true;
+
+    root.querySelectorAll<HTMLInputElement>("input[data-key]").forEach((cb) => {
+      cb.checked = !!saved[cb.dataset.key!];
+      cb.addEventListener("change", () => { saved[cb.dataset.key!] = cb.checked; save(); count(); });
+    });
+
+    function count() {
+      const boxes = [...root!.querySelectorAll<HTMLInputElement>(".cl-activity:not([hidden]) .cl-section:not([hidden]) input[data-key]")];
+      root!.querySelector("[data-cl-done]")!.textContent = String(boxes.filter((b) => b.checked).length);
+      root!.querySelector("[data-cl-total]")!.textContent = String(boxes.length);
+    }
+    function update() {
+      const act = (form.querySelector<HTMLInputElement>("input[name=activite]:checked"))!.value;
+      form.querySelectorAll<HTMLElement>("fieldset[data-for]").forEach((f) => (f.hidden = f.dataset.for !== act));
+      const opts = new Set<string>();
+      const heb = form.querySelector<HTMLInputElement>(`input[name="heb-${act}"]:checked`);
+      if (heb) opts.add(heb.value);
+      if (form.querySelector<HTMLInputElement>(`input[name="glacier-${act}"]`)?.checked) opts.add("glacier");
+      root!.querySelectorAll<HTMLElement>("[data-activity]").forEach((a) => {
+        a.hidden = a.dataset.activity !== act;
+        a.querySelectorAll<HTMLElement>("[data-when]").forEach((s) => {
+          const when = (s.dataset.when || "").split(" ").filter(Boolean);
+          s.hidden = when.length > 0 && !when.some((w) => opts.has(w));
+        });
+        const guide = a.querySelector<HTMLElement>(".cl-guide");
+        if (guide) guide.hidden = !guide.querySelector(".cl-section:not([hidden])");
+      });
+      const url = new URL(location.href);
+      url.searchParams.set("activite", act);
+      history.replaceState(null, "", url);
+      count();
+    }
+    form.addEventListener("change", update);
+    root.querySelector("[data-cl-print]")!.addEventListener("click", () => window.print());
+    root.querySelector("[data-cl-reset]")!.addEventListener("click", () => {
+      root.querySelectorAll<HTMLInputElement>(".cl-activity:not([hidden]) input[data-key]").forEach((cb) => { cb.checked = false; saved[cb.dataset.key!] = false; });
+      save(); count();
+    });
+    update();
+  }
+</script>
