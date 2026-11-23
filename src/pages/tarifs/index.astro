@@ -148,8 +148,67 @@ const formules = [
       </div>
     </section>
 
+    <!-- 4. Compris / non compris -->
+    <section class="ed-section ed-section--white" id="prestations">
+      <div class="site-shell ed-split">
+        <div class="ed-split__head">
+          <p class="ed-eyebrow">Prestations</p>
+          <h2 class="ed-h2">Ce que comprennent les honoraires.</h2>
+        </div>
+        <div class="tarifs-blocks tarifs-blocks--two">
+          <div class="tarifs-block">
+            <h3>Compris dans les honoraires</h3>
+            <ul>
+              <li>Encadrement par un guide de haute montagne UIAGM.</li>
+              <li>Assurance responsabilité civile professionnelle.</li>
+              <li>Prêt du matériel de sécurité.</li>
+              <li>Prêt de matériel de marques partenaires.</li>
+            </ul>
+          </div>
+          <div class="tarifs-block">
+            <h3>Facturés en supplément</h3>
+            <ul>
+              <li>Pique-niques.</li>
+              <li>Forfait cabane non gardée (nourriture comprise).</li>
+              <li>Hébergements et nuitées.</li>
+              <li>Transports et remontées mécaniques.</li>
+              <li>Assurances rapatriement.</li>
+              <li>Vivres de course et consommations personnelles.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Transport -->
+    <section class="ed-section ed-section--paper" id="transport">
+      <div class="site-shell ed-split">
+        <div class="ed-split__head">
+          <p class="ed-eyebrow">Transport</p>
+          <h2 class="ed-h2">Depuis Fillière.</h2>
+        </div>
+        <div class="tarifs-blocks">
+          <div class="tarifs-block">
+            <ul>
+              <li>
+                Déplacement du guide pour rejoindre les clients : 0,25 €/km, plus autoroutes et tunnels.
+              </li>
+              <li>
+                Transport des clients dans le véhicule du guide : 0,50 €/km, plus autoroutes et tunnels,
+                y compris les kilomètres nécessaires pour rejoindre les clients.
+              </li>
+              <li>Tunnel du Mont-Blanc : environ 30 € aller-retour avec abonnement.</li>
+            </ul>
+          </div>
+          <p class="tarifs-warning">
+            Tous les montants de cette page sont indicatifs et ne constituent pas un devis contractuel.
+            <a class="ed-link" href={withBase("/contact/")}>Demander un devis →</a>
+          </p>
+        </div>
+      </div>
+    </section>
     <!-- Simulateur -->
-    <section class="ed-section ed-section--paper" id="simulateur">
+    <section class="ed-section ed-section--white" id="simulateur">
       <div class="site-shell">
         <div class="ed-split">
           <div class="ed-split__head">
@@ -162,7 +221,7 @@ const formules = [
     </section>
 
     <!-- 3. Exemples de budgets -->
-    <section class="ed-section ed-section--white" id="exemples">
+    <section class="ed-section ed-section--paper" id="exemples">
       <div class="site-shell">
         <div class="ed-split">
           <div class="ed-split__head">
@@ -221,65 +280,6 @@ const formules = [
       </div>
     </section>
 
-    <!-- 4. Compris / non compris -->
-    <section class="ed-section ed-section--paper" id="prestations">
-      <div class="site-shell ed-split">
-        <div class="ed-split__head">
-          <p class="ed-eyebrow">Prestations</p>
-          <h2 class="ed-h2">Ce que comprennent les honoraires.</h2>
-        </div>
-        <div class="tarifs-blocks tarifs-blocks--two">
-          <div class="tarifs-block">
-            <h3>Compris dans les honoraires</h3>
-            <ul>
-              <li>Encadrement par un guide de haute montagne UIAGM.</li>
-              <li>Assurance responsabilité civile professionnelle.</li>
-              <li>Prêt du matériel de sécurité.</li>
-              <li>Prêt de matériel de marques partenaires.</li>
-            </ul>
-          </div>
-          <div class="tarifs-block">
-            <h3>Facturés en supplément</h3>
-            <ul>
-              <li>Pique-niques.</li>
-              <li>Forfait cabane non gardée (nourriture comprise).</li>
-              <li>Hébergements et nuitées.</li>
-              <li>Transports et remontées mécaniques.</li>
-              <li>Assurances rapatriement.</li>
-              <li>Vivres de course et consommations personnelles.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. Transport -->
-    <section class="ed-section ed-section--white" id="transport">
-      <div class="site-shell ed-split">
-        <div class="ed-split__head">
-          <p class="ed-eyebrow">Transport</p>
-          <h2 class="ed-h2">Depuis Fillière.</h2>
-        </div>
-        <div class="tarifs-blocks">
-          <div class="tarifs-block">
-            <ul>
-              <li>
-                Déplacement du guide pour rejoindre les clients : 0,25 €/km, plus autoroutes et tunnels.
-              </li>
-              <li>
-                Transport des clients dans le véhicule du guide : 0,50 €/km, plus autoroutes et tunnels,
-                y compris les kilomètres nécessaires pour rejoindre les clients.
-              </li>
-              <li>Tunnel du Mont-Blanc : environ 30 € aller-retour avec abonnement.</li>
-            </ul>
-          </div>
-          <p class="tarifs-warning">
-            Tous les montants de cette page sont indicatifs et ne constituent pas un devis contractuel.
-            <a class="ed-link" href={withBase("/contact/")}>Demander un devis →</a>
-          </p>
-        </div>
-      </div>
-    </section>
   </main>
 
   <ContactStrip />
