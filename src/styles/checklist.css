@@ -70,3 +70,4 @@
   .cl-section { break-inside: avoid; }
 }
 .cl-before[hidden] { display: none; }
+.cl-hint { font-weight: 400; letter-spacing: 0; text-transform: none; }
