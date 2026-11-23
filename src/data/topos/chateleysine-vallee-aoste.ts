@@ -7,8 +7,8 @@
  * lissage par défaut, arrondi à 10 m). Script : scripts/gpx-topo-chateleysine.ts
  * (produit public/gpx/topo-chateleysine-vallee-aoste.gpx et le profil).
  *
- * Toponymie : départ, arrivée et point haut identifiés par coordonnées ; les
- * noms précis (hameau de départ, lieu d'arrivée, Mont Mary) restent à confirmer.
+ * Toponymie : départ Blavy et arrivée confirmés par Yann ; point haut (Mont Mary)
+ * identifié par coordonnées, à confirmer.
  * Bivouacs : données croisées refuges.info / lovevda.it / inalto, novembre 2026,
  * à reconfirmer chaque saison. Pas de carnet publié : pas de bloc Récits.
  */
@@ -76,17 +76,17 @@ export const chateleysine: Topo = {
     {
       label: { fr: "Départ", en: "Start", it: "Partenza" },
       value: {
-        fr: "Au-dessus de Roisan, 1 490 m (hameau exact à compléter)",
-        en: "Above Roisan, 1,490 m (exact hamlet to be completed)",
-        it: "Sopra Roisan, 1.490 m (frazione esatta da completare)",
+        fr: "Blavy (Roisan), 1 490 m",
+        en: "Blavy (Roisan), 1,490 m",
+        it: "Blavy (Roisan), 1.490 m",
       },
     },
     {
       label: { fr: "Arrivée", en: "Finish", it: "Arrivo" },
       value: {
-        fr: "Vallon de Saint-Barthélemy, vers 1 960 m (lieu exact à compléter)",
-        en: "Saint-Barthélemy valley, around 1,960 m (exact place to be completed)",
-        it: "Valle di Saint-Barthélemy, intorno ai 1.960 m (luogo esatto da completare)",
+        fr: "Vallon de Saint-Barthélemy, vers 1 960 m",
+        en: "Saint-Barthélemy valley, around 1,960 m",
+        it: "Valle di Saint-Barthélemy, intorno ai 1.960 m",
       },
     },
     { label: { fr: "Accès en transports publics", en: "Public transport", it: "Trasporti pubblici" }, value: null },
@@ -120,7 +120,7 @@ export const chateleysine: Topo = {
   ],
   gpx: "/gpx/topo-chateleysine-vallee-aoste.gpx",
   points: [
-    { id: "depart", kind: "depart", name: "Départ (Roisan)", lat: 45.7769, lon: 7.3409, ele: 1490 },
+    { id: "depart", kind: "depart", name: "Blavy", lat: 45.7769, lon: 7.3409, ele: 1490 },
     { id: "mary", kind: "sommet", name: "Mont Mary", lat: 45.793, lon: 7.3723, ele: 2815 },
     { id: "penne", kind: "bivouac", name: "Bivacco Penne Nere", lat: 45.7966, lon: 7.3674, ele: 2730 },
     { id: "lliee", kind: "bivouac", name: "Bivacco La Lliée", lat: 45.8178, lon: 7.4008, ele: 2422 },
@@ -130,7 +130,7 @@ export const chateleysine: Topo = {
   profile: profile as [number, number, number][],
   stages: [
     {
-      day: 1, from: "Roisan", to: "Penne Nere", source: "2024",
+      day: 1, from: "Blavy", to: "Penne Nere", source: "2024",
       distanceKm: 8.2, ascentM: 1400, descentM: 150, recordedMin: 430,
       waypoints: ["Mont Mary (2 815 m, à confirmer)", "Bivacco Penne Nere"],
       keyPassages: [
