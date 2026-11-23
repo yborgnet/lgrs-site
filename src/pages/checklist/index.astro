@@ -83,13 +83,17 @@ const canonical = "https://lesgrandsraidsaski.com/checklist/";
               ))}
             </div>
             <div class="cl-guide">
-              <h2 class="cl-guide__title">Porté ou géré par le guide <span>pour information</span></h2>
+              <h2 class="cl-guide__title">Porté ou géré par le guide <span data-cl-guide-count></span></h2>
               <div class="cl-grid">
                 {a.sections.filter((s) => s.guide).map((s) => (
-                  <div class="cl-section cl-section--guide" data-when={s.when?.join(" ")}>
-                    <h3>{s.title}</h3>
-                    <ul>{s.items.map((it) => <li>{it}</li>)}</ul>
-                  </div>
+                  <fieldset class="cl-section cl-section--guide" data-when={s.when?.join(" ")}>
+                    <legend>{s.title}</legend>
+                    <ul>
+                      {s.items.map((it, i) => (
+                        <li><label><input type="checkbox" data-key={`${a.id}/${s.id}/${i}`} data-guide /><span>{it}</span></label></li>
+                      ))}
+                    </ul>
+                  </fieldset>
                 ))}
               </div>
             </div>
@@ -165,9 +169,12 @@ const canonical = "https://lesgrandsraidsaski.com/checklist/";
     });
 
     function count() {
-      const boxes = [...root!.querySelectorAll<HTMLInputElement>(".cl-activity:not([hidden]) .cl-section:not([hidden]) input[data-key]")];
+      const all = [...root!.querySelectorAll<HTMLInputElement>(".cl-activity:not([hidden]) .cl-section:not([hidden]) input[data-key]")];
+      const boxes = all.filter((b) => !b.hasAttribute("data-guide"));
+      const guide = all.filter((b) => b.hasAttribute("data-guide"));
       root!.querySelector("[data-cl-done]")!.textContent = String(boxes.filter((b) => b.checked).length);
       root!.querySelector("[data-cl-total]")!.textContent = String(boxes.length);
+      root!.querySelectorAll<HTMLElement>(".cl-activity:not([hidden]) [data-cl-guide-count]").forEach((el) => (el.textContent = `${guide.filter((b) => b.checked).length} / ${guide.length}`));
     }
     function update() {
       const act = (form.querySelector<HTMLInputElement>("input[name=activite]:checked"))!.value;

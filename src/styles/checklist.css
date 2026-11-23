@@ -41,7 +41,8 @@
 .cl-guide__title { margin: 0 0 28px; font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
 .cl-guide__title span { margin-left: 8px; font-weight: 400; opacity: .55; text-transform: none; letter-spacing: 0; }
 .cl-section--guide h3 { font-size: 20px; }
-.cl-section--guide li { padding: 8px 0; font-size: 14px; opacity: .8; }
+.cl-section--guide legend { font-size: 20px; }
+.cl-section--guide label { font-size: 14px; }
 
 .cl-steps { margin: 0; padding: 0; list-style: none; counter-reset: s; border-bottom: 1px solid var(--line); }
 .cl-steps li { display: grid; gap: 8px; padding: 22px 0 22px 48px; border-top: 1px solid var(--line); position: relative; counter-increment: s; }
