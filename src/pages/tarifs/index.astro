@@ -1,0 +1,329 @@
+---
+import SponsorStrip from "../../components/shared/SponsorStrip.astro";
+import ContactStrip from "../../components/shared/ContactStrip.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Header from "../../components/Header.astro";
+import "../../styles/editorial.css";
+import "../../styles/tarifs.css";
+import { withBase } from "../../lib/url";
+import {
+  categories,
+  clientCounts,
+  dayRate,
+  eur,
+  exemple,
+  budgetCabane,
+  budgetRefuge,
+} from "../../data/tarifs2027";
+
+const canonical = "https://lesgrandsraidsaski.com/tarifs/";
+
+function conditions(n: number): string[] {
+  const out: string[] = [];
+  if (n >= 4) out.push("Ski-alpinisme / alpinisme : non (3 max.)");
+  if (n >= 6) out.push("Raid glaciaire : non (5 max.)");
+  if (n >= 7) out.push("Après validation du niveau du groupe, si l’activité le permet");
+  return out;
+}
+
+const cab3 = budgetCabane(3);
+const cab4 = budgetCabane(4);
+const ref3 = budgetRefuge(3);
+const ref4 = budgetRefuge(4);
+---
+
+<BaseLayout
+  title="Tarifs 2027 | Guide de haute montagne, raids à ski | Yann Borgnet"
+  description="Tarifs 2027 d’un guide de haute montagne UIAGM : journée classique 550 €, itinérance et raid à ski 600 €, journée XL et raid glaciaire dès 650 €. Suppléments par client, forfaits et exemples de budgets."
+  canonical={canonical}
+>
+  <Header solid />
+
+  <main class="tarifs">
+    <section class="ed-section ed-section--paper tarifs-hero">
+      <div class="site-shell">
+        <p class="ed-eyebrow">Tarifs 2027</p>
+        <h1 class="tarifs-title">Le prix d’une journée <em>en montagne.</em></h1>
+        <p class="tarifs-lead">
+          Honoraires du guide d’un côté, frais annexes de l’autre : nourriture, refuges, transport.
+          Les montants ci-dessous permettent d’estimer le coût d’un projet ; chaque sortie fait ensuite
+          l’objet d’un devis.
+        </p>
+      </div>
+    </section>
+
+    <!-- 1. Tarifs journaliers -->
+    <section class="ed-section ed-section--white" id="tarifs-journaliers">
+      <div class="site-shell">
+        <div class="ed-split">
+          <div class="ed-split__head">
+            <p class="ed-eyebrow">Honoraires du guide</p>
+            <h2 class="ed-h2">Tarifs journaliers 2027.</h2>
+          </div>
+          <div>
+            <ul class="tarifs-cards">
+              {categories.map((c) => (
+                <li class="tarifs-card">
+                  <span class="tarifs-card__label">{c.label}</span>
+                  <span class="tarifs-card__price">
+                    {c.prefix && <small>{c.prefix}</small>}
+                    {eur(c.base)}<small> / jour</small>
+                  </span>
+                </li>
+              ))}
+            </ul>
+            <div class="ed-prose tarifs-prose">
+              <p>
+                Les tarifs de base correspondent à un client. Du 2<sup>e</sup> au 6<sup>e</sup> client,
+                le tarif augmente de 50 € par client supplémentaire ; pour les 7<sup>e</sup> et
+                8<sup>e</sup> clients, de 100 € par client supplémentaire, après validation préalable du
+                niveau du groupe. Huit clients au maximum, uniquement lorsque l’activité le permet.
+              </p>
+              <p>
+                Ski-alpinisme et alpinisme : 2 à 3 participants maximum. Raid glaciaire : 5 participants
+                maximum.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tarifs-table-wrap" role="region" aria-label="Tarifs journaliers de 1 à 8 clients" tabindex="0">
+          <table class="tarifs-table tarifs-table--grid">
+            <caption>Tarif journalier du guide pour le groupe, selon le nombre de clients</caption>
+            <thead>
+              <tr>
+                <th scope="col">Clients</th>
+                <th scope="col">Classique</th>
+                <th scope="col">Itinérance / raid à ski</th>
+                <th scope="col">XL, ski-alpinisme, alpinisme, raid glaciaire <span class="tarifs-note">(à partir de)</span></th>
+                <th scope="col">Restrictions d’effectif</th>
+              </tr>
+            </thead>
+            <tbody>
+              {clientCounts.map((n) => (
+                <tr class:list={{ "is-extended": n >= 7 }}>
+                  <th scope="row">{n}</th>
+                  {categories.map((c) => <td class="num">{eur(dayRate(c.base, n))}</td>)}
+                  <td class="tarifs-cond">
+                    {conditions(n).length ? conditions(n).map((x) => <span>{x}</span>) : "—"}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Forfaits complémentaires -->
+    <section class="ed-section ed-section--paper" id="forfaits">
+      <div class="site-shell ed-split">
+        <div class="ed-split__head">
+          <p class="ed-eyebrow">Frais annexes</p>
+          <h2 class="ed-h2">Forfaits complémentaires.</h2>
+        </div>
+        <div class="tarifs-blocks">
+          <div class="tarifs-block">
+            <h3>Cabane non gardée</h3>
+            <ul>
+              <li>50 € par nuit et par client pour la nourriture.</li>
+              <li>40 € par nuit pour la nourriture du guide, à répartir entre les clients.</li>
+              <li>Nuitées en cabane non gardée ou en bivouac non comprises.</li>
+            </ul>
+          </div>
+          <div class="tarifs-block">
+            <h3>Pique-niques</h3>
+            <ul>
+              <li>15 € par pique-nique et par personne.</li>
+              <li>Produits locaux ou soigneusement sourcés.</li>
+              <li>Obligatoires pour les séjours de plus d’une journée.</li>
+            </ul>
+          </div>
+          <div class="tarifs-block">
+            <h3>Préparation</h3>
+            <p>
+              Un forfait supplémentaire peut être appliqué selon le projet, notamment en cas de changement
+              d’itinéraire nécessitant une préparation importante ou de départ anticipé pour une
+              destination éloignée.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Exemples de budgets -->
+    <section class="ed-section ed-section--white" id="exemples">
+      <div class="site-shell">
+        <div class="ed-split">
+          <div class="ed-split__head">
+            <p class="ed-eyebrow">Exemples</p>
+            <h2 class="ed-h2">Exemples de budgets — 4 jours de ski de randonnée glaciaire.</h2>
+          </div>
+          <div class="ed-prose tarifs-prose">
+            <p>Hypothèses communes aux deux formules :</p>
+            <ul class="tarifs-list">
+              <li>{exemple.jours} jours d’encadrement, {exemple.nuits} nuits ;</li>
+              <li>3 ou 4 clients ;</li>
+              <li>tarif guide : {exemple.tarifGuide} €/jour + 50 € par client supplémentaire ;</li>
+              <li>{exemple.jours} pique-niques par client à {exemple.piqueNique} € ;</li>
+              <li>transport non compris.</li>
+            </ul>
+            <p class="tarifs-warning">
+              Ces exemples sont indicatifs et ne constituent pas un devis contractuel.
+            </p>
+          </div>
+        </div>
+
+        <div class="tarifs-examples">
+          <div class="tarifs-example">
+            <h3>Formule A — Cabanes non gardées</h3>
+            <div class="tarifs-table-wrap" role="region" aria-label="Formule A, cabanes non gardées" tabindex="0">
+              <table class="tarifs-table">
+                <thead>
+                  <tr><th scope="col">Poste</th><th scope="col">3 clients</th><th scope="col">4 clients</th></tr>
+                </thead>
+                <tbody>
+                  <tr class="is-fee"><th scope="row">Honoraires du guide</th><td class="num">{eur(cab3.honoraires)}</td><td class="num">{eur(cab4.honoraires)}</td></tr>
+                  <tr class="is-group-start"><th scope="row">Nourriture des clients</th><td class="num">{eur(cab3.nourritureClients)}</td><td class="num">{eur(cab4.nourritureClients)}</td></tr>
+                  <tr><th scope="row">Nourriture du guide</th><td class="num">{eur(cab3.nourritureGuide)}</td><td class="num">{eur(cab4.nourritureGuide)}</td></tr>
+                  <tr><th scope="row">Pique-niques</th><td class="num">{eur(cab3.piqueNiques)}</td><td class="num">{eur(cab4.piqueNiques)}</td></tr>
+                </tbody>
+                <tfoot>
+                  <tr><th scope="row">Total groupe</th><td class="num">{eur(cab3.total)}</td><td class="num">{eur(cab4.total)}</td></tr>
+                  <tr class="is-per-person"><th scope="row">Prix par client</th><td class="num">{eur(cab3.parClient)}</td><td class="num">{eur(cab4.parClient)}</td></tr>
+                </tfoot>
+              </table>
+            </div>
+            <p class="tarifs-footnote">
+              Les nuitées en cabane non gardée ou en bivouac ne sont pas comprises dans ces montants.
+            </p>
+          </div>
+
+          <div class="tarifs-example">
+            <h3>Formule B — Refuges suisses gardés</h3>
+            <div class="tarifs-table-wrap" role="region" aria-label="Formule B, refuges suisses gardés" tabindex="0">
+              <table class="tarifs-table">
+                <thead>
+                  <tr><th scope="col">Poste</th><th scope="col">3 clients</th><th scope="col">4 clients</th></tr>
+                </thead>
+                <tbody>
+                  <tr class="is-fee"><th scope="row">Honoraires du guide</th><td class="num">{eur(ref3.honoraires)}</td><td class="num">{eur(ref4.honoraires)}</td></tr>
+                  <tr class="is-group-start"><th scope="row">Refuges des clients</th><td class="num">{eur(ref3.refugesClients)}</td><td class="num">{eur(ref4.refugesClients)}</td></tr>
+                  <tr><th scope="row">Refuges du guide</th><td class="num">{eur(ref3.refugesGuide)}</td><td class="num">{eur(ref4.refugesGuide)}</td></tr>
+                  <tr><th scope="row">Pique-niques</th><td class="num">{eur(ref3.piqueNiques)}</td><td class="num">{eur(ref4.piqueNiques)}</td></tr>
+                </tbody>
+                <tfoot>
+                  <tr><th scope="row">Total groupe</th><td class="num">{eur(ref3.total)}</td><td class="num">{eur(ref4.total)}</td></tr>
+                  <tr class="is-per-person"><th scope="row">Prix par client</th><td class="num">{eur(ref3.parClient)}</td><td class="num">{eur(ref4.parClient)}</td></tr>
+                </tfoot>
+              </table>
+            </div>
+            <p class="tarifs-footnote">
+              {`Hypothèses : ${exemple.refuge.client} € par nuit et par client en demi-pension, ${exemple.refuge.guide} € par nuit`} pour le guide. Montants indicatifs, qui dépendent des
+              tarifs réels des refuges.
+            </p>
+          </div>
+        </div>
+
+        <div class="tarifs-compare">
+          <h3>En résumé, prix par personne</h3>
+          <div class="tarifs-table-wrap" role="region" aria-label="Comparatif des formules" tabindex="0">
+            <table class="tarifs-table tarifs-table--compare">
+              <thead>
+                <tr><th scope="col">Formule</th><th scope="col">3 clients</th><th scope="col">4 clients</th></tr>
+              </thead>
+              <tbody>
+                <tr><th scope="row">Cabanes non gardées <span class="tarifs-note">(hors nuitées)</span></th><td class="num">{eur(cab3.parClient)}<small>/pers.</small></td><td class="num">{eur(cab4.parClient)}<small>/pers.</small></td></tr>
+                <tr><th scope="row">Refuges suisses gardés</th><td class="num">{eur(ref3.parClient)}<small>/pers.</small></td><td class="num">{eur(ref4.parClient)}<small>/pers.</small></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Compris / non compris -->
+    <section class="ed-section ed-section--paper" id="prestations">
+      <div class="site-shell ed-split">
+        <div class="ed-split__head">
+          <p class="ed-eyebrow">Prestations</p>
+          <h2 class="ed-h2">Ce que comprennent les honoraires.</h2>
+        </div>
+        <div class="tarifs-blocks tarifs-blocks--two">
+          <div class="tarifs-block">
+            <h3>Compris dans les honoraires</h3>
+            <ul>
+              <li>Encadrement par un guide de haute montagne UIAGM.</li>
+              <li>Assurance responsabilité civile professionnelle.</li>
+              <li>Prêt du matériel de sécurité.</li>
+              <li>Prêt de matériel de marques partenaires.</li>
+            </ul>
+          </div>
+          <div class="tarifs-block">
+            <h3>Facturés en supplément</h3>
+            <ul>
+              <li>Pique-niques.</li>
+              <li>Nourriture en cabane non gardée.</li>
+              <li>Hébergements et nuitées.</li>
+              <li>Transports et remontées mécaniques.</li>
+              <li>Assurances rapatriement.</li>
+              <li>Vivres de course et consommations personnelles.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. Transport -->
+    <section class="ed-section ed-section--white" id="transport">
+      <div class="site-shell ed-split">
+        <div class="ed-split__head">
+          <p class="ed-eyebrow">Transport</p>
+          <h2 class="ed-h2">Depuis Fillière.</h2>
+        </div>
+        <div class="tarifs-blocks">
+          <div class="tarifs-block">
+            <ul>
+              <li>
+                Déplacement du guide pour rejoindre les clients : 0,25 €/km, plus autoroutes et tunnels.
+              </li>
+              <li>
+                Transport des clients dans le véhicule du guide : 0,50 €/km, plus autoroutes et tunnels,
+                y compris les kilomètres nécessaires pour rejoindre les clients.
+              </li>
+              <li>Tunnel du Mont-Blanc : environ 30 € aller-retour avec abonnement.</li>
+            </ul>
+          </div>
+          <p class="tarifs-warning">
+            Tous les montants de cette page sont indicatifs et ne constituent pas un devis contractuel.
+            <a class="ed-link" href={withBase("/contact/")}>Demander un devis →</a>
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <ContactStrip />
+
+  <footer class="site-footer">
+    <div class="site-shell site-footer__grid">
+      <div>
+        <p class="eyebrow">LES GRANDS RAIDS À SKI</p>
+        <p class="site-footer__statement">Explorer · improviser · rencontrer · skier.</p>
+      </div>
+
+      <div class="site-footer__links">
+        <a href="https://wa.me/33689295826">WhatsApp · +33 6 89 29 58 26</a>
+        <a href="https://www.instagram.com/lesgrandsraidsaski/">Instagram</a>
+        <a href="https://www.facebook.com/yannborgnet/">Facebook</a>
+      </div>
+    </div>
+
+    <SponsorStrip />
+
+    <div class="site-shell site-footer__bottom">
+      <span>Yann Borgnet · Guide de haute montagne UIAGM</span>
+      <span>© 2026</span>
+    </div>
+  </footer>
+</BaseLayout>

@@ -1,0 +1,382 @@
+/* Page /tarifs/ — grille 2027. Reprend le système éditorial (editorial.css). */
+
+.tarifs-hero {
+  padding-bottom: 72px;
+}
+
+.tarifs-title {
+  max-width: 900px;
+  margin: 0 0 28px;
+  font-family: var(--font-serif);
+  font-weight: 300;
+  font-size: clamp(42px, 6vw, 84px);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.tarifs-title em {
+  color: var(--violet);
+}
+
+.tarifs-lead {
+  max-width: 640px;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(19px, 1.8vw, 23px);
+  font-weight: 300;
+  line-height: 1.5;
+  opacity: 0.86;
+}
+
+/* Trois catégories */
+
+.tarifs-cards {
+  margin: 0 0 40px;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--line);
+}
+
+.tarifs-card {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 22px 0;
+  border-top: 1px solid var(--line);
+}
+
+.tarifs-card__label {
+  min-width: 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.tarifs-card__price {
+  flex: none;
+  font-family: var(--font-serif);
+  font-size: clamp(26px, 2.4vw, 34px);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.tarifs-card__price small {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+.tarifs-prose p {
+  font-size: 16px;
+}
+
+.tarifs-list {
+  margin: 0 0 20px;
+  padding-left: 18px;
+  font-size: 16px;
+  line-height: 1.75;
+  opacity: 0.82;
+}
+
+.tarifs-warning {
+  margin: 24px 0 0;
+  padding: 16px 18px;
+  border-left: 2px solid var(--violet);
+  background: var(--violet-pale);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.tarifs-warning a {
+  margin-left: 6px;
+  white-space: nowrap;
+}
+
+.tarifs-note {
+  font-weight: 400;
+  opacity: 0.6;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* Tableaux */
+
+.tarifs-table-wrap {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.tarifs-table-wrap:focus-visible {
+  outline: 2px solid var(--violet);
+  outline-offset: 4px;
+}
+
+.tarifs-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+.tarifs-table caption {
+  padding-bottom: 14px;
+  text-align: left;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+.tarifs-table th,
+.tarifs-table td {
+  padding: 13px 14px;
+  border-top: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.tarifs-table th:first-child,
+.tarifs-table td:first-child {
+  padding-left: 0;
+}
+
+.tarifs-table thead th {
+  border-top: 0;
+  border-bottom: 1px solid var(--ink);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  vertical-align: bottom;
+}
+
+.tarifs-table tbody th {
+  font-weight: 500;
+}
+
+.tarifs-table .num {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.tarifs-table thead th:not(:first-child) {
+  text-align: right;
+}
+
+.tarifs-table--grid {
+  min-width: 760px;
+  margin-top: 64px;
+}
+
+.tarifs-table--grid tbody th {
+  width: 80px;
+}
+
+.tarifs-table--grid thead th:last-child {
+  text-align: left;
+}
+
+.tarifs-table--grid tr.is-extended {
+  background: rgba(11, 11, 10, 0.03);
+}
+
+.tarifs-cond {
+  font-size: 13px;
+  opacity: 0.72;
+}
+
+.tarifs-cond span {
+  display: block;
+}
+
+/* Exemples */
+
+.tarifs-examples {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 64px;
+  margin-top: 72px;
+}
+
+.tarifs-example h3,
+.tarifs-compare h3,
+.tarifs-block h3 {
+  margin: 0 0 18px;
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 2vw, 28px);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+.tarifs-example .tarifs-table {
+  min-width: 380px;
+}
+
+.tarifs-table tr.is-fee th,
+.tarifs-table tr.is-fee td {
+  font-weight: 600;
+}
+
+.tarifs-table tr.is-group-start th,
+.tarifs-table tr.is-group-start td {
+  border-top: 1px dashed rgba(11, 11, 10, 0.35);
+}
+
+.tarifs-table tfoot th,
+.tarifs-table tfoot td {
+  border-top: 1px solid var(--ink);
+  font-weight: 600;
+}
+
+.tarifs-table tfoot tr.is-per-person th,
+.tarifs-table tfoot tr.is-per-person td {
+  border-top: 0;
+  background: var(--violet-pale);
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.tarifs-table tfoot tr.is-per-person th {
+  padding-left: 14px;
+}
+
+.tarifs-footnote {
+  margin: 14px 0 0;
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.7;
+}
+
+.tarifs-compare {
+  max-width: 760px;
+  margin-top: 88px;
+}
+
+.tarifs-table--compare {
+  min-width: 440px;
+}
+
+.tarifs-table--compare td {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.tarifs-table--compare td small {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 400;
+  opacity: 0.6;
+}
+
+/* Blocs texte */
+
+.tarifs-blocks {
+  display: grid;
+  gap: 40px;
+}
+
+.tarifs-blocks--two {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.tarifs-block ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--line);
+}
+
+.tarifs-block li {
+  padding: 12px 0;
+  border-top: 1px solid var(--line);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.tarifs-block p {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.75;
+  opacity: 0.82;
+}
+
+@media (max-width: 960px) {
+  .tarifs-examples,
+  .tarifs-blocks--two {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 48px;
+  }
+}
+
+@media (max-width: 820px), (hover: none) and (pointer: coarse) {
+  .tarifs-card {
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .tarifs-table--grid {
+    margin-top: 40px;
+  }
+
+  .tarifs-examples {
+    margin-top: 48px;
+  }
+
+  .tarifs-compare {
+    margin-top: 56px;
+  }
+
+  .tarifs-table--compare td {
+    font-size: 20px;
+  }
+}
+
+.tarifs-table--grid td.num { width: 15%; }
+.tarifs-table--grid thead th:nth-child(4) { max-width: 220px; }
+
+@media (max-width: 820px), (hover: none) and (pointer: coarse) {
+  .tarifs-example .tarifs-table,
+  .tarifs-table--compare {
+    min-width: 0;
+    font-size: 14px;
+  }
+
+  .tarifs-example .tarifs-table th,
+  .tarifs-example .tarifs-table td,
+  .tarifs-table--compare th,
+  .tarifs-table--compare td {
+    padding: 11px 8px;
+  }
+
+  .tarifs-table tfoot tr.is-per-person th,
+  .tarifs-table tfoot tr.is-per-person td {
+    font-size: 17px;
+  }
+
+  .tarifs-table tfoot tr.is-per-person th {
+    padding-left: 10px;
+  }
+
+  .tarifs-table--compare td {
+    font-size: 18px;
+  }
+
+  .tarifs-table--compare td small {
+    display: block;
+  }
+
+  .tarifs-table--grid thead th:nth-child(4) {
+    min-width: 170px;
+  }
+
+  .tarifs-table--grid td.tarifs-cond {
+    min-width: 220px;
+  }
+}
