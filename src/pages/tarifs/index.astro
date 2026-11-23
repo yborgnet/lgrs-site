@@ -11,9 +11,11 @@ import {
   clientCounts,
   dayRate,
   eur,
-  exemple,
-  budgetCabane,
-  budgetRefuge,
+  scenarios,
+  budget,
+  PIQUE_NIQUE,
+  CABANE,
+  REFUGE,
 } from "../../data/tarifs2027";
 
 const canonical = "https://lesgrandsraidsaski.com/tarifs/";
@@ -26,10 +28,11 @@ function conditions(n: number): string[] {
   return out;
 }
 
-const cab3 = budgetCabane(3);
-const cab4 = budgetCabane(4);
-const ref3 = budgetRefuge(3);
-const ref4 = budgetRefuge(4);
+const eur0 = (n: number) => eur(Math.round(n));
+const formules = [
+  { id: "cabane" as const, title: "Cabanes non gardées", heb: "Forfait cabane clients (nourriture comprise)", hebGuide: "Forfait cabane guide (nourriture comprise)", fee: true },
+  { id: "refuge" as const, title: "Refuges gardés", heb: "Refuges des clients (demi-pension)", hebGuide: "Refuge du guide", fee: false },
+];
 ---
 
 <BaseLayout
@@ -124,10 +127,10 @@ const ref4 = budgetRefuge(4);
         </div>
         <div class="tarifs-blocks">
           <div class="tarifs-block">
-            <h3>Cabane non gardée</h3>
+            <h3>Forfait cabane non gardée</h3>
             <ul>
-              <li>50 € par nuit et par client pour la nourriture.</li>
-              <li>40 € par nuit pour la nourriture du guide, à répartir entre les clients.</li>
+              <li>Forfait d’honoraires, nourriture comprise : 50 € par nuit et par client.</li>
+              <li>40 € par nuit pour le guide, à répartir entre les clients.</li>
               <li>Nuitées en cabane non gardée ou en bivouac non comprises.</li>
             </ul>
           </div>
@@ -157,16 +160,15 @@ const ref4 = budgetRefuge(4);
         <div class="ed-split">
           <div class="ed-split__head">
             <p class="ed-eyebrow">Exemples</p>
-            <h2 class="ed-h2">Exemples de budgets — 4 jours de ski de randonnée glaciaire.</h2>
+            <h2 class="ed-h2">Exemples de budgets.</h2>
           </div>
           <div class="ed-prose tarifs-prose">
-            <p>Hypothèses communes aux deux formules :</p>
+            <p>Hypothèses communes :</p>
             <ul class="tarifs-list">
-              <li>{exemple.jours} jours d’encadrement, {exemple.nuits} nuits ;</li>
-              <li>3 ou 4 clients ;</li>
-              <li>tarif guide : {exemple.tarifGuide} €/jour + 50 € par client supplémentaire ;</li>
-              <li>{exemple.jours} pique-niques par client à {exemple.piqueNique} € ;</li>
-              <li>transport non compris.</li>
+              <li>forfait cabane non gardée (honoraires, nourriture comprise) : {CABANE.client} € par nuit et par client, + {CABANE.guide} € par nuit pour le guide, réparti entre les clients ;</li>
+              <li>refuges gardés : {REFUGE.client} € par nuit et par client en demi-pension, {REFUGE.guide} € par nuit pour le guide (montants qui dépendent des tarifs réels) ;</li>
+              <li>un pique-nique par jour et par client à {PIQUE_NIQUE} € ;</li>
+              <li>nuitées en cabane non gardée et transport non compris.</li>
             </ul>
             <p class="tarifs-warning">
               Ces exemples sont indicatifs et ne constituent pas un devis contractuel.
@@ -174,71 +176,41 @@ const ref4 = budgetRefuge(4);
           </div>
         </div>
 
-        <div class="tarifs-examples">
-          <div class="tarifs-example">
-            <h3>Formule A — Cabanes non gardées</h3>
-            <div class="tarifs-table-wrap" role="region" aria-label="Formule A, cabanes non gardées" tabindex="0">
-              <table class="tarifs-table">
-                <thead>
-                  <tr><th scope="col">Poste</th><th scope="col">3 clients</th><th scope="col">4 clients</th></tr>
-                </thead>
-                <tbody>
-                  <tr class="is-fee"><th scope="row">Honoraires du guide</th><td class="num">{eur(cab3.honoraires)}</td><td class="num">{eur(cab4.honoraires)}</td></tr>
-                  <tr class="is-group-start"><th scope="row">Nourriture des clients</th><td class="num">{eur(cab3.nourritureClients)}</td><td class="num">{eur(cab4.nourritureClients)}</td></tr>
-                  <tr><th scope="row">Nourriture du guide</th><td class="num">{eur(cab3.nourritureGuide)}</td><td class="num">{eur(cab4.nourritureGuide)}</td></tr>
-                  <tr><th scope="row">Pique-niques</th><td class="num">{eur(cab3.piqueNiques)}</td><td class="num">{eur(cab4.piqueNiques)}</td></tr>
-                </tbody>
-                <tfoot>
-                  <tr><th scope="row">Total groupe</th><td class="num">{eur(cab3.total)}</td><td class="num">{eur(cab4.total)}</td></tr>
-                  <tr class="is-per-person"><th scope="row">Prix par client</th><td class="num">{eur(cab3.parClient)}</td><td class="num">{eur(cab4.parClient)}</td></tr>
-                </tfoot>
-              </table>
-            </div>
-            <p class="tarifs-footnote">
-              Les nuitées en cabane non gardée ou en bivouac ne sont pas comprises dans ces montants.
+        {scenarios.map((sc) => (
+          <div class="tarifs-scenario">
+            <h3 class="tarifs-scenario__title">{sc.title}</h3>
+            <p class="tarifs-scenario__meta">
+              {sc.jours} jours d’encadrement, {sc.nuits} nuits · tarif {sc.categorie} : {eur(sc.tarifGuide)}/jour pour un client, + 50 € par client supplémentaire
             </p>
-          </div>
-
-          <div class="tarifs-example">
-            <h3>Formule B — Refuges suisses gardés</h3>
-            <div class="tarifs-table-wrap" role="region" aria-label="Formule B, refuges suisses gardés" tabindex="0">
-              <table class="tarifs-table">
-                <thead>
-                  <tr><th scope="col">Poste</th><th scope="col">3 clients</th><th scope="col">4 clients</th></tr>
-                </thead>
-                <tbody>
-                  <tr class="is-fee"><th scope="row">Honoraires du guide</th><td class="num">{eur(ref3.honoraires)}</td><td class="num">{eur(ref4.honoraires)}</td></tr>
-                  <tr class="is-group-start"><th scope="row">Refuges des clients</th><td class="num">{eur(ref3.refugesClients)}</td><td class="num">{eur(ref4.refugesClients)}</td></tr>
-                  <tr><th scope="row">Refuges du guide</th><td class="num">{eur(ref3.refugesGuide)}</td><td class="num">{eur(ref4.refugesGuide)}</td></tr>
-                  <tr><th scope="row">Pique-niques</th><td class="num">{eur(ref3.piqueNiques)}</td><td class="num">{eur(ref4.piqueNiques)}</td></tr>
-                </tbody>
-                <tfoot>
-                  <tr><th scope="row">Total groupe</th><td class="num">{eur(ref3.total)}</td><td class="num">{eur(ref4.total)}</td></tr>
-                  <tr class="is-per-person"><th scope="row">Prix par client</th><td class="num">{eur(ref3.parClient)}</td><td class="num">{eur(ref4.parClient)}</td></tr>
-                </tfoot>
-              </table>
+            {sc.note && <p class="tarifs-footnote">{sc.note}</p>}
+            <div class="tarifs-examples">
+              {formules.map((f) => (
+                <div class="tarifs-example">
+                  <h4>{f.title}</h4>
+                  <div class="tarifs-table-wrap" role="region" aria-label={`${sc.title}, ${f.title}`} tabindex="0">
+                    <table class="tarifs-table">
+                      <thead>
+                        <tr><th scope="col">Poste</th>{sc.clients.map((n) => <th scope="col">{n} clients</th>)}</tr>
+                      </thead>
+                      <tbody>
+                        <tr class="is-fee"><th scope="row">Honoraires du guide</th>{sc.clients.map((n) => <td class="num">{eur(budget(sc, n, f.id).honoraires)}</td>)}</tr>
+                        <tr class:list={{ "is-fee": f.fee, "is-group-start": !f.fee }}><th scope="row">{f.heb}</th>{sc.clients.map((n) => <td class="num">{eur(budget(sc, n, f.id).hebClients)}</td>)}</tr>
+                        <tr class:list={{ "is-fee": f.fee }}><th scope="row">{f.hebGuide}</th>{sc.clients.map((n) => <td class="num">{eur(budget(sc, n, f.id).hebGuide)}</td>)}</tr>
+                        <tr class="is-group-start"><th scope="row">Pique-niques</th>{sc.clients.map((n) => <td class="num">{eur(budget(sc, n, f.id).piqueNiques)}</td>)}</tr>
+                      </tbody>
+                      <tfoot>
+                        <tr><th scope="row">Total groupe</th>{sc.clients.map((n) => <td class="num">{eur(budget(sc, n, f.id).total)}</td>)}</tr>
+                        <tr class="is-per-person"><th scope="row">Prix par client</th>{sc.clients.map((n) => <td class="num">{eur0(budget(sc, n, f.id).parClient)}</td>)}</tr>
+                      </tfoot>
+                    </table>
+                  </div>
+                  {f.id === "cabane" && <p class="tarifs-footnote">Hors nuitées en cabane non gardée.</p>}
+                </div>
+              ))}
             </div>
-            <p class="tarifs-footnote">
-              {`Hypothèses : ${exemple.refuge.client} € par nuit et par client en demi-pension, ${exemple.refuge.guide} € par nuit`} pour le guide. Montants indicatifs, qui dépendent des
-              tarifs réels des refuges.
-            </p>
           </div>
-        </div>
-
-        <div class="tarifs-compare">
-          <h3>En résumé, prix par personne</h3>
-          <div class="tarifs-table-wrap" role="region" aria-label="Comparatif des formules" tabindex="0">
-            <table class="tarifs-table tarifs-table--compare">
-              <thead>
-                <tr><th scope="col">Formule</th><th scope="col">3 clients</th><th scope="col">4 clients</th></tr>
-              </thead>
-              <tbody>
-                <tr><th scope="row">Cabanes non gardées <span class="tarifs-note">(hors nuitées)</span></th><td class="num">{eur(cab3.parClient)}<small>/pers.</small></td><td class="num">{eur(cab4.parClient)}<small>/pers.</small></td></tr>
-                <tr><th scope="row">Refuges suisses gardés</th><td class="num">{eur(ref3.parClient)}<small>/pers.</small></td><td class="num">{eur(ref4.parClient)}<small>/pers.</small></td></tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        ))}
+        <p class="tarifs-footnote">Prix par client arrondis à l’euro.</p>
       </div>
     </section>
 
@@ -263,7 +235,7 @@ const ref4 = budgetRefuge(4);
             <h3>Facturés en supplément</h3>
             <ul>
               <li>Pique-niques.</li>
-              <li>Nourriture en cabane non gardée.</li>
+              <li>Forfait cabane non gardée (nourriture comprise).</li>
               <li>Hébergements et nuitées.</li>
               <li>Transports et remontées mécaniques.</li>
               <li>Assurances rapatriement.</li>

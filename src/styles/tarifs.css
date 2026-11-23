@@ -380,3 +380,45 @@
     min-width: 220px;
   }
 }
+
+/* Scénarios d'exemples */
+.tarifs-scenario {
+  margin-top: 88px;
+  padding-top: 40px;
+  border-top: 1px solid var(--ink);
+}
+
+.tarifs-scenario__title {
+  margin: 0 0 10px;
+  font-family: var(--font-serif);
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+.tarifs-scenario__meta {
+  margin: 0 0 8px;
+  font-size: 15px;
+  opacity: 0.75;
+}
+
+.tarifs-scenario .tarifs-examples {
+  margin-top: 40px;
+}
+
+.tarifs-example h4 {
+  margin: 0 0 16px;
+  font-family: var(--font-serif);
+  font-size: clamp(20px, 1.8vw, 24px);
+  font-weight: 400;
+}
+
+.tarifs-example .tarifs-table {
+  min-width: 0;
+}
+
+@media (max-width: 820px), (hover: none) and (pointer: coarse) {
+  .tarifs-scenario {
+    margin-top: 56px;
+  }
+}

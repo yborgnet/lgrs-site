@@ -32,53 +32,73 @@ export const clientCounts = Array.from({ length: MAX_CLIENTS }, (_, i) => i + 1)
 /** Formats : 1 250 € (espace insécable fine, comme le reste du site). */
 export const eur = (n: number) => `${n.toLocaleString("fr-FR").replace(/ | /g, " ")} €`;
 
-/* ---- Exemples : raid glaciaire de 4 jours ---- */
+/* ---- Exemples de budgets ----
+ * Le forfait cabane non gardée est un forfait d'honoraires, nourriture
+ * comprise : 50 € par nuit et par client, + 40 € par nuit pour le guide,
+ * réparti entre les clients. Pique-niques : 15 € par jour et par client.
+ * Refuges gardés : hypothèse de 120 € par nuit et par client en demi-pension,
+ * 60 € par nuit pour le guide. Transport non compris. */
 
-export const exemple = {
-  jours: 4,
-  nuits: 3,
-  tarifGuide: 650,
-  piqueNique: 15,
-  cabane: { nourritureClient: 50, nourritureGuide: 40 },
-  refuge: { client: 120, guide: 60 },
+export const PIQUE_NIQUE = 15;
+export const CABANE = { client: 50, guide: 40 };
+export const REFUGE = { client: 120, guide: 60 };
+
+export type Scenario = {
+  id: string;
+  title: string;
+  categorie: string;
+  tarifGuide: number;
+  jours: number;
+  nuits: number;
+  clients: number[];
+  note?: string;
 };
 
-export function budgetCabane(clients: number) {
-  const honoraires = dayRate(exemple.tarifGuide, clients) * exemple.jours;
-  const nourritureClients = exemple.cabane.nourritureClient * exemple.nuits * clients;
-  const nourritureGuide = exemple.cabane.nourritureGuide * exemple.nuits;
-  const piqueNiques = exemple.piqueNique * exemple.jours * clients;
-  const total = honoraires + nourritureClients + nourritureGuide + piqueNiques;
-  return { honoraires, nourritureClients, nourritureGuide, piqueNiques, total, parClient: total / clients };
-}
-
-export function budgetRefuge(clients: number) {
-  const honoraires = dayRate(exemple.tarifGuide, clients) * exemple.jours;
-  const refugesClients = exemple.refuge.client * exemple.nuits * clients;
-  const refugesGuide = exemple.refuge.guide * exemple.nuits;
-  const piqueNiques = exemple.piqueNique * exemple.jours * clients;
-  const total = honoraires + refugesClients + refugesGuide + piqueNiques;
-  return { honoraires, refugesClients, refugesGuide, piqueNiques, total, parClient: total / clients };
-}
-
-/* ---- Vérification contre les montants du brief ---- */
-
-const attendu = {
-  cabane: {
-    3: [3000, 450, 120, 180, 3750, 1250],
-    4: [3200, 600, 120, 240, 4160, 1040],
+export const scenarios: Scenario[] = [
+  {
+    id: "glaciaire-5j",
+    title: "Raid glaciaire, 5 jours",
+    categorie: "raid glaciaire",
+    tarifGuide: 650,
+    jours: 5,
+    nuits: 4,
+    clients: [5],
+    note: "Raid glaciaire : 5 participants maximum, l’exemple n’est donc donné que pour 5 clients.",
   },
-  refuge: {
-    3: [3000, 1080, 180, 180, 4440, 1480],
-    4: [3200, 1440, 180, 240, 5060, 1265],
+  {
+    id: "alpes-7j",
+    title: "Traversée des Alpes non glaciaire, 7 jours",
+    categorie: "itinérance / raid à ski",
+    tarifGuide: 600,
+    jours: 7,
+    nuits: 6,
+    clients: [5, 6],
   },
-} as const;
+];
 
-for (const n of [3, 4] as const) {
-  const c = Object.values(budgetCabane(n));
-  const r = Object.values(budgetRefuge(n));
-  if (JSON.stringify(c) !== JSON.stringify(attendu.cabane[n]))
-    throw new Error(`Tarifs 2027 : budget cabane ${n} clients ${c} ≠ ${attendu.cabane[n]}`);
-  if (JSON.stringify(r) !== JSON.stringify(attendu.refuge[n]))
-    throw new Error(`Tarifs 2027 : budget refuge ${n} clients ${r} ≠ ${attendu.refuge[n]}`);
+export function budget(sc: Scenario, clients: number, formule: "cabane" | "refuge") {
+  const honoraires = dayRate(sc.tarifGuide, clients) * sc.jours;
+  const hebClients = (formule === "cabane" ? CABANE.client : REFUGE.client) * sc.nuits * clients;
+  const hebGuide = (formule === "cabane" ? CABANE.guide : REFUGE.guide) * sc.nuits;
+  const piqueNiques = PIQUE_NIQUE * sc.jours * clients;
+  const total = honoraires + hebClients + hebGuide + piqueNiques;
+  return { honoraires, hebClients, hebGuide, piqueNiques, total, parClient: total / clients };
 }
+
+/* ---- Vérification (montants recalculés à la main) ---- */
+const attendu: Record<string, [number, number, number, number, number]> = {
+  "glaciaire-5j/5/cabane": [4250, 1000, 160, 375, 5785],
+  "glaciaire-5j/5/refuge": [4250, 2400, 240, 375, 7265],
+  "alpes-7j/5/cabane": [5600, 1500, 240, 525, 7865],
+  "alpes-7j/6/cabane": [5950, 1800, 240, 630, 8620],
+  "alpes-7j/5/refuge": [5600, 3600, 360, 525, 10085],
+  "alpes-7j/6/refuge": [5950, 4320, 360, 630, 11260],
+};
+for (const sc of scenarios)
+  for (const n of sc.clients)
+    for (const f of ["cabane", "refuge"] as const) {
+      const b = budget(sc, n, f);
+      const got = [b.honoraires, b.hebClients, b.hebGuide, b.piqueNiques, b.total];
+      const exp = attendu[`${sc.id}/${n}/${f}`];
+      if (JSON.stringify(got) !== JSON.stringify(exp)) throw new Error(`Tarifs 2027 : ${sc.id} ${n} ${f} ${got} ≠ ${exp}`);
+    }
