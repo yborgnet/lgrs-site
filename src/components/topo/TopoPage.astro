@@ -18,6 +18,12 @@ const { topo } = Astro.props;
 const lang = getLang(Astro.currentLocale);
 const u = topoUi[lang];
 const tr = (v: L | null | undefined) => (v ? v[lang] : u.todo);
+/** Lien affiché : domaine + chemin court, domaine seul si le chemin est long. */
+const shortUrl = (href: string) => {
+  const x = new URL(href);
+  const path = x.pathname.replace(/\/$/, "");
+  return x.hostname.replace(/^www\./, "") + (path.length > 0 && path.length <= 24 ? path : "");
+};
 const nf = new Intl.NumberFormat(locales[lang], { useGrouping: "always" });
 const km = (n: number) => new Intl.NumberFormat(locales[lang], { maximumFractionDigits: 1 }).format(n);
 const hm = (min: number) => `${Math.floor(min / 60)} h ${String(min % 60).padStart(2, "0")}`;
@@ -89,10 +95,10 @@ const jsonLd = {
         </div>
         <div>
           <dl class="topo-facts">
-            {topo.facts.map((f) => (
+            {topo.facts.filter((f) => f.value).map((f) => (
               <div>
                 <dt class="topo-mono">{f.label[lang]}</dt>
-                <dd class:list={{ "is-todo": !f.value }}>{f.href ? <a href={withBase(f.href)}>{tr(f.value)}</a> : tr(f.value)}</dd>
+                <dd>{f.href ? <a href={withBase(f.href)}>{tr(f.value)}</a> : tr(f.value)}</dd>
               </div>
             ))}
           </dl>
@@ -130,9 +136,9 @@ const jsonLd = {
                   <li>D− {nf.format(s.descentM)} m</li>
                 </ul>
                 <dl class="topo-stage__dl">
-                  <div><dt class="topo-mono">{u.duration}</dt><dd>{s.recordedMin ? hm(s.recordedMin) : u.todo}</dd></div>
+                  {s.recordedMin ? <div><dt class="topo-mono">{u.duration}</dt><dd>{hm(s.recordedMin)}</dd></div> : null}
                   <div><dt class="topo-mono">{u.via}</dt><dd>{s.waypoints.join(" · ")}</dd></div>
-                  <div><dt class="topo-mono">{u.key}</dt><dd class:list={{ "is-todo": !s.keyPassages.length }}>{s.keyPassages.length ? <ul>{s.keyPassages.map((k) => <li>{k[lang]}</li>)}</ul> : u.todo}</dd></div>
+                  {s.keyPassages.length > 0 && <div><dt class="topo-mono">{u.key}</dt><dd><ul>{s.keyPassages.map((k) => <li>{k[lang]}</li>)}</ul></dd></div>}
                   {night && <div><dt class="topo-mono">{u.night}</dt><dd><a class="ed-link" href={`#hut-${night.id}`}>{night.name}</a></dd></div>}
                 </dl>
               </li>
@@ -151,16 +157,16 @@ const jsonLd = {
           {topo.huts.map((h) => (
             <article class="topo-hut" id={`hut-${h.id}`}>
               <h3>{h.name}</h3>
-              <p class="topo-hut__meta topo-mono">{h.ele ? `${nf.format(h.ele)} m` : u.todo}{h.section ? ` · ${h.section}` : ""}</p>
+              <p class="topo-hut__meta topo-mono">{h.ele ? `${nf.format(h.ele)} m` : ""}{h.section ? ` · ${h.section}` : ""}</p>
               <dl>
                 <div><dt class="topo-mono">{u.type}</dt><dd>{h.kind[lang]}</dd></div>
-                <div><dt class="topo-mono">{u.places}</dt><dd class:list={{ "is-todo": !h.places }}>{tr(h.places)}</dd></div>
-                <div><dt class="topo-mono">{u.season}</dt><dd class:list={{ "is-todo": !h.season }}>{tr(h.season)}</dd></div>
-                <div><dt class="topo-mono">{u.winter}</dt><dd class:list={{ "is-todo": !h.winterRoom }}>{tr(h.winterRoom)}</dd></div>
-                <div><dt class="topo-mono">{u.booking}</dt><dd class:list={{ "is-todo": !h.booking }}>{tr(h.booking)}</dd></div>
-                <div><dt class="topo-mono">{u.phone}</dt><dd class:list={{ "is-todo": !h.phones.length }}>{h.phones.length === 0 && u.todo}{h.phones.map((p) => <span class="topo-hut__phone">{p.label[lang]} : <a href={`tel:${p.value.replace(/\s/g, "")}`}>{p.value}</a></span>)}</dd></div>
-                <div><dt class="topo-mono">{u.email}</dt><dd>{h.email ? <a href={`mailto:${h.email}`}>{h.email}</a> : u.todo}</dd></div>
-                <div><dt class="topo-mono">{u.site}</dt><dd>{h.website ? <a href={h.website} target="_blank" rel="noopener">{h.website.replace(/^https?:\/\//, "")}</a> : u.todo}</dd></div>
+                {h.places && <div><dt class="topo-mono">{u.places}</dt><dd>{tr(h.places)}</dd></div>}
+                {h.season && <div><dt class="topo-mono">{u.season}</dt><dd>{tr(h.season)}</dd></div>}
+                {h.winterRoom && <div><dt class="topo-mono">{u.winter}</dt><dd>{tr(h.winterRoom)}</dd></div>}
+                {h.booking && <div><dt class="topo-mono">{u.booking}</dt><dd>{tr(h.booking)}</dd></div>}
+                {h.phones.length > 0 && <div><dt class="topo-mono">{u.phone}</dt><dd>{h.phones.map((p) => <span class="topo-hut__phone">{p.label[lang]} : <a href={`tel:${p.value.replace(/\s/g, "")}`}>{p.value}</a></span>)}</dd></div>}
+                {h.email && <div><dt class="topo-mono">{u.email}</dt><dd><a href={`mailto:${h.email}`}>{h.email}</a></dd></div>}
+                {h.website && <div><dt class="topo-mono">{u.site}</dt><dd><a href={h.website} target="_blank" rel="noopener">{shortUrl(h.website)}</a></dd></div>}
                 <div><dt class="topo-mono">{u.gps}</dt><dd>{h.lat.toFixed(4)}, {h.lon.toFixed(4)} <span class="topo-note">({u.gpsNote})</span></dd></div>
               </dl>
               {h.notes.length > 0 && <ul class="topo-hut__notes">{h.notes.map((n) => <li>{n[lang]}</li>)}</ul>}

@@ -7,19 +7,19 @@
  * lissage par défaut, arrondi à 10 m). Script : scripts/gpx-topo-chateleysine.ts
  * (produit public/gpx/topo-chateleysine-vallee-aoste.gpx et le profil).
  *
- * Toponymie : départ Blavy et arrivée confirmés par Yann ; point haut (Mont Mary)
- * identifié par coordonnées, à confirmer.
- * Bivouacs : données croisées refuges.info / lovevda.it / inalto, novembre 2026,
- * à reconfirmer chaque saison. Pas de carnet publié : pas de bloc Récits.
+ * Toponymie : départ Blavy et arrivée confirmés par Yann ; point haut Mont Mary
+ * (2 815 m) identifié par les coordonnées de la trace.
+ * Bivouacs : source unique lovevda.it (office du tourisme de la Vallée d'Aoste),
+ * novembre 2026 ; champ sans donnée = champ masqué. Pas de carnet publié : pas de bloc Récits.
  */
 import type { Topo } from "./types";
 import profile from "./chateleysine-vallee-aoste.profile.json";
 import gallery from "./chateleysine-vallee-aoste.gallery.json";
 
 const BIVOUAC = {
-  fr: "Bivouac non gardé, toujours ouvert, cuisine autonome",
-  en: "Unstaffed bivouac hut, always open, self-catering",
-  it: "Bivacco non custodito, sempre aperto, cucina in autonomia",
+  fr: "Bivouac non gardé, cuisine autonome",
+  en: "Unstaffed bivouac hut, self-catering",
+  it: "Bivacco non custodito, cucina in autonomia",
 };
 
 export const chateleysine: Topo = {
@@ -104,7 +104,7 @@ export const chateleysine: Topo = {
     { label: { fr: "Dénivelé négatif", en: "Descent", it: "Dislivello negativo" }, value: { fr: "3 160 m", en: "3,160 m", it: "3.160 m" } },
     {
       label: { fr: "Point haut", en: "High point", it: "Punto più alto" },
-      value: { fr: "Mont Mary, 2 815 m (à confirmer)", en: "Mont Mary, 2,815 m (to be confirmed)", it: "Mont Mary, 2.815 m (da confermare)" },
+      value: { fr: "Mont Mary, 2 815 m", en: "Mont Mary, 2,815 m", it: "Mont Mary, 2.815 m" },
     },
     {
       label: { fr: "Période conseillée", en: "Best period", it: "Periodo consigliato" },
@@ -146,7 +146,7 @@ export const chateleysine: Topo = {
     { id: "mary", kind: "sommet", name: "Mont Mary", lat: 45.793, lon: 7.3723, ele: 2815 },
     { id: "penne", kind: "bivouac", name: "Bivacco Penne Nere", lat: 45.7966, lon: 7.3674, ele: 2730 },
     { id: "lliee", kind: "bivouac", name: "Bivacco La Lliée", lat: 45.8178, lon: 7.4008, ele: 2422 },
-    { id: "rosaire", kind: "bivouac", name: "Bivacco Rosaire et Clermont", lat: 45.8263, lon: 7.4581, ele: 2704 },
+    { id: "rosaire", kind: "bivouac", name: "Bivacco Rosaire et Clermont", lat: 45.8263, lon: 7.4581, ele: 2692 },
     { id: "arrivee", kind: "arrivee", name: "Vallon de Saint-Barthélemy", lat: 45.8038, lon: 7.4967, ele: 1960 },
   ],
   profile: profile as [number, number, number][],
@@ -154,7 +154,7 @@ export const chateleysine: Topo = {
     {
       day: 1, from: "Blavy", to: "Penne Nere", source: "2024",
       distanceKm: 8.2, ascentM: 1400, descentM: 150, recordedMin: 430,
-      waypoints: ["Mont Mary (2 815 m, à confirmer)", "Bivacco Penne Nere"],
+      waypoints: ["Mont Mary (2 815 m)", "Bivacco Penne Nere"],
       keyPassages: [
         { fr: "Longue montée d'approche (1 400 m) ; en 2024, arrivée au bivouac à la frontale", en: "Long approach climb (1,400 m); in 2024, arrival at the bivouac by headtorch", it: "Lunga salita di avvicinamento (1.400 m); nel 2024, arrivo al bivacco con la frontale" },
       ],
@@ -188,53 +188,52 @@ export const chateleysine: Topo = {
       id: "penne", name: "Bivacco Penne Nere", ele: 2730,
       kind: BIVOUAC,
       places: { fr: "14 places", en: "14 places", it: "14 posti" },
-      season: { fr: "Ouvert toute l'année", en: "Open all year", it: "Aperto tutto l'anno" },
+      season: { fr: "Toujours ouvert", en: "Always open", it: "Sempre aperto" },
       winterRoom: null,
       booking: null,
       phones: [],
-      email: null, website: null,
+      email: null,
+      website: "https://balteus.lovevda.it/en/database/7/bivouacs/valpelline/penne-nere-bivouac/2523",
       lat: 45.7966, lon: 7.3674,
       notes: [
-        { fr: "Au col de Viou ; propriété de la commune de Valpelline, inauguré en 2005", en: "At the Col de Viou; owned by the municipality of Valpelline, opened in 2005", it: "Al colle di Viou; di proprietà del comune di Valpelline, inaugurato nel 2005" },
-        { fr: "Pas d'eau : prévoir de faire fondre la neige", en: "No water: plan to melt snow", it: "Niente acqua: prevedere di sciogliere la neve" },
-        { fr: "Éclairage à la bougie", en: "Candle lighting", it: "Illuminazione a candela" },
+        { fr: "Au col de Viou ; inauguré en 2005", en: "At the Col de Viou; opened in 2005", it: "Al colle di Viou; inaugurato nel 2005" },
+        { fr: "Couvertures et réchaud à gaz", en: "Blankets and gas stove", it: "Coperte e fornello a gas" },
+        { fr: "Accès d'été : environ 3 h depuis Blavy (sentier 105)", en: "Summer access: about 3 h from Blavy (trail 105)", it: "Accesso estivo: circa 3 h da Blavy (sentiero 105)" },
       ],
       verified: "2026-11",
     },
     {
       id: "lliee", name: "Bivacco La Lliée", ele: 2422,
       kind: BIVOUAC,
-      places: { fr: "18 places", en: "18 places", it: "18 posti" },
-      season: { fr: "Ouvert toute l'année", en: "Open all year", it: "Aperto tutto l'anno" },
+      places: { fr: "16 places", en: "16 places", it: "16 posti" },
+      season: { fr: "Toujours ouvert", en: "Always open", it: "Sempre aperto" },
       winterRoom: null,
       booking: null,
-      phones: [
-        { label: { fr: "Commune d'Oyace (à confirmer)", en: "Municipality of Oyace (to be confirmed)", it: "Comune di Oyace (da confermare)" }, value: "+39 0165 730914" },
-      ],
-      email: null, website: null,
+      phones: [],
+      email: null,
+      website: "https://balteus.lovevda.it/en/database/7/bivouacs/oyace/la-lliee-bivouac/2503",
       lat: 45.8178, lon: 7.4008,
       notes: [
-        { fr: "Couvertures, réchaud à gaz et matériel de cuisine signalés", en: "Blankets, gas stove and cooking gear reported", it: "Coperte, fornello a gas e stoviglie segnalati" },
-        { fr: "Point d'eau à une centaine de mètres (souvent sous la neige en hiver)", en: "Water point about 100 m away (often under snow in winter)", it: "Punto d'acqua a un centinaio di metri (spesso sotto la neve d'inverno)" },
+        { fr: "Dans le vallon de Verzignolette (Oyace), sous le col de l'Arpeyssaou", en: "In the Verzignolette valley (Oyace), below the Col de l'Arpeyssaou", it: "Nel vallone di Verzignolette (Oyace), sotto il colle dell'Arpeyssaou" },
+        { fr: "Couvertures, réchaud à gaz et matériel de cuisine ; fontaine en été seulement", en: "Blankets, gas stove and cooking gear; fountain in summer only", it: "Coperte, fornello a gas e stoviglie; fontana solo d'estate" },
       ],
       verified: "2026-11",
     },
     {
-      id: "rosaire", name: "Bivacco Rosaire et Clermont", ele: 2704,
+      id: "rosaire", name: "Bivacco Rosaire et Clermont", ele: 2692,
       kind: BIVOUAC,
-      places: { fr: "18 places sur matelas", en: "18 places on mattresses", it: "18 posti su materasso" },
-      season: { fr: "Ouvert toute l'année", en: "Open all year", it: "Aperto tutto l'anno" },
+      places: { fr: "12 places", en: "12 places", it: "12 posti" },
+      season: { fr: "Toujours ouvert", en: "Always open", it: "Sempre aperto" },
       winterRoom: null,
       booking: null,
-      phones: [
-        { label: { fr: "Commune de Quart", en: "Municipality of Quart", it: "Comune di Quart" }, value: "+39 0165 762169" },
-      ],
-      email: null, website: null,
+      phones: [],
+      email: null,
+      website: "https://lovevda.it/en/database/7/bivouacs/quart/rosaire-clermont-bivouac/3251",
       lat: 45.8263, lon: 7.4581,
       notes: [
-        { fr: "Sous le versant sud-est du col de Vessonaz (2 794 m) ; construit en 1990", en: "Below the south-east side of the Col de Vessonaz (2,794 m); built in 1990", it: "Sotto il versante sud-est del colle di Vessonaz (2.794 m); costruito nel 1990" },
-        { fr: "Altitude donnée entre 2 692 et 2 704 m selon les sources", en: "Elevation given between 2,692 and 2,704 m depending on the source", it: "Quota indicata tra 2.692 e 2.704 m a seconda delle fonti" },
-        { fr: "Couvertures, eau et latrines signalées", en: "Blankets, water and latrine reported", it: "Coperte, acqua e latrina segnalate" },
+        { fr: "Sous le col de Vessonaz ; construit en 1990", en: "Below the Col de Vessonaz; built in 1990", it: "Sotto il colle di Vessona; costruito nel 1990" },
+        { fr: "Couvertures, réchaud à gaz, eau au lac voisin, toilettes extérieures", en: "Blankets, gas stove, water from the nearby lake, outdoor toilet", it: "Coperte, fornello a gas, acqua dal laghetto vicino, servizio esterno" },
+        { fr: "Accès d'été : 3 h 30 depuis Lignan", en: "Summer access: 3 h 30 from Lignan", it: "Accesso estivo: 3 h 30 da Lignan" },
       ],
       verified: "2026-11",
     },
@@ -264,8 +263,8 @@ export const chateleysine: Topo = {
   gallery: gallery as Topo["gallery"],
   recits: [],
   method: {
-    fr: "Chiffres calculés sur la trace GPX enregistrée lors du raid de janvier 2024, dénivelés lissés et arrondis à 10 m. Durées : temps réellement enregistré, pauses comprises. Bivouacs, accès et cotation : données de refuges.info, lovevda.it, Gulliver.it et Arriva, à vérifier avant chaque saison.",
-    en: "Figures computed from the GPX track recorded on the January 2024 trip, smoothed elevation rounded to 10 m. Durations: time actually recorded, breaks included. Bivouac huts, access and grade: data from refuges.info, lovevda.it, Gulliver.it and Arriva, to be checked before each season.",
-    it: "Dati calcolati sulla traccia GPX registrata durante il raid di gennaio 2024, dislivelli livellati e arrotondati a 10 m. Durate: tempo effettivamente registrato, pause comprese. Bivacchi, accesso e difficoltà: dati di refuges.info, lovevda.it, Gulliver.it e Arriva, da verificare prima di ogni stagione.",
+    fr: "Chiffres calculés sur la trace GPX enregistrée lors du raid de janvier 2024, dénivelés lissés et arrondis à 10 m. Durées : temps réellement enregistré, pauses comprises. Bivouacs : fiches de l'office du tourisme de la Vallée d'Aoste (lovevda.it). Accès et cotation : Gulliver.it et Arriva. À vérifier avant chaque saison.",
+    en: "Figures computed from the GPX track recorded on the January 2024 trip, smoothed elevation rounded to 10 m. Durations: time actually recorded, breaks included. Bivouac huts: Aosta Valley tourist office listings (lovevda.it). Access and grade: Gulliver.it and Arriva. To be checked before each season.",
+    it: "Dati calcolati sulla traccia GPX registrata durante il raid di gennaio 2024, dislivelli livellati e arrotondati a 10 m. Durate: tempo effettivamente registrato, pause comprese. Bivacchi: schede dell'ufficio del turismo della Valle d'Aosta (lovevda.it). Accesso e difficoltà: Gulliver.it e Arriva. Da verificare prima di ogni stagione.",
   },
 };

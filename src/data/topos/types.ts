@@ -1,6 +1,6 @@
 /** Section Topos — fiches factuelles d'itinéraires (aucun récit).
  *  Chaque texte affiché est un `L` : une valeur par langue, le français fait foi.
- *  Un champ absent ou `null` s'affiche « à compléter » : on n'invente jamais
+ *  Un champ absent ou `null` n'est pas affiché : on n'invente jamais
  *  une cotation, un horaire, un chiffre ou un contact. */
 import type { Lang } from "../../i18n/ui";
 

@@ -83,9 +83,9 @@ export const dammastock: Topo = {
     {
       label: { fr: "Accès en transports publics", en: "Public transport", it: "Trasporti pubblici" },
       value: {
-        fr: "Retour depuis Engelberg en train. Accès au départ : à compléter.",
-        en: "Return from Engelberg by train. Access to the start: to be completed.",
-        it: "Ritorno da Engelberg in treno. Accesso alla partenza: da completare.",
+        fr: "Retour depuis Engelberg en train.",
+        en: "Return from Engelberg by train.",
+        it: "Ritorno da Engelberg in treno.",
       },
     },
     { label: { fr: "Forme", en: "Type", it: "Tipo" }, value: { fr: "Traversée", en: "Traverse (one way)", it: "Traversata" } },
@@ -101,18 +101,18 @@ export const dammastock: Topo = {
     {
       label: { fr: "Terrain / difficulté", en: "Terrain / difficulty", it: "Terreno / difficoltà" },
       value: {
-        fr: "Glaciers, couloirs autour de 40°, passages skis sur le sac. Cotation : à compléter.",
-        en: "Glaciers, couloirs around 40°, sections with skis on the pack. Grade: to be completed.",
-        it: "Ghiacciai, canali intorno ai 40°, tratti con gli sci sullo zaino. Difficoltà: da completare.",
+        fr: "Glaciers, couloirs autour de 40°, passages skis sur le sac.",
+        en: "Glaciers, couloirs around 40°, sections with skis on the pack.",
+        it: "Ghiacciai, canali intorno ai 40°, tratti con gli sci sullo zaino.",
       },
     },
     { label: { fr: "Matériel spécifique", en: "Specific equipment", it: "Materiale specifico" }, value: null },
     {
       label: { fr: "Cartes", en: "Maps", it: "Carte" },
       value: {
-        fr: "Swisstopo 1:25 000 et 1:50 000 SKI (numéros de feuilles : à compléter)",
-        en: "Swisstopo 1:25,000 and 1:50,000 SKI (sheet numbers: to be completed)",
-        it: "Swisstopo 1:25.000 e 1:50.000 SKI (numeri dei fogli: da completare)",
+        fr: "Swisstopo 1:25 000 et 1:50 000 SKI",
+        en: "Swisstopo 1:25,000 and 1:50,000 SKI",
+        it: "Swisstopo 1:25.000 e 1:50.000 SKI",
       },
     },
   ],
@@ -285,11 +285,6 @@ export const dammastock: Topo = {
       fr: "Fin du raid 2023 : du Steingletscher à la Sustlihütte, puis descente vers Farnigen (2 jours), à la place des étapes 4 à 6.",
       en: "End of the 2023 trip: from Steingletscher to the Sustlihütte, then down to Farnigen (2 days), instead of stages 4 to 6.",
       it: "Fine del raid 2023: dallo Steingletscher alla Sustlihütte, poi discesa verso Farnigen (2 giorni), al posto delle tappe da 4 a 6.",
-    },
-    {
-      fr: "Échappatoires étape par étape : à compléter.",
-      en: "Escape routes, stage by stage: to be completed.",
-      it: "Vie di fuga tappa per tappa: da completare.",
     },
   ],
   gallery: gallery as Topo["gallery"],
