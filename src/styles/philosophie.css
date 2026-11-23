@@ -368,3 +368,47 @@
 .philo-transition__secondary a:hover {
   opacity: 1;
 }
+
+/* Identité violette (comme le reste du site) : mots en italique des titres,
+   numéros, et petite barre rose sous les surtitres — posée en absolu, rien ne bouge. */
+.philo-hero h1 em,
+.philo-principles__head h2 em,
+.philo-split__col h2 em {
+  color: var(--violet);
+}
+
+.philo-origin h2 em,
+.philo-transition h2 em {
+  color: var(--violet-nuit);
+}
+
+.philo-method__num,
+.philo-principle__num {
+  color: var(--violet);
+}
+
+.philo-hero__eyebrow,
+.philo-method__eyebrow,
+.philo-principles__eyebrow,
+.philo-origin .philo-origin__eyebrow,
+.philo-split__col .philo-split__eyebrow,
+.philo-transition__eyebrow {
+  position: relative;
+}
+
+.philo-hero__eyebrow::after,
+.philo-method__eyebrow::after,
+.philo-principles__eyebrow::after,
+.philo-origin .philo-origin__eyebrow::after,
+.philo-split__col .philo-split__eyebrow::after,
+.philo-transition__eyebrow::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: calc(100% + 7px);
+  width: 22px;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--rose);
+}
+.philo-method__eyebrow::after { left: 50%; transform: translateX(-50%); }
