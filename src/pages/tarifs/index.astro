@@ -21,11 +21,7 @@ import {
 const canonical = "https://lesgrandsraidsaski.com/tarifs/";
 
 function conditions(n: number): string[] {
-  const out: string[] = [];
-  if (n >= 4) out.push("Ski-alpinisme / alpinisme : non (3 max.)");
-  if (n >= 6) out.push("Raid glaciaire : non (5 max.)");
-  if (n >= 7) out.push("Après validation du niveau du groupe, si l’activité le permet");
-  return out;
+  return n >= 4 ? ["Ski-alpinisme / alpinisme : non (3 max.)"] : [];
 }
 
 const eur0 = (n: number) => eur(Math.round(n));
@@ -78,19 +74,16 @@ const formules = [
             <div class="ed-prose tarifs-prose">
               <p>
                 Les tarifs de base correspondent à un client. Du 2<sup>e</sup> au 6<sup>e</sup> client,
-                le tarif augmente de 50 € par client supplémentaire ; pour les 7<sup>e</sup> et
-                8<sup>e</sup> clients, de 100 € par client supplémentaire, après validation préalable du
-                niveau du groupe. Huit clients au maximum, uniquement lorsque l’activité le permet.
+                le tarif augmente de 50 € par client supplémentaire. Six clients au maximum.
               </p>
               <p>
-                Ski-alpinisme et alpinisme : 2 à 3 participants maximum. Raid glaciaire : 5 participants
-                maximum.
+                Ski-alpinisme et alpinisme : 2 à 3 participants maximum.
               </p>
             </div>
           </div>
         </div>
 
-        <div class="tarifs-table-wrap" role="region" aria-label="Tarifs journaliers de 1 à 8 clients" tabindex="0">
+        <div class="tarifs-table-wrap" role="region" aria-label="Tarifs journaliers de 1 à 6 clients" tabindex="0">
           <table class="tarifs-table tarifs-table--grid">
             <caption>Tarif journalier du guide pour le groupe, selon le nombre de clients</caption>
             <thead>
@@ -104,7 +97,7 @@ const formules = [
             </thead>
             <tbody>
               {clientCounts.map((n) => (
-                <tr class:list={{ "is-extended": n >= 7 }}>
+                <tr>
                   <th scope="row">{n}</th>
                   {categories.map((c) => <td class="num">{eur(dayRate(c.base, n))}</td>)}
                   <td class="tarifs-cond">

@@ -15,18 +15,16 @@ export const categories = [
   },
 ] as const;
 
-/** Supplément par client au-delà du premier : +50 € du 2e au 6e, +100 € pour les 7e et 8e. */
+/** Supplément par client au-delà du premier : +50 € du 2e au 6e client (6 clients maximum). */
 export function supplement(clients: number): number {
-  let s = 0;
-  for (let n = 2; n <= clients; n++) s += n <= 6 ? 50 : 100;
-  return s;
+  return Math.max(0, clients - 1) * 50;
 }
 
 export function dayRate(base: number, clients: number): number {
   return base + supplement(clients);
 }
 
-export const MAX_CLIENTS = 8;
+export const MAX_CLIENTS = 6;
 export const clientCounts = Array.from({ length: MAX_CLIENTS }, (_, i) => i + 1);
 
 /** Formats : 1 250 € (espace insécable fine, comme le reste du site). */
@@ -62,8 +60,7 @@ export const scenarios: Scenario[] = [
     tarifGuide: 650,
     jours: 5,
     nuits: 4,
-    clients: [5],
-    note: "Raid glaciaire : 5 participants maximum, l’exemple n’est donc donné que pour 5 clients.",
+    clients: [5, 6],
   },
   {
     id: "alpes-7j",
@@ -89,6 +86,8 @@ export function budget(sc: Scenario, clients: number, formule: "cabane" | "refug
 const attendu: Record<string, [number, number, number, number, number]> = {
   "glaciaire-5j/5/cabane": [4250, 1000, 160, 375, 5785],
   "glaciaire-5j/5/refuge": [4250, 2400, 240, 375, 7265],
+  "glaciaire-5j/6/cabane": [4500, 1200, 160, 450, 6310],
+  "glaciaire-5j/6/refuge": [4500, 2880, 240, 450, 8070],
   "alpes-7j/5/cabane": [5600, 1500, 240, 525, 7865],
   "alpes-7j/6/cabane": [5950, 1800, 240, 630, 8620],
   "alpes-7j/5/refuge": [5600, 3600, 360, 525, 10085],
