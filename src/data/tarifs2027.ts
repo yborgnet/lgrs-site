@@ -101,3 +101,27 @@ for (const sc of scenarios)
       const exp = attendu[`${sc.id}/${n}/${f}`];
       if (JSON.stringify(got) !== JSON.stringify(exp)) throw new Error(`Tarifs 2027 : ${sc.id} ${n} ${f} ${got} ≠ ${exp}`);
     }
+
+/* ---- Simulateur ----
+ * Demi-pension indicative par nuit (vérifiée en ligne, nov. 2026) :
+ *  - refuges français / italiens : 60 € client (FFCAM ~55 € public en 2026,
+ *    CAI non-membre ~60 €) ;
+ *  - refuges suisses : 100 € client (SAC non-membre CHF 70 à 100 ; + CHF 5
+ *    non-membre et CHF 10 de réservation à partir de 2027).
+ * Part du guide : la moitié du tarif client par défaut, modifiable. */
+export const simulateur = {
+  activites: [
+    { id: "classique", label: "Journée classique", base: 550, max: 6 },
+    { id: "itinerance", label: "Itinérance / raid à ski", base: 600, max: 6 },
+    { id: "glaciaire", label: "Raid glaciaire / journée XL", base: 650, max: 6 },
+    { id: "skialpi", label: "Ski-alpinisme / alpinisme", base: 650, max: 3 },
+  ],
+  hebergements: [
+    { id: "cabane", label: "Cabane non gardée (forfait nourriture comprise)", client: CABANE.client, guide: CABANE.guide },
+    { id: "frit", label: "Refuge gardé français ou italien (demi-pension)", client: 60, guide: 30 },
+    { id: "ch", label: "Refuge gardé suisse (demi-pension)", client: 100, guide: 50 },
+  ],
+  piqueNique: PIQUE_NIQUE,
+  supplementParClient: 50,
+  maxClients: MAX_CLIENTS,
+};

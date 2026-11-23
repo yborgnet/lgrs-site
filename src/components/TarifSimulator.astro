@@ -1,0 +1,106 @@
+---
+import { simulateur } from "../data/tarifs2027";
+const cfg = simulateur;
+---
+
+<div class="sim" data-sim data-cfg={JSON.stringify(cfg)}>
+  <form class="sim__form" onsubmit="return false">
+    <fieldset>
+      <legend>Activité</legend>
+      <select name="activite">
+        {cfg.activites.map((a) => <option value={a.id} selected={a.id === "glaciaire"}>{a.label} — {a.base} €/jour</option>)}
+      </select>
+    </fieldset>
+    <div class="sim__row">
+      <label>Clients<input type="number" name="clients" min="1" max={cfg.maxClients} value="5" inputmode="numeric" /></label>
+      <label>Jours d’encadrement<input type="number" name="jours" min="1" max="30" value="5" inputmode="numeric" /></label>
+    </div>
+    <fieldset>
+      <legend>Nuits, par type d’hébergement</legend>
+      {cfg.hebergements.map((h) => (
+        <label class="sim__heb">
+          <span>{h.label}<small>{h.client} € / client · {h.guide} € / guide, par nuit</small></span>
+          <input type="number" name={`nuits-${h.id}`} min="0" max="30" value={h.id === "ch" ? 4 : 0} inputmode="numeric" />
+        </label>
+      ))}
+    </fieldset>
+    <p class="sim__warn" data-sim-warn hidden></p>
+  </form>
+
+  <div class="sim__result" aria-live="polite">
+    <table class="tarifs-table">
+      <tbody data-sim-lines></tbody>
+      <tfoot>
+        <tr><th scope="row">Total groupe</th><td class="num" data-sim-total></td></tr>
+        <tr class="is-per-person"><th scope="row">Prix par client</th><td class="num" data-sim-pp></td></tr>
+      </tfoot>
+    </table>
+    <p class="tarifs-footnote">
+      Hors transport, remontées mécaniques, nuitées en cabane non gardée et consommations personnelles.
+      Demi-pension indicative : environ 60 € dans les refuges français et italiens, 100 € dans les refuges
+      suisses ; le tarif réel dépend de chaque refuge. Estimation sans valeur de devis.
+    </p>
+  </div>
+</div>
+
+<script>
+  type Cfg = {
+    activites: { id: string; label: string; base: number; max: number }[];
+    hebergements: { id: string; label: string; client: number; guide: number }[];
+    piqueNique: number; supplementParClient: number; maxClients: number;
+  };
+  const fmt = (n: number) => `${Math.round(n).toLocaleString("fr-FR", { useGrouping: "always" } as Intl.NumberFormatOptions)} €`;
+  document.querySelectorAll<HTMLElement>("[data-sim]").forEach((root) => {
+    const cfg: Cfg = JSON.parse(root.dataset.cfg!);
+    const form = root.querySelector("form")!;
+    const lines = root.querySelector("[data-sim-lines]")!;
+    const warn = root.querySelector<HTMLElement>("[data-sim-warn]")!;
+    const num = (name: string, min = 0, max = 99) => {
+      const el = form.elements.namedItem(name) as HTMLInputElement;
+      const v = Math.min(max, Math.max(min, Math.floor(Number(el.value) || 0)));
+      return v;
+    };
+    function update() {
+      const act = cfg.activites.find((a) => a.id === (form.elements.namedItem("activite") as HTMLSelectElement).value)!;
+      const clientsInput = form.elements.namedItem("clients") as HTMLInputElement;
+      clientsInput.max = String(act.max);
+      const clients = num("clients", 1, act.max);
+      const jours = num("jours", 1, 30);
+      const msgs: string[] = [];
+      if (Number(clientsInput.value) > act.max) msgs.push(`${act.label} : ${act.max} clients maximum.`);
+      const rows: [string, number, boolean][] = [];
+      const parJour = act.base + (clients - 1) * cfg.supplementParClient;
+      rows.push([`Honoraires du guide (${fmt(parJour)} × ${jours} j)`, parJour * jours, true]);
+      let nuits = 0;
+      for (const h of cfg.hebergements) {
+        const n = num(`nuits-${h.id}`, 0, 30);
+        nuits += n;
+        if (!n) continue;
+        const fee = h.id === "cabane";
+        rows.push([`${fee ? "Forfait cabane" : h.label.split(" (")[0]}, clients (${n} nuit${n > 1 ? "s" : ""})`, h.client * n * clients, fee]);
+        rows.push([`${fee ? "Forfait cabane" : h.label.split(" (")[0]}, guide (${n} nuit${n > 1 ? "s" : ""})`, h.guide * n, fee]);
+      }
+      if (jours > 1) rows.push([`Pique-niques (${jours} × ${clients})`, cfg.piqueNique * jours * clients, false]);
+      if (nuits > jours) msgs.push("Plus de nuits que de jours d’encadrement : vérifiez la saisie.");
+      if (jours > 1 && nuits < jours - 1) msgs.push(`${jours - 1 - nuits} nuit(s) sans hébergement renseigné.`);
+      warn.hidden = !msgs.length;
+      warn.textContent = msgs.join(" ");
+      const total = rows.reduce((s, r) => s + r[1], 0);
+      lines.innerHTML = "";
+      let feeDone = false;
+      rows.forEach(([label, v, fee]) => {
+        const tr = document.createElement("tr");
+        if (fee) tr.className = "is-fee";
+        else if (!feeDone) { tr.className = "is-group-start"; feeDone = true; }
+        const th = document.createElement("th"); th.scope = "row"; th.textContent = label;
+        const td = document.createElement("td"); td.className = "num"; td.textContent = fmt(v);
+        tr.append(th, td); lines.append(tr);
+      });
+      root.querySelector("[data-sim-total]")!.textContent = fmt(total);
+      root.querySelector("[data-sim-pp]")!.textContent = fmt(total / clients);
+    }
+    form.addEventListener("input", update);
+    form.addEventListener("change", update);
+    update();
+  });
+</script>

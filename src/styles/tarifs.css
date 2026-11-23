@@ -422,3 +422,28 @@
     margin-top: 56px;
   }
 }
+
+/* Simulateur */
+.sim { display: grid; gap: 40px; }
+.sim__form { display: grid; gap: 22px; }
+.sim fieldset { margin: 0; padding: 0; border: 0; display: grid; gap: 10px; }
+.sim legend, .sim__row label {
+  margin-bottom: 8px; font-size: 12px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; opacity: .7;
+}
+.sim__row { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.sim__row label { display: grid; gap: 8px; margin: 0; }
+.sim select, .sim input {
+  width: 100%; padding: 12px 14px; border: 1px solid var(--line); background: var(--white);
+  font: inherit; font-size: 16px; letter-spacing: 0; text-transform: none; color: var(--ink); border-radius: 0;
+}
+.sim select:focus, .sim input:focus { outline: 2px solid var(--violet); outline-offset: 1px; }
+.sim__heb {
+  display: grid; grid-template-columns: minmax(0, 1fr) 96px; align-items: center; gap: 16px;
+  padding: 12px 0; border-top: 1px solid var(--line); font-size: 15px;
+}
+.sim__heb small { display: block; margin-top: 3px; font-size: 13px; opacity: .6; }
+.sim__warn { margin: 0; padding: 12px 14px; background: #fff4e5; border-left: 2px solid #c77700; font-size: 14px; }
+.sim__result .tarifs-table { background: var(--white); }
+.sim__result .tarifs-table th:first-child, .sim__result .tarifs-table td:first-child { padding-left: 14px; }
+@media (min-width: 1100px) { .sim { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: start; } }
+@media (max-width: 520px) { .sim__row { grid-template-columns: minmax(0, 1fr); } }

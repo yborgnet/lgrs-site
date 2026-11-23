@@ -3,6 +3,7 @@ import SponsorStrip from "../../components/shared/SponsorStrip.astro";
 import ContactStrip from "../../components/shared/ContactStrip.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../../components/Header.astro";
+import TarifSimulator from "../../components/TarifSimulator.astro";
 import "../../styles/editorial.css";
 import "../../styles/tarifs.css";
 import { withBase } from "../../lib/url";
@@ -143,6 +144,19 @@ const formules = [
               destination éloignée.
             </p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Simulateur -->
+    <section class="ed-section ed-section--paper" id="simulateur">
+      <div class="site-shell">
+        <div class="ed-split">
+          <div class="ed-split__head">
+            <p class="ed-eyebrow">Simulateur</p>
+            <h2 class="ed-h2">Estimer le budget de votre projet.</h2>
+          </div>
+          <TarifSimulator />
         </div>
       </div>
     </section>
