@@ -3,7 +3,9 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Header from "../Header.astro";
 import TopoFooter from "./TopoFooter.astro";
+import CarnetLightbox from "../carnet/CarnetLightbox.astro";
 import "../../styles/editorial.css";
+import "../../styles/carnet.css";
 import "../../styles/topo.css";
 import { withBase } from "../../lib/url";
 import { getLang, localizedHref, routeFor } from "../../i18n/utils";
@@ -80,6 +82,8 @@ const jsonLd = {
         <h2 class="ed-h2">{u.pitchesTitle}</h2>
         <ol class="topo-pitches">
           {topo.pitches.map((p) => (
+            <>
+            {p.before && <li class="topo-pitch topo-pitch--between"><p class="topo-pitch__text">{p.before[lang]}</p></li>}
             <li class="topo-pitch">
               <p class="topo-pitch__head topo-mono">
                 <span class="topo-pitch__n">{u.pitch}{p.n}</span>
@@ -88,11 +92,13 @@ const jsonLd = {
               </p>
               {p.text && <p class="topo-pitch__text">{p.text[lang]}</p>}
             </li>
+            </>
           ))}
         </ol>
       </div>
     </section>
 
+{(topo.descent.length > 0 || topo.sources.length > 0) && (
     <section class="ed-section ed-section--paper topo-section" id="descente">
       <div class="site-shell topo-split">
         <div>
@@ -100,7 +106,7 @@ const jsonLd = {
           <h2 class="ed-h2">{u.descentTitle}</h2>
         </div>
         <div>
-          <ul class="topo-list">{topo.descent.map((d) => <li>{d[lang]}</li>)}</ul>
+          {topo.descent.length > 0 && <ul class="topo-list">{topo.descent.map((d) => <li>{d[lang]}</li>)}</ul>}
           {topo.sources.length > 0 && (
             <>
               <p class="ed-eyebrow topo-sources-title">{u.sources}</p>
@@ -112,6 +118,27 @@ const jsonLd = {
         </div>
       </div>
     </section>
+    )}
+
+    {topo.gallery && topo.gallery.length > 0 && (
+    <section class="ed-section ed-section--white topo-section" id="galerie" data-carnet-gallery>
+      <div class="site-shell">
+        <p class="ed-eyebrow">{u.gallery}</p>
+        <h2 class="ed-h2">{u.galleryTitle}</h2>
+        <div class="topo-gallery" data-lightbox-gallery>
+          {topo.gallery.map((p) => (
+            <figure class:list={["topo-gallery__item", { "is-wide": p.wide, "is-portrait": p.height > p.width }]}>
+              <button type="button" data-lightbox-trigger data-caption={p.caption[lang]}>
+                <img src={withBase(p.src)} alt={p.alt[lang]} width={p.width} height={p.height} loading="lazy" decoding="async" />
+              </button>
+              <figcaption class="topo-mono">{p.caption[lang]}</figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+      <CarnetLightbox />
+    </section>
+    )}
 
     <section class="ed-section ed-section--dark topo-section topo-cta">
       <div class="site-shell">

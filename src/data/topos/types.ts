@@ -86,7 +86,14 @@ export type Topo = {
 };
 
 /** Longueur d'une voie (glace, mixte, rocher). */
-export type Pitch = { n: number; grade: string; lengthM: number; text: L | null };
+export type Pitch = {
+  n: number;
+  grade: string;
+  lengthM: number;
+  text: L | null;
+  /** Passage hors longueur à faire avant celle-ci (désescalade, rappels de liaison). */
+  before?: L;
+};
 
 /** Topo de voie (goulotte, couloir, ligne d'alpinisme) : pas de trace GPX ni d'étapes. */
 export type VoieTopo = {
@@ -107,6 +114,7 @@ export type VoieTopo = {
   facts: { label: L; value: L | null }[];
   pitches: Pitch[];
   descent: L[];
+  gallery?: TopoPhoto[];
   sources: { href: string; label: L }[];
   method: L;
 };

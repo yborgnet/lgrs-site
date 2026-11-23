@@ -863,3 +863,14 @@
 .topo-card__media--plain .topo-badge {
   font-style: normal;
 }
+
+.topo-pitch--between {
+  display: block;
+  padding: 14px 0 14px 16px;
+  border-left: 3px solid var(--rose);
+  background: rgba(235, 225, 255, 0.45);
+}
+
+.topo-pitch--between .topo-pitch__text {
+  font-style: italic;
+}

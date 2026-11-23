@@ -41,7 +41,7 @@ const [t1, t2] = u.indexTitle.split(", ");
                 {t.photoHero ? (
                   <div class="topo-card__media">
                     <img src={withBase(t.photoHero.src)} alt={t.photoHero.alt[lang]} width={t.photoHero.width} height={t.photoHero.height} loading="lazy" decoding="async" />
-                    <span class="topo-badge">{u.badge}</span>
+                    <span class="topo-badge">{u.badge}{t.type === "voie" ? ` · ${u.voie}` : ""}</span>
                   </div>
                 ) : (
                   <div class="topo-card__media topo-card__media--plain">
