@@ -92,7 +92,7 @@ const jsonLd = {
             {topo.facts.map((f) => (
               <div>
                 <dt class="topo-mono">{f.label[lang]}</dt>
-                <dd class:list={{ "is-todo": !f.value }}>{tr(f.value)}</dd>
+                <dd class:list={{ "is-todo": !f.value }}>{f.href ? <a href={withBase(f.href)}>{tr(f.value)}</a> : tr(f.value)}</dd>
               </div>
             ))}
           </dl>

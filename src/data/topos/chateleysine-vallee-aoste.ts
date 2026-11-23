@@ -89,7 +89,14 @@ export const chateleysine: Topo = {
         it: "Valle di Saint-Barthélemy, intorno ai 1.960 m",
       },
     },
-    { label: { fr: "Accès en transports publics", en: "Public transport", it: "Trasporti pubblici" }, value: null },
+    {
+      label: { fr: "Accès en transports publics", en: "Public transport", it: "Trasporti pubblici" },
+      value: {
+        fr: "Aller : Aoste est desservie par bus depuis Turin et Milan ; pas de ligne régulière identifiée jusqu'à Blavy (environ 12 km d'Aoste par la route) : taxi à prévoir. Retour : rejoindre Lignan (1 633 m), d'où une ligne Arriva descend à Nus quelques jours par semaine seulement, puis bus pour Aoste. Horaires à vérifier sur aosta.arriva.it.",
+        en: "Outbound: Aosta is served by bus from Turin and Milan; no regular line found up to Blavy (about 12 km from Aosta by road): plan on a taxi. Return: walk to Lignan (1,633 m), from where an Arriva bus runs down to Nus only a few days a week, then bus to Aosta. Check timetables on aosta.arriva.it.",
+        it: "Andata: Aosta è servita da autobus da Torino e Milano; nessuna linea regolare individuata fino a Blavy (circa 12 km da Aosta su strada): prevedere un taxi. Ritorno: raggiungere Lignan (1.633 m), da dove una linea Arriva scende a Nus solo alcuni giorni alla settimana, poi autobus per Aosta. Orari da verificare su aosta.arriva.it.",
+      },
+    },
     { label: { fr: "Forme", en: "Type", it: "Tipo" }, value: { fr: "Traversée", en: "Traverse (one way)", it: "Traversata" } },
     { label: { fr: "Durée", en: "Duration", it: "Durata" }, value: { fr: "4 jours, 3 nuits en bivouac", en: "4 days, 3 nights in bivouac huts", it: "4 giorni, 3 notti in bivacco" } },
     { label: { fr: "Distance", en: "Distance", it: "Distanza" }, value: { fr: "34,4 km", en: "34.4 km", it: "34,4 km" } },
@@ -102,21 +109,36 @@ export const chateleysine: Topo = {
     {
       label: { fr: "Période conseillée", en: "Best period", it: "Periodo consigliato" },
       value: {
-        fr: "Parcouru fin janvier (2024). Période conseillée : à compléter.",
-        en: "Done in late January (2024). Best period: to be completed.",
-        it: "Percorso a fine gennaio (2024). Periodo consigliato: da completare.",
+        fr: "De janvier à mars, selon l'enneigement : départ à 1 490 m et versants souvent au sud, la neige manque vite en bas. Parcouru fin janvier 2024.",
+        en: "January to March, depending on snow cover: the start is at 1,490 m and many slopes face south, so the lower part loses its snow quickly. Done in late January 2024.",
+        it: "Da gennaio a marzo, secondo l'innevamento: partenza a 1.490 m e versanti spesso a sud, la neve in basso sparisce in fretta. Percorso a fine gennaio 2024.",
       },
     },
     {
       label: { fr: "Terrain / difficulté", en: "Terrain / difficulty", it: "Terreno / difficoltà" },
       value: {
-        fr: "Itinéraire non glaciaire, en autonomie complète (nourriture et réchaud pour trois nuits). Cotation : à compléter.",
-        en: "Non-glaciated route, fully self-supported (food and stove for three nights). Grade: to be completed.",
-        it: "Itinerario non glaciale, in completa autonomia (viveri e fornello per tre notti). Difficoltà: da completare.",
+        fr: "BS (bon skieur, échelle italienne), cotation donnée par Gulliver.it pour les itinéraires du secteur Vessonaz–Lignan. Non glaciaire. Arête du Mont Mary parfois ventée et dure : crampons utiles. Autonomie complète (nourriture et réchaud pour trois nuits).",
+        en: "BS (good skier, Italian scale), the grade given by Gulliver.it for routes around Vessonaz–Lignan. Non-glaciated. The Mont Mary ridge can be wind-scoured and hard: crampons useful. Fully self-supported (food and stove for three nights).",
+        it: "BS (buon sciatore), difficoltà indicata da Gulliver.it per gli itinerari della zona Vessona–Lignan. Non glaciale. Dorsale del Mont Mary a volte ventata e dura: ramponi utili. Completa autonomia (viveri e fornello per tre notti).",
       },
     },
-    { label: { fr: "Matériel spécifique", en: "Specific equipment", it: "Materiale specifico" }, value: null },
-    { label: { fr: "Cartes", en: "Maps", it: "Carte" }, value: null },
+    {
+      label: { fr: "Matériel spécifique", en: "Specific equipment", it: "Materiale specifico" },
+      value: {
+        fr: "Checklist raid à ski non glaciaire, cabanes non gardées →",
+        en: "Non-glaciated ski tour checklist, unstaffed huts (in French) →",
+        it: "Checklist raid con gli sci non glaciale, bivacchi (in francese) →",
+      },
+      href: "/checklist/?activite=raid&heb=cabane&opt=",
+    },
+    {
+      label: { fr: "Cartes", en: "Maps", it: "Carte" },
+      value: {
+        fr: "L'Escursionista n° 6 « Valpelline, Saint-Barthélemy » 1:25 000 ; ou Fraternali n° 31 « Valpelline, Saint-Barthélemy, Aosta – Valle Centrale » 1:25 000",
+        en: "L'Escursionista no. 6 “Valpelline, Saint-Barthélemy” 1:25,000; or Fraternali no. 31 “Valpelline, Saint-Barthélemy, Aosta – Valle Centrale” 1:25,000",
+        it: "L'Escursionista n. 6 «Valpelline, Saint-Barthélemy» 1:25.000; oppure Fraternali n. 31 «Valpelline, Saint-Barthélemy, Aosta – Valle Centrale» 1:25.000",
+      },
+    },
   ],
   gpx: "/gpx/topo-chateleysine-vallee-aoste.gpx",
   points: [
@@ -165,11 +187,7 @@ export const chateleysine: Topo = {
     {
       id: "penne", name: "Bivacco Penne Nere", ele: 2730,
       kind: BIVOUAC,
-      places: {
-        fr: "14 places selon lovevda.it, 16 selon une autre source : à confirmer",
-        en: "14 places according to lovevda.it, 16 according to another source: to be confirmed",
-        it: "14 posti secondo lovevda.it, 16 secondo un'altra fonte: da confermare",
-      },
+      places: { fr: "14 places", en: "14 places", it: "14 posti" },
       season: { fr: "Ouvert toute l'année", en: "Open all year", it: "Aperto tutto l'anno" },
       winterRoom: null,
       booking: null,
@@ -177,7 +195,7 @@ export const chateleysine: Topo = {
       email: null, website: null,
       lat: 45.7966, lon: 7.3674,
       notes: [
-        { fr: "Propriété de la commune de Valpelline ; construit en 2005", en: "Owned by the municipality of Valpelline; built in 2005", it: "Di proprietà del comune di Valpelline; costruito nel 2005" },
+        { fr: "Au col de Viou ; propriété de la commune de Valpelline, inauguré en 2005", en: "At the Col de Viou; owned by the municipality of Valpelline, opened in 2005", it: "Al colle di Viou; di proprietà del comune di Valpelline, inaugurato nel 2005" },
         { fr: "Pas d'eau : prévoir de faire fondre la neige", en: "No water: plan to melt snow", it: "Niente acqua: prevedere di sciogliere la neve" },
         { fr: "Éclairage à la bougie", en: "Candle lighting", it: "Illuminazione a candela" },
       ],
@@ -196,7 +214,7 @@ export const chateleysine: Topo = {
       email: null, website: null,
       lat: 45.8178, lon: 7.4008,
       notes: [
-        { fr: "Couvertures sur place", en: "Blankets on site", it: "Coperte sul posto" },
+        { fr: "Couvertures, réchaud à gaz et matériel de cuisine signalés", en: "Blankets, gas stove and cooking gear reported", it: "Coperte, fornello a gas e stoviglie segnalati" },
         { fr: "Point d'eau à une centaine de mètres (souvent sous la neige en hiver)", en: "Water point about 100 m away (often under snow in winter)", it: "Punto d'acqua a un centinaio di metri (spesso sotto la neve d'inverno)" },
       ],
       verified: "2026-11",
@@ -204,7 +222,7 @@ export const chateleysine: Topo = {
     {
       id: "rosaire", name: "Bivacco Rosaire et Clermont", ele: 2704,
       kind: BIVOUAC,
-      places: null,
+      places: { fr: "18 places sur matelas", en: "18 places on mattresses", it: "18 posti su materasso" },
       season: { fr: "Ouvert toute l'année", en: "Open all year", it: "Aperto tutto l'anno" },
       winterRoom: null,
       booking: null,
@@ -223,16 +241,31 @@ export const chateleysine: Topo = {
   ],
   variants: [
     {
-      fr: "Échappatoires étape par étape : à compléter.",
-      en: "Escape routes, stage by stage: to be completed.",
-      it: "Vie di fuga tappa per tappa: da completare.",
+      fr: "Échappatoire depuis Penne Nere : retour à Blavy par l'itinéraire de montée, ou descente sur Valpelline par le vallon d'Arpisson.",
+      en: "Escape from Penne Nere: back to Blavy along the ascent route, or down to Valpelline via the Arpisson valley.",
+      it: "Via di fuga da Penne Nere: ritorno a Blavy per l'itinerario di salita, oppure discesa su Valpelline per il vallone di Arpisson.",
+    },
+    {
+      fr: "Échappatoire depuis La Lliée : descente sur Oyace par le vallon de Verzignolette (Moncorvé, Vernosse).",
+      en: "Escape from La Lliée: down to Oyace via the Verzignolette valley (Moncorvé, Vernosse).",
+      it: "Via di fuga da La Lliée: discesa su Oyace per il vallone di Verzignolette (Moncorvé, Vernosse).",
+    },
+    {
+      fr: "Échappatoire depuis Rosaire et Clermont : descente directe sur Lignan par l'alpe Champanement.",
+      en: "Escape from Rosaire et Clermont: straight down to Lignan via the Champanement alp.",
+      it: "Via di fuga da Rosaire et Clermont: discesa diretta su Lignan per l'alpe Champanement.",
+    },
+    {
+      fr: "Ces descentes suivent des sentiers d'été : en hiver, l'itinéraire à ski dépend des conditions nivologiques.",
+      en: "These descents follow summer trails: in winter, the ski line depends on snow and avalanche conditions.",
+      it: "Queste discese seguono sentieri estivi: d'inverno la linea con gli sci dipende dalle condizioni nivologiche.",
     },
   ],
   gallery: gallery as Topo["gallery"],
   recits: [],
   method: {
-    fr: "Chiffres calculés sur la trace GPX enregistrée lors du raid de janvier 2024, dénivelés lissés et arrondis à 10 m. Durées : temps réellement enregistré, pauses comprises. Bivouacs : données des sites refuges.info et lovevda.it, à vérifier avant chaque saison.",
-    en: "Figures computed from the GPX track recorded on the January 2024 trip, smoothed elevation rounded to 10 m. Durations: time actually recorded, breaks included. Bivouac huts: data from refuges.info and lovevda.it, to be checked before each season.",
-    it: "Dati calcolati sulla traccia GPX registrata durante il raid di gennaio 2024, dislivelli livellati e arrotondati a 10 m. Durate: tempo effettivamente registrato, pause comprese. Bivacchi: dati di refuges.info e lovevda.it, da verificare prima di ogni stagione.",
+    fr: "Chiffres calculés sur la trace GPX enregistrée lors du raid de janvier 2024, dénivelés lissés et arrondis à 10 m. Durées : temps réellement enregistré, pauses comprises. Bivouacs, accès et cotation : données de refuges.info, lovevda.it, Gulliver.it et Arriva, à vérifier avant chaque saison.",
+    en: "Figures computed from the GPX track recorded on the January 2024 trip, smoothed elevation rounded to 10 m. Durations: time actually recorded, breaks included. Bivouac huts, access and grade: data from refuges.info, lovevda.it, Gulliver.it and Arriva, to be checked before each season.",
+    it: "Dati calcolati sulla traccia GPX registrata durante il raid di gennaio 2024, dislivelli livellati e arrotondati a 10 m. Durate: tempo effettivamente registrato, pause comprese. Bivacchi, accesso e difficoltà: dati di refuges.info, lovevda.it, Gulliver.it e Arriva, da verificare prima di ogni stagione.",
   },
 };

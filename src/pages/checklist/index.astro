@@ -162,6 +162,16 @@ const canonical = "https://lesgrandsraidsaski.com/checklist/";
     const fromUrl = new URLSearchParams(location.search).get("activite");
     const radio = fromUrl ? form.querySelector<HTMLInputElement>(`input[name=activite][value="${CSS.escape(fromUrl)}"]`) : null;
     if (radio) radio.checked = true;
+    // Options depuis l'URL (?heb=cabane,refuge&opt=glacier) : lien direct depuis un topo.
+    if (radio) {
+      const params = new URLSearchParams(location.search);
+      for (const [param, name] of [["heb", "heb"], ["opt", "opt"]] as const) {
+        const vals = params.get(param);
+        if (vals === null) continue;
+        const wanted = vals.split(",").filter(Boolean);
+        form.querySelectorAll<HTMLInputElement>(`input[name="${name}-${radio.value}"]`).forEach((i) => (i.checked = wanted.includes(i.value)));
+      }
+    }
 
     root.querySelectorAll<HTMLInputElement>("input[data-key]").forEach((cb) => {
       cb.checked = !!saved[cb.dataset.key!];

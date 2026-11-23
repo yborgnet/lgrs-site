@@ -71,7 +71,7 @@ export type Topo = {
   massif: L;
   seo: { title: L; description: L };
   stats: { days: number; distanceKm: number; ascentM: number; descentM: number; highPoint: { name: string; ele: number } };
-  facts: { label: L; value: L | null }[];
+  facts: { label: L; value: L | null; /** Lien interne (chemin du site, sans base). */ href?: string }[];
   gpx: string;
   points: TopoPoint[];
   profile: [number, number, number][];
