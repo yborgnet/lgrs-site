@@ -23,7 +23,7 @@ const canonical = "https://lesgrandsraidsaski.com/checklist/";
       <div class="site-shell">
         <p class="ed-eyebrow">Checklist</p>
         <h1 class="cl-title">Préparer <em>son sac.</em></h1>
-        <p class="cl-lead">Choisissez l’activité et l’hébergement : la liste se met à jour. Cochez au fur et à mesure, vos coches restent enregistrées sur cet appareil.</p>
+        <p class="cl-lead">Choisissez l’activité et les options : la liste se met à jour. Cochez au fur et à mesure, vos coches restent enregistrées sur cet appareil.</p>
 
         <form class="cl-controls" onsubmit="return false">
           <fieldset>
@@ -44,10 +44,14 @@ const canonical = "https://lesgrandsraidsaski.com/checklist/";
               </div>
             </fieldset>
           ))}
-          {activities.filter((a) => a.glacier).map((a) => (
+          {activities.filter((a) => a.toggles).map((a) => (
             <fieldset data-for={a.id}>
-              <legend>Terrain</legend>
-              <label class="cl-toggle"><input type="checkbox" name={`glacier-${a.id}`} /><span>Itinéraire glaciaire</span></label>
+              <legend>Options</legend>
+              <div class="cl-seg">
+                {a.toggles!.map((tg) => (
+                  <label class="cl-toggle"><input type="checkbox" name={`opt-${a.id}`} value={tg.id} /><span>{tg.label}</span></label>
+                ))}
+              </div>
             </fieldset>
           ))}
         </form>
@@ -171,7 +175,7 @@ const canonical = "https://lesgrandsraidsaski.com/checklist/";
       const opts = new Set<string>();
       const heb = form.querySelector<HTMLInputElement>(`input[name="heb-${act}"]:checked`);
       if (heb) opts.add(heb.value);
-      if (form.querySelector<HTMLInputElement>(`input[name="glacier-${act}"]`)?.checked) opts.add("glacier");
+      form.querySelectorAll<HTMLInputElement>(`input[name="opt-${act}"]:checked`).forEach((o) => opts.add(o.value));
       root!.querySelectorAll<HTMLElement>("[data-activity]").forEach((a) => {
         a.hidden = a.dataset.activity !== act;
         a.querySelectorAll<HTMLElement>("[data-when]").forEach((s) => {
