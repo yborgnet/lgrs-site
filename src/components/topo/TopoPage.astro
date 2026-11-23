@@ -158,7 +158,7 @@ const jsonLd = {
                 <div><dt class="topo-mono">{u.season}</dt><dd class:list={{ "is-todo": !h.season }}>{tr(h.season)}</dd></div>
                 <div><dt class="topo-mono">{u.winter}</dt><dd class:list={{ "is-todo": !h.winterRoom }}>{tr(h.winterRoom)}</dd></div>
                 <div><dt class="topo-mono">{u.booking}</dt><dd class:list={{ "is-todo": !h.booking }}>{tr(h.booking)}</dd></div>
-                <div><dt class="topo-mono">{u.phone}</dt><dd>{h.phones.map((p) => <span class="topo-hut__phone">{p.label[lang]} : <a href={`tel:${p.value.replace(/\s/g, "")}`}>{p.value}</a></span>)}</dd></div>
+                <div><dt class="topo-mono">{u.phone}</dt><dd class:list={{ "is-todo": !h.phones.length }}>{h.phones.length === 0 && u.todo}{h.phones.map((p) => <span class="topo-hut__phone">{p.label[lang]} : <a href={`tel:${p.value.replace(/\s/g, "")}`}>{p.value}</a></span>)}</dd></div>
                 <div><dt class="topo-mono">{u.email}</dt><dd>{h.email ? <a href={`mailto:${h.email}`}>{h.email}</a> : u.todo}</dd></div>
                 <div><dt class="topo-mono">{u.site}</dt><dd>{h.website ? <a href={h.website} target="_blank" rel="noopener">{h.website.replace(/^https?:\/\//, "")}</a> : u.todo}</dd></div>
                 <div><dt class="topo-mono">{u.gps}</dt><dd>{h.lat.toFixed(4)}, {h.lon.toFixed(4)} <span class="topo-note">({u.gpsNote})</span></dd></div>
@@ -201,7 +201,8 @@ const jsonLd = {
       <CarnetLightbox />
     </section>
 
-    <!-- 9. Récits -->
+    <!-- 9. Récits (seulement si un carnet existe) -->
+    {topo.recits.length > 0 && (
     <section class="ed-section ed-section--paper topo-section" id="recits">
       <div class="site-shell">
         <p class="ed-eyebrow">{u.recits}</p>
@@ -220,6 +221,7 @@ const jsonLd = {
         </div>
       </div>
     </section>
+    )}
 
     <!-- 10. CTA + 11. Avertissement -->
     <section class="ed-section ed-section--dark topo-section topo-cta">

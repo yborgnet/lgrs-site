@@ -30,7 +30,7 @@ export type TopoStage = {
   from: string;
   to: string;
   /** Année du raid dont provient la trace de l'étape. */
-  source: "2023" | "2025";
+  source: string;
   distanceKm: number;
   ascentM: number;
   descentM: number;
