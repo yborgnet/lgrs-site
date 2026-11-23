@@ -298,3 +298,84 @@
     padding: 12px 0 8px;
   }
 }
+
+/* Tarifs 2027 (accueil) — renvoie vers /tarifs/ */
+.home-tarifs {
+  background: var(--paper);
+  padding: 120px 0;
+  border-top: 1px solid var(--line);
+}
+
+.home-tarifs__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 88px;
+  align-items: start;
+}
+
+.home-tarifs h2 {
+  margin: 0 0 24px;
+  font-size: clamp(40px, 5vw, 76px);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
+
+.home-tarifs h2 em {
+  font-family: var(--font-serif);
+  font-weight: 300;
+}
+
+.home-tarifs__lead {
+  max-width: 460px;
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(18px, 1.6vw, 21px);
+  font-weight: 300;
+  line-height: 1.5;
+  opacity: 0.85;
+}
+
+.home-tarifs__list {
+  margin: 0 0 36px;
+  padding: 0;
+  list-style: none;
+  border-bottom: 1px solid var(--line);
+}
+
+.home-tarifs__list li {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 20px 0;
+  border-top: 1px solid var(--line);
+  font-size: 16px;
+}
+
+.home-tarifs__list strong {
+  flex: none;
+  font-family: var(--font-serif);
+  font-size: clamp(26px, 2.4vw, 34px);
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.home-tarifs__list small {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 400;
+  opacity: 0.6;
+}
+
+@media (max-width: 960px) {
+  .home-tarifs__grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 40px;
+  }
+}
+
+@media (max-width: 700px) {
+  .home-tarifs {
+    padding: 72px 0;
+  }
+}
