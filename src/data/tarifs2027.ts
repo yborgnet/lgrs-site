@@ -108,7 +108,7 @@ for (const sc of scenarios)
  *    CAI non-membre ~60 €) ;
  *  - refuges suisses : 100 € client (SAC non-membre CHF 70 à 100 ; + CHF 5
  *    non-membre et CHF 10 de réservation à partir de 2027).
- * Part du guide : la moitié du tarif client par défaut, modifiable. */
+ * Part du guide (Yann) : 40 € par nuit en refuge français ou italien, 60 € en refuge suisse. */
 export const simulateur = {
   activites: [
     { id: "classique", label: "Journée classique", base: 550, max: 6 },
@@ -118,8 +118,8 @@ export const simulateur = {
   ],
   hebergements: [
     { id: "cabane", label: "Cabane non gardée (forfait nourriture comprise)", client: CABANE.client, guide: CABANE.guide },
-    { id: "frit", label: "Refuge gardé français ou italien (demi-pension)", client: 60, guide: 30 },
-    { id: "ch", label: "Refuge gardé suisse (demi-pension)", client: 100, guide: 50 },
+    { id: "frit", label: "Refuge gardé français ou italien (demi-pension)", client: 60, guide: 40 },
+    { id: "ch", label: "Refuge gardé suisse (demi-pension)", client: 100, guide: 60 },
   ],
   piqueNique: PIQUE_NIQUE,
   supplementParClient: 50,
