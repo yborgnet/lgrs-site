@@ -4,8 +4,17 @@
  *  `when` : la section n'apparaît que si l'option correspondante est choisie.
  *  `guide: true` : matériel porté ou géré par le guide (affiché à part, pour info). */
 
-export type Opt = "refuge" | "cabane" | "bivouac" | "glacier" | "tente" | "guesthouse" | "escalade";
-export type Section = { id: string; title: string; items: string[]; guide?: boolean; when?: Opt[] };
+export type Opt = "refuge" | "cabane" | "bivouac" | "glacier" | "tente" | "guesthouse" | "escalade" | "avion" | "train" | "airbag";
+export type Section = {
+  id: string;
+  title: string;
+  items: string[];
+  guide?: boolean;
+  /** Affichée si au moins une de ces options est choisie. */
+  when?: Opt[];
+  /** Affichée seulement si toutes ces options sont choisies. */
+  whenAll?: Opt[];
+};
 export type Activity = {
   id: string;
   label: string;
@@ -44,13 +53,20 @@ export const activities: Activity[] = [
     id: "voyage",
     label: "Voyage à ski à l’étranger",
     toggles: [
+      { id: "avion", label: "Voyage en avion" },
+      { id: "train", label: "Voyage en train" },
+      { id: "airbag", label: "Sac airbag" },
       { id: "cabane", label: "Nuits en cabane non gardée" },
       { id: "tente", label: "Nuits sous tente" },
       { id: "glacier", label: "Itinéraire glaciaire" },
     ],
     sections: [
-      { id: "docs", title: "Papiers et argent", items: ["Passeport valide (vérifier la durée de validité exigée par le pays)", "Visa ou autorisation d’entrée si le pays l’exige", "Billets d’avion et réservation des bagages de soute (housse à skis)", "Attestation d’assurance couvrant les secours et le rapatriement", "Photocopie ou photo des papiers, rangée à part", "Carte bancaire et espèces en petites coupures", "Numéros utiles (assurance, banque, personne à prévenir)"] },
-      { id: "bagages", title: "Bagages", items: ["Housse à skis (skis, bâtons, peaux, pelle, sonde)", "Sac de voyage souple pour le reste", sacVoyage, "DVA en cabine, piles neuves", "Sac airbag : vérifier les règles de la compagnie aérienne avant de l’emporter", "Pas de cartouche de gaz dans l’avion (achetée sur place par le guide)"] },
+      { id: "docs", title: "Papiers et argent", items: ["Passeport valide (vérifier la durée de validité exigée par le pays)", "Visa ou autorisation d’entrée si le pays l’exige", "Attestation d’assurance couvrant les secours et le rapatriement", "Photocopie ou photo des papiers, rangée à part", "Carte bancaire et espèces en petites coupures", "Numéros utiles (assurance, banque, personne à prévenir)"] },
+      { id: "bagages", title: "Bagages", items: ["Sac de voyage souple (vêtements, affaires du soir)", sacVoyage] },
+      { id: "avion", title: "En avion", when: ["avion"], items: ["Billets d’avion et bagage de soute « équipement de ski » réservé", "Housse à skis rembourrée, qui sert de bagage de soute pour le matériel : skis, bâtons, peaux, pelle, sonde, casque (et crampons, piolet si glacier)", "Vêtements glissés dans la housse pour caler et protéger les skis", "Chaussures de ski en cabine ou aux pieds", "DVA en cabine, piles neuves", "Pas de cartouche de gaz pour réchaud dans l’avion (achetée sur place par le guide)"] },
+      { id: "train", title: "En train", when: ["train"], items: ["Billets de train, avec réservation d’un emplacement à bagages si la compagnie le propose", "Housse à skis légère, qui regroupe skis, bâtons, pelle et sonde (plus facile à porter et à ranger)", "Chaussures de ski aux pieds ou dans le sac de voyage"] },
+      { id: "airbag-avion", title: "Sac airbag en avion (procédure ARVA Reactor)", whenAll: ["airbag", "avion"], items: ["Avant de réserver, contacter la compagnie avec la fiche technique de la cartouche et l’extrait IATA 2.3.A", "Demander si l’airbag voyage en soute ou en cabine (variable selon les compagnies) et obtenir l’accord par écrit", "Dévisser la cartouche du système et la fermer avec son bouchon de sécurité", "Imprimer la fiche technique et l’extrait IATA en 3 exemplaires : un fixé sur la cartouche, un sur soi, un pour le retour", "Vol vers, depuis ou via les États-Unis : cartouche pleine interdite, partir sans et en louer une sur place", "Autre solution : partir sans cartouche et en louer une chez un revendeur Reactor sur place"] },
+      { id: "airbag-train", title: "Sac airbag en train", whenAll: ["airbag", "train"], items: ["Poignée verrouillée contre le déclenchement si la cartouche est montée, ou cartouche dévissée avec son bouchon de sécurité", "Ne pas exposer la cartouche à plus de 50 °C"] },
       { id: "base", title: "Base ski", items: ["Skis", "Bâtons", "Peaux", "Chaussures de ski", "DVA (ARVA) – pelle – sonde", "Couteaux", "Casque"] },
       { id: "vetements", title: "Vêtements", items: ["Bonnet", "Buff", "Lunettes catégorie 3 minimum", "Masque de ski", "Crème solaire indice 30 minimum", "1 paire de gants fins", "1 paire de gants épais", "Première couche mérinos manches longues", "Polaire fine ou softshell", "Doudoune", "Veste imperméable", "Collant", "Pantalon imperméable / de ski", "Chaussettes de ski", "Tenue de rechange pour les soirées et le voyage"] },
       { id: "gh", title: "Nuits en guest-house", items: ["Drap de soie", "Chaussons ou sandales légères", "Collant / haut manches longues de rechange", "Chaussettes de rechange", "Bouchons d’oreilles", "Serviette microfibre"] },
