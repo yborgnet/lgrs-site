@@ -72,7 +72,7 @@ const canonical = "https://lesgrandsraidsaski.com/checklist/";
           <div class="cl-activity" data-activity={a.id}>
             <div class="cl-grid">
               {a.sections.filter((s) => !s.guide).map((s) => (
-                <fieldset class="cl-section" data-when={s.when?.join(" ")} data-when-all={s.whenAll?.join(" ")}>
+                <fieldset class="cl-section" data-when={s.when?.join(" ")} data-when-all={s.whenAll?.join(" ")} data-unless={s.unless?.join(" ")}>
                   <legend>{s.title}</legend>
                   <ul>
                     {s.items.map((it, i) => (
@@ -86,7 +86,7 @@ const canonical = "https://lesgrandsraidsaski.com/checklist/";
               <h2 class="cl-guide__title">Porté ou géré par le guide <span data-cl-guide-count></span></h2>
               <div class="cl-grid">
                 {a.sections.filter((s) => s.guide).map((s) => (
-                  <fieldset class="cl-section cl-section--guide" data-when={s.when?.join(" ")} data-when-all={s.whenAll?.join(" ")}>
+                  <fieldset class="cl-section cl-section--guide" data-when={s.when?.join(" ")} data-when-all={s.whenAll?.join(" ")} data-unless={s.unless?.join(" ")}>
                     <legend>{s.title}</legend>
                     <ul>
                       {s.items.map((it, i) => (
@@ -196,10 +196,11 @@ const canonical = "https://lesgrandsraidsaski.com/checklist/";
       form.querySelectorAll<HTMLInputElement>(`input[name="opt-${act}"]:checked`).forEach((o) => opts.add(o.value));
       root!.querySelectorAll<HTMLElement>("[data-activity]").forEach((a) => {
         a.hidden = a.dataset.activity !== act;
-        a.querySelectorAll<HTMLElement>("[data-when], [data-when-all]").forEach((s) => {
+        a.querySelectorAll<HTMLElement>("[data-when], [data-when-all], [data-unless]").forEach((s) => {
           const when = (s.dataset.when || "").split(" ").filter(Boolean);
           const all = (s.dataset.whenAll || "").split(" ").filter(Boolean);
-          s.hidden = (when.length > 0 && !when.some((w) => opts.has(w))) || (all.length > 0 && !all.every((w) => opts.has(w)));
+          const unless = (s.dataset.unless || "").split(" ").filter(Boolean);
+          s.hidden = (when.length > 0 && !when.some((w) => opts.has(w))) || (all.length > 0 && !all.every((w) => opts.has(w))) || unless.some((w) => opts.has(w));
         });
         const guide = a.querySelector<HTMLElement>(".cl-guide");
         if (guide) guide.hidden = !guide.querySelector(".cl-section:not([hidden])");

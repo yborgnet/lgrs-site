@@ -4,7 +4,7 @@
  *  `when` : la section n'apparaît que si l'option correspondante est choisie.
  *  `guide: true` : matériel porté ou géré par le guide (affiché à part, pour info). */
 
-export type Opt = "refuge" | "cabane" | "bivouac" | "glacier" | "tente" | "guesthouse" | "escalade" | "avion" | "train" | "airbag";
+export type Opt = "refuge" | "cabane" | "bivouac" | "glacier" | "tente" | "guesthouse" | "escalade" | "avion" | "train" | "airbag" | "bateau";
 export type Section = {
   id: string;
   title: string;
@@ -14,6 +14,8 @@ export type Section = {
   when?: Opt[];
   /** Affichée seulement si toutes ces options sont choisies. */
   whenAll?: Opt[];
+  /** Masquée si l'une de ces options est choisie. */
+  unless?: Opt[];
 };
 export type Activity = {
   id: string;
@@ -56,6 +58,7 @@ export const activities: Activity[] = [
       { id: "avion", label: "Voyage en avion" },
       { id: "train", label: "Voyage en train" },
       { id: "airbag", label: "Sac airbag" },
+      { id: "bateau", label: "Ski & bateau (Norvège, Groenland, Svalbard…)" },
       { id: "cabane", label: "Nuits en cabane non gardée" },
       { id: "tente", label: "Nuits sous tente" },
       { id: "glacier", label: "Itinéraire glaciaire" },
@@ -69,7 +72,8 @@ export const activities: Activity[] = [
       { id: "airbag-train", title: "Sac airbag en train", whenAll: ["airbag", "train"], items: ["Poignée verrouillée contre le déclenchement si la cartouche est montée, ou cartouche dévissée avec son bouchon de sécurité", "Ne pas exposer la cartouche à plus de 50 °C"] },
       { id: "base", title: "Base ski", items: ["Skis", "Bâtons", "Peaux", "Chaussures de ski", "DVA (ARVA) – pelle – sonde", "Couteaux", "Casque"] },
       { id: "vetements", title: "Vêtements", items: ["Bonnet", "Buff", "Lunettes catégorie 3 minimum", "Masque de ski", "Crème solaire indice 30 minimum", "1 paire de gants fins", "1 paire de gants épais", "Première couche mérinos manches longues", "Polaire fine ou softshell", "Doudoune", "Veste imperméable", "Collant", "Pantalon imperméable / de ski", "Chaussettes de ski", "Tenue de rechange pour les soirées et le voyage"] },
-      { id: "gh", title: "Nuits en guest-house", items: ["Drap de soie", "Chaussons ou sandales légères", "Collant / haut manches longues de rechange", "Chaussettes de rechange", "Bouchons d’oreilles", "Serviette microfibre"] },
+      { id: "gh", title: "Nuits en guest-house", unless: ["bateau"], items: ["Drap de soie", "Chaussons ou sandales légères", "Collant / haut manches longues de rechange", "Chaussettes de rechange", "Bouchons d’oreilles", "Serviette microfibre"] },
+      { id: "bateau", title: "Ski & bateau", when: ["bateau"], items: ["Sac de voyage souple ou sac à dos, pas de valise rigide (rangement en cabine)", "Bottes en caoutchouc hautes et chaudes, assez grandes pour des chaussettes en laine (débarquements en annexe)", "Sac pour les bottes", "Chaussons ou sandales légères pour l’intérieur du bateau", "Sac étanche pour protéger le matériel pendant les transferts en annexe", "Gants et sous-gants de rechange (le séchage à bord est limité)", "Maillot de bain et serviette (sauna, bain de mer)", "Traitement contre le mal de mer (demander conseil à son médecin ou pharmacien)", "Bouchons d’oreilles (cabines partagées, bruit du moteur)", "Lunettes de catégorie 4 (réverbération de la mer et de la neige)", "Crème solaire indice 50"] },
       { id: "nuit", title: "Nuits en cabane non gardée ou sous tente", when: ["cabane", "tente"], items: ["Sac de couchage chaud (en cabane : s’il n’y a pas de couvertures)", "Bol et cuillère", "Opinel", "Gourde Nalgene (bouillotte)", "Mouchoirs / papier toilette"] },
       { id: "tente", title: "En plus sous tente", when: ["tente"], items: ["Matelas"] },
       { id: "glacier", title: "Glacier / alpinisme", when: ["glacier"], items: ["Baudrier", "Sangle 120 cm", "2 mousquetons à vis", "Crampons", "Piolet"] },
@@ -80,6 +84,7 @@ export const activities: Activity[] = [
       { id: "g-glacier", title: "Glacier / alpinisme", guide: true, when: ["glacier"], items: ["Corde 50 m", "5 mousquetons à vis", "Micro Traxion", "Cordelette 5 mm, 5 m", "2 broches à glace", "2 sangles 120 cm", "Escaper"] },
       { id: "g-nuit", title: "Communs cabane non gardée ou bivouac", guide: true, when: ["cabane", "tente"], items: ["Réchaud, gaz (acheté sur place) et briquet", "Repas du soir et petits-déjeuners"] },
       { id: "g-tente", title: "Bivouac sous tente", guide: true, when: ["tente"], items: ["Tentes"] },
+      { id: "g-bateau", title: "Ski & bateau", guide: true, when: ["bateau"], items: ["Briefing sécurité du bord et des transferts en annexe avec l’équipage", "Liaison radio (VHF) avec le bateau pendant les sorties", "Protection contre l’ours polaire selon la réglementation locale (Svalbard, Groenland)"] },
     ],
   },
   {
