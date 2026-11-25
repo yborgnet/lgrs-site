@@ -2,21 +2,15 @@
  * Topo n° 1 — Dammastock · Une grande traversée des Alpes uranaises.
  *
  * Principe : la traversée a été « grignotée » en deux raids (avril 2023 et fin
- * mars 2025). Le topo assemble les meilleures étapes des deux :
- *   J1–J3 : trace 2023 (data/gpx-sources/suisse-dammastock-2023.original.gpx, jours 1 à 3)
- *   J4–J5 : trace 2025 (data/gpx-sources/suisse-titlis-dammastock-2025.original.gpx, jours 3 et 4)
- *   J6    : trace 2025, jour 5, coupée à la fin du parcours à ski (point 6205,
- *           ~1 060 m, à ~4 km d'Engelberg) : la suite de la trace est un trajet
- *           motorisé (vitesse > 30 km/h) puis les remontées vers le Jochpass.
+ * mars 2025). Trace fusionnée fournie par Yann en novembre 2026 :
+ * data/gpx-sources/suisse-dammastock-2023-2025-fusion.original.gpx
+ *   J1–J4 : trace 2023 (J4 arrêtée au Grassenbiwak ; en 2023 le groupe a
+ *           poursuivi jusqu'à la Sustlihütte)
+ *   J5–J6 : trace 2025, J6 coupée à la fin du parcours à ski (~1 060 m, à ~4 km
+ *           d'Engelberg) : la suite est un trajet motorisé.
  * Découpage, distances et dénivelés : méthode du site (docs/gpx-methodology.md,
- * segmentDays + computeDayStats, lissage par défaut, arrondi à 10 m) —
- * mêmes valeurs que les carnets pour les étapes communes. Script :
- * scripts/gpx-topo-dammastock.ts (produit aussi public/gpx/topo-dammastock-alpes-uranaises.gpx).
- *
- * NB : le brief citait 72 km · D+ 8 220 · D− 8 360, calculés sur une trace
- * fusionnée qui n'est pas dans le dépôt ; les chiffres ci-dessous viennent des
- * GPX originaux archivés (écarts : lissage différent, et J6 arrêtée à la fin du
- * ski au lieu du centre d'Engelberg).
+ * segmentDays + computeDayStats, lissage par défaut, arrondi à 10 m).
+ * Script : scripts/gpx-topo-dammastock.ts.
  *
  * Hébergements : contacts fournis par Yann (vérifiés en ligne en novembre 2026,
  * à reconfirmer). Coordonnées : points de la trace GPX à l'arrivée/au départ.
@@ -56,16 +50,16 @@ export const dammastock: Topo = {
       it: "Topo scialpinismo — Dammastock, traversata delle Alpi Urane | Les Grands Raids à Ski",
     },
     description: {
-      fr: "Topo de la traversée du Dammastock à ski de randonnée : 6 jours, 70 km, 8 100 m D+, Sustenhorn 3 503 m. Salbithütte, Voralphütte, Steingletscher, Grassenbiwak, Spannorthütte. Carte, GPX, étapes et contacts.",
-      en: "Ski touring topo of the Dammastock traverse: 6 days, 70 km, 8,100 m of ascent, Sustenhorn 3,503 m. Salbithütte, Voralphütte, Steingletscher, Grassenbiwak, Spannorthütte. Map, GPX, stages and contacts.",
-      it: "Topo della traversata del Dammastock con gli sci: 6 giorni, 70 km, 8.100 m D+, Sustenhorn 3.503 m. Salbithütte, Voralphütte, Steingletscher, Grassenbiwak, Spannorthütte. Mappa, GPX, tappe e contatti.",
+      fr: "Topo de la traversée du Dammastock à ski de randonnée : 6 jours, 68 km, 7 900 m D+, Sustenhorn 3 503 m. Salbithütte, Voralphütte, Steingletscher, Grassenbiwak, Spannorthütte. Carte, GPX, étapes et contacts.",
+      en: "Ski touring topo of the Dammastock traverse: 6 days, 68 km, 7,900 m of ascent, Sustenhorn 3,503 m. Salbithütte, Voralphütte, Steingletscher, Grassenbiwak, Spannorthütte. Map, GPX, stages and contacts.",
+      it: "Topo della traversata del Dammastock con gli sci: 6 giorni, 68 km, 7.900 m D+, Sustenhorn 3.503 m. Salbithütte, Voralphütte, Steingletscher, Grassenbiwak, Spannorthütte. Mappa, GPX, tappe e contatti.",
     },
   },
   stats: {
     days: 6,
-    distanceKm: 69.8,
-    ascentM: 8100,
-    descentM: 8170,
+    distanceKm: 67.9,
+    ascentM: 7920,
+    descentM: 8010,
     highPoint: { name: "Sustenhorn", ele: 3503 },
   },
   facts: [
@@ -90,9 +84,9 @@ export const dammastock: Topo = {
     },
     { label: { fr: "Forme", en: "Type", it: "Tipo" }, value: { fr: "Traversée", en: "Traverse (one way)", it: "Traversata" } },
     { label: { fr: "Durée", en: "Duration", it: "Durata" }, value: { fr: "6 jours", en: "6 days", it: "6 giorni" } },
-    { label: { fr: "Distance", en: "Distance", it: "Distanza" }, value: { fr: "69,8 km", en: "69.8 km", it: "69,8 km" } },
-    { label: { fr: "Dénivelé positif", en: "Ascent", it: "Dislivello positivo" }, value: { fr: "8 100 m", en: "8,100 m", it: "8.100 m" } },
-    { label: { fr: "Dénivelé négatif", en: "Descent", it: "Dislivello negativo" }, value: { fr: "8 170 m", en: "8,170 m", it: "8.170 m" } },
+    { label: { fr: "Distance", en: "Distance", it: "Distanza" }, value: { fr: "67,9 km", en: "67.9 km", it: "67,9 km" } },
+    { label: { fr: "Dénivelé positif", en: "Ascent", it: "Dislivello positivo" }, value: { fr: "7 920 m", en: "7,920 m", it: "7.920 m" } },
+    { label: { fr: "Dénivelé négatif", en: "Descent", it: "Dislivello negativo" }, value: { fr: "8 010 m", en: "8,010 m", it: "8.010 m" } },
     { label: { fr: "Point haut", en: "High point", it: "Punto più alto" }, value: { fr: "Sustenhorn, 3 503 m", en: "Sustenhorn, 3,503 m", it: "Sustenhorn, 3.503 m" } },
     {
       label: { fr: "Période conseillée", en: "Best period", it: "Periodo consigliato" },
@@ -156,8 +150,8 @@ export const dammastock: Topo = {
       nightId: "steingletscher",
     },
     {
-      day: 4, from: "Steingletscher", to: "Grassenbiwak", source: "2025",
-      distanceKm: 9.4, ascentM: 1510, descentM: 720, recordedMin: 370,
+      day: 4, from: "Steingletscher", to: "Grassenbiwak", source: "2023",
+      distanceKm: 7.4, ascentM: 1330, descentM: 560, recordedMin: 275,
       waypoints: ["Obertaljoch", "Wendengletscher"],
       keyPassages: [
         { fr: "Glacier : Wendengletscher", en: "Glacier: Wendengletscher", it: "Ghiacciaio: Wendengletscher" },
@@ -282,9 +276,9 @@ export const dammastock: Topo = {
       it: "Approccio del raid 2025: da Guttannen alla Windegghütte, poi allo Steingletscher (2 giorni), al posto delle tappe da 1 a 3.",
     },
     {
-      fr: "Fin du raid 2023 : du Steingletscher à la Sustlihütte, puis descente vers Farnigen (2 jours), à la place des étapes 4 à 6.",
-      en: "End of the 2023 trip: from Steingletscher to the Sustlihütte, then down to Farnigen (2 days), instead of stages 4 to 6.",
-      it: "Fine del raid 2023: dallo Steingletscher alla Sustlihütte, poi discesa verso Farnigen (2 giorni), al posto delle tappe da 4 a 6.",
+      fr: "Fin du raid 2023 : depuis le Grassenbiwak, suite le même jour jusqu’à la Sustlihütte, puis descente vers Farnigen le lendemain, à la place des étapes 5 et 6.",
+      en: "End of the 2023 trip: from the Grassenbiwak, on the same day to the Sustlihütte, then down to Farnigen the next day, instead of stages 5 and 6.",
+      it: "Fine del raid 2023: dal Grassenbiwak, lo stesso giorno fino alla Sustlihütte, poi discesa verso Farnigen il giorno dopo, al posto delle tappe 5 e 6.",
     },
   ],
   gallery: gallery as Topo["gallery"],
@@ -292,20 +286,20 @@ export const dammastock: Topo = {
     {
       href: "/traversee-dammastock-2023/",
       title: { fr: "Traversée du Dammastock, 2023", en: "Dammastock traverse, 2023", it: "Traversata del Dammastock, 2023" },
-      meta: { fr: "Avril 2023 · Abfrutt → Farnigen · étapes 1 à 3 du topo", en: "April 2023 · Abfrutt → Farnigen · topo stages 1 to 3", it: "Aprile 2023 · Abfrutt → Farnigen · tappe 1-3 del topo" },
+      meta: { fr: "Avril 2023 · Abfrutt → Farnigen · étapes 1 à 4 du topo", en: "April 2023 · Abfrutt → Farnigen · topo stages 1 to 4", it: "Aprile 2023 · Abfrutt → Farnigen · tappe 1-4 del topo" },
       photo: "/photos/Dammastock 2023/dammastock-suisse-mer-nuages-sommets.jpg",
     },
     {
       href: "/dammastock-titlis-traversee-ski-randonnee/",
       title: { fr: "Dammastock–Titlis, 2025", en: "Dammastock–Titlis, 2025", it: "Dammastock–Titlis, 2025" },
-      meta: { fr: "Mars 2025 · Guttannen → Innertkirchen · étapes 4 à 6 du topo", en: "March 2025 · Guttannen → Innertkirchen · topo stages 4 to 6", it: "Marzo 2025 · Guttannen → Innertkirchen · tappe 4-6 del topo" },
+      meta: { fr: "Mars 2025 · Guttannen → Innertkirchen · étapes 5 et 6 du topo", en: "March 2025 · Guttannen → Innertkirchen · topo stages 5 and 6", it: "Marzo 2025 · Guttannen → Innertkirchen · tappe 5 e 6 del topo" },
       photo: "/photos/Suisse Titlis/suisse-dammastock-titlis-ski-randonnee-dsc09606-038.jpg",
     },
   ],
   method: {
-    fr: "Chiffres calculés sur les traces GPX enregistrées lors des deux raids (étapes 1 à 3 : avril 2023 ; étapes 4 à 6 : mars 2025), dénivelés lissés et arrondis à 10 m. Durées : temps réellement enregistré, pauses comprises.",
-    en: "Figures computed from the GPX tracks recorded on the two trips (stages 1 to 3: April 2023; stages 4 to 6: March 2025), smoothed elevation rounded to 10 m. Durations: time actually recorded, breaks included.",
-    it: "Dati calcolati sulle tracce GPX registrate durante i due raid (tappe 1-3: aprile 2023; tappe 4-6: marzo 2025), dislivelli livellati e arrotondati a 10 m. Durate: tempo effettivamente registrato, pause comprese.",
+    fr: "Chiffres calculés sur les traces GPX enregistrées lors des deux raids (étapes 1 à 4 : avril 2023 ; étapes 5 et 6 : mars 2025), dénivelés lissés et arrondis à 10 m. Durées : temps réellement enregistré, pauses comprises.",
+    en: "Figures computed from the GPX tracks recorded on the two trips (stages 1 to 4: April 2023; stages 5 and 6: March 2025), smoothed elevation rounded to 10 m. Durations: time actually recorded, breaks included.",
+    it: "Dati calcolati sulle tracce GPX registrate durante i due raid (tappe 1-4: aprile 2023; tappe 5 e 6: marzo 2025), dislivelli livellati e arrotondati a 10 m. Durate: tempo effettivamente registrato, pause comprese.",
   },
 };
 

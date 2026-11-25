@@ -13,8 +13,7 @@ Page : /topos/dammastock-alpes-uranaises/ (FR, EN, IT). Données : src/data/topo
 
 ## Chiffres
 
-- [ ] Le brief annonçait 72 km · D+ 8 220 · D− 8 360 (trace fusionnée absente du dépôt). Le topo affiche 69,8 km · D+ 8 100 · D− 8 170, calculés sur les GPX originaux avec la méthode du site (mêmes valeurs que les carnets pour les étapes communes).
-- [ ] Étape 4 : le brief donnait 7,4 km · 1 370 · 580 ; la trace 2025 donne 9,4 km · 1 510 · 720.
+- [x] Trace fusionnée reçue (nov. 2026) : data/gpx-sources/suisse-dammastock-2023-2025-fusion.original.gpx. Le topo affiche 67,9 km · D+ 7 920 · D− 8 010 (méthode du site, J6 coupée à la fin du ski ; la fusion brute fait 71,7 km avec ~4 km de trajet motorisé). Étape 4 = trace 2023 : 7,4 km · 1 330 · 560.
 - [ ] Étape 6 : la trace à ski s'arrête vers 1 060 m, à ~4 km d'Engelberg (la suite de 2025 est un trajet motorisé, détecté à la vitesse). Le brief donnait 19,1 km.
 
 ## Champs laissés « à compléter »
